@@ -15,13 +15,15 @@
         <p:menubar styleClass="nonPrintBlock bottomBorderOnly ui-widget-header"  >
             <p:menuitem  ajax="false"  action="/index" icon="ui-icon-home" styleClass="rightBordrOnly" ></p:menuitem>
             <p:submenu styleClass="rightBordrOnly" label="Order" rendered="#{webUserController.hasPrivilege('Opd')}">
-                <p:menuitem ajax="false" action="/opd_bill"  actionListener="#{billController.prepareNewBill}" value="New Order" rendered="#{webUserController.hasPrivilege('OpdBilling')}" ></p:menuitem>
+                <p:menuitem ajax="false" 
+                            action="#{billController.toNewOpdOrder()}"  
+                            value="New Order" 
+                            rendered="#{webUserController.hasPrivilege('OpdBilling')}" >
+                </p:menuitem>
                 <p:menuitem ajax="false" action="/opd_search_bill_own" actionListener="#{searchController.makeListNull}"  value="Search Orders" rendered="#{webUserController.hasPrivilege('OpdBillSearch')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/opd_search_billitem_own" value="Search Order Items" actionListener="#{searchController.makeListNull}" rendered="#{webUserController.hasPrivilege('OpdBillItemSearch')}" ></p:menuitem>
-
-
-                <p:menuitem ajax="false" action="/opd_bill_awaiting_cancellation" value="Bill Awaiting For Cancel" rendered="#{webUserController.hasPrivilege('OpdCancel')}" ></p:menuitem>
-                <p:menuitem ajax="false" action="/reportCashier/report_cashier" value="Summery" ></p:menuitem>
+                <p:menuitem ajax="false" action="/opd_bill_awaiting_cancellation" value="Orders Awaiting Cancellation" rendered="#{webUserController.hasPrivilege('OpdCancel')}" ></p:menuitem>
+                <p:menuitem ajax="false" action="/reportCashier/report_cashier" value="Order Summeries" ></p:menuitem>
             </p:submenu>
 
             <p:submenu styleClass="rightBordrOnly" label="Registration"  rendered="#{webUserController.hasPrivilege('MemberShip')}">

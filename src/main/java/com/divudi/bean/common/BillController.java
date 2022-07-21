@@ -1961,6 +1961,13 @@ public class BillController implements Serializable {
         }
     }
 
+    
+    public void toNewOpdOrder(){
+        prepareNewBill();
+        return "/opd_order";
+    }
+    
+    
     public void prepareNewBill() {
         clearBillItemValues();
         clearBillValues();
