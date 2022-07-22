@@ -53,6 +53,8 @@
                                         <div class="col-md-6" >
                                             <div class="form" >
                                                 <p:tabView id="tvPt" activeIndex="#{billController.patientSearchTab}" class="w-100 m-0 p-0" >
+                                                    <p:ajax event="tabChange"   process="@this"  
+                                                            listener="#{billController.onTabChange}" />
                                                     <p:tab id="tabNewPt" title="New Patient"   >
                                                         <div class="form-row">
                                                             <div class="form-group col-md-3">
@@ -360,9 +362,8 @@
                                                                     #{bi.billItem.item.name}
                                                             </p:column>
                                                             <p:column>
-                                                                <f:facet name="header">Fee</f:facet>
-                                                                <h:outputLabel value="#{bi.billItem.netValue}">
-                                                                    <f:convertNumber pattern="#,##0.00" />
+                                                                <f:facet name="header">Institution</f:facet>
+                                                                <h:outputLabel value="#{bi.billItem.item.department.name}">
                                                                 </h:outputLabel>
                                                             </p:column>
                                                             <p:column>
@@ -396,49 +397,6 @@
                                                                     #{bix.item.name}
                                                             </p:column>
 
-                                                        </p:dataTable>
-                                                    </p:tab>
-
-                                                    <p:tab id="tabBillFee" title="Fees" >
-                                                        <p:dataTable rowIndexVar="rowIndex" value="#{billController.lstBillFees}" var="bif" >
-                                                            <p:column>
-                                                                <f:facet name="header">Item Name</f:facet>
-                                                                <h:outputLabel value="#{bif.billItem.item.name}" />
-                                                            </p:column>
-                                                            <p:column>
-                                                                <f:facet name="header">Fee</f:facet>
-                                                                <h:inputText autocomplete="off"  required="true" requiredMessage="Please Check Changed Fees.Please enter correct value or Zero"
-                                                                             id="txtFeeVal" 
-                                                                             value="#{bif.feeGrossValue}" disabled="#{!bif.billItem.item.userChangable}" >
-                                                                    <f:convertNumber pattern="#,##0.00" />
-                                                                    <f:ajax event="keyup" execute="@this" 
-                                                                            render=":#{p:component('tblRequests')}"
-                                                                            listener="#{billController.feeChangeListener(bif)}" />
-                                                                </h:inputText>
-                                                            </p:column>
-                                                            <p:column>
-                                                                <p:commandButton ajax="false" value="Update" action="#{billController.feeChangeListener(bif)}" />
-                                                            </p:column>
-                                                            <p:column>
-                                                                <f:facet name="header">Fee Name</f:facet>
-                                                                <h:outputLabel value="#{bif.fee.name}" rendered="#{bif.fee !=null}" ></h:outputLabel>
-                                                            </p:column>
-
-
-
-                                                            <p:column>
-                                                                <f:facet name="header">Speciality</f:facet>
-                                                                <h:outputLabel value="#{bif.fee.speciality.name}" rendered="#{bif.fee !=null and bif.fee.speciality!=null}" ></h:outputLabel>
-                                                            </p:column>
-
-                                                            <p:column>
-                                                                <f:facet name="header">Payee</f:facet>                                                
-                                                                <p:selectOneMenu value="#{bif.staff}" rendered="#{bif.fee.speciality!=null}" filter="true" filterMatchMode="contains">
-                                                                    <f:selectItem itemLabel="Select Staff" />
-                                                                    <f:selectItems  value="#{staffController.getSpecialityStaff(bif.fee.speciality)}" var="bifs" itemLabel="#{bifs.person.name}" itemValue="#{bifs}" />
-                                                                </p:selectOneMenu>
-
-                                                            </p:column>
                                                         </p:dataTable>
                                                     </p:tab>
                                                 </p:tabView>

@@ -2806,14 +2806,10 @@ public class BillBeanController implements Serializable {
         e.getBillItem().setCreatedAt(new Date());
         e.getBillItem().setCreater(wu);
         e.getBillItem().setBill(b);
-
         if (e.getBillItem().getId() == null) {
             getBillItemFacade().create(e.getBillItem());
         }
-
         saveBillComponent(e, b, wu);
-        saveBillFee(e, b, wu);
-
         return e.getBillItem();
     }
 
@@ -2825,10 +2821,7 @@ public class BillBeanController implements Serializable {
         if (e.getBillItem().getId() == null) {
             getBillItemFacade().create(e.getBillItem());
         }
-
         saveBillComponent(e, b, wu);
-        saveBillFee(e, b, wu, p);
-
         return e.getBillItem();
     }
 

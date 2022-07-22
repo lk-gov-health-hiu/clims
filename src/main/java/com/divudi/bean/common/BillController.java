@@ -1119,9 +1119,7 @@ public class BillController implements Serializable {
         if (errorCheck()) {
             return;
         }
-
         savePatient();
-
         if (getBillBean().checkDepartment(getLstBillEntries()) == 1) {
             BilledBill temp = new BilledBill();
             Bill b = saveBill(lstBillEntries.get(0).getBillItem().getItem().getDepartment(), temp);
@@ -1133,33 +1131,19 @@ public class BillController implements Serializable {
             List<BillItem> list = new ArrayList<>();
             for (BillEntry billEntry : getLstBillEntries()) {
                 list.add(getBillBean().saveBillItem(b, billEntry, getSessionController().getLoggedUser()));
-                //for Create Bill Fee Payments
-//                list.add(getBillBean().saveBillItem(b, billEntry, getSessionController().getLoggedUser(),p));
             }
-
             b.setBillItems(list);
             b.setBillTotal(b.getNetTotal());
-
-            getBillFacade().edit(b);
-            getBillBean().calculateBillItems(b, getLstBillEntries());
-
-            
-
             getBillFacade().edit(b);
             getBills().add(b);
-
         } else {
             boolean result = putToBills();
             if (result == false) {
                 return;
             }
         }
-
         saveBatchBill();
         saveBillItemSessions();
-
-       
-
         UtilityController.addSuccessMessage("Bill Saved");
         setPrintigBill();
         printPreview = true;
@@ -1915,7 +1899,6 @@ public class BillController implements Serializable {
                 setSearchedPatient(null);
             }
         }
-        calTotals();
     }
 
     public void createPaymentsForBills(Bill b, List<BillEntry> billEntrys) {
