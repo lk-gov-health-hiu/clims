@@ -39,11 +39,11 @@
                                                       class="btn btn-success mr-1"
                                                       >
                                     </h:commandButton>
-                                    <h:commandButton value="New Bill" 
+                                    <h:commandButton value="New Order" 
                                                      class="btn btn-danger mr-1"
                                                      action="#{billController.prepareNewBill()}" >
                                     </h:commandButton>
-                                    <h:commandButton value="Print Last Bill"  
+                                    <h:commandButton value="Print Last Order"  
                                                      class="btn btn-primary mr-1"
                                                      action="opd_bill_print_last" >
                                     </h:commandButton>
@@ -446,13 +446,12 @@
                                     <p:printer target="gpBillPreview" ></p:printer>
                                 </p:commandButton>
 
-                                <p:commandButton value="New Bill" ajax="false" action="#{billController.prepareNewBill()}" >
+                                <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
                                 </p:commandButton>
                                 <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
                                                  onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
                                                              return false;"/>
                             </div>
-                            <p:outputLabel value="Balance = #{billController.cashBalance}" style="font-weight: bold;font-size: 20pt;color: red;"/>
                             <h:panelGroup id="gpBillPreview">
                                 <ui:repeat value="#{billController.bills}" var="bill">
                                     <bi:opdBillPrintRuhunu bill="#{bill}" dup="false"/>
@@ -460,13 +459,15 @@
                             </h:panelGroup>
                         </h:panelGroup>
 
+                        #{sessionController.loggedPreference.opdBillPaperType}"
+                        
                         <h:panelGroup rendered="#{sessionController.loggedPreference.opdBillPaperType eq 'FiveFivePaper'}">
                             <div class="nonPrintBlock">
                                 <p:commandButton value="Print" ajax="false" action="#"  >
                                     <p:printer target="fiveFivePaperWithHeadings" ></p:printer>
                                 </p:commandButton>
 
-                                <p:commandButton value="New Bill" ajax="false" action="#{billController.prepareNewBill()}" >
+                                <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
                                 </p:commandButton>
 
                                 <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
@@ -489,7 +490,7 @@
 
 
 
-                                    <p:commandButton value="New Bill" ajax="false" action="#{billController.prepareNewBill()}" >
+                                    <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
                                     </p:commandButton>
 
                                     <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
@@ -522,7 +523,7 @@
                                         <p:printer target="gpPosBillWithoutLogo" ></p:printer>
                                     </p:commandButton>
 
-                                    <p:commandButton value="New Bill" ajax="false" action="#{billController.prepareNewBill()}" >
+                                    <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
                                     </p:commandButton>
 
                                     <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
