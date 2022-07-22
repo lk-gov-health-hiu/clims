@@ -621,14 +621,14 @@ body {
 }
 
 
-.ui-autocomplete-input.ui-inputfield { 
-    width : 400px;
+/*.ui-autocomplete-input.ui-inputfield { 
+    min-width : 400px;
 }
 
 
 .mediumAutocomplete.ui-autocomplete-input.ui-inputfield { 
     width : 200px;
-}
+}*/
 
 
 .labPanel .ui-panel-titlebar {

@@ -1143,21 +1143,7 @@ public class BillController implements Serializable {
             getBillFacade().edit(b);
             getBillBean().calculateBillItems(b, getLstBillEntries());
 
-            if (getSessionController().getLoggedPreference().isPartialPaymentOfOpdBillsAllowed()) {
-                b.setCashPaid(cashPaid);
-                if (cashPaid >= b.getTransSaleBillTotalMinusDiscount()) {
-                    b.setBalance(0.0);
-                    b.setNetTotal(b.getTransSaleBillTotalMinusDiscount());
-                } else {
-                    b.setBalance(b.getTransSaleBillTotalMinusDiscount() - b.getCashPaid());
-                    b.setNetTotal(b.getCashPaid());
-                }
-            }
-
-            b.setVat(b.getVat());
-            b.setVatPlusNetTotal(b.getNetTotal() + b.getVat());
-
-            createPaymentsForBills(b, getLstBillEntries());
+            
 
             getBillFacade().edit(b);
             getBills().add(b);
@@ -1172,14 +1158,10 @@ public class BillController implements Serializable {
         saveBatchBill();
         saveBillItemSessions();
 
-        if (toStaff != null && getPaymentMethod() == PaymentMethod.Credit) {
-            staffBean.updateStaffCredit(toStaff, netPlusVat);
-            UtilityController.addSuccessMessage("User Credit Updated");
-        }
+       
 
         UtilityController.addSuccessMessage("Bill Saved");
         setPrintigBill();
-        checkBillValues();
         printPreview = true;
 
         commonController.printReportDetails(null, null, startTime, "OPD Billing(/faces/opd_bill.xhtml)");
@@ -1461,41 +1443,9 @@ public class BillController implements Serializable {
             }
 
         }
-
-//
-//        if (!sessionController.getApplicationPreference().getCanSettleOpdBillWithoutReferringDoctor()) {
-//            for (BillEntry be : getLstBillEntries()) {
-//                if (be.getBillItem().getItem() instanceof Investigation) {
-//                    if (referredBy == null && referredByInstitution == null) {
-//                        UtilityController.addErrorMessage("Please Select a Refering Doctor or a Referring Institute. It is Requierd for Investigations.");
-//                        return true;
-//                    }
-//                }
-//            }
-//        }
-//            if (getStrTenderedValue() == null) {
-//                UtilityController.addErrorMessage("Please Enter Tenderd Amount");
-//                return true;
-//            }
-//            if (cashPaid < (vat + netTotal)) {
-//                UtilityController.addErrorMessage("Please Enter Correct Tenderd Amount");
-//                return true;
-//            }
-//        if (referredByInstitution != null && referredByInstitution.getInstitutionType() != InstitutionType.CollectingCentre) {
-//            if (referralId == null || referralId.trim().equals("")) {
-//                JsfUtil.addErrorMessage("Please Enter Referrance Number");
-//                return true;
-//            } else if (institutionReferranceNumberExist()) {
-//
-//                JsfUtil.addErrorMessage("Alredy Entered");
-//                return true;
-//            }
-//
-//        }
         boolean checkAge = false;
         for (BillEntry be : getLstBillEntries()) {
             if (be.getBillItem().getItem().getDepartment().getDepartmentType() == DepartmentType.Lab) {
-                //  //System.err.println("ttttt");
                 checkAge = true;
                 break;
             }
@@ -1504,49 +1454,6 @@ public class BillController implements Serializable {
         if (checkAge && checkPatientAgeSex()) {
             return true;
         }
-
-        if (getPaymentMethod() == null) {
-            UtilityController.addErrorMessage("Select Payment Scheme");
-            return true;
-        }
-
-        if (getPaymentSchemeController().errorCheckPaymentMethod(paymentMethod, getPaymentMethodData())) {
-            return true;
-        }
-
-        if (paymentMethod != null && paymentMethod == PaymentMethod.Credit) {
-            if (toStaff == null && creditCompany == null && collectingCentre == null) {
-                UtilityController.addErrorMessage("Please select Staff Member under welfare or credit company or Collecting centre.");
-                return true;
-            }
-            if (toStaff != null && creditCompany != null) {
-                UtilityController.addErrorMessage("Both staff member and a company is selected. Please select either Staff Member under welfare or credit company.");
-                return true;
-            }
-            if (toStaff != null) {
-                if (toStaff.getAnnualWelfareUtilized() + netTotal > toStaff.getAnnualWelfareQualified()) {
-                    UtilityController.addErrorMessage("No enough walfare credit.");
-                    return true;
-                }
-            }
-        }
-
-//        if ((getCreditCompany() != null || toStaff != null) && (paymentMethod != PaymentMethod.Credit && paymentMethod != PaymentMethod.Cheque && paymentMethod != PaymentMethod.Slip)) {
-//            UtilityController.addErrorMessage("Check Payment method");
-//            return true;
-//        }
-        if (getSessionController().getLoggedPreference().isPartialPaymentOfOpdBillsAllowed()) {
-
-            if (cashPaid == 0.0) {
-                UtilityController.addErrorMessage("Please enter the paid amount");
-                return true;
-            }
-
-        }
-
-//        if (getPaymentSchemeController().checkPaid(paymentScheme.getPaymentMethod(), getCashPaid(), getNetTotal())) {
-//            return true;
-//        }
         return false;
     }
 
@@ -1610,7 +1517,6 @@ public class BillController implements Serializable {
     }
 
     public void addToBill() {
-
         if (getCurrentBillItem() == null) {
             UtilityController.addErrorMessage("Nothing to add");
             return;
@@ -1619,11 +1525,6 @@ public class BillController implements Serializable {
             UtilityController.addErrorMessage("Please select an Item");
             return;
         }
-        if (getCurrentBillItem().getItem().getTotal() == 0.0) {
-            UtilityController.addErrorMessage("Please corect item fee");
-            return;
-        }
-
         if (getCurrentBillItem().getItem().getDepartment() == null) {
             UtilityController.addErrorMessage("Please set Department to Item");
             return;
@@ -1644,41 +1545,18 @@ public class BillController implements Serializable {
             BillItem bi = new BillItem();
             bi.copy(getCurrentBillItem());
             bi.setSessionDate(sessionDate);
-//        New Session
-            //   getCurrentBillItem().setBillSession(getServiceSessionBean().createBillSession(getCurrentBillItem()));
-//        New Session
-            //   getCurrentBillItem().setBillSession(getServiceSessionBean().createBillSession(getCurrentBillItem()));
             lastBillItem = bi;
             BillEntry addingEntry = new BillEntry();
             addingEntry.setBillItem(bi);
             addingEntry.setLstBillComponents(getBillBean().billComponentsFromBillItem(bi));
-            addingEntry.setLstBillFees(getBillBean().billFeefromBillItem(bi));
-            addingEntry.setLstBillSessions(getBillBean().billSessionsfromBillItem(bi));
             getLstBillEntries().add(addingEntry);
-            bi.setRate(getBillBean().billItemRate(addingEntry));
             bi.setQty(1.0);
-            bi.setNetValue(bi.getRate() * bi.getQty()); // Price == Rate as Qty is 1 here
-
-            if (bi.getItem().isVatable()) {
-                bi.setVat(bi.getNetValue() * bi.getItem().getVatPercentage() / 100);
-            }
-
-            bi.setVatPlusNetValue(bi.getNetValue() + bi.getVat());
-
-            calTotals();
-
-            if (bi.getNetValue() == 0.0) {
-                UtilityController.addErrorMessage("Please enter the rate");
-                return;
-            }
         }
         clearBillItemValues();
-        //UtilityController.addSuccessMessage("Item Added");
     }
 
     public void clearBillItemValues() {
         currentBillItem = null;
-
         recreateBillItems();
     }
 

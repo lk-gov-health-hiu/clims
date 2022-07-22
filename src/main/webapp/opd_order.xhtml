@@ -254,41 +254,51 @@
                                     <div class="row" >
                                         <div class="col col-md-6" >
                                             <h:panelGroup id="panelIx" >
-
-
                                                 <p:panel id='pIxAdd' header="Items / Services"
                                                          style="min-height: 350px;"  >
-
-
-
                                                     <p:focus  context="acIx"/>
 
-                                                    <p:autoComplete widgetVar="aIx" id="acIx" forceSelection="true"
-                                                                    value="#{billController.currentBillItem.item}" 
-                                                                    completeMethod="#{itemController.completeOpdItems}"
-                                                                    var="ix" itemLabel="#{ix.name}" itemValue="#{ix}"
-                                                                    size="10"  style="width: 400px;" maxResults="10" >
-                                                        <p:column style="max-width: 200px;" headerText="Name">
-                                                            <p:outputLabel value="#{ix.name}" ></p:outputLabel>
-                                                            <h:panelGroup rendered="#{ix.name ne ix.fullName}" >
-                                                                <p:outputLabel value=" (#{ix.fullName})" ></p:outputLabel>
-                                                            </h:panelGroup>
-                                                        </p:column>
-                                                        <p:column style="max-width: 200px;" headerText="Dept">
-                                                            <h:outputLabel value="#{ix.department.name}"></h:outputLabel>
-                                                        </p:column>
-                                                        <p:column style="max-width: 200px;" headerText="Code">
-                                                            <h:outputLabel value="#{ix.code}"></h:outputLabel>
-                                                        </p:column>
-                                                        <p:column style="text-align: right; max-width: 80px;" headerText="Value">
-                                                            <h:outputLabel value="#{ix.total}"></h:outputLabel>
-                                                        </p:column>
-                                                        <p:ajax event="itemSelect"  listener="#{billController.fillBillSessions}" process="acIx" update="tblSs" ></p:ajax>
-                                                        <f:ajax event="itemSelect"  execute="@this" render="txtQty" />
-                                                    </p:autoComplete>
-                                                    <h:commandButton id="btnAddIx" value="Add" action="#{billController.addToBill()}"  style="width: 75px;"  >
-                                                        <f:ajax execute="txtQty acIx btnAddIx panelBillItems" render="focusIx tblBillItem pIxAdd" />
-                                                    </h:commandButton>
+                                                    <div class="form-group row" >
+
+                                                        <div class="col col-md-10" >
+                                                            <p:autoComplete widgetVar="aIx" id="acIx" forceSelection="true"
+                                                                            value="#{billController.currentBillItem.item}" 
+                                                                            completeMethod="#{itemController.completeOpdItems}"
+                                                                            var="ix" itemLabel="#{ix.name}" itemValue="#{ix}"
+                                                                            size="10"  
+                                                                            inputStyleClass="form form-control"
+                                                                            class="form form-control"
+                                                                            placeholder="Select a Test"
+                                                                            maxResults="10" >
+                                                                <p:column  headerText="Name">
+                                                                    <p:outputLabel value="#{ix.name}" ></p:outputLabel>
+                                                                    <h:panelGroup rendered="#{ix.name ne ix.fullName}" >
+                                                                        <p:outputLabel value=" (#{ix.fullName})" ></p:outputLabel>
+                                                                    </h:panelGroup>
+                                                                </p:column>
+                                                                <p:column  headerText="Institution">
+                                                                    <h:outputLabel value="#{ix.department.name}"></h:outputLabel>
+                                                                </p:column>
+                                                                <p:column headerText="Department">
+                                                                    <h:outputLabel value="#{ix.department.name}"></h:outputLabel>
+                                                                </p:column>
+                                                                <p:ajax event="itemSelect"  listener="#{billController.fillBillSessions}" process="acIx" update="tblSs" ></p:ajax>
+                                                                <f:ajax event="itemSelect"  execute="@this" render="txtQty" />
+                                                            </p:autoComplete>
+                                                        </div>
+                                                        <div class="col col-md-2" >
+                                                            <h:commandButton id="btnAddIx" value="Add"
+                                                                             class="btn btn-primary"
+                                                                             action="#{billController.addToBill()}"   >
+                                                                <f:ajax execute="txtQty acIx btnAddIx panelBillItems" render="focusIx tblBillItem pIxAdd" />
+                                                            </h:commandButton>
+                                                        </div>
+
+
+
+                                                    </div>
+
+
 
                                                     <h:panelGrid id="txtQty">
                                                         <h:inputText autocomplete="off" 
@@ -341,7 +351,6 @@
                                                 <p:tabView id="tblBillItem" >
                                                     <p:tab id="tabBillItems" title="Bill Items" >
                                                         <p:dataTable id="tblRequests" rowIndexVar="rowIndex" value="#{billController.lstBillEntries}" var="bi" >
-
                                                             <p:column>
                                                                 <f:facet name="header">No</f:facet>
                                                                     #{rowIndex+1}
