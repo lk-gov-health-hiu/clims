@@ -1962,7 +1962,7 @@ public class BillController implements Serializable {
     }
 
     
-    public void toNewOpdOrder(){
+    public String toNewOpdOrder(){
         prepareNewBill();
         return "/opd_order";
     }
