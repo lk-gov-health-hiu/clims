@@ -2,7 +2,7 @@
 
 ## Title
 
-Open Source Hospital Management Information System
+Open Source Labolatory Information Management System
 
 ## Description
 
