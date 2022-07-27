@@ -24,9 +24,9 @@
 
 
                                 <h:panelGrid columns="3" style="text-align: left;" >
-                                    <p:commandButton id="btnCreateUser" value="Create User" action="#{webUserController.saveNewUser()}" ajax="false" >
+                                    <p:commandButton id="btnCreateUser" value="Save New User" action="#{webUserController.saveNewUser()}" ajax="false" >
                                     </p:commandButton>
-                                    <p:commandButton  value="Back to Manage User" action="#{webUserController.backToAdminManageUsers()}" ajax="false" ></p:commandButton>
+                                    <p:commandButton  value="Back to Manage User" action="#{webUserController.backToAdminManageUsers()}" ajax="false" immediate="true" ></p:commandButton>
                                     <p:defaultCommand  target="btnCreateUser"/>
                                 </h:panelGrid>
 

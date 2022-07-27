@@ -484,7 +484,7 @@ public class WebUserController implements Serializable {
         recreateModel();
         prepairAddNewUser();
         selectText = "";
-        return BackToAdminManageUsers();
+        return backToAdminManageUsers();
     }
 
     public void onlyAddStaffListner() {
@@ -773,7 +773,7 @@ public class WebUserController implements Serializable {
         return "/admin_manage_dashboards";
     }
     
-    public String BackToAdminManageUsers(){
+    public String backToAdminManageUsers(){
         return "/admin_manage_users";
     }
 
