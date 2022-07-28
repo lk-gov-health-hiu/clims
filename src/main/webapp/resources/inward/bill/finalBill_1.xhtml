@@ -157,11 +157,11 @@
                                         	<h:panelGroup  rendered="#{(b.netTotal ne 0 )                                                                  	 
                                                                    	and                                                                   	 
                                                                    	((b.cancelled eq false
-                                                                   	and b.billClass eq 'class com.divudi.entity.BilledBill')
+                                                                   	and b.billClass eq 'class lk.gov.health.entity.BilledBill')
                                                                    	or
                                                                    	(b.cancelled eq false
                                                                    	and b.refundedBill eq null
-                                                                   	and b.billClass eq 'class com.divudi.entity.RefundBill'))}" >                                       	 
+                                                                   	and b.billClass eq 'class lk.gov.health.entity.RefundBill'))}" >                                       	 
                                             	<tr>
                                                 	<td>
                                                     	#{b.insId}

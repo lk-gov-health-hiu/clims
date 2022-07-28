@@ -74,7 +74,7 @@
                                                     <ui:repeat value="#{bip.proFees}" var="fe">
                                                         <h:panelGroup rendered="#{fe.feeAdjusted ne 0 
                                                                                   and fe.bill.cancelled eq false 
-                                                                                  and fe.bill.billClass eq 'class com.divudi.entity.BilledBill'}">
+                                                                                  and fe.bill.billClass eq 'class lk.gov.health.entity.BilledBill'}">
                                                             <tr>
                                                                 <td style="text-align: left;font-size: 8px!important;">
                                                                     <h:panelGroup >                       
@@ -191,11 +191,11 @@
                                             <h:panelGroup rendered="#{(b.netTotal ne 0 )                                                                       
                                                                        and                                                                        
                                                                        ((b.cancelled eq false 
-                                                                       and b.billClass eq 'class com.divudi.entity.BilledBill')
+                                                                       and b.billClass eq 'class lk.gov.health.entity.BilledBill')
                                                                        or 
                                                                        (b.cancelled eq false 
                                                                        and b.refundedBill eq null
-                                                                       and b.billClass eq 'class com.divudi.entity.RefundBill'))}" >
+                                                                       and b.billClass eq 'class lk.gov.health.entity.RefundBill'))}" >
                                                 <tr>
                                                     <td>
                                                         #{b.insId}

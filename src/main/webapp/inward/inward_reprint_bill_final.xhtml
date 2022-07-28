@@ -278,10 +278,10 @@
                                              sortBy="#{iss.bill.deptId}"
                                              rowStyleClass="#{(iss.bill.netTotal ne 0 )                                                                       
                                                               and                                                                        
-                                                              ((iss.bill.billClass eq 'class com.divudi.entity.PreBill')
+                                                              ((iss.bill.billClass eq 'class lk.gov.health.entity.PreBill')
                                                               or 
                                                               (iss.bill.billedBill ne null 
-                                                              and iss.bill.billClass eq 'class com.divudi.entity.RefundBill'))? '':'noDisplayRow'}">
+                                                              and iss.bill.billClass eq 'class lk.gov.health.entity.RefundBill'))? '':'noDisplayRow'}">
                                     <p:column headerText="Bill No">
                                         <f:facet name="header">
                                             <h:outputLabel value="Bill No"/>

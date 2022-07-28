@@ -15,7 +15,7 @@
                 <p:commandButton ajax="false" value="Back to Intrim"
                                 action="/inward/inward_bill_intrim" onclick="onSubmitButton();"/>
                 <p:dataTable value="#{bhtSummeryController.billItems}" var="ser"
-                             rowStyleClass="#{(ser.bill.billClass eq 'class com.divudi.entity.BilledBill')? '':'noDisplayRow'}">
+                             rowStyleClass="#{(ser.bill.billClass eq 'class lk.gov.health.entity.BilledBill')? '':'noDisplayRow'}">
                     <p:column headerText="Services Name">
                         #{ser.item.name}
                     </p:column>          

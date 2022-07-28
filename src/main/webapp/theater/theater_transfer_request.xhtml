@@ -43,7 +43,7 @@
                             </p:column>
                             <p:column headerText="Pack Size" >
                                 <p:outputLabel value=" X #{vt.dblValue}" 
-                                               rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                               rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                             </p:column>
                             <f:ajax execute="@this" event="blur" render="#{p:component('tab')}" listener="#{transferRequestController.onEdit()}"/>
                         </p:autoComplete>

@@ -82,11 +82,11 @@
                                     <h:outputLabel value="Bill ID"/>
                                 </f:facet>
 
-                                <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}" >
+                                <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}" >
                                     <h:outputLabel value="#{b.insId}" ></h:outputLabel>
                                 </h:panelGroup>
 
-                                <h:panelGroup rendered="#{b.billClass ne 'class com.divudi.entity.BilledBill'}" >
+                                <h:panelGroup rendered="#{b.billClass ne 'class lk.gov.health.entity.BilledBill'}" >
                                     <h:outputLabel value="#{b.billedBill.insId}" ></h:outputLabel>
                                 </h:panelGroup>
 
@@ -159,32 +159,32 @@
 
                             <p:summaryRow>
                                 <p:column colspan="5" >
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}" >
                                         <h:outputLabel value="Billed Bill Totals"/>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}" >
                                         <h:outputLabel value="Cancelled Bill Totals"/>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}" >
                                         <h:outputLabel value="Refund Bill Totals"/>
                                     </h:panelGroup>
                                 </p:column>
 
                                 <p:column  >
 
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.hosTotB}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
                                     </h:panelGroup>
 
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.hosTotC}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
                                     </h:panelGroup>
 
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.hosTotR}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
@@ -193,17 +193,17 @@
                                 </p:column>
 
                                 <p:column  >
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.disTotB}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.disTotC}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.disTotR}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
@@ -211,17 +211,17 @@
                                 </p:column>
 
                                 <p:column  >
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.profTotB}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.profTotC}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.profTotR}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
@@ -229,17 +229,17 @@
                                 </p:column>
 
                                 <p:column  >
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.netTotB}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.netTotC}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}" >
+                                    <h:panelGroup rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}" >
                                         <h:outputLabel value="#{institutionLabSumeryController.netTotR}" >
                                             <f:convertNumber pattern="#,##0.00" />
                                         </h:outputLabel>

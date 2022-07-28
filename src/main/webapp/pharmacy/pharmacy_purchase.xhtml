@@ -56,7 +56,7 @@
                         </p:column>
                         <p:column headerText="Pack Size" >
                             <p:outputLabel value=" X #{vt.dblValue}" 
-                                           rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                           rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                         </p:column>
                     </p:autoComplete>
                     <p:commandButton value="Process" action="#{pharmacyPurchaseController.addItemWithLastRate}" process="PnlAdd" update="itemList PnlAdd tot focusItem :#{p:component('total')} :#{p:component('totalSaleValue')}"/>
@@ -93,15 +93,15 @@
                             </p:column>
                             <p:column headerText="Pack Size" >
                                 <p:outputLabel value=" X #{vt.dblValue}" 
-                                               rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                               rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                             </p:column>
                             <p:column headerText="Pack Size" >
                                 <p:outputLabel value=" X #{vt.dblValue}" 
-                                               rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                               rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                             </p:column>
                             <p:column headerText="Pack Size" >
                                 <p:outputLabel value=" X #{vt.dblValue}" 
-                                               rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                               rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                             </p:column>
 
                         </p:autoComplete>
@@ -170,14 +170,14 @@
                         <p:inputText autocomplete="off" id="purchase" value="#{ph.pharmaceuticalBillItem.purchaseRate}" style="width: 70px; text-align: right;">
                             <f:ajax event="blur" render="profMargin @this retail total totalSaleValue :#{p:component('tot')}"  execute="@this qty item qty freeQty purchase retail" listener="#{pharmacyPurchaseController.onEditPurchaseRate(ph)}" ></f:ajax> 
                         </p:inputText>
-                        <p:outputLabel value=" X #{ph.item.dblValue}" rendered="#{ph.item.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                                                
+                        <p:outputLabel value=" X #{ph.item.dblValue}" rendered="#{ph.item.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                                                
                     </p:column>              
 
                     <p:column headerText="S. Rate" style="width:80px;">                   
                         <p:inputText autocomplete="off" id="retail" value="#{ph.pharmaceuticalBillItem.retailRate}"  label="Price" style="width: 70px; text-align: right;">
                             <f:ajax event="blur" render="profMargin @this total totalSaleValue :#{p:component('tot')}"  execute="item qty freeQty purchase retail" listener="#{pharmacyPurchaseController.onEdit(ph)}" ></f:ajax> 
                         </p:inputText>
-                        <p:outputLabel value=" X (#{ph.item.dblValue})" rendered="#{ph.item.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                    
+                        <p:outputLabel value=" X (#{ph.item.dblValue})" rendered="#{ph.item.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                    
                     </p:column>  
 
                     <p:column headerText="P. Value" style="width:120px; text-align: right;">  

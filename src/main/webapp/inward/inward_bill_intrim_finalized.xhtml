@@ -115,7 +115,7 @@
                                         <h:panelGroup>
                                             <h:outputLabel value="#{rm.roomFacilityCharge.name}"/><br/>
                                             <h:outputLabel value="GAURDIAN ROOM" style="color: #008000;"
-                                                           rendered="#{rm.patientRoomClass eq 'class com.divudi.entity.inward.GuardianRoom'}"/>
+                                                           rendered="#{rm.patientRoomClass eq 'class lk.gov.health.entity.inward.GuardianRoom'}"/>
                                         </h:panelGroup>
                                         <h:outputLabel value="Printing"/>
                                         <h:outputLabel value="#{rm.printRoomFacilityCharge.room.name}"/>
@@ -396,10 +396,10 @@
                                           sortBy="#{bi.inwardChargeType}"
                                           rowStyleClass="#{(bi.bill.netTotal ne 0 )                                                                       
                                                            and                                                                        
-                                                           ((bi.bill.billClass eq 'class com.divudi.entity.BilledBill')
+                                                           ((bi.bill.billClass eq 'class lk.gov.health.entity.BilledBill')
                                                            or 
                                                            (bi.bill.billedBill ne null 
-                                                           and bi.bill.billClass eq 'class com.divudi.entity.RefundBill'))? '':'noDisplayRow'}">                               
+                                                           and bi.bill.billClass eq 'class lk.gov.health.entity.RefundBill'))? '':'noDisplayRow'}">                               
 
                                 <f:facet name="header">
                                     <p:outputLabel value="Inward Payment Bill BHT #{bhtSummeryFinalizedController.patientEncounter.bhtNo} - Service Detail Bill Item"/>
@@ -776,10 +776,10 @@
                                          sortBy="#{iss.bill.deptId}"
                                          rowStyleClass="#{(iss.bill.netTotal ne 0 )                                                                       
                                                           and                                                                        
-                                                          ((iss.bill.billClass eq 'class com.divudi.entity.PreBill')
+                                                          ((iss.bill.billClass eq 'class lk.gov.health.entity.PreBill')
                                                           or 
                                                           (iss.bill.billedBill ne null 
-                                                          and iss.bill.billClass eq 'class com.divudi.entity.RefundBill'))? '':'noDisplayRow'}">
+                                                          and iss.bill.billClass eq 'class lk.gov.health.entity.RefundBill'))? '':'noDisplayRow'}">
                                 <p:column headerText="Bill No">
                                     <f:facet name="header">
                                         <h:outputLabel value="Bill No"/>
@@ -1026,7 +1026,7 @@
                             <p:dataTable id="pro"  scrollable="true" scrollHeight="300"  
                                          value="#{bhtSummeryFinalizedController.proBillFee}" var="pf"
                                          rowStyleClass="#{pf.feeValue ne 0 
-                                                          and pf.bill.billClass eq 'class com.divudi.entity.BilledBill' ? '':'noDisplayRow'}">
+                                                          and pf.bill.billClass eq 'class lk.gov.health.entity.BilledBill' ? '':'noDisplayRow'}">
                                 <p:column headerText="Name">
                                     <f:facet name="header">
                                         <h:outputLabel value="Name"/>
@@ -1117,7 +1117,7 @@
                             <p:dataTable id="ass"  scrollable="true" scrollHeight="300" 
                                          value="#{bhtSummeryFinalizedController.assistBillFee}" var="pf"
                                          rowStyleClass="#{pf.feeValue ne 0
-                                                          and pf.bill.billClass eq 'class com.divudi.entity.BilledBill' ? '':'noDisplayRow'}">
+                                                          and pf.bill.billClass eq 'class lk.gov.health.entity.BilledBill' ? '':'noDisplayRow'}">
                                 <p:column headerText="id">
                                     <f:facet name="header">
                                         <h:outputLabel value="id"/>
@@ -1215,9 +1215,9 @@
                                          var="p"
                                          rowStyleClass="#{(p.netTotal ne 0 )                                                                       
                                                           and                                                                        
-                                                          ((p.billClass eq 'class com.divudi.entity.BilledBill')
+                                                          ((p.billClass eq 'class lk.gov.health.entity.BilledBill')
                                                           or 
-                                                          (p.billedBill eq null and p.billClass eq 'class com.divudi.entity.RefundBill'))? '':'noDisplayRow'}" >
+                                                          (p.billedBill eq null and p.billClass eq 'class lk.gov.health.entity.RefundBill'))? '':'noDisplayRow'}" >
                                 <p:column headerText="Bill No">
                                     <f:facet name="header">
                                         <h:outputLabel value="Bill No"/>

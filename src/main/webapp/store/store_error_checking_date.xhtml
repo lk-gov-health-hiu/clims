@@ -69,21 +69,21 @@
                         <p:dataTable styleClass="noBorder summeryBorder" 
                                      value="#{storeErrorChecking.billItems}" var="pb"  rowIndexVar="i"
                                      rowStyleClass="#{(pb.retired eq true or pb.bill.retired eq true) ?'greenText' : ''} 
-                                     #{((pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'StorePurchase' )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'StoreGrnBill' )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'StoreGrnReturn' )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'StorePurchaseReturn' )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.PreBill' and pb.bill.billType eq 'StorePre' )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'StoreTransferIssue' )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'StoreTransferReceive' )
+                                     #{((pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'StorePurchase' )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'StoreGrnBill' )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'StoreGrnReturn' )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'StorePurchaseReturn' )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.PreBill' and pb.bill.billType eq 'StorePre' )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'StoreTransferIssue' )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'StoreTransferReceive' )
                                        )? 'redText' : ''}
-                                     #{((pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'StorePurchase' and pb.bill.createdAt ne null )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'StoreGrnBill' and pb.bill.createdAt ne null )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'StoreGrnReturn' and pb.bill.createdAt ne null )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'StorePurchaseReturn' and pb.bill.createdAt ne null )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.RefundBill' and pb.bill.billType eq 'StorePre' and pb.bill.createdAt ne null )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'StoreTransferIssue' and pb.bill.createdAt ne null )or
-                                       (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'StoreTransferReceive' and pb.bill.createdAt ne null )
+                                     #{((pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'StorePurchase' and pb.bill.createdAt ne null )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'StoreGrnBill' and pb.bill.createdAt ne null )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'StoreGrnReturn' and pb.bill.createdAt ne null )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'StorePurchaseReturn' and pb.bill.createdAt ne null )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.RefundBill' and pb.bill.billType eq 'StorePre' and pb.bill.createdAt ne null )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'StoreTransferIssue' and pb.bill.createdAt ne null )or
+                                       (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'StoreTransferReceive' and pb.bill.createdAt ne null )
                                        )? 'greenText' : ''}"
                                      >
 

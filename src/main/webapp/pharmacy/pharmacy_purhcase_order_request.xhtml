@@ -45,7 +45,7 @@
                             </p:column>
                             <p:column headerText="Pack Size" >
                                 <p:outputLabel value=" X #{vt.dblValue}" 
-                                               rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                               rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                             </p:column>
                             <p:column headerText="Current Stock" >
                                 <p:outputLabel value="#{stockController.departmentItemStock(sessionController.department , vt)}"/>                            
@@ -67,7 +67,7 @@
                             </p:column>
                             <p:column headerText="Pack Size" >
                                 <p:outputLabel value=" X #{vt.dblValue}" 
-                                               rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                               rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                             </p:column>
                         </p:autoComplete>
                         <p:commandButton value="Add Item" action="#{purchaseOrderRequestController.addItem}" process="exItem @this" update="exItem :#{p:component('itemList')} tot" />

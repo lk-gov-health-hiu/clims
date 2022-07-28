@@ -75,9 +75,9 @@
                                      sortBy="#{iss.bill.billClass}"
                                      rowStyleClass="#{(iss.grossValue+iss.marginValue ne 0 )                                                                       
                                                       and                                                                        
-                                                      ((iss.bill.billClass eq 'class com.divudi.entity.PreBill')
+                                                      ((iss.bill.billClass eq 'class lk.gov.health.entity.PreBill')
                                                       or 
-                                                      (iss.bill.billedBill eq null and iss.bill.billClass eq 'class com.divudi.entity.RefundBill'))? '':'noDisplayRow'}">
+                                                      (iss.bill.billedBill eq null and iss.bill.billClass eq 'class lk.gov.health.entity.RefundBill'))? '':'noDisplayRow'}">
                             <p:column headerText="Bill No">
                                 <f:facet name="header">
                                     <h:outputLabel value="Bill No"/> 
@@ -208,9 +208,9 @@
                                          var="p"
                                          rowStyleClass="#{(p.netTotal ne 0 )                                                                       
                                                           and                                                                        
-                                                          ((p.billClass eq 'class com.divudi.entity.BilledBill')
+                                                          ((p.billClass eq 'class lk.gov.health.entity.BilledBill')
                                                           or 
-                                                          (p.billedBill eq null and p.billClass eq 'class com.divudi.entity.RefundBill'))? '':'noDisplayRow'}" >
+                                                          (p.billedBill eq null and p.billClass eq 'class lk.gov.health.entity.RefundBill'))? '':'noDisplayRow'}" >
                                 <p:column headerText="Bill No">
                                     <f:facet name="header">
                                         <h:outputLabel value="Bill No"/>
