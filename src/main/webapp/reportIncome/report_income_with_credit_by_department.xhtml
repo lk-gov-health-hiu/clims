@@ -72,9 +72,9 @@
                                 <f:facet name="header">
                                     <h:outputLabel value="BillId"/>
                                 </f:facet>
-                                <h:outputLabel value="#{b.insId}" rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}" ></h:outputLabel>
+                                <h:outputLabel value="#{b.insId}" rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}" ></h:outputLabel>
 
-                                <h:outputLabel value="#{b.billedBill.insId}" rendered="#{b.billClass ne 'class com.divudi.entity.BilledBill'}"  ></h:outputLabel>
+                                <h:outputLabel value="#{b.billedBill.insId}" rendered="#{b.billClass ne 'class lk.gov.health.entity.BilledBill'}"  ></h:outputLabel>
                             </p:column>
 
                             <p:column headerText="Date and Time" >
@@ -126,80 +126,80 @@
                             </p:column>
                             <p:summaryRow >
                                 <p:column colspan="2" >
-                                    <h:outputLabel rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}" >
+                                    <h:outputLabel rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}" >
                                         <h:outputLabel value="Billed Bill Totals"/>
                                     </h:outputLabel>
-                                    <h:outputLabel rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}" >
+                                    <h:outputLabel rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}" >
                                         <h:outputLabel value="Cancelled Bill Totals"/>
                                     </h:outputLabel>
-                                    <h:outputLabel rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}" >
+                                    <h:outputLabel rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}" >
                                         <h:outputLabel value="Refund Bill Totals"/>
                                     </h:outputLabel>
                                 </p:column>
                                 <p:column  >
 
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.hosTotB}" rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}">
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.hosTotB}" rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputLabel>
 
 
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.hosTotC}" rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}">
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.hosTotC}" rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputLabel>
 
 
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.hosTotR}" rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}">
-                                        <f:convertNumber pattern="#,##0.00" />
-                                    </h:outputLabel>
-
-                                </p:column>
-                                <p:column  >
-
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.disTotB}" rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}">
-                                        <f:convertNumber pattern="#,##0.00" />
-                                    </h:outputLabel>
-
-
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.disTotC}" rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}">
-                                        <f:convertNumber pattern="#,##0.00" />
-                                    </h:outputLabel>
-
-
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.disTotR}" rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}">
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.hosTotR}" rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputLabel>
 
                                 </p:column>
                                 <p:column  >
 
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.profTotB}" rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}">
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.disTotB}" rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputLabel>
 
 
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.profTotC}" rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}">
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.disTotC}" rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputLabel>
 
 
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.profTotR}" rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}">
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.disTotR}" rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputLabel>
 
                                 </p:column>
                                 <p:column  >
 
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.netTotB}" rendered="#{b.billClass eq 'class com.divudi.entity.BilledBill'}" >
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.profTotB}" rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputLabel>
 
 
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.netTotC}" rendered="#{b.billClass eq 'class com.divudi.entity.CancelledBill'}" >
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.profTotC}" rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputLabel>
 
 
-                                    <h:outputLabel value="#{labReportSearchByDepartmentController.netTotR}" rendered="#{b.billClass eq 'class com.divudi.entity.RefundBill'}">
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.profTotR}" rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}">
+                                        <f:convertNumber pattern="#,##0.00" />
+                                    </h:outputLabel>
+
+                                </p:column>
+                                <p:column  >
+
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.netTotB}" rendered="#{b.billClass eq 'class lk.gov.health.entity.BilledBill'}" >
+                                        <f:convertNumber pattern="#,##0.00" />
+                                    </h:outputLabel>
+
+
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.netTotC}" rendered="#{b.billClass eq 'class lk.gov.health.entity.CancelledBill'}" >
+                                        <f:convertNumber pattern="#,##0.00" />
+                                    </h:outputLabel>
+
+
+                                    <h:outputLabel value="#{labReportSearchByDepartmentController.netTotR}" rendered="#{b.billClass eq 'class lk.gov.health.entity.RefundBill'}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputLabel>
 

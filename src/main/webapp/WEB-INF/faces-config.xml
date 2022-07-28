@@ -7,7 +7,7 @@
    
 </application>
     <application>
-        <el-resolver>com.divudi.bean.common.util.JsfCrudELResolver</el-resolver>
+        <el-resolver>lk.gov.health.bean.common.util.JsfCrudELResolver</el-resolver>
     </application>
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -18,17 +18,17 @@
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>personInstitution</managed-bean-name>
-        <managed-bean-class>com.divudi.bean.common.PersonInstitutionController</managed-bean-class>
+        <managed-bean-class>lk.gov.health.bean.common.PersonInstitutionController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>personInstitutionJpa</managed-bean-name>
-        <managed-bean-class>com.divudi.facade.PersonInstitutionFacade</managed-bean-class>
+        <managed-bean-class>lk.gov.health.facade.PersonInstitutionFacade</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <converter>
-        <converter-for-class>com.divudi.entity.PersonInstitution</converter-for-class>
-        <converter-class>com.divudi.bean.common.PersonInstitutionConverter</converter-class>
+        <converter-for-class>lk.gov.health.entity.PersonInstitution</converter-for-class>
+        <converter-class>lk.gov.health.bean.common.PersonInstitutionConverter</converter-class>
     </converter>
     <navigation-rule>
         <from-view-id>*</from-view-id>

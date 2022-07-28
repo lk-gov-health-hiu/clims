@@ -98,7 +98,7 @@
                                     <p:outputLabel value="#{bi.pharmaceuticalBillItem.purchaseRate}" >
                                         <f:convertNumber pattern="#,##0.00" />
                                     </p:outputLabel>
-                                    <p:outputLabel value=" X #{bi.item.dblValue}" rendered="#{bi.item.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                    <p:outputLabel value=" X #{bi.item.dblValue}" rendered="#{bi.item.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                                 </h:panelGroup>
                             </f:facet>                       
                             <f:facet name="input">  
@@ -115,7 +115,7 @@
                                     <p:outputLabel value="#{bi.pharmaceuticalBillItem.retailRate}"  > 
                                         <f:convertNumber pattern="#,##0.00" />
                                     </p:outputLabel>
-                                    <p:outputLabel value=" X (#{bi.item.dblValue})" rendered="#{bi.item.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/> 
+                                    <p:outputLabel value=" X (#{bi.item.dblValue})" rendered="#{bi.item.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/> 
                                 </h:panelGroup>
                             </f:facet>  
                             <f:facet name="input">
@@ -133,7 +133,7 @@
                                     <p:outputLabel value="#{bi.pharmaceuticalBillItem.wholesaleRate}"  > 
                                         <f:convertNumber pattern="#,##0.00" />
                                     </p:outputLabel>
-                                    <p:outputLabel value=" X (#{bi.item.dblValue})" rendered="#{bi.item.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/> 
+                                    <p:outputLabel value=" X (#{bi.item.dblValue})" rendered="#{bi.item.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/> 
                                 </h:panelGroup>
                             </f:facet>  
                             <f:facet name="input">

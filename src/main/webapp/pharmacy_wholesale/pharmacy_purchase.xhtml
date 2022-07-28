@@ -61,7 +61,7 @@
                         </p:column>
                         <p:column headerText="Pack Size" >
                             <p:outputLabel value=" X #{vt.dblValue}" 
-                                           rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                           rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                         </p:column>
                     </p:autoComplete>
                     <p:commandButton 
@@ -105,15 +105,15 @@
                             </p:column>
                             <p:column headerText="Pack Size" >
                                 <p:outputLabel value=" X #{vt.dblValue}" 
-                                               rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                               rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                             </p:column>
                             <p:column headerText="Pack Size" >
                                 <p:outputLabel value=" X #{vt.dblValue}" 
-                                               rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                               rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                             </p:column>
                             <p:column headerText="Pack Size" >
                                 <p:outputLabel value=" X #{vt.dblValue}" 
-                                               rendered="#{vt.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                            
+                                               rendered="#{vt.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                            
                             </p:column>
 
                         </p:autoComplete>
@@ -205,20 +205,20 @@
                         <h:inputText autocomplete="off" id="purchase" value="#{ph.pharmaceuticalBillItem.purchaseRate}">
                             <f:ajax event="blur" render="wholeSaleRate profMargin @this retail total :#{p:component('tot')}"  execute="@this qty item qty freeQty purchase retail" listener="#{pharmacyPurchaseController.onEditPurchaseRate(ph)}" ></f:ajax> 
                         </h:inputText>
-                        <p:outputLabel value=" X #{ph.item.dblValue}" rendered="#{ph.item.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                                                
+                        <p:outputLabel value=" X #{ph.item.dblValue}" rendered="#{ph.item.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                                                
                     </p:column>              
 
                     <p:column headerText="S. Rate" style="width:24%">                   
                         <h:inputText autocomplete="off" id="retail" value="#{ph.pharmaceuticalBillItem.retailRate}"  label="Price">
                             <f:ajax event="blur" render="profMargin @this total :#{p:component('tot')}"  execute="item qty freeQty purchase retail" listener="#{pharmacyPurchaseController.onEdit(ph)}" ></f:ajax> 
                         </h:inputText>
-                        <p:outputLabel value=" X (#{ph.item.dblValue})" rendered="#{ph.item.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                    
+                        <p:outputLabel value=" X (#{ph.item.dblValue})" rendered="#{ph.item.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                    
                     </p:column>  
 
                     <p:column headerText="WS. Rate" style="width:24%">                   
                         <p:outputLabel  id="wholeSaleRate" value="#{ph.pharmaceuticalBillItem.wholesaleRate}"  >
                         </p:outputLabel>
-                        <p:outputLabel value=" X (#{ph.item.dblValue})" rendered="#{ph.item.class eq 'class com.divudi.entity.pharmacy.Ampp'}"/>                    
+                        <p:outputLabel value=" X (#{ph.item.dblValue})" rendered="#{ph.item.class eq 'class lk.gov.health.entity.pharmacy.Ampp'}"/>                    
                     </p:column>  
 
 

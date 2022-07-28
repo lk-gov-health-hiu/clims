@@ -61,21 +61,21 @@
                     <p:dataTable styleClass="noBorder summeryBorder" 
                                  value="#{pharmacyErrorChecking.billItems}" var="pb"  rowIndexVar="i"
                                  rowStyleClass="#{(pb.retired eq true or pb.bill.retired eq true) ?'greenText' : ''} 
-                                 #{((pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'PharmacyPurchaseBill' )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'PharmacyGrnBill' )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'PharmacyGrnReturn' )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'PurchaseReturn' )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.PreBill' and pb.bill.billType eq 'PharmacyPre' )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'PharmacyTransferIssue' )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'PharmacyTransferReceive' )
+                                 #{((pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'PharmacyPurchaseBill' )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'PharmacyGrnBill' )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'PharmacyGrnReturn' )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'PurchaseReturn' )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.PreBill' and pb.bill.billType eq 'PharmacyPre' )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'PharmacyTransferIssue' )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'PharmacyTransferReceive' )
                                    )? 'redText' : ''}
-                                 #{((pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'PharmacyPurchaseBill' and pb.bill.createdAt ne null )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'PharmacyGrnBill' and pb.bill.createdAt ne null )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'PharmacyGrnReturn' and pb.bill.createdAt ne null )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'PurchaseReturn' and pb.bill.createdAt ne null )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.RefundBill' and pb.bill.billType eq 'PharmacyPre' and pb.bill.createdAt ne null )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.CancelledBill' and pb.bill.billType eq 'PharmacyTransferIssue' and pb.bill.createdAt ne null )or
-                                   (pb.bill.billClass eq 'class com.divudi.entity.BilledBill' and pb.bill.billType eq 'PharmacyTransferReceive' and pb.bill.createdAt ne null )
+                                 #{((pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'PharmacyPurchaseBill' and pb.bill.createdAt ne null )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'PharmacyGrnBill' and pb.bill.createdAt ne null )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'PharmacyGrnReturn' and pb.bill.createdAt ne null )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'PurchaseReturn' and pb.bill.createdAt ne null )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.RefundBill' and pb.bill.billType eq 'PharmacyPre' and pb.bill.createdAt ne null )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.CancelledBill' and pb.bill.billType eq 'PharmacyTransferIssue' and pb.bill.createdAt ne null )or
+                                   (pb.bill.billClass eq 'class lk.gov.health.entity.BilledBill' and pb.bill.billType eq 'PharmacyTransferReceive' and pb.bill.createdAt ne null )
                                    )? 'greenText' : ''}" >
                         <f:facet name="header">
                             <p:outputLabel value="#{pharmacyErrorChecking.department.name}" />

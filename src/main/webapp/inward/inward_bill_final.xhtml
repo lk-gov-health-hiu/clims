@@ -431,7 +431,7 @@
                     <p:dataTable value="#{bhtSummeryController.profesionallFee}" var="pf"
                                  rowStyleClass="#{pf.feeValue ne 0 
                                                   and pf.bill.cancelled eq false
-                                                  and pf.bill.billClass eq 'class com.divudi.entity.BilledBill' ? '':'noDisplayRow'}">
+                                                  and pf.bill.billClass eq 'class lk.gov.health.entity.BilledBill' ? '':'noDisplayRow'}">
                         <p:column headerText="Name">
                             #{pf.staff.person.nameWithTitle}
                         </p:column>

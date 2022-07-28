@@ -6,18 +6,18 @@
  * and
  * a Set of Related Tools
  */
-package com.divudi.bean.lab;
+package lk.gov.health.bean.lab;
 
-import com.divudi.bean.common.SessionController;
-import com.divudi.bean.common.UtilityController;
-import com.divudi.data.InvestigationItemType;
-import com.divudi.entity.lab.Investigation;
-import com.divudi.entity.lab.InvestigationItem;
-import com.divudi.entity.lab.InvestigationItemValue;
-import com.divudi.facade.InvestigationFacade;
-import com.divudi.facade.InvestigationItemFacade;
-import com.divudi.facade.InvestigationItemValueFacade;
-import com.divudi.facade.util.JsfUtil;
+import lk.gov.health.bean.common.SessionController;
+import lk.gov.health.bean.common.UtilityController;
+import lk.gov.health.data.InvestigationItemType;
+import lk.gov.health.entity.lab.Investigation;
+import lk.gov.health.entity.lab.InvestigationItem;
+import lk.gov.health.entity.lab.InvestigationItemValue;
+import lk.gov.health.facade.InvestigationFacade;
+import lk.gov.health.facade.InvestigationItemFacade;
+import lk.gov.health.facade.InvestigationItemValueFacade;
+import lk.gov.health.facade.util.JsfUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -204,7 +204,7 @@ public class InvestigationItemController implements Serializable {
             return new ArrayList<InvestigationItem>();
         } else {
             String sql;
-            sql = "select i from InvestigationItem i where i.retired=false and i.ixItemType = com.divudi.data.InvestigationItemType.Value and upper(i.name) like '%" + qry.toUpperCase() + "%' and i.item.id = " + currentInvestigation.getId();
+            sql = "select i from InvestigationItem i where i.retired=false and i.ixItemType = lk.gov.health.data.InvestigationItemType.Value and upper(i.name) like '%" + qry.toUpperCase() + "%' and i.item.id = " + currentInvestigation.getId();
             iivs = getEjbFacade().findBySQL(sql);
         }
         if (iivs == null) {
@@ -219,7 +219,7 @@ public class InvestigationItemController implements Serializable {
             return new ArrayList<InvestigationItem>();
         } else {
             String sql;
-            sql = "select i from InvestigationItem i where i.retired=false and i.ixItemType = com.divudi.data.InvestigationItemType.Value and i.item.id = " + currentInvestigation.getId();
+            sql = "select i from InvestigationItem i where i.retired=false and i.ixItemType = lk.gov.health.data.InvestigationItemType.Value and i.item.id = " + currentInvestigation.getId();
             iivs = getEjbFacade().findBySQL(sql);
         }
         if (iivs == null) {
