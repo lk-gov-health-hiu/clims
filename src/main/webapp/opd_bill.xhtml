@@ -16,12 +16,9 @@
         <ui:composition template="/resources/template/template.xhtml">
 
             <ui:define name="content">
-
-
                 <h:panelGroup rendered="#{!(webUserController.hasPrivilege('OpdBilling') or webUserController.hasPrivilege('LabCashier'))}" >
                     You are NOT authorized
                 </h:panelGroup>
-
                 <h:panelGroup rendered="#{webUserController.hasPrivilege('OpdBilling') or webUserController.hasPrivilege('LabCashier')}" styleClass="opdPanel" >
                     <h:form id="form">
                         <p:growl autoUpdate="true" id="growl" ></p:growl>
