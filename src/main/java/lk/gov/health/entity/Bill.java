@@ -105,6 +105,8 @@ public class Bill implements Serializable {
     ////////////////////////////////////////////////   
     @Lob
     String comments;
+    private String ward;
+    private String bht;
     // Bank Detail
     String creditCardRefNo;
     String chequeRefNo;
@@ -339,6 +341,8 @@ public class Bill implements Serializable {
         return transTotalSaleValue;
     }
 
+    
+    
     public void setTransTotalSaleValue(double transTotalSaleValue) {
         this.transTotalSaleValue = transTotalSaleValue;
     }
@@ -1794,6 +1798,22 @@ public class Bill implements Serializable {
             referredInstituteOrDoctor = referredBy;
         }
         return referredInstituteOrDoctor;
+    }
+
+    public String getWard() {
+        return ward;
+    }
+
+    public void setWard(String ward) {
+        this.ward = ward;
+    }
+
+    public String getBht() {
+        return bht;
+    }
+
+    public void setBht(String bht) {
+        this.bht = bht;
     }
 
 }

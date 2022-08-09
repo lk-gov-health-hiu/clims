@@ -20,6 +20,7 @@ public enum ReportItemType {
     BarcodePatientId,
     BarcodePatientInvestigationId,
     BarcodePatientReportId,
+    BHT,
     BilledDate,
     BilledTime,
     BillItemNo,
@@ -29,6 +30,7 @@ public enum ReportItemType {
     Category,
     CivilStatus,
     CollectingCenter,
+    Comments,
     Css,
     DataEntered,
     DataEntrySignature,
@@ -58,7 +60,8 @@ public enum ReportItemType {
     SampledDate,
     SampledTime,
     Speciman,
-    Surname,;
+    Surname,
+    Ward,;
 
     public String getLabel() {
         switch (this) {

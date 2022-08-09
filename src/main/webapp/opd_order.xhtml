@@ -31,10 +31,9 @@
                             <h:outputLabel value="OPD"/>
                         </f:facet>
                         <h:panelGroup rendered="#{!billController.printPreview}" styleClass="alignTop" >
-
                             <div class="card" >
                                 <div class="card-header" >
-                                    <h:commandButton  value="Settle" 
+                                    <h:commandButton  value="Settle Order" 
                                                       action="#{billController.settleBill}" 
                                                       class="btn btn-success mr-1"
                                                       >
@@ -52,7 +51,7 @@
                                     <div class="row" >
                                         <div class="col-md-6" >
                                             <div class="form" >
-                                                <p:tabView id="tvPt" activeIndex="#{billController.patientSearchTab}" class="w-100 m-0 p-0" >
+                                                <p:tabView id="tvPt" activeIndex="#{billController.patientSearchTab}" class="w-100 m-0 p-2" >
                                                     <p:ajax event="tabChange"   process="@this"  
                                                             listener="#{billController.onTabChange}" />
                                                     <p:tab id="tabNewPt" title="New Patient"   >
@@ -156,51 +155,49 @@
                                                             </div>
                                                         </div>
                                                     </p:tab>
-                                                    <p:tab id="tabSearchPt" title="Search Patient">
-                                                        <h:panelGrid columns="1" >
-                                                            <p:selectBooleanCheckbox value="#{patientController.reportKeyWord.additionalDetails}" 
-                                                                                     itemLabel="Serch Only Registed Patient" >
-                                                                <f:ajax execute="@this" render="acPt" />
-                                                            </p:selectBooleanCheckbox>
-                                                            <p:autoComplete styleClass="mediuminput" converter="patientConverter"
-                                                                            disabled="#{billController.fromOpdEncounter}"
-                                                                            widgetVar="aPt" id="acPt" forceSelection="true" 
-                                                                            value="#{billController.searchedPatient}" 
-                                                                            completeMethod="#{patientController.completePatientByNameOrCode}" 
-                                                                            var="apt" itemLabel="#{apt.person.name}" 
-                                                                            itemValue="#{apt}" size="30"  style="width: 400px;"
-                                                                            minQueryLength="4">
-                                                                <p:column headerText="Name">
-                                                                    <h:outputLabel value="#{apt.person.nameWithTitle}" />
-                                                                </p:column>
-                                                                <p:column headerText="Phone">
-                                                                    <h:outputLabel value="#{apt.person.phone}" />
-                                                                </p:column>
-                                                                <p:column headerText="Age">
-                                                                    <h:outputLabel value="#{apt.age}" />
-                                                                </p:column>
-                                                                <p:column headerText="Code">
-                                                                    <h:outputLabel value="#{apt.code}" />
-                                                                </p:column>
-                                                                <p:column headerText="Sex">
-                                                                    <h:outputLabel value="#{apt.person.sex}" />
-                                                                </p:column>
-                                                                <p:column headerText="Address">
-                                                                    <h:outputLabel value="#{apt.person.address}" />
-                                                                </p:column>
-                                                                <p:column headerText="Date of Birth">
-                                                                    <h:outputLabel value="#{apt.person.dob}" >
-                                                                        <f:convertDateTime pattern="dd MMMM yyyy"/>
-                                                                    </h:outputLabel>
-                                                                </p:column>
-                                                            </p:autoComplete>   
-                                                            <h:panelGroup id="panSearch">
-                                                                <pat:searchPatientDetail patient="#{billController.searchedPatient}"  />
-                                                            </h:panelGroup>
-                                                            <div style="padding: 2px; margin: 2px; border: 1px solid;">
-                                                                <p:outputLabel value="#{pharmacySaleController.opdEncounterComments}" ></p:outputLabel>
-                                                            </div>
-                                                        </h:panelGrid>
+                                                    <p:tab id="tabSearchPt" title="Search Patient" class="text-center">
+                                                        <p:autoComplete 
+                                                            converter="patientConverter"
+                                                            disabled="#{billController.fromOpdEncounter}"
+                                                            widgetVar="aPt" id="acPt" forceSelection="true" 
+                                                            value="#{billController.searchedPatient}" 
+                                                            completeMethod="#{patientController.completePatientByNameOrCode}" 
+                                                            var="apt" itemLabel="#{apt.person.name}" 
+                                                            itemValue="#{apt}" size="30" 
+                                                            class="w-100"
+                                                            inputStyleClass="form-control w-75"
+                                                            minQueryLength="5">
+                                                            <p:column headerText="Name">
+                                                                <h:outputLabel value="#{apt.person.nameWithTitle}" />
+                                                            </p:column>
+                                                            <p:column headerText="Phone">
+                                                                <h:outputLabel value="#{apt.person.phone}" />
+                                                            </p:column>
+                                                            <p:column headerText="Age">
+                                                                <h:outputLabel value="#{apt.age}" />
+                                                            </p:column>
+                                                            <p:column headerText="PHN">
+                                                                <h:outputLabel value="#{apt.code}" />
+                                                            </p:column>
+                                                            <p:column headerText="Sex">
+                                                                <h:outputLabel value="#{apt.person.sex}" />
+                                                            </p:column>
+                                                            <p:column headerText="Address">
+                                                                <h:outputLabel value="#{apt.person.address}" />
+                                                            </p:column>
+                                                            <p:column headerText="Date of Birth">
+                                                                <h:outputLabel value="#{apt.person.dob}" >
+                                                                    <f:convertDateTime pattern="dd MMMM yyyy"/>
+                                                                </h:outputLabel>
+                                                            </p:column>
+                                                            <f:ajax event="itemSelect" execute="@this" 
+                                                                    render="panSearch" 
+                                                                    />
+                                                        </p:autoComplete>   
+                                                        <h:panelGroup id="panSearch">
+                                                            <pat:searchPatientDetail patient="#{billController.searchedPatient}"  />
+                                                        </h:panelGroup>
+
                                                     </p:tab>
                                                 </p:tabView>
                                             </div>
@@ -212,7 +209,7 @@
                                                                    class="form form-label"
                                                                    ></h:outputLabel>
                                                     <p:autoComplete id="refIns" 
-                                                                    inputStyleClass="form form-control"
+                                                                    inputStyleClass="form-control"
                                                                     forceSelection="true" 
                                                                     value="#{billController.referredByInstitution}"
                                                                     completeMethod="#{institutionController.completeIns}"
@@ -220,7 +217,7 @@
                                                                     itemLabel="#{ri.name}" 
                                                                     itemValue="#{ri}" 
                                                                     size="30"  
-                                                                    class="form form-control" 
+                                                                    class="w-100" 
                                                                     >
                                                         <p:column>#{ri.institutionCode}</p:column>
                                                         <p:column>#{ri.name}</p:column>
@@ -234,7 +231,7 @@
                                                                     completeMethod="#{doctorController.completeDoctor}" var="ix" 
                                                                     itemLabel="#{ix.person.name}" itemValue="#{ix}" 
                                                                     inputStyleClass="form form-control"
-                                                                    class="form form-control" 
+                                                                    class="w-100" 
                                                                     >
                                                         <p:column headerText="Name" >
                                                             <h:outputLabel value="#{ix.person.nameWithTitle}" ></h:outputLabel>
@@ -251,25 +248,33 @@
                                                     <h:inputTextarea value="#{billController.comment}" class="form form-control" ></h:inputTextarea>
                                                 </div>
                                             </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <h:outputLabel value="Ward" class="form form-label" ></h:outputLabel>
+                                                    <h:inputText value="#{billController.ward}" class="form form-control" ></h:inputText>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <h:outputLabel value="BHT" class="form form-label" ></h:outputLabel>
+                                                    <h:inputText value="#{billController.bht}" class="form form-control" ></h:inputText>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row" >
                                         <div class="col col-md-6" >
                                             <h:panelGroup id="panelIx" >
-                                                <p:panel id='pIxAdd' header="Items / Services"
-                                                         style="min-height: 350px;"  >
+                                                <p:panel id='pIxAdd' header="Tests to order"
+                                                         >
                                                     <p:focus  context="acIx"/>
-
                                                     <div class="form-group row" >
-
                                                         <div class="col col-md-10" >
                                                             <p:autoComplete widgetVar="aIx" id="acIx" forceSelection="true"
                                                                             value="#{billController.currentBillItem.item}" 
                                                                             completeMethod="#{itemController.completeOpdItems}"
                                                                             var="ix" itemLabel="#{ix.name}" itemValue="#{ix}"
                                                                             size="10"  
-                                                                            inputStyleClass="form form-control"
-                                                                            class="form form-control"
+                                                                            inputStyleClass="form-control"
+                                                                            class="w-100"
                                                                             placeholder="Select a Test"
                                                                             maxResults="10" >
                                                                 <p:column  headerText="Name">
@@ -284,7 +289,7 @@
                                                                 <p:column headerText="Department">
                                                                     <h:outputLabel value="#{ix.department.name}"></h:outputLabel>
                                                                 </p:column>
-                                                                <p:ajax event="itemSelect"  listener="#{billController.fillBillSessions}" process="acIx" update="tblSs" ></p:ajax>
+                                                                <p:ajax event="itemSelect"  process="acIx" ></p:ajax>
                                                                 <f:ajax event="itemSelect"  execute="@this" render="txtQty" />
                                                             </p:autoComplete>
                                                         </div>
@@ -292,7 +297,7 @@
                                                             <h:commandButton id="btnAddIx" value="Add"
                                                                              class="btn btn-primary"
                                                                              action="#{billController.addToBill()}"   >
-                                                                <f:ajax execute="txtQty acIx btnAddIx panelBillItems" render="focusIx tblBillItem pIxAdd" />
+                                                                <f:ajax execute="txtQty acIx btnAddIx panelBillItems" render="focusIx panelBillItems pIxAdd" />
                                                             </h:commandButton>
                                                         </div>
 
@@ -313,243 +318,167 @@
                                                         <f:selectItems value="#{departmentController.labs}" 
                                                                        var="paysch" itemLabel="#{paysch.name}" itemValue="#{paysch}"  />
                                                         <p:ajax process="@this" update="acIx" event="change"/>
-                                                    </p:selectOneMenu><br></br>
-                                                    <p:calendar value="#{billController.currentBillItem.item}" pattern="dd MMMM yyyy hh:mm a" ></p:calendar>
-                                                    <!--<p:defaultCommand target="btnAddIx" />-->
-                                                    <p:panel header="Session"  >
-                                                        <p:calendar id="calS" mode="inline" value="#{billController.sessionDate}" pattern="dd MMMM yyyy" >
-                                                            <f:ajax event="dateSelect" execute="calS" render="tblSs :#{p:component('lblTemS')}" listener="#{billController.fillBillSessionsLstner}" />
-                                                        </p:calendar>
-                                                        <p:selectOneMenu value="#{itemController.reportKeyWord.department}">     
-                                                            <f:selectItem itemLabel="Select Department"/>
-                                                            <f:selectItems value="#{departmentController.labs}" 
-                                                                           var="paysch" itemLabel="#{paysch.name}" itemValue="#{paysch}"  />
-                                                            <p:ajax process="@this" update="acIx" event="change"/>
-                                                        </p:selectOneMenu><br></br>
-                                                        <p:dataTable id="tblSs" value="#{billController.billSessions}" var="bs" emptyMessage="No Numbers Yet">
-                                                            <f:facet name="header">
-                                                                <h:outputLabel value="#{billController.lastBillItem.item.name}" />
-
-                                                                <h:outputLabel id="lblTemS" value="#{billController.sessionDate}" >
-                                                                    <f:convertDateTime  timeZone="Asia/Colombo" pattern="dd MMM yyyy" ></f:convertDateTime>
-                                                                </h:outputLabel>
-
-
-
-                                                            </f:facet>
-                                                            <p:column headerText="No.">
-                                                                <h:outputLabel value="#{bs.serialNo}" />
-                                                            </p:column>
-                                                            <p:column headerText="Client">
-                                                                <h:outputLabel value="#{bs.billItem.bill.patient.person.nameWithTitle}" />
-                                                            </p:column>
-                                                        </p:dataTable>
-                                                    </p:panel>
+                                                    </p:selectOneMenu>
                                                 </p:panel>
                                             </h:panelGroup>
                                         </div>
                                         <div class="col col-md-6" >
-                                            <h:panelGroup id="panelBillItems" >
-                                                <p:tabView id="tblBillItem" >
-                                                    <p:tab id="tabBillItems" title="Bill Items" >
-                                                        <p:dataTable id="tblRequests" rowIndexVar="rowIndex" value="#{billController.lstBillEntries}" var="bi" >
-                                                            <p:column>
-                                                                <f:facet name="header">No</f:facet>
-                                                                    #{rowIndex+1}
-                                                            </p:column>
-                                                            <p:column>
-                                                                <f:facet name="header">Item</f:facet>
-                                                                    #{bi.billItem.item.name}
-                                                            </p:column>
-                                                            <p:column>
-                                                                <f:facet name="header">Institution</f:facet>
-                                                                <h:outputLabel value="#{bi.billItem.item.department.name}">
-                                                                </h:outputLabel>
-                                                            </p:column>
-                                                            <p:column>
-                                                                <f:facet name="header">Department</f:facet>
-                                                                    #{bi.billItem.item.department.name}
-                                                            </p:column>
-                                                            <p:column>
-                                                                <f:facet name="header">Priority</f:facet>
-                                                                <p:selectOneMenu value="#{bi.billItem.priority}"    >
-                                                                    <p:ajax event="blur" process="@this" ></p:ajax>
-                                                                    <f:selectItem itemLabel="Not Set" ></f:selectItem>
-                                                                    <f:selectItems value="#{enumController.priorities}" ></f:selectItems>
-                                                                </p:selectOneMenu>
-                                                            </p:column>
-                                                            <p:column>
-                                                                <h:commandButton id="btnRemove" value="X" action="#{billController.removeBillItem}" >
-                                                                    <f:setPropertyActionListener  value="#{rowIndex}" target="#{billController.index}" />
-                                                                    <p:ajax  process="btnRemove" update=":#{p:component('tblBillItem')}" />
-                                                                </h:commandButton>
-                                                            </p:column>
-                                                        </p:dataTable>
-                                                    </p:tab>
-                                                    <p:tab id="tabBillIx" title="Tests" >
-                                                        <p:dataTable rowIndexVar="rowIndex" value="#{billController.lstBillComponents}" var="bix" >
-                                                            <p:column>
-                                                                <f:facet name="header">No</f:facet>
-                                                                    #{rowIndex+1}
-                                                            </p:column>
-                                                            <p:column>
-                                                                <f:facet name="header">Name</f:facet>
-                                                                    #{bix.item.name}
-                                                            </p:column>
 
-                                                        </p:dataTable>
-                                                    </p:tab>
-                                                </p:tabView>
-                                            </h:panelGroup>
+                                            <p:dataTable id="panelBillItems" 
+                                                         emptyMessage="No Tests Added Yet"
+
+                                                         rowIndexVar="rowIndex" value="#{billController.lstBillEntries}" var="bi" >
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Tests Ordered" ></h:outputText>
+                                                </f:facet>
+                                                <p:column>
+                                                    <f:facet name="header">No</f:facet>
+                                                        #{rowIndex+1}
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">Item</f:facet>
+                                                        #{bi.billItem.item.name}
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">Institution</f:facet>
+                                                    <h:outputLabel value="#{bi.billItem.item.department.name}">
+                                                    </h:outputLabel>
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">Department</f:facet>
+                                                        #{bi.billItem.item.department.name}
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">Priority</f:facet>
+                                                    <p:selectOneMenu value="#{bi.billItem.priority}"    >
+                                                        <p:ajax event="blur" process="@this" ></p:ajax>
+                                                        <f:selectItem itemLabel="Not Set" ></f:selectItem>
+                                                        <f:selectItems value="#{enumController.priorities}" ></f:selectItems>
+                                                    </p:selectOneMenu>
+                                                </p:column>
+                                                <p:column>
+                                                    <h:commandButton id="btnRemove" value="X" action="#{billController.removeBillItem}" >
+                                                        <f:setPropertyActionListener  value="#{rowIndex}" target="#{billController.index}" />
+                                                        <p:ajax  process="btnRemove" update=":#{p:component('panelBillItems')}" />
+                                                    </h:commandButton>
+                                                </p:column>
+                                            </p:dataTable>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer" >
-                                    footer
-                                </div>
-
                             </div>
-
-                            <p:panel style="min-height: 600px; position:relative;"  >
-
+                        </h:panelGroup>
 
 
+                        <h:panelGroup rendered="#{billController.printPreview}" styleClass="alignTop" >
+                            <h:panelGroup rendered="#{sessionController.loggedPreference.opdBillPaperType eq 'FiveFivePrintedPaper'}">
+                                <div class="nonPrintBlock">
+                                    <p:commandButton value="Print" 
+                                                     process="@this" 
+                                                     update="@all" 
+                                                     type="button"  
+                                                     ajax="false">
+                                        <p:printer target="gpBillPreview" ></p:printer>
+                                    </p:commandButton>
 
-                                <h:panelGrid columns="2" >
+                                    <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
+                                    </p:commandButton>
+                                    <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
+                                                     onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
+                                                             return false;"/>
+                                </div>
+                                <h:panelGroup id="gpBillPreview">
+                                    <ui:repeat value="#{billController.bills}" var="bill">
+                                        <bi:opdBillPrintRuhunu bill="#{bill}" dup="false"/>
+                                    </ui:repeat>
+                                </h:panelGroup>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{sessionController.loggedPreference.opdBillPaperType eq 'FiveFivePaper'}">
+                                <div class="nonPrintBlock">
+                                    <p:commandButton value="Print" ajax="false" action="#"  >
+                                        <p:printer target="fiveFivePaperWithHeadings" ></p:printer>
+                                    </p:commandButton>
+
+                                    <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
+                                    </p:commandButton>
+
+                                    <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
+                                                     onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
+                                                             return false;"/>
+                                </div>
+                                <h:panelGroup id="fiveFivePaperWithHeadings">
+                                    <ui:repeat value="#{billController.bills}" var="b">
+                                        <bi:five_five_paper_with_headings bill="#{b}"/>                        
+                                    </ui:repeat>
+                                </h:panelGroup>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{sessionController.loggedPreference.opdBillPaperType eq 'PosPaper'}">
+                                <h:panelGrid rendered="#{sessionController.loggedPreference.opdPosBillWithoutLogo eq false}">
+                                    <div class="nonPrintBlock">
+                                        <p:commandButton value="Print" ajax="false" action="#"  >
+                                            <p:printer target="gpPosBill" ></p:printer>
+                                        </p:commandButton>
 
 
 
-                                    <h:panelGrid columns="1" >
+                                        <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
+                                        </p:commandButton>
 
+                                        <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
+                                                         onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
+                                                                 return false;"/>
+                                    </div>
+                                    <h:panelGroup id="gpPosBill">
+                                        <div style="page-break-after: always;">
 
+                                            <ui:repeat value="#{billController.bills}" var="b">
+                                                <bi:posOpdBill bill="#{b}" duplicate="false"/>                        
+                                            </ui:repeat>
+                                        </div>
+                                        <div></div>
+                                        <div style="page-break-after: always;">
 
-
-
-
-
-                                    </h:panelGrid>
-
-
+                                            <ui:repeat value="#{billController.bills}" var="b">
+                                                <bi:posOpdBill bill="#{b}" duplicate="false"/>                        
+                                            </ui:repeat>
+                                        </div>
+                                    </h:panelGroup>
                                 </h:panelGrid>
-                            </p:panel>
-                        </h:panelGroup>
 
 
 
-                        <h:panelGroup rendered="#{sessionController.loggedPreference.opdBillPaperType eq 'FiveFivePrintedPaper'}">
-                            <div class="nonPrintBlock">
-                                <p:commandButton value="Print" 
-                                                 process="@this" 
-                                                 update="@all" 
-                                                 type="button"  
-                                                 ajax="false">
-                                    <p:printer target="gpBillPreview" ></p:printer>
-                                </p:commandButton>
 
-                                <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
-                                </p:commandButton>
-                                <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
-                                                 onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
-                                                             return false;"/>
-                            </div>
-                            <h:panelGroup id="gpBillPreview">
-                                <ui:repeat value="#{billController.bills}" var="bill">
-                                    <bi:opdBillPrintRuhunu bill="#{bill}" dup="false"/>
-                                </ui:repeat>
+                                <h:panelGrid rendered="#{sessionController.loggedPreference.opdPosBillWithoutLogo eq true}">
+                                    <div class="nonPrintBlock">
+                                        <p:commandButton value="Print" ajax="false" action="#"  >
+                                            <p:printer target="gpPosBillWithoutLogo" ></p:printer>
+                                        </p:commandButton>
+
+                                        <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
+                                        </p:commandButton>
+
+                                        <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
+                                                         onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
+                                                                 return false;"/>
+                                    </div>
+                                    <h:panelGroup id="gpPosBillWithoutLogo">
+                                        <div style="page-break-after: always;">
+
+                                            <ui:repeat value="#{billController.bills}" var="b">
+                                                <bi:posOpdBillWithoutLogo bill="#{b}" duplicate="false"/>                        
+                                            </ui:repeat>
+                                        </div>     
+                                        <div style="page-break-after: always;">
+
+                                            <ui:repeat value="#{billController.bills}" var="b">
+                                                <bi:posOpdBillWithoutLogo bill="#{b}" duplicate="false"/>                        
+                                            </ui:repeat>
+                                        </div>  
+                                    </h:panelGroup>
+                                </h:panelGrid>
                             </h:panelGroup>
                         </h:panelGroup>
-
-                        #{sessionController.loggedPreference.opdBillPaperType}"
-                        
-                        <h:panelGroup rendered="#{sessionController.loggedPreference.opdBillPaperType eq 'FiveFivePaper'}">
-                            <div class="nonPrintBlock">
-                                <p:commandButton value="Print" ajax="false" action="#"  >
-                                    <p:printer target="fiveFivePaperWithHeadings" ></p:printer>
-                                </p:commandButton>
-
-                                <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
-                                </p:commandButton>
-
-                                <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
-                                                 onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
-                                                             return false;"/>
-                            </div>
-                            <h:panelGroup id="fiveFivePaperWithHeadings">
-                                <ui:repeat value="#{billController.bills}" var="b">
-                                    <bi:five_five_paper_with_headings bill="#{b}"/>                        
-                                </ui:repeat>
-                            </h:panelGroup>
-                        </h:panelGroup>
-
-                        <h:panelGroup rendered="#{sessionController.loggedPreference.opdBillPaperType eq 'PosPaper'}">
-                            <h:panelGrid rendered="#{sessionController.loggedPreference.opdPosBillWithoutLogo eq false}">
-                                <div class="nonPrintBlock">
-                                    <p:commandButton value="Print" ajax="false" action="#"  >
-                                        <p:printer target="gpPosBill" ></p:printer>
-                                    </p:commandButton>
-
-
-
-                                    <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
-                                    </p:commandButton>
-
-                                    <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
-                                                     onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
-                                                                 return false;"/>
-                                </div>
-                                <h:panelGroup id="gpPosBill">
-                                    <div style="page-break-after: always;">
-
-                                        <ui:repeat value="#{billController.bills}" var="b">
-                                            <bi:posOpdBill bill="#{b}" duplicate="false"/>                        
-                                        </ui:repeat>
-                                    </div>
-                                    <div></div>
-                                    <div style="page-break-after: always;">
-
-                                        <ui:repeat value="#{billController.bills}" var="b">
-                                            <bi:posOpdBill bill="#{b}" duplicate="false"/>                        
-                                        </ui:repeat>
-                                    </div>
-                                </h:panelGroup>
-                            </h:panelGrid>
-
-
-
-
-                            <h:panelGrid rendered="#{sessionController.loggedPreference.opdPosBillWithoutLogo eq true}">
-                                <div class="nonPrintBlock">
-                                    <p:commandButton value="Print" ajax="false" action="#"  >
-                                        <p:printer target="gpPosBillWithoutLogo" ></p:printer>
-                                    </p:commandButton>
-
-                                    <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
-                                    </p:commandButton>
-
-                                    <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
-                                                     onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
-                                                                 return false;"/>
-                                </div>
-                                <h:panelGroup id="gpPosBillWithoutLogo">
-                                    <div style="page-break-after: always;">
-
-                                        <ui:repeat value="#{billController.bills}" var="b">
-                                            <bi:posOpdBillWithoutLogo bill="#{b}" duplicate="false"/>                        
-                                        </ui:repeat>
-                                    </div>     
-                                    <div style="page-break-after: always;">
-
-                                        <ui:repeat value="#{billController.bills}" var="b">
-                                            <bi:posOpdBillWithoutLogo bill="#{b}" duplicate="false"/>                        
-                                        </ui:repeat>
-                                    </div>  
-                                </h:panelGroup>
-                            </h:panelGrid>
-
-                        </h:panelGroup>
-
-
-
                     </h:form>
 
                 </h:panelGroup>

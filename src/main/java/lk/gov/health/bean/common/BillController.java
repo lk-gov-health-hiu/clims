@@ -164,6 +164,8 @@ public class BillController implements Serializable {
     String opdEncounterComments = "";
     int patientSearchTab = 0;
     String comment;
+    private String ward;
+    private String bht;
     double opdPaymentCredit;
     BilledBill opdBill;
     Date fromDate;
@@ -258,6 +260,8 @@ public class BillController implements Serializable {
         printPreview = false;
         opdPaymentCredit = 0.0;
         comment = null;
+        ward = null;
+        bht = null;
         searchController.createTableByKeywordToPayBills();
     }
 
@@ -266,6 +270,8 @@ public class BillController implements Serializable {
         printPreview = false;
         opdPaymentCredit = 0.0;
         comment = null;
+        ward = null;
+        bht = null;
         searchController.createTablePharmacyCreditToPayBills();
     }
 
@@ -299,6 +305,8 @@ public class BillController implements Serializable {
 
         temp.setToDepartment(getSessionController().getLoggedUser().getDepartment());
 
+        temp.setBht(bht);
+        temp.setWard(ward);
         temp.setComments(comment);
 
         getBillBean().setPaymentMethodData(temp, paymentMethod, getPaymentMethodData());
@@ -373,6 +381,8 @@ public class BillController implements Serializable {
 
         temp.setToDepartment(getSessionController().getLoggedUser().getDepartment());
 
+        temp.setBht(bht);
+        temp.setWard(ward);
         temp.setComments(comment);
 
         getBillBean().setPaymentMethodData(temp, paymentMethod, getPaymentMethodData());
@@ -1144,11 +1154,9 @@ public class BillController implements Serializable {
         }
         saveBatchBill();
         saveBillItemSessions();
-        UtilityController.addSuccessMessage("Bill Saved");
+        UtilityController.addSuccessMessage("Order Successfully Saved");
         setPrintigBill();
         printPreview = true;
-
-        commonController.printReportDetails(null, null, startTime, "OPD Billing(/faces/opd_bill.xhtml)");
     }
 
     public boolean checkBillValues(Bill b) {
@@ -1166,7 +1174,6 @@ public class BillController implements Serializable {
         //System.out.println("roundOff(b.getVatPlusNetTotal()) = " + roundOff(b.getVatPlusNetTotal()));
         //System.out.println("billItemVatPlusNetValue = " + billItemVatPlusNetValue);
         //System.out.println("roundOff(billItemVatPlusNetValue) = " + roundOff(billItemVatPlusNetValue));
-
         if (billItemTotal != b.getTotal() || billItemDiscount != b.getDiscount() || billItemNetTotal != b.getNetTotal() || roundOff(billItemVatPlusNetValue) != roundOff(b.getVatPlusNetTotal())) {
             return true;
         }
@@ -1179,11 +1186,9 @@ public class BillController implements Serializable {
 
         //System.out.println("b.getVatPlusNetTotal() = " + b.getVatPlusNetTotal());
         //System.out.println("billItemVatPlusNetValue = " + roundOff(billItemVatPlusNetValue));
-
         if (billFeeTotal != b.getTotal() || billFeeDiscount != b.getDiscount() || billFeeNetTotal != b.getNetTotal() || roundOff(billItemVatPlusNetValue) != roundOff(b.getVatPlusNetTotal())) {
             return true;
         }
-
 
         return false;
     }
@@ -1297,6 +1302,8 @@ public class BillController implements Serializable {
         temp.setReferredByInstitution(referredByInstitution);
         temp.setCreditCompany(creditCompany);
         temp.setCollectingCentre(collectingCentre);
+        temp.setBht(bht);
+        temp.setWard(ward);
         temp.setComments(comment);
 
         getBillBean().setPaymentMethodData(temp, paymentMethod, getPaymentMethodData());
@@ -1565,6 +1572,8 @@ public class BillController implements Serializable {
         setStaff(null);
         setToStaff(null);
         setComment(null);
+        setBht(null);
+        setWard(null);
         lstBillEntries = new ArrayList<>();
         setForeigner(false);
         setSessionDate(Calendar.getInstance().getTime());
@@ -1603,6 +1612,8 @@ public class BillController implements Serializable {
         setStaff(null);
         setToStaff(null);
         setComment(null);
+        setBht(null);
+        setWard(null);
         lstBillEntries = new ArrayList<>();
         setForeigner(false);
         setSessionDate(Calendar.getInstance().getTime());
@@ -1661,7 +1672,6 @@ public class BillController implements Serializable {
         double billVat = 0.0;
 
         MembershipScheme membershipScheme = membershipSchemeController.fetchPatientMembershipScheme(getSearchedPatient(), getSessionController().getApplicationPreference().isMembershipExpires());
-
 
         for (BillEntry be : getLstBillEntries()) {
             //////System.out.println("bill item entry");
@@ -1722,7 +1732,6 @@ public class BillController implements Serializable {
 
             //System.out.println("item is = " + bi.getItem().getName());
             //System.out.println("item gross is = " + bi.getGrossValue());
-
             billGross += bi.getGrossValue();
             billNet += bi.getNetValue();
             billDiscount += bi.getDiscount();
@@ -1823,13 +1832,11 @@ public class BillController implements Serializable {
         }
     }
 
-    
-    public String toNewOpdOrder(){
+    public String toNewOpdOrder() {
         prepareNewBill();
         return "/opd_order";
     }
-    
-    
+
     public void prepareNewBill() {
         clearBillItemValues();
         clearBillValues();
@@ -1938,7 +1945,6 @@ public class BillController implements Serializable {
         reminingCashPaid = cashPaid;
 
         for (BillEntry be : billEntrys) {
-
 
             if ((reminingCashPaid != 0.0) || !getSessionController().getLoggedPreference().isPartialPaymentOfOpdPreBillsAllowed()) {
 
@@ -2576,6 +2582,22 @@ public class BillController implements Serializable {
 
     public void setCollectingCentre(Institution collectingCentre) {
         this.collectingCentre = collectingCentre;
+    }
+
+    public String getWard() {
+        return ward;
+    }
+
+    public void setWard(String ward) {
+        this.ward = ward;
+    }
+
+    public String getBht() {
+        return bht;
+    }
+
+    public void setBht(String bht) {
+        this.bht = bht;
     }
 
     /**
