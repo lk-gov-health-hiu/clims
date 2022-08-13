@@ -71,6 +71,10 @@ public class CommonReportItemController implements Serializable {
         //////System.out.println("Common Report Format Category is " + category);
         items = null;
     }
+    
+    public void displayReport(){
+        items=null;
+    }
 
     public void addNewLabel() {
         current = new CommonReportItem();

@@ -29,26 +29,14 @@
                                         <p:selectOneMenu  id="mnuCat" value="#{commonReportItemController.category}"  style="width: 300px!important;">
                                             <f:selectItem itemLabel="Select" ></f:selectItem>
                                             <f:selectItems  value="#{reportFormatController.items}" var="myItem" itemValue="#{myItem}" itemLabel="#{myItem.name}" ></f:selectItems>
-                                            <f:ajax event="change" execute="mnuCat" render="gpReport" />
                                         </p:selectOneMenu>
-
-
-                                        <h:panelGroup >
-
-                                            <p:selectBooleanCheckbox value="#{commonReportItemController.showBorders}" 
-                                                                     label="Show Borders" title="Show Borders" >
-                                                <p:ajax process="@this" update="@form" ></p:ajax>
-                                            </p:selectBooleanCheckbox>
-                                            <p:outputLabel value="Show Borders" ></p:outputLabel>
-                                        </h:panelGroup>
+                                        
+                                        <h:commandButton value="Display Report" action="#{commonReportItemController.displayReport}" >
+                                        </h:commandButton>
 
                                     </h:panelGrid>
 
-
                                     <h:panelGroup id="gpReport" >
-
-
-
                                         <p:panel header="Actions" >
                                             <p:panelGrid columns="4" >
                                                 <p:commandButton ajax="false" value="Add New Label" action="#{commonReportItemController.addNewLabel()}"/>
@@ -101,6 +89,8 @@
                                                         <f:selectItem itemLabel="Label" itemValue="Label"/>
                                                         <f:selectItem itemLabel="Value" itemValue="Value"/>
                                                         <f:selectItem itemLabel="CSS" itemValue="Css"/>
+                                                        <f:selectItem itemLabel="Html" itemValue="Html"/>
+                                                        <f:selectItem itemLabel="Image" itemValue="Image"/>
                                                         <f:selectItem itemLabel="Horizontal Barcode" itemValue="Barcode"/>
                                                         <f:selectItem itemLabel="Vertical Barcode" itemValue="BarcodeVertical"/>
                                                     </p:selectOneMenu>
@@ -218,33 +208,7 @@
                                 </div>
                             </h:panelGroup>
 
-                            <h:panelGroup >
-                                <h:panelGrid columns="1" >
-                                    <p:commandButton value="Change Name" ajax="false" action="report_format_category"
-                                                     onclick="this.form.target = '_blank'">
-                                        <f:setPropertyActionListener value="#{commonReportItemController.category}" 
-                                                                     target="#{reportFormatController.current}" ></f:setPropertyActionListener>
-                                    </p:commandButton>
-                                    <p:commandButton value="List Investigation Using this Format" ajax="false" 
-                                                     >
-                                        <f:setPropertyActionListener value="#{commonReportItemController.category}" 
-                                                                     target="#{investigationController.categoryForFormat}" ></f:setPropertyActionListener>
-                                    </p:commandButton>
-                                    <p:dataTable value="#{investigationController.investigationWithSelectedFormat}"
-                                                 var="i" rowKey="#{i.id}" 
-
-                                                 >
-                                        <p:column >
-                                            <p:commandLink value="#{i.name}" ajax="false" action="investigation"
-                                                           onclick="this.form.target = '_blank'">
-                                                <f:setPropertyActionListener value="#{i}" 
-                                                                             target="#{investigationController.current}" ></f:setPropertyActionListener>
-                                            </p:commandLink>
-                                        </p:column>
-                                    </p:dataTable>
-
-                                </h:panelGrid>
-                            </h:panelGroup>
+                          
 
                         </h:panelGrid>
                     </h:form>

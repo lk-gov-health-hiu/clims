@@ -104,6 +104,7 @@
                               layout="block"         >
                     <img src="#{myCli.description}" ></img>
                 </h:panelGroup>
+                
                 <h:panelGroup rendered="#{myCli.ixItemType eq 'Html' and myCli.retired ne true }"  
                               layout="block"         >
                     #{myCli.description}"
@@ -133,6 +134,20 @@
                                    type="code128" orientation="90" height="#{myCli.htPix}" width="#{myCli.wtPix}" />
                     </div>
 
+                </h:panelGroup>
+                
+                <h:panelGroup rendered="#{myCli.ixItemType eq 'Css' and myCli.retired ne true }"  
+                               >
+                    <div style="#{myCli.description}" ></div>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{myCli.ixItemType eq 'Image' and myCli.retired ne true }"  
+                              layout="block"         >
+                    <img src="#{myCli.description}" ></img>
+                </h:panelGroup>
+                
+                <h:panelGroup rendered="#{myCli.ixItemType eq 'Html' and myCli.retired ne true }"  
+                              layout="block"         >
+                    #{myCli.description}"
                 </h:panelGroup>
 
 

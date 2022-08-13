@@ -15,7 +15,7 @@
 
                     <p:panel>
                         <f:facet name="header" >
-                            <h:outputLabel value="OPD BILL SEARCH "/>                          
+                            <h:outputLabel value="Request SEARCH "/>                          
                         </f:facet>
 
 
@@ -30,7 +30,7 @@
                             </p:calendar>
                             <p:spacer height="1" width="5" ></p:spacer>
                             
-                            <p:inputText placeholder="Bill No" autocomplete="off"  style="width: 8em;"
+                            <p:inputText placeholder="Request No" autocomplete="off"  style="width: 8em;"
                                          value="#{searchController.searchKeyword.billNo}" />
                             <p:spacer height="1" width="5" ></p:spacer>
 
@@ -84,7 +84,7 @@
                             <p:column headerText="No" styleClass="alignTop" width="15">
                                 <h:outputLabel value="#{i+1}"/>
                             </p:column>
-                            <p:column headerText="Bill No" sortBy="#{bill.insId}" filterBy="#{bill.insId}" >                                
+                            <p:column headerText="Request No" sortBy="#{bill.insId}" filterBy="#{bill.insId}" >                                
                                 <p:commandLink id="billNo" ajax="false" value="#{bill.insId}" action="#{searchController.viewOPD(bill)}">
                                     <f:setPropertyActionListener value="#{bill}" target="#{billSearch.billSearch}"/>
                                 </p:commandLink>
@@ -130,7 +130,7 @@
                                 </p:tooltip>
                             </p:column>
 
-                            <p:column headerText="Billed At"  sortBy="#{bill.billTime}"  >
+                            <p:column headerText="Request At"  sortBy="#{bill.billTime}"  >
                                 <p:outputLabel id="billTime" value="#{bill.billTime}" >
                                     <f:convertDateTime  timeZone="Asia/Colombo" pattern="hh:mm a" ></f:convertDateTime>
                                 </p:outputLabel>
