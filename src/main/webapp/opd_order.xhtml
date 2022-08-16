@@ -86,7 +86,8 @@
                                                             <div class="form-group col-md-2">
                                                                 <h:inputText autocomplete="off"  id="year"  
                                                                              value="#{billController.yearMonthDay.year}" 
-                                                                             class="form form-control" >
+                                                                             class="form form-control" 
+                                                                             a:placeholder="Years" >
                                                                     <f:ajax event="keyup" execute="@this month day" render="calNewPtDob" 
 
                                                                             listener="#{billController.dateChangeListen()}"  />
@@ -95,13 +96,15 @@
                                                             <div class="form-group col-md-2">
                                                                 <h:inputText autocomplete="off" id="month"
                                                                              class="form form-control" 
+                                                                              a:placeholder="Months"
                                                                              value="#{billController.yearMonthDay.month}">
                                                                     <f:ajax event="keyup" execute="@this year day" render="calNewPtDob" listener="#{billController.dateChangeListen()}"  />
                                                                 </h:inputText>
                                                             </div>
                                                             <div class="form-group col-md-2">
                                                                 <h:inputText autocomplete="off" id="day" 
-                                                                             class="form form-control" 
+                                                                             class="form form-control"
+                                                                              a:placeholder="Days"
                                                                              value="#{billController.yearMonthDay.day}">
                                                                     <f:ajax event="keyup" execute="@this year month" render="calNewPtDob" listener="#{billController.dateChangeListen()}" />
                                                                 </h:inputText>
@@ -109,7 +112,8 @@
                                                             <div class="form-group col-md-3">
                                                                 <p:calendar  value="#{billController.newPatient.person.dob}" 
                                                                              inputStyleClass="form form-control"
-                                                                             id="calNewPtDob"  navigator="true" pattern="dd/MM/yyyy" 
+                                                                             id="calNewPtDob"  navigator="true" pattern="dd/MM/yyyy"
+                                                                              a:placeholder="Date of Birth"
                                                                              >
                                                                     <f:ajax event="dateSelect" />
                                                                 </p:calendar>
@@ -284,7 +288,7 @@
                                                                     </h:panelGroup>
                                                                 </p:column>
                                                                 <p:column  headerText="Institution">
-                                                                    <h:outputLabel value="#{ix.department.name}"></h:outputLabel>
+                                                                    <h:outputLabel value="#{ix.institution.name}"></h:outputLabel>
                                                                 </p:column>
                                                                 <p:column headerText="Department">
                                                                     <h:outputLabel value="#{ix.department.name}"></h:outputLabel>
@@ -341,7 +345,7 @@
                                                 </p:column>
                                                 <p:column>
                                                     <f:facet name="header">Institution</f:facet>
-                                                    <h:outputLabel value="#{bi.billItem.item.department.name}">
+                                                    <h:outputLabel value="#{bi.billItem.item.institution.name}">
                                                     </h:outputLabel>
                                                 </p:column>
                                                 <p:column>

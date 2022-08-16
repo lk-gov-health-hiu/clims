@@ -10,7 +10,7 @@
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:panel header="Search Bills" >
+                    <p:panel header="Search Requests" >
                         <f:facet name="header">
                             <h:panelGrid columns="1" >
                                 <h:panelGrid columns="7" >
@@ -26,7 +26,7 @@
                                     <p:commandButton id="btnSearch2" ajax="false" value="Search All" action="#{searchController.createPatientInvestigationsTableAll()}" onclick="onSubmitButton();" />
                                 </h:panelGrid>
                                 <h:panelGrid columns="4" >
-                                    <h:outputLabel value="Bill No"/>
+                                    <h:outputLabel value="Request No"/>
                                     <h:outputLabel value="Patient Name"/>
                                     <h:outputLabel value="Patient Phone"/>                               
                                     <h:outputLabel value="Investigation Name"/>
@@ -35,7 +35,7 @@
                                     <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
                                     <p:inputText autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>
                                     <h:outputLabel value="Report Department"/>
-                                    <h:outputLabel value="Bill Department"/>
+                                    <h:outputLabel value="Requested Department"/>
                                     <h:outputLabel value="BHT"/>
                                     <h:outputLabel/>
                                     <p:autoComplete completeMethod="#{departmentController.completeDept}" styleClass="shortinput2"
@@ -79,14 +79,14 @@
 
 
                         <p:dataTable  id="tblBills" value="#{searchController.patientInvestigations}" var="pi" rowIndexVar="i" >
-                            <p:column  headerText="Bill" styleClass="alignTop" >
+                            <p:column  headerText="Request" styleClass="alignTop" >
                                 <h:outputLabel id="lblBillNo" 
                                                value="#{pi.billItem.bill.insId}" 
                                                styleClass="#{pi.billItem.bill.cancelled or pi.billItem.transRefund ? 'redtext':''}"></h:outputLabel>
                                 <p:tooltip for="lblBillNo"  >
                                     <h:outputLabel value="Bill No : #{pi.billItem.bill.insId}" ></h:outputLabel>
                                     <br/>
-                                    <h:outputLabel value="Billed From : #{pi.billItem.bill.institution.name}" ></h:outputLabel>
+                                    <h:outputLabel value="Requested From : #{pi.billItem.bill.institution.name}" ></h:outputLabel>
                                     <br/>
                                     <h:outputLabel value="Sampled : " />
                                     <h:outputLabel rendered="#{pi.collected}" value="#{pi.sampledAt}" >
@@ -120,9 +120,9 @@
                                                value="#{pi.billItem.bill.deptId}" 
                                                styleClass="#{pi.billItem.bill.cancelled or pi.billItem.transRefund ? 'redtext':''}"></h:outputLabel>
                                 <p:tooltip for="lblBillNo"  >
-                                    <h:outputLabel value="Bill No : #{pi.billItem.bill.deptId}" ></h:outputLabel>
+                                    <h:outputLabel value="Request No : #{pi.billItem.bill.deptId}" ></h:outputLabel>
                                     <br/>
-                                    <h:outputLabel value="Billed From : #{pi.billItem.bill.institution.name}" ></h:outputLabel>
+                                    <h:outputLabel value="Request From : #{pi.billItem.bill.institution.name}" ></h:outputLabel>
                                     <br/>
                                     <h:outputLabel value="Sampled : " />
                                     <h:outputLabel rendered="#{pi.collected}" value="#{pi.sampledAt}" >
@@ -188,8 +188,13 @@
                                 </h:outputLabel>
 
                             </p:column>
+                            
+                             <p:column headerText="Referred Institution"  styleClass="alignTop">
+                                 <h:outputLabel value="#{pi.billItem.bill.referredByInstitution.name}" >
+                                </h:outputLabel>
+                            </p:column>
 
-                            <p:column headerText="Billed for"  styleClass="alignTop">
+                            <p:column headerText="Requested for"  styleClass="alignTop">
                                 <h:outputLabel value="#{pi.billItem.bill.toDepartment.name}" >
                                 </h:outputLabel>
                             </p:column>
