@@ -1467,11 +1467,29 @@ public class PatientInvestigationController implements Serializable {
         temSql = "SELECT i FROM PatientInvestigation i where "
                 + " i.retired=false and i.collected = true "
                 + " and (i.received=false or i.received is null) and i.sampledAt between :fromDate "
-                + " and :toDate and i.receiveDepartment =:d "
+                + " and :toDate and i.receiveInstitution =:d "
                 + " order by i.id";
         temMap.put("toDate", getToDate());
         temMap.put("fromDate", getFromDate());
-        temMap.put("d", getSessionController().getDepartment());
+        temMap.put("d", getSessionController().getInstitution());
+//        //////System.out.println("Sql is " + temSql);
+        toReceive = getFacade().findBySQL(temSql, temMap, TemporalType.TIMESTAMP);
+
+        commonController.printReportDetails(fromDate, toDate, startTime, "Lab/worksheets(/faces/lab/receive.xhtml)");
+    }
+    
+    public void listToReceiveSamples() {
+        Date startTime = new Date();
+        String temSql;
+        Map temMap = new HashMap();
+        temSql = "SELECT i FROM PatientInvestigation i where "
+                + " i.retired=false and i.collected = true "
+                + " and (i.received=false or i.received is null) and i.sampledAt between :fromDate "
+                + " and :toDate and i.receiveInstitution =:d "
+                + " order by i.id";
+        temMap.put("toDate", getToDate());
+        temMap.put("fromDate", getFromDate());
+        temMap.put("d", getSessionController().getInstitution());
 //        //////System.out.println("Sql is " + temSql);
         toReceive = getFacade().findBySQL(temSql, temMap, TemporalType.TIMESTAMP);
 

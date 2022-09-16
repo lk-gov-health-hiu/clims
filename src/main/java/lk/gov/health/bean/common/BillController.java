@@ -1841,6 +1841,9 @@ public class BillController implements Serializable {
         clearBillItemValues();
         clearBillValues();
         setPrintPreview(true);
+        if(referredByInstitution==null){
+            referredByInstitution = sessionController.getInstitution();
+        }
         printPreview = false;
         paymentMethodData = null;
         paymentScheme = null;

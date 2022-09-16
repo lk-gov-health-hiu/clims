@@ -175,6 +175,11 @@ public class SearchController implements Serializable {
     UploadedFile file;
     private Institution creditCompany;
 
+    public String toViewMyReferralTestResults() {
+        patientInvestigations = new ArrayList<>();
+        return "/clinical/test_results";
+    }
+
     public String menuBarSearch() {
         JsfUtil.addSuccessMessage("Sarched From Menubar" + "\n" + menuBarSearchText);
         return "/index";
@@ -4389,19 +4394,121 @@ public class SearchController implements Serializable {
             temMap.put("itm", "%" + getSearchKeyword().getItemName().trim().toUpperCase() + "%");
         }
 
+        
+
+        sql += " order by pi.id desc  ";
+//    
+
+        temMap.put("toDate", getToDate());
+        temMap.put("fromDate", getFromDate());
+        //System.err.println("Sql " + sql);
+        //System.err.println("Sql " + sql);
+        //System.err.println("Sql " + sql);
+        patientInvestigations = getPatientInvestigationFacade().findBySQL(sql, temMap, TemporalType.TIMESTAMP);
+        checkRefundBillItems(patientInvestigations);
+
+        commonController.printReportDetails(fromDate, toDate, startTime, "Lab/report.search/search all(/faces/lab/search_for_reporting_ondemand.xhtml)");
+
+    }
+
+    public void listPatientInvestigationsForMyInstitution() {
+        Date startTime = new Date();
+
+        String sql = "select pi from PatientInvestigation pi join pi.investigation  "
+                + " i join pi.billItem.bill b join b.patient.person p where "
+                + " b.createdAt between :fromDate and :toDate  ";
+
+        Map temMap = new HashMap();
+
+//        if(webUserController.hasPrivilege("LabSearchBillLoggedInstitution")){
+//            //System.out.println("inside ins");
+//            sql+="and b.institution =:ins ";
+//            temMap.put("ins", getSessionController().getInstitution());
+//        }
+        if (getSearchKeyword().getPatientName() != null && !getSearchKeyword().getPatientName().trim().equals("")) {
+            sql += " and  (upper(p.name) like :patientName )";
+            temMap.put("patientName", "%" + getSearchKeyword().getPatientName().trim().toUpperCase() + "%");
+        }
+
+        if (getSearchKeyword().getBillNo() != null && !getSearchKeyword().getBillNo().trim().equals("")) {
+            sql += " and  (upper(b.insId) like :billNo )";
+            temMap.put("billNo", "%" + getSearchKeyword().getBillNo().trim().toUpperCase() + "%");
+        }
+
+        if (getSearchKeyword().getPatientPhone() != null && !getSearchKeyword().getPatientPhone().trim().equals("")) {
+            sql += " and  (upper(p.phone) like :patientPhone )";
+            temMap.put("patientPhone", "%" + getSearchKeyword().getPatientPhone().trim().toUpperCase() + "%");
+        }
+
+        if (getSearchKeyword().getItemName() != null && !getSearchKeyword().getItemName().trim().equals("")) {
+            sql += " and  (upper(i.name) like :itm )";
+            temMap.put("itm", "%" + getSearchKeyword().getItemName().trim().toUpperCase() + "%");
+        }
+
         if (patientEncounter != null) {
             sql += "and pi.encounter=:en";
             temMap.put("en", patientEncounter);
         }
 
-        if (getReportKeyWord().getDepartment() != null) {
-            sql += " and b.toDepartment=:dep ";
-            temMap.put("dep", getReportKeyWord().getDepartment());
+        sql += " and (b.fromInstitution=:fi or b.referredByInstitution=:fi) ";
+        temMap.put("fi", sessionController.getInstitution());
+        
+
+        sql += " order by pi.id desc  ";
+//    
+
+        temMap.put("toDate", getToDate());
+        temMap.put("fromDate", getFromDate());
+        //System.err.println("Sql " + sql);
+        //System.err.println("Sql " + sql);
+        //System.err.println("Sql " + sql);
+        patientInvestigations = getPatientInvestigationFacade().findBySQL(sql, temMap, TemporalType.TIMESTAMP);
+        checkRefundBillItems(patientInvestigations);
+
+        commonController.printReportDetails(fromDate, toDate, startTime, "Lab/report.search/search all(/faces/lab/search_for_reporting_ondemand.xhtml)");
+
+    }
+
+    public void listMyReferralTests() {
+        Date startTime = new Date();
+
+        String sql = "select pi from PatientInvestigation pi join pi.investigation  "
+                + " i join pi.billItem.bill b join b.patient.person p where "
+                + " b.createdAt between :fromDate and :toDate  ";
+
+        Map temMap = new HashMap();
+
+        sql += " b.referredBy = :referredByUser ";
+        temMap.put("referredByUser", sessionController.getLoggedUser().getStaff());
+
+//        if(webUserController.hasPrivilege("LabSearchBillLoggedInstitution")){
+//            //System.out.println("inside ins");
+//            sql+="and b.institution =:ins ";
+//            temMap.put("ins", getSessionController().getInstitution());
+//        }
+        if (getSearchKeyword().getPatientName() != null && !getSearchKeyword().getPatientName().trim().equals("")) {
+            sql += " and  (upper(p.name) like :patientName )";
+            temMap.put("patientName", "%" + getSearchKeyword().getPatientName().trim().toUpperCase() + "%");
         }
 
-        if (getReportKeyWord().getDepartmentFrom() != null) {
-            sql += " and b.fromDepartment=:depFrom ";
-            temMap.put("depFrom", getReportKeyWord().getDepartmentFrom());
+        if (getSearchKeyword().getBillNo() != null && !getSearchKeyword().getBillNo().trim().equals("")) {
+            sql += " and  (upper(b.insId) like :billNo )";
+            temMap.put("billNo", "%" + getSearchKeyword().getBillNo().trim().toUpperCase() + "%");
+        }
+
+        if (getSearchKeyword().getPatientPhone() != null && !getSearchKeyword().getPatientPhone().trim().equals("")) {
+            sql += " and  (upper(p.phone) like :patientPhone )";
+            temMap.put("patientPhone", "%" + getSearchKeyword().getPatientPhone().trim().toUpperCase() + "%");
+        }
+
+        if (getSearchKeyword().getItemName() != null && !getSearchKeyword().getItemName().trim().equals("")) {
+            sql += " and  (upper(i.name) like :itm )";
+            temMap.put("itm", "%" + getSearchKeyword().getItemName().trim().toUpperCase() + "%");
+        }
+
+        if (patientEncounter != null) {
+            sql += "and pi.encounter=:en";
+            temMap.put("en", patientEncounter);
         }
 
         sql += " order by pi.id desc  ";

@@ -22,6 +22,9 @@
                 </p:menuitem>
                 <p:menuitem ajax="false" action="/opd_search_bill_own" actionListener="#{searchController.makeListNull}"  value="Search Orders" rendered="#{webUserController.hasPrivilege('OpdBillSearch')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/opd_search_billitem_own" value="Search Order Items" actionListener="#{searchController.makeListNull}" rendered="#{webUserController.hasPrivilege('OpdBillItemSearch')}" ></p:menuitem>
+                <p:menuitem ajax="false" action="/lab/print_requested_results" 
+                            value="Print Ordered Reports" 
+                            actionListener="#{searchController.listnerReportSearch}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/opd_bill_awaiting_cancellation" value="Orders Awaiting Cancellation" rendered="#{webUserController.hasPrivilege('OpdCancel')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/reportCashier/report_cashier" value="Order Summeries" ></p:menuitem>
             </p:submenu>
@@ -43,6 +46,17 @@
                 <p:menuitem ajax="false" action="/membership/search_family" value="Search Family" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/membership/reports" value="Family Membership Reports" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/membership/administration" value="Administration" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
+            </p:submenu>
+            
+            <p:submenu styleClass="rightBordrOnly" label="EHR"  rendered="#{webUserController.hasPrivilege('Clinical')}">
+                <p:menuitem ajax="false" action="/clinical/clinical_patient_for_receptionist" value="Patients"/>
+                <p:menuitem ajax="false" action="/clinical/test_results" value="Test Results"/>
+                <p:menuitem ajax="false" action="/patient_registration" value="Patient Registration"/>
+                <p:menuitem ajax="false" action="/clinical/membership_registration" value="Membership"/>
+                <p:menuitem ajax="false" action="/clinical/clinical_queue" value="Queue"/>
+                <p:menuitem ajax="false" action="/clinical/clinical_reports_index" value="Reports"/>
+                <p:menuitem ajax="false" action="/clinical/favourite_index" value="Favourites"/>
+                <p:menuitem ajax="false" action="/clinical/clinical_administration" value="Administration"/>
             </p:submenu>
 
             <p:submenu label="Order for Other Institutions" 
@@ -66,10 +80,13 @@
 
             <p:submenu styleClass="rightBordrOnly" label="Samples"  rendered="#{webUserController.hasPrivilege('Lab')}">
                 <p:menuitem ajax="false" action="/lab/sample" actionListener="#{patientInvestigationController.toCollectSample()}" value="Sampling" rendered="#{webUserController.hasPrivilege('LabSampleCollecting')}" ></p:menuitem>
-                <p:menuitem ajax="false" action="/lab/receive" actionListener="#{patientInvestigationController.toPrintWorksheets()}" value="Worksheets" rendered="#{webUserController.hasPrivilege('LabSampleReceiving')}" ></p:menuitem>
+                <p:menuitem ajax="false" action="/lab/receive" actionListener="#{patientInvestigationController.toPrintWorksheets()}" value="Receive Samples" rendered="#{webUserController.hasPrivilege('LabSampleReceiving')}" ></p:menuitem>
             </p:submenu>
 
-            <p:submenu styleClass="rightBordrOnly" label="Reporting"  rendered="#{webUserController.hasPrivilege('Lab')}">
+            <p:submenu styleClass="rightBordrOnly" label="Reporting"  
+                       rendered="#{webUserController.hasPrivilege('Lab')}">
+                
+                
                 <p:menuitem ajax="false" action="/lab/search_for_reporting_ondemand" value="Reports Search" rendered="#{webUserController.hasPrivilege('LabReportSearch')}" actionListener="#{searchController.listnerReportSearch}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/lab/search_for_reporting_ondemand_institution" value="Reports/Search By Logged Institution" rendered="#{false and webUserController.hasPrivilege('LabReportSearchByLoggedInstitution')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/lab/search_for_reporting_ondemand_department" value="Reports/Search By Logged Department" rendered="#{webUserController.hasPrivilege('LabReportSearchByLoggedInstitution')}" ></p:menuitem>
