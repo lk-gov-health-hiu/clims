@@ -15,94 +15,68 @@
             </h:panelGroup>
 
             <h:panelGroup rendered="#{webUserController.hasPrivilege('LabSampleCollecting')}" >
-
                 <h:form  >
-
                     <p:growl />
-
-                    <div class="card-header font-weight-bolder bg-primary text-white">
-                        Sample
-                    </div>
-                    <div class="body">
-                        <div class="row">
-                            <div class="col-md-3">
-
-                            </div>
-                        </div>
-                    </div>
-                    <p:panel>
-                        <h:panelGrid columns="2" styleClass="alignTop" >
-                            <h:panelGroup >
-                                <h:panelGrid columns="2">
+                    <p:panel header="Sample" >
+                        <p:panelGrid columns="1" styleClass="alignTop" >
+                            <p:panelGrid columns="2" >
+                                <p:panelGrid columns="2">
                                     <h:outputLabel value="From"/>
-                                    <p:calendar id="fromDate" 
-                                                value="#{patientInvestigationController.fromDate}"
-                                                navigator="true"
-                                                pattern="dd MMMM yy - hh:mm a" >
+                                    <p:calendar id="fromDate" value="#{patientInvestigationController.fromDate}" navigator="true" pattern="dd MMMM yy - hh:mm a" >
                                         <f:ajax event="dateSelect" execute="sample"  render="sample toDate fromDate"/>
                                     </p:calendar>
                                     <h:outputLabel value="To"/>
                                     <p:calendar id="toDate" value="#{patientInvestigationController.toDate}" navigator="true" pattern="dd MMMM yy - hh:mm a" >
                                         <f:ajax event="dateSelect" execute="sample"  render="sample toDate fromDate"/>
                                     </p:calendar>
-
-                                    <p:defaultCommand target="btnRefresh"/>
-
-                                    <h:commandButton id="btnRefresh"
-                                                     class="form form-control btn btn-outline-primary m-1"
+                                </p:panelGrid>
+                                <p:panelGrid columns="1">
+                                    <p:commandButton id="btnRefresh" ajax="false" 
                                                      actionListener="#{patientInvestigationController.prepareToSample()}" 
-                                                     value="List to Collect" onclick="onSubmitButton();"  >
-                                    </h:commandButton>
-
-
-                                    <p:spacer ></p:spacer>
-                                    <h:commandButton id="btnCollected" 
-                                                     class="form form-control btn btn-outline-primary m-1"
+                                                     value="List Samples to Collect" onclick="onSubmitButton();"  >
+                                    </p:commandButton>
+                                    <p:commandButton id="btnCollected" ajax="false" 
                                                      actionListener="#{patientInvestigationController.prepareSampled()}" 
-                                                     value="List Collected" 
-                                                     onclick="onSubmitButton();">
-                                    </h:commandButton>
-                                    <p:spacer ></p:spacer>
-
-                                    <h:commandButton value="Barcode Printing" 
-                                                     class="form form-control btn btn-outline-primary m-1"
-                                                     action="sampling" >
-
-                                    </h:commandButton>
-
-                                </h:panelGrid>
-                            </h:panelGroup>
+                                                     value="List Collected Samples" onclick="onSubmitButton();"  >
+                                    </p:commandButton>
+                                </p:panelGrid>
+                            </p:panelGrid>
                             <h:panelGroup >
-
-
-                                <table >
-                                    <tr>
-                                        <th>
-                                            <p:outputLabel value="Patient" ></p:outputLabel>
-                                        </th>
-                                        <th>
-
-                                        </th>
-                                    </tr>
-                                    <ui:repeat value="#{patientInvestigationController.lstToSamle}" var="s" >
-                                    </ui:repeat>
-                                </table>
-
                                 <p:dataTable  
                                     id="sample" 
                                     value="#{patientInvestigationController.lstToSamle}" 
                                     var="smpIx" 
-                                    paginator="#{patientInvestigationController.showSamplingPagination}"
-                                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                    rowsPerPageTemplate="10,25,50"
+                                    rowKey="#{smpIx.id}"
+                                    
+                                    rows="10"
+                                    paginator="true" paginatorPosition="both"
+                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                    rowsPerPageTemplate="5,10,50,100"
+
+
                                     >
-                                    <p:column headerText="Bill No" width="100">
+                                    <p:column headerText="Order No" width="100"
+                                              sortBy="#{smpIx.billItem.bill.insId}" filterBy="#{smpIx.billItem.bill.insId}" filterMatchMode="contains">
                                         <p:outputLabel value="#{smpIx.billItem.bill.insId}" styleClass="#{smpIx.billItem.bill.cancelled or smpIx.billItem.transRefund ? 'redtext':''}"/>
                                     </p:column>
-                                    <p:column headerText="Patient" >
+                                    <p:column headerText="Patient" 
+                                              sortBy="#{smpIx.billItem.bill.patient.person.nameWithTitle}" 
+                                              filterBy="#{smpIx.billItem.bill.patient.person.nameWithTitle}" filterMatchMode="contains">
                                         <h:outputLabel value="#{smpIx.billItem.bill.patient.person.nameWithTitle}" styleClass="#{smpIx.billItem.bill.cancelled or smpIx.billItem.transRefund ? 'redtext':''}"/>
                                     </p:column>
-                                    <p:column headerText="Investigation" >
+                                    <p:column headerText="Hospital" 
+                                              sortBy="#{smpIx.billItem.bill.referredByInstitution.name}" filterBy="#{smpIx.billItem.bill.referredByInstitution.name}" filterMatchMode="contains">
+                                        <h:outputLabel value="#{smpIx.billItem.bill.referredByInstitution.name}" styleClass="#{smpIx.billItem.bill.cancelled or smpIx.billItem.transRefund ? 'redtext':''}"/>
+                                    </p:column>
+                                    <p:column headerText="Ordered at" 
+                                              sortBy="#{smpIx.billItem.bill.createdAt}">
+                                        <h:outputLabel value="#{smpIx.billItem.bill.createdAt}" styleClass="#{smpIx.billItem.bill.cancelled or smpIx.billItem.transRefund ? 'redtext':''}">
+                                            <f:convertDateTime pattern="dd MMM yy hh:mm" ></f:convertDateTime>
+                                        </h:outputLabel>
+                                    </p:column>
+                                    <p:column headerText="Test" 
+                                              sortBy="#{smpIx.investigation.name}" filterBy="#{smpIx.investigation.name}" filterMatchMode="contains">
                                         <h:outputLabel value="#{smpIx.investigation.name}" styleClass="#{smpIx.billItem.bill.cancelled or smpIx.billItem.transRefund ? 'redtext':''}"/>
                                     </p:column>
                                     <p:column headerText="Sample Details">
@@ -126,9 +100,6 @@
 
                                     </p:column>
                                     <p:column headerText="Actions">
-
-
-                                        <h:panelGrid columns="3" >
                                             <p:commandButton  disabled="#{smpIx.collected or smpIx.billItem.bill.cancelled eq true or smpIx.billItem.transRefund eq true}"   
                                                               id="btnSample" value="Collect" action="#{patientInvestigationController.markAsSampled()}" 
                                                               process="chkSampledOutside calSampledDate btnSample" update="@all"
@@ -140,36 +111,11 @@
                                                               process="chkSampledOutside calSampledDate btnSampleRevert" update="@all">
                                                 <f:setPropertyActionListener value="#{smpIx}" target="#{patientInvestigationController.current}"></f:setPropertyActionListener>
                                             </p:commandButton>
-                                            <p:commandButton  disabled="#{!smpIx.collected}"   id="btnPrint" value="Print" 
-                                                              ajax="false">
-                                                <p:printer target="stickerPrint" ></p:printer>
-                                            </p:commandButton>
-
-                                        </h:panelGrid>
-                                        <div class="printBlock">
-                                            <h:panelGroup id="stickerPrint" >
-                                                <div class="stickerLabel" style="height:98%; width: 98%;border: 1px solid red;">
-                                                    <div style="width: 100%;">
-                                                        <p:barcode cache="false" value="#{smpIx.patient.phn}" type="code128" style="width: 100%; height: 80%;" ></p:barcode>
-                                                    </div>
-                                                    <div>
-                                                        <h:outputLabel value="#{smpIx.patient.person.nameWithTitle}" style="font-size: 8pt;" ></h:outputLabel>
-                                                    </div>
-                                                    <div>
-                                                        <ui:repeat value="#{smpIx.billItem.bill.billItems}" var="billc" >
-                                                            |
-                                                            <h:outputLabel value="#{billc.item.name}" style="font-size: 8pt;" ></h:outputLabel>
-                                                            |
-                                                        </ui:repeat>
-                                                    </div>
-                                                </div>
-                                            </h:panelGroup>
-                                        </div>
                                     </p:column>
                                 </p:dataTable>
 
                             </h:panelGroup>
-                        </h:panelGrid>
+                        </p:panelGrid>
 
 
 

@@ -1374,21 +1374,21 @@ public class PatientReportController implements Serializable {
         }
 
         if (!currentPtIx.getBillItem().getBill().getPatient().getPerson().getPhone().trim().equals("")) {
-            Sms e = new Sms();
-            e.setPending(true);
-            e.setCreatedAt(new Date());
-            e.setCreater(sessionController.getLoggedUser());
-            e.setBill(currentPtIx.getBillItem().getBill());
-            e.setPatientReport(currentPatientReport);
-            e.setPatientInvestigation(currentPtIx);
-            e.setCreatedAt(new Date());
-            e.setCreater(sessionController.getLoggedUser());
-            e.setReceipientNumber(currentPtIx.getBillItem().getBill().getPatient().getPerson().getPhone());
-            e.setSendingMessage(smsBody(currentPatientReport));
-            e.setDepartment(getSessionController().getLoggedUser().getDepartment());
-            e.setInstitution(getSessionController().getLoggedUser().getInstitution());
-            e.setSentSuccessfully(false);
-            getSmsFacade().create(e);
+//            Sms e = new Sms();
+//            e.setPending(true);
+//            e.setCreatedAt(new Date());
+//            e.setCreater(sessionController.getLoggedUser());
+//            e.setBill(currentPtIx.getBillItem().getBill());
+//            e.setPatientReport(currentPatientReport);
+//            e.setPatientInvestigation(currentPtIx);
+//            e.setCreatedAt(new Date());
+//            e.setCreater(sessionController.getLoggedUser());
+//            e.setReceipientNumber(currentPtIx.getBillItem().getBill().getPatient().getPerson().getPhone());
+//            e.setSendingMessage(smsBody(currentPatientReport));
+//            e.setDepartment(getSessionController().getLoggedUser().getDepartment());
+//            e.setInstitution(getSessionController().getLoggedUser().getInstitution());
+//            e.setSentSuccessfully(false);
+//            getSmsFacade().create(e);
         }
 
         if (currentPtIx.getBillItem().getBill().getCollectingCentre() != null) {
