@@ -10,22 +10,15 @@
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:panel header="Search Bills" >
+                   <div class="card-header font-weight-bold bg-info text-white" >
+                            Search Report
+                        </div> 
+                    <p:panel>
                         <f:facet name="header">
 
                         </f:facet>
-                        <h:panelGrid columns="7" >
-                            <h:outputLabel value="From"/>
-                            <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >      
-                            </p:calendar>
-                            <p:spacer width="50" height="1" ></p:spacer>
-                            <h:outputLabel value="To"/>
-                            <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" styleClass="dateTimePicker">                                                                              
-                            </p:calendar>
-                            <p:spacer width="50" height="1" ></p:spacer>
-                            <p:commandButton id="btnSearch" ajax="false" value="Search" action="#{searchController.searchPatientInvestigations()}" onclick="onSubmitButton();" />
-                        </h:panelGrid>
-                        <p:defaultCommand target="btnSearch" />
+                        
+                       
 
                         <p:dataTable  id="tblBills" value="#{searchController.patientInvestigations}" var="pi"  
                                       rows="20"
@@ -141,7 +134,7 @@
                                 </p:tooltip>
 
                                 <p:tooltip for="btnSample" value="Collect Sample" >
-                                    <h:outputLabel value="Collect Sample" rendered="#{!pi.collected }" ></h:outputLabel>
+                                    <h:outputLabel valule="Collect Sample" rendered="#{!pi.collected }" ></h:outputLabel>
                                     <h:outputLabel value="Sampled at " rendered="#{pi.collected}" ></h:outputLabel>
                                     <h:outputLabel value="#{pi.sampledAt}" rendered="#{pi.collected}" >
                                         <f:convertDateTime  timeZone="Asia/Colombo" pattern="dd/MMM/yyyy - hh:mm:ss a"/>

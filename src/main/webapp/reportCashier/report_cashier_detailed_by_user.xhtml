@@ -15,8 +15,11 @@
 
         <h:panelGroup rendered="true" >
             <h:form>
+                <div class="card-header font-weight-bolder bg-primary text-white">
+                    Channelling Bills By Single Cashier
+                </div>
                 <h:outputStylesheet library="css" name="printing.css"></h:outputStylesheet>
-                <p:panel  header="Channelling Bills By Single Cashier">
+                <p:panel>
 
                     <h:panelGrid columns="2" >
                         <h:outputLabel value="From Date"/>
@@ -27,7 +30,8 @@
                         <p:calendar id="toDate" value="#{channelReportController.toDate}" navigator="true" pattern="dd MMMM yyyy HH:mm:ss" >
                         </p:calendar>
                         <h:outputLabel styleClass="noPrintButton" value="User Name"/>
-                        <p:autoComplete converter="webUs" completeMethod="#{webUserController.completeUser}" styleClass="noPrintButton"
+                        <p:autoComplete converter="webUs" completeMethod="#{webUserController.completeUser}"
+                                        styleClass="noPrintButton"
                                         forceSelection="true"
                                         var="w" itemLabel="#{w.webUserPerson.name}" itemValue="#{w}"
                                         value="#{channelReportController.webUser}" ></p:autoComplete>
@@ -36,16 +40,16 @@
                     <p:panel id="reportPrint" >
                         <h:panelGrid columns="5" >
                             <p:spacer width="50" height="1"/>
-                            <p:commandButton id="btnRefresh" ajax="false" value="Process" styleClass="noPrintButton" action="#{channelReportController.createChannelCashierBillList}" style="float: right;"/>
+                            <h:commandButton  class="form-control btn btn-info p-1" id="btnRefresh" value="Process"  action="#{channelReportController.createChannelCashierBillList}" style="float: right;"/>
                             <p:defaultCommand target="btnRefresh"/>
 
-                            <p:commandButton ajax="false" value="Print" styleClass="noPrintButton" style="float: right;" >
+                            <h:commandButton  value="Print" class="form-control btn btn-info m-1" >
                                 <p:printer target="reportPrint"  />
-                            </p:commandButton>
+                            </h:commandButton>
 
-                            <p:commandButton actionListener="#{channelReportController.createChannelCashierBillList}" ajax="false" value="Excel" styleClass="noPrintButton" style="float: right;" >
+                            <h:commandButton actionListener="#{channelReportController.createChannelCashierBillList}" value="Excel" class="form-control btn btn-info m-2" >
                                 <pe:exporter type="xlsx" target="tbl,tb2,tb3" fileName="Cashier_Detailed_Report"  />
-                            </p:commandButton> 
+                            </h:commandButton> 
                         </h:panelGrid>
 
                         <p:panel>

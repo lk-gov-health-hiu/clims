@@ -14,7 +14,7 @@
                         <p:tabView orientation="left">
                             <p:tab title="Manage Items" rendered="#{webUserController.hasPrivilege('LabItems')}">
                                 <h:panelGrid columns="1" styleClass="alignTop">
-                                    <p:commandButton  styleClass="linkButton" ajax="false" value="Categories" action="/lab/investigation_category"  />
+                                    <h:commandButton class="form-control btn btn-outline-primary m-1 text-left"  styleClass="linkButton" value="Categories" action="/lab/investigation_category"  />
                                     <p:commandButton  styleClass="linkButton" ajax="false" value="Tubes" action="/lab/investigation_tube"  />
                                     <p:commandButton  styleClass="linkButton" ajax="false" value="Speciman" action="/lab/investigation_speciman"  />
                                     <p:commandButton  styleClass="linkButton" ajax="false" value="Investigations" action="#{investigationController.toManageInvestigationDetails()}"  />
@@ -57,7 +57,7 @@
                                     <p:inputText value="#{patientReportController.smsMessage}" ></p:inputText>
                                     
                                     
-                                    <p:commandButton  styleClass="linkButton" ajax="false" value="Send" 
+                                    <h:commandButton  styleClass="linkButton" class="btn btn-primary btn-md btn-block" value="Send" 
                                                       action="#{patientReportController.sendSms()}" />
                                 
                                 </h:panelGrid>

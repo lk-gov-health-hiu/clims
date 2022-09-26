@@ -20,16 +20,25 @@
 
                     <p:growl />
 
+                    <div class="card-header font-weight-bolder bg-primary text-white">
+                        Sample
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-md-3">
 
-
-
-                    <p:panel header="Sample" >
-
+                            </div>
+                        </div>
+                    </div>
+                    <p:panel>
                         <h:panelGrid columns="2" styleClass="alignTop" >
                             <h:panelGroup >
                                 <h:panelGrid columns="2">
                                     <h:outputLabel value="From"/>
-                                    <p:calendar id="fromDate" value="#{patientInvestigationController.fromDate}" navigator="true" pattern="dd MMMM yy - hh:mm a" >
+                                    <p:calendar id="fromDate" 
+                                                value="#{patientInvestigationController.fromDate}"
+                                                navigator="true"
+                                                pattern="dd MMMM yy - hh:mm a" >
                                         <f:ajax event="dateSelect" execute="sample"  render="sample toDate fromDate"/>
                                     </p:calendar>
                                     <h:outputLabel value="To"/>
@@ -39,19 +48,27 @@
 
                                     <p:defaultCommand target="btnRefresh"/>
 
-                                    <p:commandButton id="btnRefresh" ajax="false" 
+                                    <h:commandButton id="btnRefresh"
+                                                     class="form form-control btn btn-outline-primary m-1"
                                                      actionListener="#{patientInvestigationController.prepareToSample()}" 
                                                      value="List to Collect" onclick="onSubmitButton();"  >
-                                    </p:commandButton>
+                                    </h:commandButton>
 
 
                                     <p:spacer ></p:spacer>
-                                    <p:commandButton id="btnCollected" ajax="false" 
+                                    <h:commandButton id="btnCollected" 
+                                                     class="form form-control btn btn-outline-primary m-1"
                                                      actionListener="#{patientInvestigationController.prepareSampled()}" 
-                                                     value="List Collected" onclick="onSubmitButton();"  >
-                                    </p:commandButton>
+                                                     value="List Collected" 
+                                                     onclick="onSubmitButton();">
+                                    </h:commandButton>
                                     <p:spacer ></p:spacer>
-                                    <p:commandButton value="Barcode Printing" ajax="false" action="sampling" ></p:commandButton>
+
+                                    <h:commandButton value="Barcode Printing" 
+                                                     class="form form-control btn btn-outline-primary m-1"
+                                                     action="sampling" >
+
+                                    </h:commandButton>
 
                                 </h:panelGrid>
                             </h:panelGroup>

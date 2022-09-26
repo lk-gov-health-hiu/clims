@@ -29,8 +29,14 @@
                         <p:panel header="Manage Recieve" >
                             <f:facet name="header" >
                                 <h:outputLabel value="Receving Samples and Printing Worksheets" />
-                                <p:commandButton ajax="false" value="Refresh" action="/lab/receive" actionListener="#{patientInvestigationController.toPrintWorksheets() }" onclick="onSubmitButton();"  ></p:commandButton>
-                                <h:commandButton value="Print Worksheets"  >
+                                <h:commandButton value="Refresh"
+                                                 class="btn btn-outline-primary m-1"
+                                                 action="/lab/receive" 
+                                                 actionListener="#{patientInvestigationController.toPrintWorksheets() }" 
+                                                 onclick="onSubmitButton();"  >
+                                </h:commandButton>
+                                <h:commandButton value="Print Worksheets"
+                                                 class="btn btn-outline-primary m-1">
                                     <f:ajax execute="@this" listener="#{patientInvestigationController.markSelectedAsReceived}" />
                                     <p:printer  target="pPrintWorksheet" />
                                 </h:commandButton>
@@ -188,10 +194,10 @@
                                                                 </p:panelGrid>
 
                                                                 <p:dataGrid style="padding: 1px!important;margin: 1px!important;" columns="4" value="#{antibioticController.items}" var="ab" >
-                                                                        <h:outputLabel value="#{ab.code}"   style="font-size: 11px!important;"></h:outputLabel>
-                                                                        <h:outputLabel value="&nbsp;&nbsp;&nbsp;&nbsp;"   style="font-size: 11px!important;"></h:outputLabel>
-                                                                        <h:outputLabel value="....."   style="font-size: 11px!important;"></h:outputLabel>
-                                                                        <h:outputLabel value="&nbsp;&nbsp;&nbsp;&nbsp;"   style="font-size: 11px!important;"></h:outputLabel>
+                                                                    <h:outputLabel value="#{ab.code}"   style="font-size: 11px!important;"></h:outputLabel>
+                                                                    <h:outputLabel value="&nbsp;&nbsp;&nbsp;&nbsp;"   style="font-size: 11px!important;"></h:outputLabel>
+                                                                    <h:outputLabel value="....."   style="font-size: 11px!important;"></h:outputLabel>
+                                                                    <h:outputLabel value="&nbsp;&nbsp;&nbsp;&nbsp;"   style="font-size: 11px!important;"></h:outputLabel>
                                                                 </p:dataGrid>
 
                                                             </h:panelGroup>
