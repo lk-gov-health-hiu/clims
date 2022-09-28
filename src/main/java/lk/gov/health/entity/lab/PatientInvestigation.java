@@ -115,6 +115,17 @@ public class PatientInvestigation implements Serializable {
     private Department approveDepartment;
     @ManyToOne
     private Institution approveInstitution;
+    //Autherized
+    private Boolean autherized = false;
+    @ManyToOne
+    private WebUser autherizedUser;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date autherizedAt;
+    private String autherizedComments;
+    @ManyToOne
+    private Department autherizedDepartment;
+    @ManyToOne
+    private Institution autherizedInstitution;
     //Printing
     private Boolean printed = false;
     @ManyToOne
@@ -763,4 +774,55 @@ public class PatientInvestigation implements Serializable {
     public void setPackege(Packege packege) {
         this.packege = packege;
     }
+
+    public Boolean getAutherized() {
+        return autherized;
+    }
+
+    public void setAutherized(Boolean autherized) {
+        this.autherized = autherized;
+    }
+
+    public WebUser getAutherizedUser() {
+        return autherizedUser;
+    }
+
+    public void setAutherizedUser(WebUser autherizedUser) {
+        this.autherizedUser = autherizedUser;
+    }
+
+    public Date getAutherizedAt() {
+        return autherizedAt;
+    }
+
+    public void setAutherizedAt(Date autherizedAt) {
+        this.autherizedAt = autherizedAt;
+    }
+
+    public String getAutherizedComments() {
+        return autherizedComments;
+    }
+
+    public void setAutherizedComments(String autherizedComments) {
+        this.autherizedComments = autherizedComments;
+    }
+
+    public Department getAutherizedDepartment() {
+        return autherizedDepartment;
+    }
+
+    public void setAutherizedDepartment(Department autherizedDepartment) {
+        this.autherizedDepartment = autherizedDepartment;
+    }
+
+    public Institution getAutherizedInstitution() {
+        return autherizedInstitution;
+    }
+
+    public void setAutherizedInstitution(Institution autherizedInstitution) {
+        this.autherizedInstitution = autherizedInstitution;
+    }
+    
+    
+    
 }

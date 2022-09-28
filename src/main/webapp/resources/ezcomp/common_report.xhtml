@@ -75,9 +75,27 @@
 
 
                 <p:graphicImage rendered="#{myCli.reportItemType eq 'AutherizedSignature' and myCli.retired eq false and cc.attrs.patientReport.approveUser.staff.id ne null }"    
-                                value="#{staffImageController.signatureFromPatientReport}" style="width: #{myCli.wtPix};overflow: visible; display: block;" 
+                                value="#{staffImageController.signatureById}"
+                                style="width: #{myCli.wtPix};overflow: visible; display: block;" 
                                 height="#{myCli.htPix}" width="#{myCli.wtPix}">
+                    <f:param name="id" value="#{cc.attrs.patientReport.autherizedUser.id}" />
                 </p:graphicImage>
+                
+                <p:graphicImage rendered="#{myCli.reportItemType eq 'ApprovedSignature' and myCli.retired eq false and cc.attrs.patientReport.approveUser.staff.id ne null }"    
+                                value="#{staffImageController.signatureById}"
+                                style="width: #{myCli.wtPix};overflow: visible; display: block;" 
+                                height="#{myCli.htPix}" width="#{myCli.wtPix}">
+                    <f:param name="id" value="#{cc.attrs.patientReport.approveUser.staff.id}" />
+                </p:graphicImage>
+                
+                <p:graphicImage rendered="#{myCli.reportItemType eq 'DataEntrySignature' and myCli.retired eq false and cc.attrs.patientReport.approveUser.staff.id ne null }"    
+                                value="#{staffImageController.signatureById}"
+                                style="width: #{myCli.wtPix};overflow: visible; display: block;" 
+                                height="#{myCli.htPix}" width="#{myCli.wtPix}">
+                    <f:param name="id" value="#{cc.attrs.patientReport.dataEntryUser.id}" />
+                </p:graphicImage>
+                
+                
 
                 <h:panelGroup rendered="#{myCli.ixItemType eq 'Barcode' and myCli.retired ne true }"  
                               >
