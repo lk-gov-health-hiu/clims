@@ -88,6 +88,7 @@
                     <f:param name="id" value="#{cc.attrs.patientReport.approveUser.staff.id}" />
                 </p:graphicImage>
                 
+                
                 <p:graphicImage rendered="#{myCli.reportItemType eq 'DataEntrySignature' and myCli.retired eq false and cc.attrs.patientReport.approveUser.staff.id ne null }"    
                                 value="#{staffImageController.signatureById}"
                                 style="width: #{myCli.wtPix};overflow: visible; display: block;" 
