@@ -10,7 +10,7 @@
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <h:form>
-                   <div class="card-header font-weight-bold bg-info text-white" >
+                   <div class="card-header font-weight-bold bg-primary text-white" >
                             Search Report
                         </div> 
                     <p:panel>
@@ -148,7 +148,9 @@
                                 <h:dataTable  rendered="#{!empty itemForItemController.getItemsForParentItem(pi.investigation)}"
                                               value="#{itemForItemController.getItemsForParentItem(pi.investigation)}" var="ifi" >
                                     <h:column >
-                                        <p:commandLink disabled="#{!pi.received}" value="New #{ifi.name}" action="#{patientReportController.enterNewReportFormat(pi, ifi)}" 
+                                        <p:commandLink disabled="#{!pi.received}" 
+                                                       value="New #{ifi.name}" 
+                                                       action="#{patientReportController.enterNewReportFormat(pi, ifi)}" 
                                                        ajax="false">
                                         </p:commandLink>
                                     </h:column>

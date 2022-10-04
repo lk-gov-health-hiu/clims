@@ -18,8 +18,11 @@
 
                     <p:defaultCommand target="btnAddToQueueAndClear" ></p:defaultCommand>
 
-                    <p:panel header="Manage Patients" styleClass="alignTop"
-                             style="height: 600px;">
+                    <div class="card-header font-weight-bolder bg-primary text-white" >
+                        Manage Patients
+                    </div> 
+
+                    <p:panel  styleClass="alignTop">                       
                         <h:panelGrid columns="2" >
 
                             <h:panelGroup>
@@ -27,23 +30,31 @@
                                 <p:panel id="panelSearch" header="Search Patients" >
                                     <f:facet name="header" >
                                         <h:outputLabel value="Search Patients" />
-                                        <p:commandButton id="btnAddPt" 
+                                        <h:commandButton id="btnAddPt" 
+                                                         class="form form-control btn btn-primary m-1"
                                                          style="float: right;" 
-                                                         value="Add New Patient" process="btnAddPt" 
+                                                         value="Add New Patient"
+                                                         process="btnAddPt" 
                                                          update="acPt :#{p:component('panelDetails')} :#{p:component('patientDetail')} " 
-                                                         action="#{patientController.prepareAdd()}" onclick="onSubmitButton();" >
-                                        </p:commandButton>
+                                                         action="#{patientController.prepareAdd()}" 
+                                                         onclick="onSubmitButton();" >
+                                        </h:commandButton>
 
-                                        <p:commandButton id="btnDeletePt" 
+                                        <h:commandButton id="btnDeletePt" 
+                                                         class="form form-control btn btn-primary m-1"
                                                          style="float: right;" 
                                                          value="Delete" process="btnDeletePt" 
                                                          update="acPt :#{p:component('panelDetails')} :#{p:component('patientDetail')} " 
                                                          action="#{patientController.delete()}" onclick="onSubmitButton();" 
                                                          rendered="#{webUserController.hasPrivilege('ClinicalPatientDelete')}">
-                                        </p:commandButton>
+                                        </h:commandButton>
 
-                                        <p:commandButton id="btnPrintCard" action="/clinical/clinical_print_barcode" style="float: right;" value="Print Card" ajax="false" onclick="onSubmitButton();">
-                                        </p:commandButton>
+                                        <h:commandButton id="btnPrintCard"
+                                                         action="/clinical/clinical_print_barcode" 
+                                                         style="float: right;" value="Print Card"
+                                                         class="form form-control btn btn-primary m-1"
+                                                         onclick="onSubmitButton();">
+                                        </h:commandButton>
 
                                     </f:facet>
 
@@ -55,7 +66,8 @@
                                                         var="apt" itemLabel="#{apt.person.name}" 
                                                         itemValue="#{apt}" size="30"  style="width: 400px;">
                                             <p:column headerText="Name">
-                                                <h:outputLabel value="#{apt.person.nameWithTitle}" />
+                                                <h:outputLabel class="form form-cotrl
+                                                               " value="#{apt.person.nameWithTitle}" />
                                             </p:column>
 
                                             <p:column headerText="Age">
@@ -112,17 +124,23 @@
                                             <f:ajax  event="itemSelect" execute="@this" render="bSession"  listener="#{practiceBookingController.listBillSessions}" />                                                
                                         </p:autoComplete>
 
-                                        <p:commandButton id="btnAddToQueue"   value="Add" ajax="false" style="float: right;" 
+                                        <h:commandButton id="btnAddToQueue"  
+                                                         value="Add"
+                                                         class=" btn btn-primary m-1" 
+                                                         style="float: right;" 
                                                          onclick="if (!confirm('Are you sure you want to Add this record?'))
                                                                      return false;" 
                                                          action="#{practiceBookingController.addToQueue()}" >                        
-                                        </p:commandButton>
+                                        </h:commandButton>
 
-                                        <p:commandButton id="btnAddToQueueAndClear"  value="Add and Clear For New Patient" ajax="false" style="float: right;" 
+                                        <h:commandButton id="btnAddToQueueAndClear"
+                                                         value="Add and Clear For New Patient"
+                                                         class="m-1 btn btn-primary"
+                                                         style="float: right;" 
                                                          onclick="if (!confirm('Are you sure you want to Add this record?'))
                                                                      return false;" 
                                                          action="#{practiceBookingController.addAndClear()}" >                        
-                                        </p:commandButton>
+                                        </h:commandButton>
 
                                     </h:panelGrid>
                                     <p:dataTable id="bSession" value="#{practiceBookingController.billSessions}" var='bs'
@@ -156,8 +174,12 @@
                                 <f:facet name="header" >
                                     <h:outputLabel value="Details of Selected Patient" />
                                     <h:outputLabel value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
-                                    <p:commandButton  process="panelDetails" update="acPt" value="Save" 
-                                                      action="#{patientController.saveSelected()}" ></p:commandButton>
+                                    <h:commandButton  process="panelDetails"
+                                                      update="acPt"
+                                                      class=" btn btn-primary"
+                                                      value="Save" 
+                                                      action="#{patientController.saveSelected()}" >
+                                    </h:commandButton>
                                 </f:facet>
 
 
@@ -168,7 +190,9 @@
                                         <h:panelGrid id="patientDetail" columns="2" >
                                             <h:panelGrid columns="2" >
                                                 <h:outputLabel value="Title"/>
-                                                <p:selectOneMenu  rendered="#{patientController.current.person ne null}" id="cmbTitle" value="#{patientController.current.person.title}"  >
+                                                <p:selectOneMenu  rendered="#{patientController.current.person ne null}"
+                                                                  id="cmbTitle"
+                                                                  value="#{patientController.current.person.title}"  >
                                                     <f:selectItems value="#{patientController.titles}" var="t" itemLabel="#{t.label}" itemValue="#{t}"/>
                                                 </p:selectOneMenu>
                                                 <h:outputLabel rendered="#{patientController.current.person eq null}" value=""/>

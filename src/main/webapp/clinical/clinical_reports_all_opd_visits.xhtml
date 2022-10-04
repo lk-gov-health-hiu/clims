@@ -42,9 +42,11 @@
                                      render=":#{p:component('pList')}"  
                                      listener="#{practiceBookingController.listBillSessions}" />                                                
                         </p:autoComplete>
-                        <p:commandButton ajax="false" value="Process" 
+                        <h:commandButton class="form form-control btn btn-primary"
+                                         value="Process" 
                                         action="/clinical/clinical_reports_all_opd_visits" 
-                                        actionListener="#{patientEncounterController.listAllEncounters()}" onclick="onSubmitButton();" ></p:commandButton>
+                                        actionListener="#{patientEncounterController.listAllEncounters()}" onclick="onSubmitButton();" >
+                        </h:commandButton>
                     </p:panelGrid>
 
                     <p:panel id="pList" >

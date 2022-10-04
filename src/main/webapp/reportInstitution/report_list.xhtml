@@ -11,16 +11,24 @@
         <ui:composition template="/resources/template/template.xhtml">
 
             <ui:define name="content">
+                
+                <div class="card-header font-weight-bolder bg-primary text-white" >
+                    Lists
+                </div> 
+
 
                 <h:form>
-                    <p:panel header="Lists">
+                    <p:panel>
 
                         <h:panelGrid columns="2" styleClass="alignTop">
                             <p:accordionPanel>
                                 <p:tab title="OPD Reports">
                                     <h:panelGrid columns="1" >
-                                        <p:commandButton ajax="false" value="Bill List" action="report_list_opd_bills" 
-                                                         styleClass="linkButton"></p:commandButton>
+                                        <h:commandButton class="form" 
+                                                         value="Bill List" 
+                                                         action="report_list_opd_bills" 
+                                                         styleClass="linkButton">                                                   
+                                        </h:commandButton>
                                         <p:commandButton ajax="false" value="Cancelled Bill List" action="#" styleClass="linkButton"></p:commandButton>
                                         <p:commandButton ajax="false" value="Returned Bill List" action="#" styleClass="linkButton"></p:commandButton>
 

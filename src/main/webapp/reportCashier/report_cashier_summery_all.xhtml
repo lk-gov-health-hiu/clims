@@ -14,7 +14,7 @@
 
             <ui:define name="content">  
                 <div class="card">
-                    <div class="card-header font-weight-bolder bg-info text-white" >
+                    <div class="card-header font-weight-bolder bg-primary text-white" >
                         All Cashier Summery
                     </div>
                     <div class="body">
@@ -35,6 +35,7 @@
 
                         </h:panelGrid>
                             </div>
+                            
                             <div class="col-lg-9">
                                 
                             </div>
@@ -53,30 +54,30 @@
 
 
                             <h:commandButton id="btnRefresh" 
-                                             class="form form-control btn btn-info p-1"
+                                             class="form form-control btn btn-primary m-7 "
                                              
                                              value="Process All Bills"                                            
                                              actionListener="#{cashierReportController.calCashierData()}" />  
 
 
                             <h:commandButton id="btnRefresh1"
-                                             class="form form-control btn btn-info p-1 "
+                                             class="form form-control btn btn-primary p-2 "
                                              value="Process Channel Bills" 
                                              actionListener="#{cashierReportController.calCashierDataChannel()}" />  
 
 
                             <h:commandButton id="btnRefresh2" 
-                                             class="form form-control btn btn-info p-1"
+                                             class="form form-control btn btn-primary m-2"
                                              value="Process Other Bills"       
                                              actionListener="#{cashierReportController.calCashierDataCashier()}" />  
 
 
-                            <h:commandButton class="form form-control btn btn-info p-1 "
+                            <h:commandButton class="form form-control btn btn-primary m-2"
                                              value="Print" >
                                 <p:printer  target="reportPrint" />
                             </h:commandButton>  
 
-                            <h:commandButton  class="form form-control btn btn-info  p-1" 
+                            <h:commandButton  class="form form-control btn btn-primary  m-2" 
                                               value="Excel" >
                                 <pe:exporter type="xlsx" target="tbl" 
                                              fileName="All_Cashier_Summery" 

@@ -22,8 +22,11 @@
                                         <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
                                         </p:calendar>
                                     </p:panelGrid>
-                                    <p:commandButton id="btnSearch2" ajax="false" value="Search" 
-                                                     action="#{searchController.listPatientInvestigationsForMyInstitution}" onclick="onSubmitButton();" />
+                                    <h:commandButton id="btnSearch2" 
+                                                     class='form form-control btn btn-primary' 
+                                                     value="Search" 
+                                                     action="#{searchController.listPatientInvestigationsForMyInstitution}"
+                                                     onclick="onSubmitButton();" />
 
 
                                 </p:panelGrid>

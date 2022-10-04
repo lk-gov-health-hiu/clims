@@ -8,12 +8,16 @@
                 xmlns:pe="http://primefaces.org/ui/extensions">
 
     <ui:define name="content">
+
+        <div class="card-header font-weight-bolder bg-primary text-white" >
+            Package Bill Detail Report
+        </div> 
+
+
         <h:form>
             <h:outputStylesheet library="css" name="printing.css"></h:outputStylesheet>
             <p:panel>
-                <f:facet name="header">
-                    <p:outputLabel value="Package Bill Detail Report" />
-                </f:facet>
+                
                 <h:panelGrid columns="1" style="min-width: 100%;">                    
                     <p:panel>
                         <h:outputLabel value="From"/>
@@ -63,19 +67,25 @@
                                 #{ix.total}
                             </p:column>
                         </p:autoComplete>
-                        <p:commandButton ajax="false" value="Search" 
+                        <h:commandButton class="m-1 btn btn-primary"
+                                         value="Search" 
                                          action="#{billPackageMedicalController.createOtherPackageBillItemsOld}"
                                          onclick="onSubmitButton();" />
                         <p:watermark for="acIx1" value="Package" />
                         <p:watermark for="ins" value="Institution" />
                         <p:watermark for="acIx" value="Service/Investigation" />
-                        <p:commandButton value="Print" ajax="false" action="#" >
+                        <h:commandButton value="Print" 
+                                         class="m-1 btn btn-primary"
+                                         action="#" >
                             <p:printer target="gpBillPreview" ></p:printer>
-                        </p:commandButton>
+                        </h:commandButton>
 
-                        <p:commandButton ajax="false" value="Excel" styleClass="noPrintButton" onclick="onSubmitButton();" >
+                        <h:commandButton class="m-1 btn btn-primary"
+                                         value="Excel" 
+                                         styleClass="noPrintButton" 
+                                         onclick="onSubmitButton();" >
                             <pe:exporter type="xlsx" target="tbl1" fileName="Package_Bill_Detail_Report" />
-                        </p:commandButton>
+                        </h:commandButton>
 
                     </p:panel>
                 </h:panelGrid>   

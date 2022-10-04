@@ -13,16 +13,19 @@
                     <p:panel header="Search Requests" >
                         <f:facet name="header">
                             <h:panelGrid columns="1" >
-                                <h:panelGrid columns="2" >
+                                <h:panelGrid columns="1" >
 
                                     <h:outputLabel value="From Date"/>
-                                    <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
+                                    <p:calendar class="m-1" styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
                                     </p:calendar>
                                     <h:outputLabel value="To Date"/>
-                                    <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
+                                    <p:calendar class="p-1" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
                                     </p:calendar>
-                                    <p:commandButton id="btnSearch2" ajax="false" value="Search" 
-                                                     action="#{searchController.createPatientInvestigationsTableAll()}" onclick="onSubmitButton();" />
+                                    <h:commandButton id="btnSearch2" 
+                                                     class="form form-control btn btn-primary" 
+                                                     value="Search" 
+                                                     action="#{searchController.createPatientInvestigationsTableAll()}"
+                                                     onclick="onSubmitButton();" />
                                 </h:panelGrid>
                                 <h:panelGrid columns="4" >
                                     <h:outputLabel value="Request No"/>

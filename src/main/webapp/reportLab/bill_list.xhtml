@@ -14,13 +14,11 @@
 
 
                     <p:panel>
-                        <f:facet name="header" >
-                            <h:outputLabel value="Bill List"/>                          
-                        </f:facet>
-
-
+                        <div class="card-header font-weight-bolder bg-primary text-white" >
+                            Bill List
+                        </div> 
                         <h:panelGrid columns="2" styleClass="alignTop">
-                            <p:panel header="Search" >
+                            <p:panel header= "search" >
                                 <h:panelGrid columns="2" styleClass="alignTop">
                                     <h:outputLabel value="From"/>
                                     <p:calendar id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd/MMMM/yyyy hh:mm:ss a" >      
@@ -48,18 +46,18 @@
                                     <h:outputLabel value="Net Total"/>
                                     <p:inputText autocomplete="off" value="#{searchController.searchKeyword.netTotal}"/>
 
-                                    
+
 
 
                                 </h:panelGrid>
 
-                                <p:commandButton id="btnSearch" ajax="false" value="Search" action="#{searchController.createOpdBillSearch}"/>
-                                <p:commandButton id="btnExcel" ajax="false" value="Excel" >
+                                <h:commandButton id="btnSearch" class="form form-control btn btn-primary m-1" value="Search" action="#{searchController.createOpdBillSearch}"/>
+                                <h:commandButton id="btnExcel" class="form form-control btn btn-warning m-1" value="Excel" >
                                     <p:dataExporter fileName="OPD Bills" type="xls" target="tblBillsExport" ></p:dataExporter>
-                                </p:commandButton>
-                                <p:commandButton id="btnPrint" ajax="false" value="Print" >
+                                </h:commandButton>
+                                <h:commandButton id="btnPrint" class="form form-control btn btn-success m-1" value="Print" >
                                     <p:printer target="tblBillsExport" ></p:printer>
-                                </p:commandButton>
+                                </h:commandButton>
                                 <p:defaultCommand target="btnSearch" />
                             </p:panel>
 
@@ -164,21 +162,21 @@
                                     </h:panelGroup>
                                     <p:tooltip for="pt">
                                         <p:panel header="Patient Details" >
-                                            <p:panelGrid columns="2" >
-                                                <p:outputLabel value="Name" ></p:outputLabel>
-                                                <p:outputLabel value="#{bill.patient.person.nameWithTitle}" ></p:outputLabel>
-                                                <p:outputLabel value="Address" ></p:outputLabel>
-                                                <p:outputLabel value="#{bill.patient.person.address}" ></p:outputLabel>
-                                                <p:outputLabel value="ID" ></p:outputLabel>
-                                                <p:outputLabel value="#{bill.patient.phn}" ></p:outputLabel>
-                                                <p:outputLabel value="Phone" ></p:outputLabel>
-                                                <p:outputLabel value="#{bill.patient.person.phone}" ></p:outputLabel>
-                                                <p:outputLabel value="Email" ></p:outputLabel>
-                                                <p:outputLabel value="#{bill.patient.person.email}" ></p:outputLabel>
-                                                <p:outputLabel value="Gender" ></p:outputLabel>
-                                                <p:outputLabel value="#{bill.patient.person.sex}" ></p:outputLabel>
-                                                <p:outputLabel value="Changing Details" ></p:outputLabel>
-                                                <p:outputLabel value="Not Edited" rendered="#{bill.patient.person.editer eq null}"></p:outputLabel>
+                                            <h:panelGrid columns="2" >
+                                                <h:outputLabel value="Name" class="p-1-" ></h:outputLabel>
+                                                <h:outputLabel value="#{bill.patient.person.nameWithTitle}" ></h:outputLabel>
+                                                <h:outputLabel value="Address" class="form form-control p-1" ></h:outputLabel>
+                                                <h:outputLabel value="#{bill.patient.person.address}" ></h:outputLabel>
+                                                <h:outputLabel value="ID" ></h:outputLabel>
+                                                <h:outputLabel value="#{bill.patient.phn}" ></h:outputLabel>
+                                                <h:outputLabel value="Phone" ></h:outputLabel>
+                                                <h:outputLabel value="#{bill.patient.person.phone}" ></h:outputLabel>
+                                                <h:outputLabel value="Email" ></h:outputLabel>
+                                                <h:outputLabel value="#{bill.patient.person.email}" ></h:outputLabel>
+                                                <h:outputLabel value="Gender" ></h:outputLabel>
+                                                <h:outputLabel value="#{bill.patient.person.sex}" ></h:outputLabel>
+                                                <h:outputLabel value="Changing Details" ></h:outputLabel>
+                                                <h:outputLabel value="Not Edited" rendered="#{bill.patient.person.editer eq null}"></h:outputLabel>
                                                 <h:panelGroup rendered="#{bill.patient.person.editer ne null}" >
                                                     <h:outputLabel value="Edited By " />
                                                     <h:outputLabel rendered="#{bill.patient.person.editer ne null}" value="#{bill.patient.person.editer.webUserPerson.name}" >                                       
@@ -195,7 +193,7 @@
                                                         <h:outputLabel value="." />
                                                     </h:panelGroup>
                                                 </h:panelGroup>
-                                            </p:panelGrid>
+                                            </h:panelGrid>
                                         </p:panel>
                                     </p:tooltip>
                                 </p:column>

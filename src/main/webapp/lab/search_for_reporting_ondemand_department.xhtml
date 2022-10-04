@@ -13,7 +13,7 @@
                     <p:defaultCommand target="btnSearch" />
                     
                     <div class="card">
-                        <div class="card-header font-weight-bold bg-info text-white" >
+                        <div class="card-header font-weight-bold bg-primary text-white" >
                              Report Search By Logged Department
                         </div>
                         <div class="card-body">
@@ -28,7 +28,7 @@
                                     <p:calendar class="form form-control" inputStyleClass="form form-control" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >                                                                              
                                     </p:calendar>
 
-                                    <h:commandButton class="btn btn-info  btn-block " id="btnSearch"  value="Search" action="#{searchController.createPatientInvestigationsTableByLoggedDepartment()}" onclick="onSubmitButton();" />
+                                    <h:commandButton class="btn btn-primary btn-block " id="btnSearch"  value="Search" action="#{searchController.createPatientInvestigationsTableByLoggedDepartment()}" onclick="onSubmitButton();" />
                                     <p:spacer height="30"/><p:outputLabel/>
                    
                                     <h:outputLabel value="Bill No"/>

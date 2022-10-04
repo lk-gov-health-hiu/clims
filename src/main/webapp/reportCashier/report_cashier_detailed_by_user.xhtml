@@ -40,14 +40,14 @@
                     <p:panel id="reportPrint" >
                         <h:panelGrid columns="5" >
                             <p:spacer width="50" height="1"/>
-                            <h:commandButton  class="form-control btn btn-info p-1" id="btnRefresh" value="Process"  action="#{channelReportController.createChannelCashierBillList}" style="float: right;"/>
+                            <h:commandButton  class="form-control btn btn-primary p-1" id="btnRefresh" value="Process"  action="#{channelReportController.createChannelCashierBillList}" style="float: right;"/>
                             <p:defaultCommand target="btnRefresh"/>
 
-                            <h:commandButton  value="Print" class="form-control btn btn-info m-1" >
+                            <h:commandButton  value="Print" class="form-control btn btn-primary m-1" >
                                 <p:printer target="reportPrint"  />
                             </h:commandButton>
 
-                            <h:commandButton actionListener="#{channelReportController.createChannelCashierBillList}" value="Excel" class="form-control btn btn-info m-2" >
+                            <h:commandButton actionListener="#{channelReportController.createChannelCashierBillList}" value="Excel" class="form-control btn btn-primary m-2" >
                                 <pe:exporter type="xlsx" target="tbl,tb2,tb3" fileName="Cashier_Detailed_Report"  />
                             </h:commandButton> 
                         </h:panelGrid>

@@ -11,7 +11,8 @@
         <h:form id="panelPrint" >
             <p:panel>
 
-                <p:commandButton ajax="false" value="Process" 
+                <h:commandButton class=" btn btn-primary m-1"
+                                 value="Process" 
                                 action="#{reportMemberShip.createOpdPriceAdjustments()}"/>
 
                 <p:dataTable value="#{reportMemberShip.opdMemberShip}" var="pI">

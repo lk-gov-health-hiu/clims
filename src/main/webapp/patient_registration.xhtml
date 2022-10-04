@@ -14,10 +14,12 @@
 
                 <h:outputStylesheet library="css" name="printing.css" ></h:outputStylesheet>
 
+                <div class="card-header font-weight-bolder bg-primary text-white" >
+                        Manage Patients
+                    </div> 
 
 
-                <p:panel header="Manage Patients" styleClass="alignTop"
-                         style="height: 600px;">
+                <p:panel styleClass="alignTop">
                     <h:panelGrid columns="2" >
 
                         <h:panelGroup>
@@ -27,17 +29,19 @@
                                 <p:panel id="panelSearch" header="Search Patients" >
                                     <f:facet name="header" >
                                         <h:outputLabel value="Search Patients" />
-                                        <p:commandButton id="btnAddPt" ajax="false"
+                                        <h:commandButton id="btnAddPt" 
+                                                         class="form form-control btn btn-primary m-1"  
                                                          style="float: right;" 
                                                          value="Add New Patient" 
                                                          action="#{patientController.prepareAddReg()}"  >
-                                        </p:commandButton>
-                                        <p:commandButton id="btnDeletePt" 
-                                                         style="float: right;" 
+                                        </h:commandButton>
+                                        <h:commandButton id="btnDeletePt" 
+                                                         style="float: right;"
+                                                         class="form form-control btn btn-primary m-1 "
                                                          value="Delete" 
                                                          action="#{patientController.delete()}"  
                                                          rendered="#{webUserController.hasPrivilege('ClinicalPatientDelete')}">
-                                        </p:commandButton>
+                                        </h:commandButton>
 
                                         <!--                                        <p:commandButton id="btnPrintCard" action="/clinical/clinical_print_barcode" style="float: right;" value="Print Card" ajax="false" >
                                                                                  </p:commandButton>-->
@@ -57,7 +61,7 @@
                                                         itemValue="#{apt}" size="30"  style="width: 400px;"
                                                         >
                                             <p:column headerText="Name">
-                                                <h:outputLabel value="#{apt.person.nameWithTitle}" />
+                                                <h:outputLabel class="form form-control m-1" value="#{apt.person.nameWithTitle}" />
                                             </p:column>
 
                                             <p:column headerText="Age">
@@ -79,13 +83,16 @@
                                                 <h:outputLabel value="#{apt.person.address}" />
                                             </p:column>
                                             <p:column headerText="Date of Birth">
-                                                <h:outputLabel value="#{apt.person.dob}" >
+                                                <h:outputLabel  value="#{apt.person.dob}" >
                                                     <f:convertDateTime pattern="dd MMMM yyyy"/>
                                                 </h:outputLabel>
                                             </p:column>
                                         </p:autoComplete>
 
-                                        <p:commandButton ajax="false" value="View Patient Details" action="#{patientController.patientSelected}" ></p:commandButton>
+                                        <h:commandButton class="form form-control btn btn-primary"
+                                                         value="View Patient Details" 
+                                                         action="#{patientController.patientSelected}" >
+                                        </h:commandButton>
 
                                     </h:panelGrid>
 
@@ -104,9 +111,9 @@
                                 <f:facet name="header" >
                                     <!--                                    <h:outputLabel value="Details of Selected Patient" />-->
                                     <h:outputLabel value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
-                                    <p:commandButton  process="panelDetails" ajax="false"
+                                    <h:commandButton  process="panelDetails" class=" btn btn-primary"
                                                       value="Save" 
-                                                      action="#{patientController.saveSelected()}"></p:commandButton>
+                                                      action="#{patientController.saveSelected()}"></h:commandButton>
 
                                 </f:facet>
 
@@ -248,10 +255,6 @@
                                                     <p:commandButton type="button" value="Capture" 
                                                                      onclick="PF('pc').capture()" />  
                                                 </h:panelGroup>
-
-
-
-
                                             </h:panelGrid>  
 
 

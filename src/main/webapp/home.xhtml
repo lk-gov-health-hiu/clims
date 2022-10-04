@@ -5,12 +5,12 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://java.sun.com/jsf/html">
     <ui:define name="login">
-        <p:panel header="Time out" styleClass="verticalAndHorizontalCentering">
+        <p:panel header="Time out" class="text-white bg-dark" styleClass="verticalAndHorizontalCentering">
             Application timed out. <br/>
             (That means you were not using the system at least for 30 minutes.)<br/>
             Please Login again to continue.<br/>
             <h:form >
-                <p:commandButton ajax="false" value="Login" action="/index" ></p:commandButton>
+                <h:commandButton class="form form-control btn btn-primary" value="Login" action="/index" ></h:commandButton>
             </h:form>
         </p:panel>
 

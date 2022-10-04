@@ -10,61 +10,66 @@
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <h:form>
-
-
+                    <div class="card-header font-weight-bolder bg-white text-black" >
+                        Request Search
+                    </div> 
 
                     <p:panel>
-                        <f:facet name="header" >
-                            <h:outputLabel value="Request SEARCH "/>                          
-                        </f:facet>
+                        <div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h:panelGrid columns="18" >
+                                        <h:outputLabel value="From"/>
+                                        <p:calendar id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >      
+                                        </p:calendar>
+                                        <p:spacer height="1" width="5" ></p:spacer>
+
+                                        <h:outputLabel value="To"/>
+                                        <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >                                                                              
+                                        </p:calendar>
+                                        <p:spacer height="1" width="5" ></p:spacer>
+
+                                        <p:inputText placeholder="Request No" autocomplete="off"  style="width: 8em;"
+                                                     value="#{searchController.searchKeyword.billNo}" />
+                                        <p:spacer height="1" width="5" ></p:spacer>
+
+                                        <p:inputText placeholder="Name"  style="width: 10em;"
+                                                     autocomplete="off" 
+                                                     value="#{searchController.searchKeyword.patientName}" />
+                                        <p:spacer height="1" width="5" ></p:spacer>
+
+                                        <p:inputText placeholder="Phone" style="width: 10em;"
+                                                     autocomplete="off"  
+                                                     value="#{searchController.searchKeyword.patientPhone}" />
+                                        <p:spacer height="1" width="5" ></p:spacer>
+
+                                        <p:inputText placeholder="Total"  style="width: 6em;"
+                                                     autocomplete="off"  
+                                                     value="#{searchController.searchKeyword.total}" />
+                                        <p:spacer height="1" width="5" ></p:spacer>
 
 
-                        <h:panelGrid columns="18" >
-                            <h:outputLabel value="From"/>
-                            <p:calendar id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >      
-                            </p:calendar>
-                            <p:spacer height="1" width="5" ></p:spacer>
+                                        <p:inputText placeholder="Net Total"  style="width: 6em;"
+                                                     autocomplete="off" 
+                                                     value="#{searchController.searchKeyword.netTotal}"/>
+                                        <p:spacer height="1" width="5" ></p:spacer>
 
-                            <h:outputLabel value="To"/>
-                            <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >                                                                              
-                            </p:calendar>
-                            <p:spacer height="1" width="5" ></p:spacer>
-                            
-                            <p:inputText placeholder="Request No" autocomplete="off"  style="width: 8em;"
-                                         value="#{searchController.searchKeyword.billNo}" />
-                            <p:spacer height="1" width="5" ></p:spacer>
 
-                            <p:inputText placeholder="Name"  style="width: 10em;"
-                                         autocomplete="off" 
-                                         value="#{searchController.searchKeyword.patientName}" />
-                            <p:spacer height="1" width="5" ></p:spacer>
+                                        <h:commandButton id="btnSearch" class="form form-control btn btn-primary m-1" value="Search" action="#{searchController.createOpdBillSearch}"/>
+                                        <h:commandButton id="btnExcel" class="form form-control btn btn-primary m-1" value="Download" >
+                                            <p:dataExporter fileName="OPD Bills" type="xls" target="tblBillsExport" ></p:dataExporter>
+                                        </h:commandButton>
+                                    </h:panelGrid>
+                                </div>
+                            </div>
+                        </div>
 
-                            <p:inputText placeholder="Phone" style="width: 10em;"
-                                         autocomplete="off"  
-                                         value="#{searchController.searchKeyword.patientPhone}" />
-                            <p:spacer height="1" width="5" ></p:spacer>
 
-                            <p:inputText placeholder="Total"  style="width: 6em;"
-                                         autocomplete="off"  
-                                         value="#{searchController.searchKeyword.total}" />
-                            <p:spacer height="1" width="5" ></p:spacer>
 
-                          
-                            <p:inputText placeholder="Net Total"  style="width: 6em;"
-                                         autocomplete="off" 
-                                         value="#{searchController.searchKeyword.netTotal}"/>
-                            <p:spacer height="1" width="5" ></p:spacer>
-                            
-
-                            <p:commandButton id="btnSearch" ajax="false" value="Search" action="#{searchController.createOpdBillSearch}"/>
-                            <p:commandButton id="btnExcel" ajax="false" value="Download" >
-                                <p:dataExporter fileName="OPD Bills" type="xls" target="tblBillsExport" ></p:dataExporter>
-                            </p:commandButton>
-                        </h:panelGrid>
 
 
                         <h:panelGrid columns="15" >
-                            
+
                         </h:panelGrid>
 
 
