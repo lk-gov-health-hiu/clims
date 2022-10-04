@@ -69,8 +69,14 @@
                                                      action="#{patientReportController.calculate}" onclick="onSubmitButton();"   >
                                     </p:commandButton>
 
-                                    <p:commandButton styleClass="nonPrintBlock"  id="btnApprove"  disabled ="#{!(webUserController.hasPrivilege('LabAutherizing') eq true and patientReportController.currentPatientReport.dataEntered eq true)}"   
+                                    <p:commandButton styleClass="nonPrintBlock"  id="btnApprove"  disabled ="#{!(webUserController.hasPrivilege('LabApproving') eq true and patientReportController.currentPatientReport.dataEntered eq true)}"   
                                                      value="Approve" action="#{patientReportController.approvePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
+                                    </p:commandButton>
+                                    
+                                    <p:commandButton styleClass="nonPrintBlock"  id="btnAutherize"
+                                                     disabled ="#{!(webUserController.hasPrivilege('LabAutherizing') eq true and patientReportController.currentPatientReport.approved eq true)}"   
+                                                     value="Autherize"
+                                                     action="#{patientReportController.autherizePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
 
                                     <p:commandButton styleClass="nonPrintBlock" rendered="true"  id="btnCancel"  disabled ="#{!(webUserController.hasPrivilege('LabDataentry') eq true and patientReportController.currentPatientReport.approved eq true)}"   value="Sent SMS" 

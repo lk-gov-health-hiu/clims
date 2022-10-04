@@ -37,7 +37,9 @@
                                     <autocomplete:completeStaff value="#{staffController.current}"/>
 
                                     <p:fileUpload value="#{staffImageController.file}" mode="simple"/>
-                                    <p:commandButton ajax="false" id="btnSave" value="Save" action="#{staffImageController.saveSignature()}"/>
+                                    <p:commandButton ajax="false" id="btnSave" 
+                                                     value="Save" 
+                                                     action="#{staffImageController.saveSignature()}"/>
 
                                     <p:defaultCommand target="btnSave"/>
 

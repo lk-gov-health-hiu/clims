@@ -1327,6 +1327,7 @@ public class PatientReportController implements Serializable {
         currentPtIx.setApproveAt(Calendar.getInstance().getTime());
         currentPtIx.setApproveUser(getSessionController().getLoggedUser());
         currentPtIx.setApproveDepartment(getSessionController().getDepartment());
+        currentPtIx.setApproveUser(getSessionController().getLoggedUser());
         getPiFacade().edit(currentPtIx);
         currentPatientReport.setApproved(Boolean.FALSE);
         currentPatientReport.setApproved(Boolean.TRUE);
@@ -1334,6 +1335,37 @@ public class PatientReportController implements Serializable {
         currentPatientReport.setApproveDepartment(getSessionController().getLoggedUser().getDepartment());
         currentPatientReport.setApproveInstitution(getSessionController().getLoggedUser().getInstitution());
         currentPatientReport.setApproveUser(getSessionController().getLoggedUser());
+        getFacade().edit(currentPatientReport);
+        getStaffController().setCurrent(getSessionController().getLoggedUser().getStaff());
+        getTransferController().setStaff(getSessionController().getLoggedUser().getStaff());
+        UtilityController.addSuccessMessage("Approved");
+        commonController.printReportDetails(null, null, startTime, "Lab Report Aprove.");
+    }
+
+    
+    
+    public void autherizePatientReport() {
+        Date startTime = new Date();
+        if (currentPatientReport == null) {
+            UtilityController.addErrorMessage("Nothing to autherize");
+            return;
+        }
+        if (currentPatientReport.getApproved()== false) {
+            UtilityController.addErrorMessage("First Approve report");
+            return;
+        }
+
+        getCurrentPtIx().setAutherized(true);
+        currentPtIx.setAutherizedAt(Calendar.getInstance().getTime());
+        currentPtIx.setAutherizedUser(getSessionController().getLoggedUser());
+        currentPtIx.setAutherizedDepartment(getSessionController().getDepartment());
+        currentPtIx.setAutherizedInstitution(getSessionController().getLoggedUser().getInstitution());
+        getPiFacade().edit(currentPtIx);
+        currentPatientReport.setAutherized(Boolean.TRUE);
+        currentPatientReport.setAutherizedAt(Calendar.getInstance().getTime());
+        currentPatientReport.setAutherizedDepartment(getSessionController().getLoggedUser().getDepartment());
+        currentPatientReport.setAutherizedInstitution(getSessionController().getLoggedUser().getInstitution());
+        currentPatientReport.setAutherizedUser(getSessionController().getLoggedUser());
         getFacade().edit(currentPatientReport);
         getStaffController().setCurrent(getSessionController().getLoggedUser().getStaff());
         getTransferController().setStaff(getSessionController().getLoggedUser().getStaff());
@@ -1411,10 +1443,11 @@ public class PatientReportController implements Serializable {
             }
         }
 
-        UtilityController.addSuccessMessage("Approved");
-        commonController.printReportDetails(null, null, startTime, "Lab Report Aprove.");
+        UtilityController.addSuccessMessage("Autherized");
+        commonController.printReportDetails(null, null, startTime, "Lab Report Autherized.");
     }
 
+    
     public void sendSmsForPatientReport() {
         Date startTime = new Date();
         if (currentPatientReport == null) {

@@ -14,6 +14,14 @@ public enum ReportItemType {
     AutherizedCode,
     AutherizedPosition,
     AutherizedQualification,
+    DataEntrySignature,
+    DataEntryUserName,
+    DataEntryUserDetails,
+    ApprovedSignature,
+    ApprovedUserName,
+    ApprovedUserDetails,
+    AutherizedUserName,
+    AutherizedUserDetails,
     AutherizedSignature,
     BarcodeBillId,
     BarcodeBillItemId,
@@ -33,7 +41,6 @@ public enum ReportItemType {
     Comments,
     Css,
     DataEntered,
-    DataEntrySignature,
     DateTime,
     Fax,
     Institution,
@@ -73,6 +80,10 @@ public enum ReportItemType {
                 return "Autherized User's Name";
             case AutherizedPosition:
                 return "Autherized User's Position";
+            case DataEntrySignature:
+                return "Dataentry Signature";
+            case ApprovedSignature:
+                return "Approved Signature";
             case AutherizedSignature:
                 return "Autherized Signature";
             case BarcodeBillId:
@@ -96,7 +107,7 @@ public enum ReportItemType {
             case Birthday:
                 return "Birthday";
             case BloodGroup:
-                return "BloodGroup";
+                return "Blood Group";
             case Category:
                 return "Category";
             case CivilStatus:
@@ -105,8 +116,6 @@ public enum ReportItemType {
                 return "Collecting Center";
             case DataEntered:
                 return "Data Entered";
-            case DataEntrySignature:
-                return "Data Entry Signature";
             case DateTime:
                 return "Date Time";
             case Css:
@@ -163,8 +172,21 @@ public enum ReportItemType {
                 return "Speciman";
             case Surname:
                 return "Surname";
-            default: return this.toString();
+            case ApprovedUserName:
+                return "Approved User's Name";
+            case ApprovedUserDetails:
+                return "Approved User's Details";
+            case AutherizedUserName:
+                return "Autherized User's Name";
+            case AutherizedUserDetails:
+                return "Autherized Users Details";
+            case DataEntryUserName:
+                return "Data Entered User's Name";
+            case DataEntryUserDetails:
+                return "Data Entered User's Details";
+            default:
+                return this.toString();
         }
     }
-    
+
 }

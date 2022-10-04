@@ -97,6 +97,7 @@ public enum Privileges {
     LabSampleReceiving,
     LabReportFormatEditing,
     LabDataentry,
+    LabApproving,
     LabAutherizing,
     LabDeAutherizing,
     LabRevertSample,
