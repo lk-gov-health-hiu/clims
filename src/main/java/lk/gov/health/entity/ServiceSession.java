@@ -210,7 +210,7 @@ public class ServiceSession extends Item implements Serializable {
 
     @Override
     public String toString() {
-        return "lk.gov.health.entity.ServiceSession[ id=" + id + " ]";
+        return "com.divudi.entity.ServiceSession[ id=" + id + " ]";
     }
 
     public String getDayString() {
@@ -432,3 +432,4 @@ public class ServiceSession extends Item implements Serializable {
     }
 
 }
+

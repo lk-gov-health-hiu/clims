@@ -4,7 +4,7 @@
  */
 package lk.gov.health.ejb;
 
-import lk.gov.health.bean.channel.SheduleController;
+
 import lk.gov.health.bean.common.SessionController;
 import lk.gov.health.data.ApplicationInstitution;
 import lk.gov.health.entity.ServiceSession;
@@ -21,8 +21,7 @@ import javax.inject.Inject;
 @Stateless
 public class FinalVariables {
 
-    @Inject
-    SheduleController sheduleController;
+
     @Inject
     SessionController sessionController;
     @EJB
@@ -42,7 +41,7 @@ public class FinalVariables {
     public Integer getSessionSessionDayCounter() {
         int maxRowNumber = 0;
         ////System.out.println("maxRowNumber = " + maxRowNumber);
-        maxRowNumber = getSheduleController().getCurrent().getMaxTableRows();
+        //maxRowNumber = getSheduleController().getCurrent().getMaxTableRows();
         ////System.out.println("maxRowNumber = " + maxRowNumber);
         if (maxRowNumber == 0) {
             return 14;
@@ -157,13 +156,5 @@ public class FinalVariables {
         }
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    public SheduleController getSheduleController() {
-        return sheduleController;
-    }
 
-    public void setSheduleController(SheduleController sheduleController) {
-        this.sheduleController = sheduleController;
-    }
 }

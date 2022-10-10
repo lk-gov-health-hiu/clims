@@ -14,7 +14,6 @@ import lk.gov.health.entity.BilledBill;
 import lk.gov.health.entity.CancelledBill;
 import lk.gov.health.entity.Department;
 import lk.gov.health.entity.Institution;
-import lk.gov.health.entity.LazyBillItem;
 import lk.gov.health.entity.RefundBill;
 import lk.gov.health.entity.lab.PatientInvestigation;
 import lk.gov.health.facade.BillFacade;
@@ -160,7 +159,7 @@ public class OpdBillItemSearchController implements Serializable {
         }
         List<BillItem> tmp = getBillItemFacade().findBySQL(sql, m, TemporalType.TIMESTAMP);
 
-        searchBillItems = new LazyBillItem(tmp);
+  
 
     }
 
@@ -189,7 +188,7 @@ public class OpdBillItemSearchController implements Serializable {
 
         List<BillItem> tmp = getBillItemFacade().findBySQL(sql, m, TemporalType.TIMESTAMP);
 
-        searchBillItems = new LazyBillItem(tmp);
+
 
     }
 

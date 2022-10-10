@@ -1,14 +1,11 @@
 package lk.gov.health.bean.common;
 
-import lk.gov.health.bean.collectingCentre.CollectingCentreBillController;
 import lk.gov.health.bean.membership.MembershipSchemeController;
 import lk.gov.health.bean.membership.PaymentSchemeController;
-import lk.gov.health.data.ApplicationInstitution;
 import lk.gov.health.data.BillClassType;
 import lk.gov.health.data.BillNumberSuffix;
 import lk.gov.health.data.BillType;
 import lk.gov.health.data.DepartmentType;
-import lk.gov.health.data.FeeType;
 import lk.gov.health.data.InstitutionType;
 import lk.gov.health.data.PaymentMethod;
 import lk.gov.health.data.Sex;
@@ -21,7 +18,6 @@ import lk.gov.health.ejb.BillNumberGenerator;
 import lk.gov.health.ejb.CashTransactionBean;
 import lk.gov.health.ejb.CommonFunctions;
 import lk.gov.health.ejb.StaffBean;
-import lk.gov.health.entity.BatchBill;
 import lk.gov.health.entity.Bill;
 import lk.gov.health.entity.BillComponent;
 import lk.gov.health.entity.BillEntry;
@@ -43,7 +39,6 @@ import lk.gov.health.entity.Person;
 import lk.gov.health.entity.PriceMatrix;
 import lk.gov.health.entity.Staff;
 import lk.gov.health.entity.WebUser;
-import lk.gov.health.entity.lab.Investigation;
 import lk.gov.health.entity.membership.MembershipScheme;
 import lk.gov.health.facade.BatchBillFacade;
 import lk.gov.health.facade.BillComponentFacade;
@@ -55,7 +50,6 @@ import lk.gov.health.facade.BillSessionFacade;
 import lk.gov.health.facade.InstitutionFacade;
 import lk.gov.health.facade.PatientEncounterFacade;
 import lk.gov.health.facade.PatientFacade;
-import lk.gov.health.facade.PatientInvestigationFacade;
 import lk.gov.health.facade.PaymentFacade;
 import lk.gov.health.facade.PersonFacade;
 import lk.gov.health.facade.util.JsfUtil;
@@ -126,8 +120,6 @@ public class BillController implements Serializable {
     ApplicationController applicationController;
     @Inject
     private EnumController enumController;
-    @Inject
-    CollectingCentreBillController collectingCentreBillController;
     /**
      * Class Vairables
      */
@@ -1708,10 +1700,9 @@ public class BillController implements Serializable {
                 }
 
                 if (bf.getBillItem().getItem().isVatable()) {
-                    if (!(bf.getFee().getFeeType() == FeeType.CollectingCentre && collectingCentreBillController.getCollectingCentre() != null)) {
-                        bf.setFeeVat(bf.getFeeValue() * bf.getBillItem().getItem().getVatPercentage() / 100);
-                        bf.setFeeVat(roundOff(bf.getFeeVat()));
-                    }
+                    bf.setFeeVat(bf.getFeeValue() * bf.getBillItem().getItem().getVatPercentage() / 100);
+                    bf.setFeeVat(roundOff(bf.getFeeVat()));
+
                 }
                 bf.setFeeVatPlusValue(bf.getFeeValue() + bf.getFeeVat());
 
@@ -1841,14 +1832,13 @@ public class BillController implements Serializable {
         clearBillItemValues();
         clearBillValues();
         setPrintPreview(true);
-        if(referredByInstitution==null){
+        if (referredByInstitution == null) {
             referredByInstitution = sessionController.getInstitution();
         }
         printPreview = false;
         paymentMethodData = null;
         paymentScheme = null;
         paymentMethod = PaymentMethod.Cash;
-        collectingCentreBillController.setCollectingCentre(null);
     }
 
     public void prepareNewBillForMember() {
@@ -1859,7 +1849,6 @@ public class BillController implements Serializable {
         paymentMethodData = null;
         paymentScheme = null;
         paymentMethod = PaymentMethod.Cash;
-        collectingCentreBillController.setCollectingCentre(null);
     }
 
     public void makeNull() {

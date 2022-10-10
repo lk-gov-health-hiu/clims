@@ -8,7 +8,7 @@
  */
 package lk.gov.health.bean.common;
 
-import lk.gov.health.bean.hr.StaffController;
+
 import lk.gov.health.data.Dashboard;
 import lk.gov.health.data.Privileges;
 import lk.gov.health.entity.Department;
@@ -80,8 +80,7 @@ public class WebUserController implements Serializable {
     private UserPaymentSchemeController userPaymentSchemeController;
     @Inject
     private UserDepartmentController userDepartmentController;
-    @Inject
-    private StaffController staffController;
+
     @Inject
     private UserPrivilageController userPrivilageController;
     /**
@@ -714,7 +713,7 @@ public class WebUserController implements Serializable {
             JsfUtil.addErrorMessage("Please select a user");
             return "";
         }
-        getStaffController().setCurrent(selected.getStaff());
+
         return "/hr/hr_staff_admin";
     }
 
@@ -750,7 +749,7 @@ public class WebUserController implements Serializable {
             JsfUtil.addErrorMessage("Please select a user");
             return "";
         }
-        getStaffController().setCurrent(selected.getStaff());
+
         return "/admin_staff_signature";
     }
 
@@ -857,9 +856,7 @@ public class WebUserController implements Serializable {
         return userDepartmentController;
     }
 
-    public StaffController getStaffController() {
-        return staffController;
-    }
+
 
     public String getNewPassword() {
         return newPassword;

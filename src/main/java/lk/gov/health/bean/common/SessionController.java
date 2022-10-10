@@ -7,7 +7,6 @@
  */
 package lk.gov.health.bean.common;
 
-import lk.gov.health.bean.pharmacy.PharmacySaleController;
 import lk.gov.health.data.DepartmentType;
 import lk.gov.health.data.Privileges;
 import lk.gov.health.ejb.ApplicationEjb;
@@ -998,8 +997,7 @@ public class SessionController implements Serializable, HttpSessionListener {
         this.applicationController = applicationController;
     }
 
-    @Inject
-    private PharmacySaleController pharmacySaleController;
+
 
     public void logout() {
         userPrivilages = null;
@@ -1007,7 +1005,7 @@ public class SessionController implements Serializable, HttpSessionListener {
         setLoggedUser(null);
         setLogged(false);
         setActivated(false);
-        getPharmacySaleController().clearForNewBill();
+
 
     }
 
@@ -1340,13 +1338,7 @@ public class SessionController implements Serializable, HttpSessionListener {
         recordLogout();
     }
 
-    public PharmacySaleController getPharmacySaleController() {
-        return pharmacySaleController;
-    }
 
-    public void setPharmacySaleController(PharmacySaleController pharmacySaleController) {
-        this.pharmacySaleController = pharmacySaleController;
-    }
 
     public CashTransactionBean getCashTransactionBean() {
         return cashTransactionBean;

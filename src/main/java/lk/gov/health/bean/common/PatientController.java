@@ -1,7 +1,7 @@
 package lk.gov.health.bean.common;
 
 import lk.gov.health.bean.clinical.PatientEncounterController;
-import lk.gov.health.bean.clinical.PracticeBookingController;
+
 import lk.gov.health.data.PaymentMethod;
 import lk.gov.health.data.Sex;
 import lk.gov.health.data.Title;
@@ -48,7 +48,8 @@ import javax.inject.Named;
 import net.sourceforge.barbecue.Barcode;
 import net.sourceforge.barbecue.BarcodeFactory;
 import net.sourceforge.barbecue.BarcodeImageHandler;
-import org.primefaces.context.RequestContext;
+import org.apache.commons.fileupload.RequestContext;
+
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -91,8 +92,7 @@ public class PatientController implements Serializable {
      */
     @Inject
     SessionController sessionController;
-    @Inject
-    PracticeBookingController practiceBookingController;
+
     @Inject
     PatientEncounterController PatientEncounterController;
     @Inject
@@ -338,7 +338,6 @@ public class PatientController implements Serializable {
         if (current != null && current.getCode() != null && !current.getCode().trim().equals("")) {
             try {
                 BarcodeImageHandler.saveJPEG(BarcodeFactory.createCode128(getCurrent().getCode()), barcodeFile);
-                barcode = new DefaultStreamedContent(new FileInputStream(barcodeFile), "image/jpeg");
 
             } catch (Exception ex) {
                 //   ////System.out.println("ex = " + ex.getMessage());
@@ -352,50 +351,13 @@ public class PatientController implements Serializable {
                 bc.setDrawingText(true);
                 BarcodeImageHandler.saveJPEG(bc, barcodeFile);
                 //   ////System.out.println("12");
-                barcode = new DefaultStreamedContent(new FileInputStream(barcodeFile), "image/jpeg");
             } catch (Exception ex) {
                 //   ////System.out.println("ex = " + ex.getMessage());
             }
         }
     }
 
-    public void createFamilymembers(ActionEvent event) {
-
-        RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage message = null;
-        boolean loggedIn;
-
-        if (familyMember.getFullName() == null || familyMember.getFullName().equals("")) {
-            loggedIn = false;
-            UtilityController.addErrorMessage("Please enter full name");
-            return;
-
-        }
-        if (familyMember.getSex() == null) {
-            loggedIn = false;
-            UtilityController.addErrorMessage("Please enter gender");
-            return;
-
-        }
-        if (familyMember.getNic() == null || familyMember.getNic().equals("")) {
-            loggedIn = false;
-            UtilityController.addErrorMessage("Please enter NIC no");
-            return;
-        }
-        if (familyMember.getDob() == null) {
-            loggedIn = false;
-            UtilityController.addErrorMessage("Please enter Date Of Birth");
-            return;
-        }
-        familyMember.setSerealNumber(familyMembers.size());
-        familyMembers.add(familyMember);
-        loggedIn = true;
-
-        familyMember = null;
-
-        context.addCallbackParam("loggedIn", loggedIn);
-    }
-
+  
     public void removeFamilyMember(Person p) {
 
         familyMembers.remove(p.getSerealNumber());
@@ -445,36 +407,7 @@ public class PatientController implements Serializable {
         yearMonthDay = getCommonFunctions().guessAge(getCurrent().getPerson().getDob());
     }
 
-    public StreamedContent getPhoto(Patient p) {
-        //////System.out.println("p is " + p);
-        FacesContext context = FacesContext.getCurrentInstance();
-        if (context.getRenderResponse()) {
-            return new DefaultStreamedContent();
-        } else if (p == null) {
-            return new DefaultStreamedContent();
-        } else {
-            if (p.getId() != null && p.getBaImage() != null) {
-                //////System.out.println("giving image");
-                return new DefaultStreamedContent(new ByteArrayInputStream(p.getBaImage()), p.getFileType(), p.getFileName());
-            } else {
-                return new DefaultStreamedContent();
-            }
-        }
-
-    }
-
-    public StreamedContent getPhotoByByte(byte[] p) {
-        //////System.out.println("p is " + p);
-        FacesContext context = FacesContext.getCurrentInstance();
-        if (context.getRenderResponse()) {
-            return new DefaultStreamedContent();
-        } else if (p == null) {
-            return new DefaultStreamedContent();
-        } else {
-            //   ////System.out.println("giving image");
-            return new DefaultStreamedContent(new ByteArrayInputStream(p), "image/png", "photo.");
-        }
-    }
+    
 
     public Title[] getTitles() {
         return Title.values();
@@ -581,7 +514,7 @@ public class PatientController implements Serializable {
 
     public void saveAndUpdateQueue() {
         saveSelected();
-        getPracticeBookingController().listBillSessions();
+       
     }
 
     public String getCountPatientCode() {
@@ -1229,13 +1162,7 @@ public class PatientController implements Serializable {
         }
     }
 
-    public PracticeBookingController getPracticeBookingController() {
-        return practiceBookingController;
-    }
-
-    public void setPracticeBookingController(PracticeBookingController practiceBookingController) {
-        this.practiceBookingController = practiceBookingController;
-    }
+   
 
     public PatientEncounterController getPatientEncounterController() {
         return PatientEncounterController;

@@ -8,7 +8,7 @@
  */
 package lk.gov.health.bean.common;
 
-import lk.gov.health.bean.hr.HrReportController;
+
 import lk.gov.health.entity.Category;
 import lk.gov.health.entity.FormFormat;
 import lk.gov.health.entity.Staff;
@@ -53,8 +53,7 @@ public class FormFormatController implements Serializable {
     @EJB
     private CommonReportItemFacade criFacade;
     Category formCategory;
-    @Inject
-    HrReportController hrReportController;
+ 
     Staff staff;
     private List<CommonReportItem> formItems = null;
 

@@ -364,7 +364,7 @@
                                                 <p:column>
                                                     <h:commandButton id="btnRemove" value="X" action="#{billController.removeBillItem}" >
                                                         <f:setPropertyActionListener  value="#{rowIndex}" target="#{billController.index}" />
-                                                        <p:ajax  process="btnRemove" update=":#{p:component('panelBillItems')}" />
+                                                        <p:ajax  process="btnRemove" update=":#{p:resolveFirstComponentWithId('panelBillItems',view).clientId}" />
                                                     </h:commandButton>
                                                 </p:column>
                                             </p:dataTable>
