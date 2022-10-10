@@ -10,6 +10,11 @@
 
 
     <ui:define name="content">
+
+        <div class="card-header font-weight-bolder bg-white text-black" >
+            Request Search
+        </div> 
+
         <h:outputStylesheet library="css" name="printing.css"></h:outputStylesheet>
 
         <h:panelGroup rendered="true" >
@@ -51,20 +56,27 @@
                             <td>
                                 <h:panelGrid columns="6" styleClass="noPrintButton">
                                     <p:spacer height="1" width="30"/>
-                                    <p:commandButton ajax="false"  value="Process"  
+                                    <h:commandButton class="btn btn-primary m-1" 
+                                                     value="Process"  
                                                      action="#{investigationMonthSummeryOwnControllerSession.createInvestigationMonthEndSummeryCounts}"
-                                                     styleClass="noPrintButton" style="float: right;" />
-                                    <p:commandButton id="print" value="Print">
+                                                     style="float: right;" />
+                                    <h:commandButton id="print" 
+                                                     value="Print"
+                                                     class="btn btn-primary m-1">
                                         <p:printer target="tbl" />
-                                    </p:commandButton>
-                                    <p:commandButton value="Excel" ajax="false" styleClass="noPrintButton" style="float: right;" >
+                                    </h:commandButton>
+                                    <h:commandButton value="Excel" class="btn btn-primary m-1" 
+                                                     style="float: right;" >
                                         <pe:exporter type="xlsx" target="tbl" fileName="Investigation Counts"
                                                      facetBackground="#008000" facetFontSize="15" 
                                                      facetFontColor="#FFFFFF" facetFontStyle="BOLD" cellFontColor="#0000FF" cellFontSize="12"  cellFontStyle="NORMAL"  
                                                      fontName="Courier New"  />
-                                    </p:commandButton> 
-                                    <p:commandButton value="Back" ajax="false" styleClass="noPrintButton" action="/reportLab/lab/summeries_index" >
-                                    </p:commandButton> 
+                                    </h:commandButton> 
+                                    <h:commandButton value="Back" 
+                                                     styleClass="noPrintButton"
+                                                     class="btn btn-primary m-1"
+                                                     action="/reportLab/lab/summeries_index" >
+                                    </h:commandButton> 
                                 </h:panelGrid>
                             </td>
                         </tr>

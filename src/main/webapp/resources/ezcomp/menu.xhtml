@@ -13,7 +13,7 @@
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         <p:menubar styleClass="nonPrintBlock bottomBorderOnly ui-widget-header"  >
-            <p:menuitem  ajax="false"  action="/index" icon="ui-icon-home" styleClass="rightBordrOnly" ></p:menuitem>
+            <p:menuitem   ajax="false" value="Home" icon="ui-icon-home" action="/index" ></p:menuitem>
             <p:submenu styleClass="rightBordrOnly" label="Order" rendered="#{webUserController.hasPrivilege('Opd')}">
                 <p:menuitem ajax="false" 
                             action="#{billController.toNewOpdOrder()}"  
@@ -47,7 +47,7 @@
                 <p:menuitem ajax="false" action="/membership/reports" value="Family Membership Reports" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/membership/administration" value="Administration" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
             </p:submenu>
-            
+
             <p:submenu styleClass="rightBordrOnly" label="EHR"  rendered="#{webUserController.hasPrivilege('Clinical')}">
                 <p:menuitem ajax="false" action="/clinical/clinical_patient_for_receptionist" value="Patients"/>
                 <p:menuitem ajax="false" action="/clinical/test_results" value="Test Results"/>
@@ -85,8 +85,8 @@
 
             <p:submenu styleClass="rightBordrOnly" label="Reporting"  
                        rendered="#{webUserController.hasPrivilege('Lab')}">
-                
-                
+
+
                 <p:menuitem ajax="false" action="/lab/search_for_reporting_ondemand" value="Reports Search" rendered="#{webUserController.hasPrivilege('LabReportSearch')}" actionListener="#{searchController.listnerReportSearch}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/lab/search_for_reporting_ondemand_institution" value="Reports/Search By Logged Institution" rendered="#{false and webUserController.hasPrivilege('LabReportSearchByLoggedInstitution')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/lab/search_for_reporting_ondemand_department" value="Reports/Search By Logged Department" rendered="#{webUserController.hasPrivilege('LabReportSearchByLoggedInstitution')}" ></p:menuitem>
@@ -130,7 +130,7 @@
 
             </p:submenu>
 
-          
+
 
             <f:facet name="options">
                 <p:commandButton id="btnLogout" ajax="false" icon="ui-icon-extlink" action="#{sessionController.logout}" />

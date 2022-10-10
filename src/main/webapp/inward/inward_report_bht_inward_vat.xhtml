@@ -35,14 +35,14 @@
                         </h:panelGrid>
 
                         <h:panelGrid columns="3">
-                            <p:commandButton value="Search" ajax="false" action="#{bhtSummeryFinalizedController.createBhtInwardVatTable()}" />
-                            <p:commandButton value="Print" ajax="false" action="#" >
+                            <h:commandButton value="Search" class="btn btn-primary m-1" action="#{bhtSummeryFinalizedController.createBhtInwardVatTable()}" />
+                            <h:commandButton value="Print" class="btn btn-primary m-1" action="#" >
                                 <p:printer target="gpBillPreview" ></p:printer>
-                            </p:commandButton>
+                            </h:commandButton>
 
-                            <p:commandButton ajax="false" value="Excel" styleClass="noPrintButton" style="float: right;" onclick="onSubmitButton();"  >
+                            <h:commandButton class="btn btn-primary m-1" value="Excel" style="float: right;" onclick="onSubmitButton();"  >
                                 <pe:exporter type="xlsx" target="tbl" fileName="newly_added_report"  />
-                            </p:commandButton>  
+                            </h:commandButton>  
                         </h:panelGrid>
 
 
