@@ -11,14 +11,9 @@
       xmlns:bi="http://java.sun.com/jsf/composite/bill"
       xmlns:pa="http://java.sun.com/jsf/composite/paymentMethod"
       xmlns:pat="http://java.sun.com/jsf/composite/patient">
-
     <h:body>
-
         <ui:composition template="/resources/template/template.xhtml">
-
             <ui:define name="content">
-
-
                 <h:panelGroup rendered="#{!(webUserController.hasPrivilege('OpdBilling') or webUserController.hasPrivilege('LabCashier'))}" >
                     You are NOT authorized
                 </h:panelGroup>
@@ -35,8 +30,7 @@
                                 <div class="card-header" >
                                     <h:commandButton  value="Settle Order"
                                                       action="#{billController.settleBill}"
-                                                      class="btn btn-success m-1"
-                                                      >
+                                                      class="btn btn-success m-1" >
                                     </h:commandButton>
                                     <h:commandButton value="New Order"
                                                      class="btn btn-danger m-1"
@@ -97,7 +91,7 @@
                                                             <div class="form-group col-md-2">
                                                                 <h:inputText autocomplete="off" id="month"
                                                                              class="form form-control"
-                                                                              a:placeholder="Months"
+                                                                             a:placeholder="Months"
                                                                              value="#{billController.yearMonthDay.month}">
                                                                     <f:ajax event="keyup" execute="@this year day" render="calNewPtDob" listener="#{billController.dateChangeListen()}"  />
                                                                 </h:inputText>
@@ -105,7 +99,7 @@
                                                             <div class="form-group col-md-2">
                                                                 <h:inputText autocomplete="off" id="day"
                                                                              class="form form-control"
-                                                                              a:placeholder="Days"
+                                                                             a:placeholder="Days"
                                                                              value="#{billController.yearMonthDay.day}">
                                                                     <f:ajax event="keyup" execute="@this year month" render="calNewPtDob" listener="#{billController.dateChangeListen()}" />
                                                                 </h:inputText>
@@ -114,7 +108,7 @@
                                                                 <p:calendar  value="#{billController.newPatient.person.dob}"
                                                                              inputStyleClass="form form-control"
                                                                              id="calNewPtDob"  navigator="true" pattern="dd/MM/yyyy"
-                                                                              a:placeholder="Date of Birth"
+                                                                             a:placeholder="Date of Birth"
                                                                              >
                                                                     <f:ajax event="dateSelect" />
                                                                 </p:calendar>
@@ -388,7 +382,7 @@
 
                                     <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
                                                      onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
-                                                             return false;"/>
+                                                                 return false;"/>
                                 </div>
                                 <h:panelGroup id="fiveFivePaperWithHeadings">
                                     <ui:repeat value="#{billController.bills}" var="b">

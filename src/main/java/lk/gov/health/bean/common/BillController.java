@@ -1392,6 +1392,8 @@ public class BillController implements Serializable {
             return true;
         }
 
+        System.out.println("getPatientTabId() = " + getPatientTabId());
+        
         if (getPatientTabId().equals("tabSearchPt")) {
             if (getSearchedPatient() == null) {
                 UtilityController.addErrorMessage("Plese Select Patient");
@@ -1892,6 +1894,10 @@ public class BillController implements Serializable {
     }
 
     public void onTabChange(TabChangeEvent event) {
+        System.out.println("onTabChange");
+        System.out.println("event = " + event);
+        System.out.println("event.getTab() = " + event.getTab());
+        System.out.println("event.getTab().getId() = " + event.getTab().getId());
         setPatientTabId(event.getTab().getId());
         if (!getPatientTabId().equals("tabSearchPt")) {
             if (fromOpdEncounter == false) {
