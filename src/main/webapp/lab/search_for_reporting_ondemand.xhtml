@@ -15,14 +15,14 @@
                             <h:panelGrid columns="1" >
                                 <h:panelGrid columns="1" >
 
-                                    <h:outputLabel value="From Date"/>
+                                    <h:outputLabel class="m-1" value="From Date"/>
                                     <p:calendar class="m-1" styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
                                     </p:calendar>
-                                    <h:outputLabel value="To Date"/>
-                                    <p:calendar class="p-1" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
+                                    <h:outputLabel class="m-1" value="To Date"/>
+                                    <p:calendar styleClass="dateTimePicker" class="m-1" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
                                     </p:calendar>
                                     <h:commandButton id="btnSearch2" 
-                                                     class="form form-control btn btn-primary" 
+                                                     class="form form-control btn btn-primary m-1" 
                                                      value="Search" 
                                                      action="#{searchController.createPatientInvestigationsTableAll()}"
                                                      onclick="onSubmitButton();" />
@@ -32,10 +32,10 @@
                                     <h:outputLabel value="Patient Name"/>
                                     <h:outputLabel value="Patient Phone"/>                               
                                     <h:outputLabel value="Investigation Name"/>
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
-                                    <p:inputText autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
-                                    <p:inputText autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>
+                                    <p:inputText autocomplete="off" class="m-1"  value="#{searchController.searchKeyword.billNo}" />
+                                    <p:inputText autocomplete="off" class="m-1" value="#{searchController.searchKeyword.patientName}" />
+                                    <p:inputText autocomplete="off" class="m-1"  value="#{searchController.searchKeyword.patientPhone}" />
+                                    <p:inputText autocomplete="off" class="m-1" value="#{searchController.searchKeyword.itemName}"/>
                                 </h:panelGrid>
                             </h:panelGrid>
                         </f:facet>

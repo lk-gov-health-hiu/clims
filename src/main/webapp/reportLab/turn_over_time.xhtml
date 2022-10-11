@@ -20,9 +20,9 @@
                 <p:panel id="panelPrint"  
                          header="Turn Around Time">
 
-                    <h:panelGrid columns="2" style="min-width: 50%;" styleClass="noPrintButton">
+                    <h:panelGrid class="m-1" columns="2" style="min-width: 50%;" styleClass="noPrintButton">
                         <h:outputLabel value="Bill Type"/>
-                        <p:selectOneMenu value="#{investigationMonthSummeryOwnControllerSession.summeryType}" >
+                        <p:selectOneMenu class="m-1" value="#{investigationMonthSummeryOwnControllerSession.summeryType}" >
                             <f:selectItem itemValue="1" itemLabel="All Bill Types" />
                             <f:selectItem itemValue="2" itemLabel="Collecting Center Bill" />
                             <f:selectItem itemValue="3" itemLabel="OPD Bill" />
@@ -30,11 +30,18 @@
                             <f:selectItem itemValue="5" itemLabel="OPD + Inward Bill" />
                         </p:selectOneMenu>
                         <h:outputLabel value="Investigation"/>
-                        <p:autoComplete widgetVar="aPt" id="acPt" forceSelection="true" converter="ixcon"
-                                        value="#{investigationMonthSummeryOwnControllerSession.item}" 
-                                        completeMethod="#{investigationController.completeInvest}" 
-                                        var="apt" itemLabel="#{apt.name}" placeholder="Investigation"
-                                        itemValue="#{apt}" size="30"  style="width: 400px;">
+                        <p:autoComplete  class="m-1 form form-contol" widgetVar="aPt"
+                                         id="acPt"
+                                         forceSelection="true"
+                                         converter="ixcon"
+                                         value="#{investigationMonthSummeryOwnControllerSession.item}" 
+                                         completeMethod="#{investigationController.completeInvest}" 
+                                         var="apt"
+                                         itemLabel="#{apt.name}"
+                                         placeholder="Investigation"
+                                         itemValue="#{apt}" 
+                                         size="30" 
+                                         style="width: 400px;">
                             <p:column>
                                 #{apt.name}
                             </p:column>
@@ -47,24 +54,25 @@
 
                         </p:autoComplete> 
                         <h:outputLabel value="Department"/>
-                        <au:department value="#{investigationMonthSummeryOwnControllerSession.department}" />
+                        <au:department class="m-1 form form-contol"
+                                       value="#{investigationMonthSummeryOwnControllerSession.department}" />
 
                         <h:outputLabel value="From"/>
-                        <p:calendar id="frmDate" styleClass="dateTimePicker" value="#{investigationMonthSummeryOwnControllerSession.fromDate}" pattern="dd MMMM yyyy HH:mm:ss" >
+                        <p:calendar class="m-1" id="frmDate" styleClass="dateTimePicker" value="#{investigationMonthSummeryOwnControllerSession.fromDate}" pattern="dd MMMM yyyy HH:mm:ss" >
                         </p:calendar>
 
                         <h:outputLabel value="To"/>
-                        <p:calendar id="toDate" styleClass="dateTimePicker" value="#{investigationMonthSummeryOwnControllerSession.toDate}" pattern="dd MMMM yyyy HH:mm:ss" >
+                        <p:calendar class="m-1" id="toDate" styleClass="dateTimePicker" value="#{investigationMonthSummeryOwnControllerSession.toDate}" pattern="dd MMMM yyyy HH:mm:ss" >
                         </p:calendar>
 
                         <h:outputLabel value=""/>
                         <h:panelGroup>
-                            <p:commandButton ajax="false"  value="Process"  
+                            <h:commandButton class="btn btn-primary m-1"  value="Process"  
                                              action="#{investigationMonthSummeryOwnControllerSession.createInvestigationTurnoverTime}"
-                                             styleClass="noPrintButton" style="float: left;" />
+                                             style="float: left;" />
 
-                            <p:commandButton value="Back" ajax="false" styleClass="noPrintButton" action="/reportLab/lab_summeries_index" >
-                            </p:commandButton> 
+                            <h:commandButton value="Back" class="btn btn-primary m-1" action="/reportLab/lab_summeries_index" >
+                            </h:commandButton> 
                         </h:panelGroup>
                     </h:panelGrid>
 

@@ -21,30 +21,30 @@
                             <p:panel header= "search" >
                                 <h:panelGrid columns="2" styleClass="alignTop">
                                     <h:outputLabel value="From"/>
-                                    <p:calendar id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd/MMMM/yyyy hh:mm:ss a" >      
+                                    <p:calendar class="m-1" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd/MMMM/yyyy hh:mm:ss a" >      
                                     </p:calendar>
 
                                     <h:outputLabel value="To"/>
-                                    <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd/MMMM/yyyy hh:mm:ss a" >                                                                              
+                                    <p:calendar class="m-1" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd/MMMM/yyyy hh:mm:ss a" >                                                                              
                                     </p:calendar>
 
                                     <h:outputLabel value="Bill No"/>
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
+                                    <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
 
                                     <h:outputLabel value="Name"/>
-                                    <p:inputText autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
+                                    <p:inputText class="m-1" autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
 
 
 
 
                                     <h:outputLabel value="Phone"/>
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
+                                    <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
 
                                     <h:outputLabel value="Total"/>
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.total}" />
+                                    <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.total}" />
 
                                     <h:outputLabel value="Net Total"/>
-                                    <p:inputText autocomplete="off" value="#{searchController.searchKeyword.netTotal}"/>
+                                    <p:inputText class="m-1" autocomplete="off" value="#{searchController.searchKeyword.netTotal}"/>
 
 
 

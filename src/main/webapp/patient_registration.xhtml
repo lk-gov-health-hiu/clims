@@ -132,10 +132,10 @@
                                                 </p:selectOneMenu>
 
                                                 <h:outputLabel value="Membership From"/>
-                                                <p:calendar class="m-1" value="#{patientController.current.fromDate}" pattern="dd MMMM yyyy" ></p:calendar>
+                                                <p:calendar class="m-2" value="#{patientController.current.fromDate}" pattern="dd MMMM yyyy" ></p:calendar>
 
                                                 <h:outputLabel value="Membership To"/>
-                                                <p:calendar class="m-1" value="#{patientController.current.toDate}" pattern="dd MMMM yyyy" ></p:calendar>
+                                                <p:calendar class="m-2" value="#{patientController.current.toDate}" pattern="dd MMMM yyyy" ></p:calendar>
 
 
                                                 <h:outputLabel value="Title"/>
@@ -144,7 +144,10 @@
                                                 </p:selectOneMenu>
                                                 <h:outputLabel rendered="#{patientController.current.person eq null}" value=""/>
                                                 <h:outputLabel value="Name"/>
-                                                <p:inputText autocomplete="off"  id="txtNewPtName" value="#{patientController.current.person.name}" 
+                                                <p:inputText autocomplete="off"
+                                                             id="txtNewPtName"
+                                                             class="m-1"
+                                                             value="#{patientController.current.person.name}" 
                                                              style="width: 280px;text-transform:capitalize;">
                                                 </p:inputText>
 

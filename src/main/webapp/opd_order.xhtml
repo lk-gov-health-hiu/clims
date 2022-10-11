@@ -308,6 +308,7 @@
 
                                                     <h:panelGrid id="txtQty">
                                                         <h:inputText autocomplete="off"
+                                                                     class="m-1"
                                                                      rendered="#{billController.currentBillItem.item.requestForQuentity}"
                                                                      value="#{billController.currentBillItem.qty}" >
                                                         </h:inputText>
@@ -315,7 +316,10 @@
                                                     <p:selectOneMenu value="#{itemController.reportKeyWord.department}">    
                                                         <f:selectItem itemLabel="Filter by Department"/>
                                                         <f:selectItems value="#{departmentController.labs}"
-                                                                       var="paysch" itemLabel="#{paysch.name}" itemValue="#{paysch}"  />
+                                                                       class="m-1"
+                                                                       var="paysch" 
+                                                                       itemLabel="#{paysch.name}"
+                                                                       itemValue="#{paysch}"  />
                                                         <p:ajax process="@this" update="acIx" event="change"/>
                                                     </p:selectOneMenu>
                                                 </p:panel>
