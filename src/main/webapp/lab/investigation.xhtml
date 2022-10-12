@@ -35,7 +35,7 @@
                                         <p:panel>
                                             <f:facet name="header" >
                                                 <h:outputText value="Search" ></h:outputText>
-                                                <p:commandButton id="btnAdd"  value="Add New" 
+                                                <p:commandButton id="btnAdd" class="m-1"  value="Add New" 
                                                                  action="#{investigationController.prepareAdd()}" 
                                                                  styleClass="buttons" onclick="onSubmitButton();" style="float: right;"
                                                                  process="@this" update="gpDetail">
@@ -47,6 +47,7 @@
                                                                 completeMethod="#{investigationController.completeInvest}"
                                                                 var="ix" itemLabel="#{ix.name}" itemValue="#{ix}" 
                                                                 placeholder="Search here ..." 
+                                                                class="m-1"
                                                                 size="10" maxResults="10">
                                                     <f:ajax event="itemSelect" execute="@this" render="detailPan" ></f:ajax>
                                                     <p:column headerText="Name" >
@@ -71,7 +72,7 @@
 
                                             <h:panelGrid id="gpSelectButtons" columns="3"  >
 
-                                                <p:commandButton id="btnDelete" ajax="false" onclick="if (!confirm('Are you sure you want to delete this record?'))
+                                                <p:commandButton id="btnDelete" class="m-1" ajax="false" onclick="if (!confirm('Are you sure you want to delete this record?'))
                                                             return false;" action="#{investigationController.delete()}"  value="Delete"  >
                                                 </p:commandButton>
                                             </h:panelGrid>
@@ -94,7 +95,7 @@
                                             <p:commandLink ajax="false" action="#{investigationController.toLoadParentInvestigation()}" 
                                                            value="Load Parent Investigation" ></p:commandLink><br/>
 
-                                            
+
                                             <p:commandLink disabled="#{!webUserController.hasPrivilege('AdminPrices')}"
                                                            ajax="false" action="#{investigationController.toEditFees()}"
                                                            actionListener="#{viewController.makeInvestigationAsPreviousPage()}"

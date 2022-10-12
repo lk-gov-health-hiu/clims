@@ -115,7 +115,7 @@
                                                      class="btn btn-primary"
                                                      value="Add New Patient"
                                                      process="btnAddPt" 
-                                                     update="acPt :#{p:component('panelDetails')} :#{p:component('patientDetail') } :#{p:component('pan1') } " 
+                                                     update="acPt :#{p:resolveFirstComponentWithId('panelDetails',view).clientId} :#{p:resolveFirstComponentWithId('patientDetail',view).clientId} :#{p:resolveFirstComponentWithId('pan1',view).clientId} } " 
                                                      action="#{patientController.prepareAddReg()}" onclick="onSubmitButton();" 
                                                      >
                                     </h:commandButton>

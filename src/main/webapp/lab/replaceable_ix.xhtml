@@ -25,7 +25,7 @@
                             </p:autoComplete>
 
 
-                            <h:commandButton value="Back" action="/lab/investigation" ></h:commandButton>
+                            <p:commandButton ajax="false" class="m-1" value="Back" action="/lab/investigation" ></p:commandButton>
 
 
                             <h:outputLabel value="Select Child Ix" ></h:outputLabel>
@@ -36,14 +36,14 @@
 
                        
                             
-                            <h:commandButton value="Add" action="#{itemForItemController.addItem()}" ></h:commandButton>
+                            <p:commandButton ajax="false" class="m-1" value="Add" action="#{itemForItemController.addItem()}" ></p:commandButton>
 
                             <h:outputLabel value="Added Items" ></h:outputLabel>
                             <p:selectOneListbox value="#{itemForItemController.current}" id="lstIfi" styleClass="mediuminput" >
                                 <f:selectItems value="#{itemForItemController.items}" var="ifi" itemLabel="#{ifi.childItem.name}" itemValue="#{ifi}" />
                             </p:selectOneListbox>
                             
-                            <h:commandButton value="Remove" action="#{itemForItemController.removeItem()}" ></h:commandButton>
+                            <p:commandButton  ajax="false" class="m-1" value="Remove" action="#{itemForItemController.removeItem()}" ></p:commandButton>
 
                         </p:panelGrid>
 

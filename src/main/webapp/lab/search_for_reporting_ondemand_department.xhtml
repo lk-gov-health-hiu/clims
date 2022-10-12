@@ -13,7 +13,7 @@
                     <p:defaultCommand target="btnSearch" />
                     
                     <div class="card">
-                        <div class="card-header font-weight-bold bg-primary text-white" >
+                        <div class="card-header font-weight-bold bg-white text-black" >
                              Report Search By Logged Department
                         </div>
                         <div class="card-body">
@@ -21,24 +21,24 @@
                                 <div class="col-md-3">
 
 
-                                    <h:outputLabel class="form form-label" for="formDate" value="From Date"/>
-                                    <p:calendar class="form form-control" inputStyleClass="form form-control" styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >      
+                                    <h:outputLabel class="m-1 form form-label" for="formDate" value="From Date"/>
+                                    <p:calendar class="m-1 form form-control" inputStyleClass="form form-control" styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >      
                                     </p:calendar>
-                                    <h:outputLabel class="form form-lable" for="toDate" value="To Date"/>                                     
-                                    <p:calendar class="form form-control" inputStyleClass="form form-control" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >                                                                              
+                                    <h:outputLabel class="m-1 form form-lable" for="toDate" value="To Date"/>                                     
+                                    <p:calendar class="m-1" inputStyleClass="form form-control"  styleClass="dateTimePicker" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >                                                                              
                                     </p:calendar>
 
-                                    <h:commandButton class="btn btn-primary btn-block " id="btnSearch"  value="Search" action="#{searchController.createPatientInvestigationsTableByLoggedDepartment()}" onclick="onSubmitButton();" />
+                                    <h:commandButton class="btn btn-primary m-1" id="btnSearch"  value="Search" action="#{searchController.createPatientInvestigationsTableByLoggedDepartment()}" onclick="onSubmitButton();" />
                                     <p:spacer height="30"/><p:outputLabel/>
                    
-                                    <h:outputLabel value="Bill No"/>
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
-                                    <h:outputLabel value="Patient Name"/>
-                                    <p:inputText autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
-                                    <h:outputLabel value="Patient Phone"/>  
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
-                                    <h:outputLabel value="Investigation Name"/>
-                                    <p:inputText autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>
+                                    <h:outputLabel class="m-1" value="Bill No"/>
+                                    <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
+                                    <h:outputLabel class="m-1" value="Patient Name"/>
+                                    <p:inputText class="m-1" autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
+                                    <h:outputLabel class="m-1" value="Patient Phone"/>  
+                                    <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
+                                    <h:outputLabel class="m-1" value="Investigation Name"/>
+                                    <p:inputText class="m-1" autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>
                                     <h:outputLabel/><h:outputLabel/>
 
                                 </div>

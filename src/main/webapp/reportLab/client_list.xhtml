@@ -23,31 +23,31 @@
                             <p:panel header="Search" >
                                 <h:panelGrid columns="2" styleClass="alignTop">
                                     <h:outputLabel value="From"/>
-                                    <p:calendar id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd/MMMM/yyyy hh:mm:ss a" >      
+                                    <p:calendar class="p-1" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd/MMMM/yyyy hh:mm:ss a" >      
                                     </p:calendar>
 
                                     <h:outputLabel value="To"/>
-                                    <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd/MMMM/yyyy hh:mm:ss a" >                                                                              
+                                    <p:calendar class="p-1" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd/MMMM/yyyy hh:mm:ss a" >                                                                              
                                     </p:calendar>
 
                                     <h:outputLabel value="Billed From"/>
-                                    <p:autoComplete value="#{searchController.fromDepartment}"  
+                                    <p:autoComplete class="m-1" value="#{searchController.fromDepartment}"  
                                                     completeMethod="#{departmentController.completeDept}" var="dep" itemValue="#{dep}" itemLabel="#{dep.name}" forceSelection="true" >
                                     </p:autoComplete>
 
                                     <h:outputLabel value="Billed To"/>
-                                    <p:autoComplete value="#{searchController.toDepartment}"  
+                                    <p:autoComplete class="m-1" value="#{searchController.toDepartment}"  
                                                     completeMethod="#{departmentController.completeDept}" var="dep" itemValue="#{dep}" itemLabel="#{dep.name}" forceSelection="true" >
                                     </p:autoComplete>
 
 
                                 </h:panelGrid>
 
-                                <p:commandButton id="btnSearch" ajax="false" value="Search" action="#{searchController.fillOpdClients()}"/>
-                                <p:commandButton id="btnExcel" ajax="false" value="Excel" >
+                                <p:commandButton class="m-1" id="btnSearch" ajax="false" value="Search" action="#{searchController.fillOpdClients()}"/>
+                                <p:commandButton class="m-1" id="btnExcel" ajax="false" value="Excel" >
                                     <p:dataExporter fileName="Clients" type="xls" target="tblClients" ></p:dataExporter>
                                 </p:commandButton>
-                                <p:commandButton id="btnPrint" ajax="false" value="Print" >
+                                <p:commandButton class="m-1" id="btnPrint" ajax="false" value="Print" >
                                     <p:printer target="tblClients" ></p:printer>
                                 </p:commandButton>
                                 <p:defaultCommand target="btnSearch" />

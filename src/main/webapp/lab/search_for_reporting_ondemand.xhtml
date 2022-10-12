@@ -153,11 +153,11 @@
                                 </h:outputLabel>
 
                             </p:column>
-                            
-                             <p:column headerText="Referred Institution"  styleClass="alignTop">
-                                 <h:outputLabel value="#{pi.billItem.bill.referredByInstitution.name}" >
+
+                            <p:column headerText="Referred Institution"  styleClass="alignTop">
+                                <h:outputLabel value="#{pi.billItem.bill.referredByInstitution.name}" >
                                 </h:outputLabel>
-                                 <h:outputLabel value="#{pi.billItem.bill.institution.name}" >
+                                <h:outputLabel value="#{pi.billItem.bill.institution.name}" >
                                 </h:outputLabel>
                             </p:column>
 
@@ -165,7 +165,7 @@
                                 <h:outputLabel value="#{pi.billItem.bill.toDepartment.name}" >
                                 </h:outputLabel>
                             </p:column>
-                            
+
                             <p:column headerText="Sample Received Date"  styleClass="alignTop">
                                 <h:outputLabel value="#{pi.sampledAt}" >
                                     <f:convertDateTime pattern="dd MMM yyyy hh:mm a" ></f:convertDateTime>
@@ -255,9 +255,9 @@
                             </p:column>
 
                             <p:column headerText="Data-Entered Reports"  styleClass="alignTop noBorderGrid" >
-                                
-                                
-                                
+
+
+
                                 <p:dataTable value="#{patientReportController.patientReports(pi)}" var="dpr" emptyMessage="" 
                                              rowStyleClass="#{dpr.retired eq true ? 'noDisplayRow':''}" 
                                              styleClass="noBorderGrid summeryBorder noBorder" >

@@ -35,7 +35,7 @@
                                                          style="float: right;" 
                                                          value="Add New Patient"
                                                          process="btnAddPt" 
-                                                         update="acPt :#{p:component('panelDetails')} :#{p:component('patientDetail')} " 
+                                                         update="acPt :#{p:resolveFirstComponentWithId('panelDetails',view).clientId} :#{p:resolveFirstComponentWithId('patientDetail',view).clientId} " 
                                                          action="#{patientController.prepareAdd()}" 
                                                          onclick="onSubmitButton();" >
                                         </h:commandButton>
@@ -44,7 +44,7 @@
                                                          class="form form-control btn btn-primary m-1"
                                                          style="float: right;" 
                                                          value="Delete" process="btnDeletePt" 
-                                                         update="acPt :#{p:component('panelDetails')} :#{p:component('patientDetail')} " 
+                                                         update="acPt :#{p:resolveFirstComponentWithId('panelDetails',view).clientId} :#{p:resolveFirstComponentWithId('panelDetails',view).clientId}" 
                                                          action="#{patientController.delete()}" onclick="onSubmitButton();" 
                                                          rendered="#{webUserController.hasPrivilege('ClinicalPatientDelete')}">
                                         </h:commandButton>
