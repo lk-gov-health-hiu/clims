@@ -124,17 +124,17 @@
 
                                         <h:panelGrid id="patientDetail" columns="2" >
                                             <h:panelGrid columns="2" >
-                                                <h:outputLabel value="Membership"/>
+                                                <h:outputLabel class="m-1" value="Membership"/>
                                                 <p:selectOneMenu class="m-1" value="#{patientController.current.person.membershipScheme}" style="width: 290px;" disabled="#{!webUserController.hasPrivilege('Developers') and patientController.current.id ne null}">
                                                     <f:selectItem itemLabel="Select Membership" />
                                                     <f:selectItems value="#{membershipSchemeController.items}" var="t" itemLabel="#{t.name}" itemValue="#{t}"/>
                                                     <f:ajax event="change" execute="@this" render="txtCode" listener="#{patientController.membershipChangeListner}" />
                                                 </p:selectOneMenu>
 
-                                                <h:outputLabel value="Membership From"/>
+                                                <h:outputLabel class="m-1" value="Membership From"/>
                                                 <p:calendar class="m-2" value="#{patientController.current.fromDate}" pattern="dd MMMM yyyy" ></p:calendar>
 
-                                                <h:outputLabel value="Membership To"/>
+                                                <h:outputLabel class="m-1" value="Membership To"/>
                                                 <p:calendar class="m-2" value="#{patientController.current.toDate}" pattern="dd MMMM yyyy" ></p:calendar>
 
 
