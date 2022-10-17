@@ -684,15 +684,6 @@ public class UserPrivilageController implements Serializable {
         this.selectedItems = selectedItems;
     }
 
-    public TreeNode getTmp() {
-        getItems();
-        return tmpNode;
-    }
-
-    public void setTmp(TreeNode tmp) {
-        this.tmpNode = tmp;
-    }
-
     public TreeNode getRoot() {
         return root;
     }
