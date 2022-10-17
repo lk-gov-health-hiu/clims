@@ -476,17 +476,6 @@ public class UserPrivilageController implements Serializable {
         this.root = root2;
     }
 
-    private void removeAllPrivilages() {
-        String sql = "SELECT i FROM WebUserPrivilege i where i.webUser.id= " + getCurrentWebUser().getId();
-        List<WebUserPrivilege> tmp = getEjbFacade().findBySQL(sql);
-
-        for (WebUserPrivilege wb : tmp) {
-            wb.setRetired(true);
-            getEjbFacade().edit(wb);
-        }
-
-    }
-
     public void savePrivileges() {
         if (currentWebUser == null) {
             UtilityController.addErrorMessage("Please select a user");
@@ -618,7 +607,7 @@ public class UserPrivilageController implements Serializable {
                 + " FROM WebUserPrivilege i "
                 + " where i.webUser=:wu ";
         Map m = new HashMap();
-        m.put("u", getCurrentWebUser());
+        m.put("wu", getCurrentWebUser());
         items = getEjbFacade().findBySQL(sql, m);
         if (items == null) {
             items = new ArrayList<>();
