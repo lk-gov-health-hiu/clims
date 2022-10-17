@@ -138,12 +138,12 @@
                                                 <p:calendar class="m-2" value="#{patientController.current.toDate}" pattern="dd MMMM yyyy" ></p:calendar>
 
 
-                                                <h:outputLabel value="Title"/>
+                                                <h:outputLabel class="m-1" value="Title"/>
                                                 <p:selectOneMenu class="m-1"  rendered="#{patientController.current.person ne null}" id="cmbTitle" value="#{patientController.current.person.title}" style="width: 290px;" >
                                                     <f:selectItems value="#{patientController.titles}" var="t" itemLabel="#{t.label}" itemValue="#{t}"/>
                                                 </p:selectOneMenu>
-                                                <h:outputLabel rendered="#{patientController.current.person eq null}" value=""/>
-                                                <h:outputLabel value="Name"/>
+                                                <h:outputLabel class="m-1" rendered="#{patientController.current.person eq null}" value=""/>
+                                                <h:outputLabel class="m-1" value="Name"/>
                                                 <p:inputText autocomplete="off"
                                                              id="txtNewPtName"
                                                              class="m-1"
