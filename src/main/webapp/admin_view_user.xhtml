@@ -33,17 +33,17 @@
 
                         <h:panelGrid columns="2" styleClass="alignTop" >
                             <h:panelGrid id="actions" columns="1"  >
-                                <p:commandButton styleClass="linkButton"  ajax="false" value="Remove" onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
+                                <p:commandButton styleClass="linkButton m-1"  ajax="false" value="Remove" onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
                                         return false;" action="#{webUserController.removeUser}">
                                 </p:commandButton>
-                                <p:commandButton enable="#{webUserController.selected == null}" class="m-1" value="Manage User" action="#{webUserController.toManageUser()}" ajax="false" />
-                                <p:commandButton enable="#{webUserController.selected == null}" class="m-1"  value="Manage Password" action="#{webUserController.toManagePassword()}" ajax="false" />
-                                <p:commandButton enable="#{webUserController.selected == null}" class="m-1"   value="Manage Staff" action="#{webUserController.toManageStaff()}" ajax="false" />
-                                <p:commandButton enable="#{webUserController.selected == null}"  class="m-1"   value="Manage Privileges" action="#{webUserController.toManagePrivileges()}" ajax="false" />
-                                <p:commandButton enable="#{webUserController.selected == null}"  class="m-1"   value="Manage Loggable Departments" action="#{webUserController.toManageDepartments()}" ajax="false" />
-                                <p:commandButton enable="#{webUserController.selected == null}"  class="m-1"   value="Manage Payment Schemes" action="#{webUserController.toManagePaymentSchemes()}" ajax="false" />
-                                <p:commandButton enable="#{webUserController.selected == null}"  class="m-1"   value="Manage Signature" action="#{webUserController.toManageSignature()}" ajax="false" />
-                                <p:commandButton enable="#{webUserController.selected == null}"  class="m-1"   value="Manage Dashboards" action="#{webUserController.toManageDashboards()}" ajax="false" />
+                                <p:commandButton  enable="#{webUserController.selected == null}" class="btn btn-primary w-100 m-1" value="Manage User" action="#{webUserController.toManageUser()}" ajax="false" />
+                                <p:commandButton  enable="#{webUserController.selected == null}" class="btn btn-primary w-100 m-1" value="Manage Password" action="#{webUserController.toManagePassword()}" ajax="false" />
+                                <p:commandButton  enable="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Staff" action="#{webUserController.toManageStaff()}" ajax="false" />
+                                <p:commandButton  enable="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Privileges" action="#{webUserController.toManagePrivileges()}" ajax="false" />
+                                <p:commandButton  enable="#{webUserController.selected == null}" class="btn btn-primary w-100 m-1"  value="Manage Loggable Departments" action="#{webUserController.toManageDepartments()}" ajax="false" />
+                                <p:commandButton  enable="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1" value="Manage Payment Schemes" action="#{webUserController.toManagePaymentSchemes()}" ajax="false" />
+                                <p:commandButton  enable="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Signature" action="#{webUserController.toManageSignature()}" ajax="false" />
+                                <p:commandButton  enable="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Dashboards" action="#{webUserController.toManageDashboards()}" ajax="false" />
 
                             </h:panelGrid>
 
