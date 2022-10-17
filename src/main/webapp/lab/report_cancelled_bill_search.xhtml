@@ -14,20 +14,21 @@
 
                         <h:panelGrid columns="2" >
 
-                            <h:outputLabel value="From Date"/>
-                            <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
+                            <h:outputLabel class="m-1" value="From Date"/>
+                            <p:calendar class="m-1" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
                             </p:calendar>
 
-                            <h:outputLabel value="To Date"/>
-                            <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
+                            <h:outputLabel class="m-1" value="To Date"/>
+                            <p:calendar class="m-1" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
                             </p:calendar>
 
                             <p:commandButton 
                                 ajax="false" 
+                                class="m-1"
                                 value="Search"
                                 action="#{searchController.searchApprovedReportsWithCancelledOrReturnedBills()}" 
                                 />
-                            <p:commandButton ajax="false" value="Download" >
+                            <p:commandButton ajax="false" class="m-1" value="Download" >
                                 <p:dataExporter target="tbl" type="xls" fileName="Cancelled Bills for Approved Reports" >
                                 </p:dataExporter>
                             </p:commandButton>

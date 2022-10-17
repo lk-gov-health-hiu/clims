@@ -82,37 +82,69 @@
 
                     <p:panel rendered ="#{sessionController.logged and sessionController.department eq null}" >
                         <h:form id="formDept" >
-                            <p:panel header="Select Department" >
-                                <h:panelGrid columns="3" >
-                                    <h:outputText value="Department" ></h:outputText>
-                                    <p:spacer height="1" width="30" ></p:spacer>
-                                    <p:selectOneMenu value="#{sessionController.department}" required="true" var="d" >
-                                        <f:selectItems value="#{sessionController.departments}"
-                                                       var="dept"
-                                                       itemLabel="#{dept.name}"
-                                                       itemValue="#{dept}" >
-                                        </f:selectItems>
-                                        <p:column  >
-                                            <f:facet name="header" >
-                                                <h:outputText value="Department" ></h:outputText>
-                                            </f:facet>
-                                            <h:outputText value="#{d.name}" ></h:outputText>
-                                        </p:column>
-                                        <p:column  >
-                                            <f:facet name="header" >
-                                                <h:outputText value="Institution" ></h:outputText>
-                                            </f:facet>
-                                            <h:outputText value="#{d.institution.name}" ></h:outputText>
-                                        </p:column>
-                                    </p:selectOneMenu>
+                            <div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
 
-                                    <p:spacer height="1" width="30" ></p:spacer>
-                                    <p:spacer height="1" width="30" ></p:spacer>
-                                    <p:commandButton ajax="false"
-                                                     value="Select"
-                                                     action="#{sessionController.selectDepartment()}" />
-                                </h:panelGrid>
-                            </p:panel>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <p:panel class="text-justify" header="Select Department" >
+                                                                <h:panelGrid columns="3" >
+                                                                    <h:outputText class="m-1" value="Department" ></h:outputText>
+                                                                    <p:spacer height="1" width="30" ></p:spacer>
+                                                                    <p:selectOneMenu class="m-1" value="#{sessionController.department}" required="true" var="d" >
+                                                                        <f:selectItems value="#{sessionController.departments}"
+                                                                                       var="dept"
+                                                                                       itemLabel="#{dept.name}"
+                                                                                       itemValue="#{dept}" >
+                                                                        </f:selectItems>
+                                                                        <p:column  >
+                                                                            <f:facet name="header" >
+                                                                                <h:outputText value="Department" ></h:outputText>
+                                                                            </f:facet>
+                                                                            <h:outputText value="#{d.name}" ></h:outputText>
+                                                                        </p:column>
+                                                                        <p:column  >
+                                                                            <f:facet name="header" >
+                                                                                <h:outputText value="Institution" ></h:outputText>
+                                                                            </f:facet>
+                                                                            <h:outputText value="#{d.institution.name}" ></h:outputText>
+                                                                        </p:column>
+                                                                    </p:selectOneMenu>
+
+                                                                    <p:spacer height="1" width="30" ></p:spacer>
+                                                                    <p:spacer height="1" width="30" ></p:spacer>
+                                                                    <p:commandButton ajax="false"
+                                                                                     value="Select"
+                                                                                     class="m-1"
+                                                                                     action="#{sessionController.selectDepartment()}" />
+                                                                </h:panelGrid>
+                                                            </p:panel>
+                                                        </div>
+                                                        <div class="col-md-2">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </h:form>
                     </p:panel>
                 </h:panelGrid>

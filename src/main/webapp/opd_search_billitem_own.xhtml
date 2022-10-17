@@ -18,38 +18,37 @@
                     <div>
                         <div class="row">
                             <div class="col-md-2">
-                                <h:panelGrid columns="6" >
-                                    <h:outputLabel value="From Date"/>
-                                    <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >      
+                                <h:panelGrid columns="1" >
+                                    <h:outputLabel class="m-1" value="From Date"/>
+                                    <p:calendar class="m-1"  styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >      
                                     </p:calendar>
-                                    <h:outputLabel value="To Date"/>
-                                    <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >                                                                              
+                                    <h:outputLabel class="m-1"  value="To Date"/>
+                                    <p:calendar class="m-1"  id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm ss a" >                                                                              
                                     </p:calendar>
-                                    <h:commandButton id="btnSearch" class="form-control btn btn-primary m-1 " value="Search" action="#{searchController.createBillItemTableByKeyword()}"/>
-                                    <h:commandButton id="btnSearchAll" class="form-control btn btn-warning m-1" value="SearchAll" action="#{searchController.createBillItemTableByKeywordAll()}" rendered="#{webUserController.hasPrivilege('SearchAll')}"/>
-                                    <h:commandButton value="Excel" class="form-control btn btn-success m-1"  style="float: right;">
+                                    <p:commandButton ajax="false" id="btnSearch" class="btn btn-primary m-1 w-75 " value="Search" action="#{searchController.createBillItemTableByKeyword()}"/>
+                                    <p:commandButton ajax="false" id="btnSearchAll" class="btn btn-primary m-1 w-75 " value="Search All" action="#{searchController.createBillItemTableByKeywordAll()}" rendered="#{webUserController.hasPrivilege('SearchAll')}"/>
+                                    <p:commandButton ajax="false" value="Excel" class="btn btn-primary m-1 w-75"  style="float: left;">
                                         <pe:exporter type="xlsx" target="tblBills" fileName="Bill Item Report" />
-                                    </h:commandButton>
+                                    </p:commandButton>
                                     <p:spacer height="30"/><h:outputLabel/><h:outputLabel/><h:outputLabel/><h:outputLabel/>
+                                    <div class="col-md-1">
+                                    <h:panelGrid columns="1" >
+                                        <h:outputLabel class="m-1" value="Bill No"/>
+                                        <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
+                                        <h:outputLabel class="m-1" value="Item Name"/>
+                                         <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.itemName}" />
+                                        <h:outputLabel class="m-1" value="Patient Name"/>
+                                         <p:inputText class="m-1" autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
+                                        <h:outputLabel class="m-1" value="Patient Phone"/>
+                                        <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
+                                        <h:outputLabel class="m-1" value="Institution Name"/>
+                                        <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.toInstitution}" />   
+                                    </h:panelGrid>
+                                </div>
                                 </h:panelGrid>
+                                
                             </div>
-                            
-                            <div class="col-md-2">
-                                <h:panelGrid columns="5" >
-                                    <h:outputLabel value="Bill No"/>
-                                    <h:outputLabel value="Item Name"/>
-                                    <h:outputLabel value="Patient Name"/>
-                                    <h:outputLabel value="Patient Phone"/>
-                                    <h:outputLabel value="Institution Name"/>
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.itemName}" />
-                                    <p:inputText autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.toInstitution}" />
-                                </h:panelGrid>
-                            </div>
-                            
-                            <div class="col-md-8">
+                            <div class="col-md-10">
 
                                 <p:dataTable rowIndexVar="i" 
                                              id="tblBills" 
