@@ -53,6 +53,7 @@ public class UserPrivilageController implements Serializable {
     private List<WebUserPrivilege> items = null;
     //private Privileges currentPrivileges;
     private TreeNode root;
+    private TreeNode[] selectedNodes;
     private List<Privileges> privilegeList;
 
     private TreeNode createTreeNode() {
@@ -476,36 +477,29 @@ public class UserPrivilageController implements Serializable {
         this.root = root2;
     }
 
-    public void savePrivileges() {
+    public String savePrivileges() {
+        System.out.println("savePrivileges");
         if (currentWebUser == null) {
+            System.out.println("currentWebUser = " + currentWebUser);
             UtilityController.addErrorMessage("Please select a user");
-            return;
+            return "";
+        }
+        retireAllPrivilege();
+        for (TreeNode o : selectedNodes) {
+            PrivilageNode pn1 = (PrivilageNode) o;
+            updateSinglePrivilege(pn1.getP(), true);
         }
 
-        for (Object o : root.getChildren()) {
-            Privileges p;
-            PrivilageNode pn = (PrivilageNode) o;
-            p = pn.getP();
-            updateSinglePrivilege(p, pn.isSelected());
-            for (Object o1 : pn.getChildren()) {
-                Privileges p1;
-                PrivilageNode pn1 = (PrivilageNode) o1;
-                p1 = pn1.getP();
-                updateSinglePrivilege(p1, pn1.isSelected());
-                for (Object o2 : pn1.getChildren()) {
-                    Privileges p2;
-                    PrivilageNode pn2 = (PrivilageNode) o2;
-                    p2 = pn2.getP();
-                    updateSinglePrivilege(p2, pn2.isSelected());
-                }
-            }
-        }
-
-        getItems();
+//        createRootForUser();
+        return "/admin_view_user";
     }
 
     public void updateSinglePrivilege(Privileges p, boolean selected) {
+        System.out.println("updateSinglePrivilege");
+        System.out.println("p = " + p);
+        System.out.println("selected = " + selected);
         if (p == null) {
+            System.out.println("p = " + p);
             return;
         }
         WebUserPrivilege wup;
@@ -517,6 +511,7 @@ public class UserPrivilageController implements Serializable {
                 + " where i.webUser=:wu "
                 + " and i.privilege=:p ";
         wup = getEjbFacade().findFirstBySQL(sql, m);
+        System.out.println("wup = " + wup);
         if (wup == null) {
             wup = new WebUserPrivilege();
             wup.setCreater(getSessionController().getLoggedUser());
@@ -527,6 +522,24 @@ public class UserPrivilageController implements Serializable {
             getFacade().create(wup);
         } else {
             wup.setRetired(!selected);
+            getFacade().edit(wup);
+        }
+        System.out.println("wup.isRetired() = " + wup.isRetired());
+    }
+
+    public void retireAllPrivilege() {
+        if (getCurrentWebUser() == null) {
+            return;
+        }
+        List<WebUserPrivilege> wups;
+        Map m = new HashMap();
+        m.put("wu", getCurrentWebUser());
+        String sql = "SELECT i "
+                + " FROM WebUserPrivilege i "
+                + " where i.webUser=:wu ";
+        wups = getEjbFacade().findBySQL(sql, m);
+        for (WebUserPrivilege wup : wups) {
+            wup.setRetired(true);
             getFacade().edit(wup);
         }
     }
@@ -586,7 +599,7 @@ public class UserPrivilageController implements Serializable {
             UtilityController.addSuccessMessage("Nothing to Delete");
         }
         recreateModel();
-        getItems();
+        createRootForUser();
         current = null;
         getCurrent();
     }
@@ -594,51 +607,54 @@ public class UserPrivilageController implements Serializable {
     private WebUserPrivilegeFacade getFacade() {
         return ejbFacade;
     }
-    private TreeNode tmpNode;
 
-    public List<WebUserPrivilege> getItems() {
+    public void createRootForUser() {
+        System.out.println("createRootForUser" );
+        root = createTreeNode();
         if (getCurrentWebUser() == null) {
-            root = createTreeNode();
-            tmpNode = root;
-            return new ArrayList<>();
+            return ;
         }
 
         String sql = "SELECT i "
                 + " FROM WebUserPrivilege i "
-                + " where i.webUser=:wu ";
+                + " where i.webUser=:wu "
+                + " and i.retired=:ret";
         Map m = new HashMap();
         m.put("wu", getCurrentWebUser());
+        m.put("ret", false);
         items = getEjbFacade().findBySQL(sql, m);
         if (items == null) {
-            items = new ArrayList<>();
-            root = createTreeNode();
-            tmpNode = root;
-            return items;
+            return;
         }
-
-        root = createTreeNode();
+  
         for (WebUserPrivilege wup : items) {
+            System.out.println("wup.isRetired() = " + wup.isRetired());
             for (Object o : root.getChildren()) {
                 PrivilageNode n = (PrivilageNode) o;
-                if (wup.getPrivilege() == n.getP()) {
-                    n.setSelected(!wup.isRetired());
+                System.out.println("n.getP() = " + n.getP());
+                if (n.getP()!=null && wup.getPrivilege().equals(n.getP())) {
+                    n.setSelected(true);
+                    System.out.println("n.isSelected() = " + n.isSelected());
                 }
                 for (Object o1 : n.getChildren()) {
                     PrivilageNode n1 = (PrivilageNode) o1;
-                    if (wup.getPrivilege() == n1.getP()) {
-                        n1.setSelected(!wup.isRetired());
+                    System.out.println("n1.getP() = " + n1.getP());
+                    if (n1.getP()!=null && wup.getPrivilege().equals(n1.getP())) {
+                        n1.setSelected(true);
+                        System.out.println("n1.isSelected() = " + n1.isSelected());
                     }
                     for (Object o2 : n1.getChildren()) {
                         PrivilageNode n2 = (PrivilageNode) o2;
-                        if (wup.getPrivilege() == n2.getP()) {
-                            n2.setSelected(!wup.isRetired());
+                        System.out.println("n2.getP() = " + n2.getP());
+                        if (n2.getP()!=null && wup.getPrivilege().equals(n2.getP())) {
+                            n2.setSelected(true);
+                            System.out.println("n2.isSelected() = " + n2.isSelected());
                         }
                     }
                 }
             }
         }
-        tmpNode = root;
-        return items;
+
     }
 
 //    public void markTreeNode(Privileges p, TreeNode n) {
@@ -664,7 +680,7 @@ public class UserPrivilageController implements Serializable {
 
     public void setCurrentWebUser(WebUser currentWebUser) {
         this.currentWebUser = currentWebUser;
-        tmpNode = null;
+        root = null;
     }
 
     public List<Privileges> getPrivilegeList() {
@@ -690,6 +706,14 @@ public class UserPrivilageController implements Serializable {
 
     public void setRoot(TreeNode root) {
         this.root = root;
+    }
+
+    public TreeNode[] getSelectedNodes() {
+        return selectedNodes;
+    }
+
+    public void setSelectedNodes(TreeNode[] selectedNodes) {
+        this.selectedNodes = selectedNodes;
     }
 
     /**
