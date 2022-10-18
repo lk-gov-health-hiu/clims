@@ -7,9 +7,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:phi="http://java.sun.com/jsf/composite/pharmacy"
       xmlns:bi="http://java.sun.com/jsf/composite/bill"
-      xmlns:pa="http://java.sun.com/jsf/composite/paymentMethod"
       xmlns:pat="http://java.sun.com/jsf/composite/patient">
     <h:body>
         <ui:composition template="/resources/template/template.xhtml">
@@ -20,7 +18,7 @@
 
                 <h:panelGroup rendered="#{webUserController.hasPrivilege('OpdBilling') or webUserController.hasPrivilege('LabCashier')}" styleClass="opdPanel" >
                     <h:form id="form">
-                        <p:growl autoUpdate="true" id="growl" ></p:growl>
+                        <p:growl  id="growl" ></p:growl>
                         <p:focus id="focusIx" for="acIx" />
                         <f:facet name="header">
                             <h:outputLabel value="OPD"/>
@@ -45,10 +43,12 @@
                                     <div class="row" >
                                         <div class="col-md-6" >
                                             <div class="form" >
-                                                <p:tabView id="tvPt" activeIndex="#{billController.patientSearchTab}" class="w-100 m-0 p-2" >
-                                                    <p:ajax event="tabChange"   process="@this"  
-                                                            listener="#{billController.onTabChange}" />
-                                                    <p:tab id="tabNewPt" title="New Patient"   >
+                                                <p:outputLabel id="lblTab" value="#{billController.patientTabId}" ></p:outputLabel>
+                                                <p:accordionPanel id="tvPt" activeIndex="#{billController.patientSearchTab}"
+                                                           class="w-100 m-0 p-2" >
+                                                    <p:ajax event="tabChange"    
+                                                            listener="#{billController.onTabChange}" update="lblTab"/>
+                                                    <p:tab id="tabNewPt1" title="New Patient"   >
                                                         <div class="row">
                                                             <div class="col-3">
                                                                 <h:selectOneMenu  id="cmbTitle"  
@@ -198,7 +198,7 @@
                                                         </h:panelGroup>
 
                                                     </p:tab>
-                                                </p:tabView>
+                                                </p:accordionPanel>
                                             </div>
                                         </div>
                                         <div class="col-md-6" >
