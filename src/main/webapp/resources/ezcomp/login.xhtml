@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:outputStylesheet library="css" name="login.css" ></h:outputStylesheet>
+        <section class="h-100 gradient-form" style="background-color: #eee;">
+            <div class="container py-5 h-100" >
+                <div class="row d-flex justify-content-center align-items-center h-100" >
+                    <div class="col-xl-10" >
+                        <div class="card rounded-3 text-black" >
+                            <div class="row g-0" >
+                                <div class="col-lg-6" >
+                                    <div class="card-body p-md-5 mx-md-4">
+
+                                        <div class="text-center">
+
+                                            <h:graphicImage library="images" name="logo.png" style="width: 185px;" alt="logo"></h:graphicImage>
+
+                                            <h4 class="mt-1 mb-5 pb-1">Cloud Laboratory Information Management System
+                                            </h4>
+                                        </div>
+
+                                        <h:form>
+                                            <p>Please login to your account</p>
+
+                                            <div class="form-outline mb-4">
+                                                <p:inputText autocomplete="off" 
+                                                             id="txtUserName"
+                                                             class="form-control"
+                                                             value="#{sessionController.userName}"
+                                                             style="text-align: left; margin: 5px; padding: 5px;" >
+                                                </p:inputText>
+                                                <label class="form-label" for="txtUserName">Username</label>
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <p:password id="txtPassword"
+                                                            class="form-control" 
+                                                            value="#{sessionController.passord}" 
+
+                                                            ></p:password>
+
+                                                <label class="form-label" for="txtPassword">Password</label>
+                                            </div>
+
+                                            <div class="text-center pt-1 mb-5 pb-1">
+                                                <p:commandButton value="Log in" 
+                                                                 id="btnLogin"
+                                                                 ajax="false"
+                                                                 styleClass="ui-button-raised ui-button-success ui-button-flat"
+                                                                 action="#{sessionController.loginActionWithoutDepartment()}" >
+                                                </p:commandButton>
+
+                                            </div>
+
+
+                                        </h:form>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 d-flex align-items-center gradient-custom-2" >
+                                    <div class="text-white px-3 py-4 p-md-5 mx-md-4" >
+                                        <h4 class="mb-4">Medical Research Institute – MRI</h4>
+                                        <p class="small mb-0 text-start">Welcome to Cloud Laboratory Information Management System (cLIMS). Please login to proceed.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </cc:implementation>
+</html>

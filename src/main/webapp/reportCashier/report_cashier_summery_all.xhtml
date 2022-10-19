@@ -12,14 +12,16 @@
         <ui:composition template="./../resources/template/template.xhtml">
 
 
-            <ui:define name="content">    
-
-
-                <h:form>
-                    <p:panel id="reportPrint" header="All Cashier Summery" >
-
-                        <h:panelGrid columns="2"  styleClass="noPrintButton">
-                            <h:outputLabel value="Department" />
+            <ui:define name="content">  
+                <div class="card">
+                    <div class="card-header font-weight-bolder bg-primary text-white" >
+                        All Cashier Summery
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <div clas="col-md-3">
+                                <h:panelGrid columns="2"  styleClass="noPrintButton">
+                                    <h:outputLabel value="Department" />
                             <h:outputLabel value="#{sessionController.department.name}" />
 
                             <h:outputLabel value="From Date" />
@@ -32,33 +34,55 @@
 
 
                         </h:panelGrid>
+                            </div>
+                            
+                            <div class="col-lg-9">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h:form>
+                    <p:panel id="reportPrint" >
+
+                        
 
                         <h:panelGrid columns="5" >
 
 
 
-                            <p:commandButton id="btnRefresh" ajax="false" 
-                                             value="Process All Bills" 
-                                             styleClass="noPrintButton" 
-                                             style="float: right;" 
+                            <h:commandButton id="btnRefresh" 
+                                             class="form form-control btn btn-primary "
+                                             
+                                             value="Process All Bills"                                            
                                              actionListener="#{cashierReportController.calCashierData()}" />  
-                            <p:commandButton id="btnRefresh1" ajax="false" 
-                                             value="Process Channel Bills" 
-                                             styleClass="noPrintButton" 
-                                             style="float: right;" 
-                                             actionListener="#{cashierReportController.calCashierDataChannel()}" />  
-                            <p:commandButton id="btnRefresh2" ajax="false" 
-                                             value="Process Other Bills" 
-                                             styleClass="noPrintButton" 
-                                             style="float: right;" 
-                                             actionListener="#{cashierReportController.calCashierDataCashier()}" />  
-                            <p:commandButton ajax="false" value="Print" styleClass="noPrintButton" style="float: right;" >
-                                <p:printer target="reportPrint" />
-                            </p:commandButton>  
 
-                            <p:commandButton ajax="false" value="Excel" styleClass="noPrintButton" style="float: right;">
-                                <pe:exporter type="xlsx" target="tbl" fileName="All_Cashier_Summery" subTable="true"/>
-                            </p:commandButton>  
+
+                            <h:commandButton id="btnRefresh1"
+                                             class="form form-control btn btn-primary p-2 "
+                                             value="Process Channel Bills" 
+                                             actionListener="#{cashierReportController.calCashierDataChannel()}" />  
+
+
+                            <h:commandButton id="btnRefresh2" 
+                                             class="form form-control btn btn-primary m-2"
+                                             value="Process Other Bills"       
+                                             actionListener="#{cashierReportController.calCashierDataCashier()}" />  
+
+
+                            <h:commandButton class="form form-control btn btn-primary m-2"
+                                             value="Print" >
+                                <p:printer  target="reportPrint" />
+                            </h:commandButton>  
+
+                            <h:commandButton  class="form form-control btn btn-primary  m-2" 
+                                              value="Excel" >
+                                <pe:exporter type="xlsx" target="tbl" 
+                                             fileName="All_Cashier_Summery" 
+                                             subTable="true"/>
+                            </h:commandButton>  
 
 
 
@@ -69,7 +93,7 @@
 
                         <p:dataTable id="tbl" value="#{cashierReportController.webUserBillsTotals}" var="csh">
 
-                            <p:columnGroup type="header">
+                            <p:columnGroup class="form form-control" type="header">
                                 <p:row>
                                     <p:column headerText="User Name"/>
                                     <p:column headerText="Cash"/>

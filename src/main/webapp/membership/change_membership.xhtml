@@ -12,17 +12,25 @@
 
 
             <ui:define name="content">
+                
+                <div class="card-header font-weight-bolder bg-primary text-white" >
+                    Change Membership
+                        </div> 
 
-                <p:panel header="Change Membership" style="width: 100%" >
+                <p:panel >
                     <table style="width: 100%" class="alignTop">
                         <tr>
                             <td style="width: 10%" >
                                 <h:form>
                                     <p:panelGrid columns="1" >
-                                        <p:commandButton value="List All Members" ajax="false"
-                                                         action="#{patientController.listAllMembers()}" ></p:commandButton>
-                                        <p:commandButton value="List All Persons" ajax="false"
-                                                         action="#{patientController.listAllPatients()}" ></p:commandButton>
+                                        <h:commandButton value="List All Members" 
+                                                         class="form form-control btn btn-outline-primary"
+                                                         action="#{patientController.listAllMembers()}" >
+                                        </h:commandButton>
+                                        <h:commandButton value="List All Persons" 
+                                                         class="form form-control btn btn-outline-primary"
+                                                         action="#{patientController.listAllPatients()}" >
+                                        </h:commandButton>
                                     </p:panelGrid>
                                 </h:form>
                             </td>
@@ -33,8 +41,10 @@
                                         <p:selectOneMenu id="membershipScheme" value="#{patientController.membershipScheme}" >
                                             <f:selectItems value="#{membershipSchemeController.items}" var="m" itemLabel="#{m.name}" itemValue="#{m}"/>
                                         </p:selectOneMenu>
-                                        <p:commandButton value="Update Membership for Selected" ajax="false"
-                                                         action="#{patientController.changeMembershipOfSelectedPersons()}" ></p:commandButton>
+                                        <h:commandButton value="Update Membership for Selected" 
+                                                         class="form form-control btn btn-primary"
+                                                         action="#{patientController.changeMembershipOfSelectedPersons()}" >
+                                        </h:commandButton>
 
                                     </p:panelGrid>
 

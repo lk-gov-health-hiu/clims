@@ -11,12 +11,15 @@
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <h:form >
-                    <p:panelGrid columns="1" >
-                        <p:commandButton ajax="false" value="All Visits" action="/clinical/clinical_reports_all_opd_visits" actionListener="#{patientEncounterController.listAllEncounters()}" onclick="onSubmitButton();" >
-                        </p:commandButton>
-                        <p:commandButton ajax="false" value="Daily Visits" action="/clinical/report_queue" actionListener="#{patientEncounterController.listAllEncounters()}" onclick="onSubmitButton();" >
-                        </p:commandButton>
-                    </p:panelGrid>
+                    <h:panelGrid columns="1" >
+                        <h:commandButton class="form form-control btn btn-primary m-1"
+                                         value="All Visits" action="/clinical/clinical_reports_all_opd_visits" 
+                                         actionListener="#{patientEncounterController.listAllEncounters()}"
+                                         onclick="onSubmitButton();" >
+                        </h:commandButton>
+                        <h:commandButton class="form form-control btn btn-primary m-1" value="Daily Visits" action="/clinical/report_queue" actionListener="#{patientEncounterController.listAllEncounters()}" onclick="onSubmitButton();" >
+                        </h:commandButton>
+                    </h:panelGrid>
                     
                 </h:form>
                 

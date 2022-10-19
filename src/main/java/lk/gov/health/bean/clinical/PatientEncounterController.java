@@ -13,7 +13,7 @@ import lk.gov.health.bean.common.CommonController;
 import lk.gov.health.bean.common.CommonFunctionsController;
 import lk.gov.health.bean.common.SessionController;
 import lk.gov.health.bean.common.UtilityController;
-import lk.gov.health.bean.pharmacy.PharmacySaleController;
+
 import lk.gov.health.data.BillType;
 import lk.gov.health.data.SymanticType;
 import lk.gov.health.data.clinical.ItemUsageType;
@@ -85,8 +85,7 @@ public class PatientEncounterController implements Serializable {
     private CommonFunctionsController commonFunctions;
     @Inject
     SessionController sessionController;
-    @Inject
-    PharmacySaleController pharmacySaleController;
+
     @Inject
     BillController billController;
     @Inject
@@ -523,11 +522,7 @@ public class PatientEncounterController implements Serializable {
         if (current == null) {
             return "";
         }
-        getPharmacySaleController().setSearchedPatient(current.getPatient());
-        getPharmacySaleController().setPatientSearchTab(1);
-        getPharmacySaleController().setOpdEncounterComments(current.getComments());
-        getPharmacySaleController().setFromOpdEncounter(true);
-        getPharmacySaleController().setPatientTabId("tabSearchPt");
+
 //        getPharmacySaleController().getBill().setPatientEncounter(current);
 //        getPharmacySaleController().getBill().setPatient(current.getPatient());
         return "/clinical/clinical_pharmacy_sale";
@@ -667,9 +662,7 @@ public class PatientEncounterController implements Serializable {
         this.removingCfv = removingCfv;
     }
 
-    public PharmacySaleController getPharmacySaleController() {
-        return pharmacySaleController;
-    }
+
 
     public Date getFromDate() {
         if (fromDate == null) {

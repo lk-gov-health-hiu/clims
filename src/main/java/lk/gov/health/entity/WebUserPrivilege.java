@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -46,6 +47,10 @@ public class WebUserPrivilege implements Serializable {
     String retireComments;
     String sname;
     String tname;
+    @Transient
+    private boolean selected;
+    
+    
 
     public Long getId() {
         return id;
@@ -174,5 +179,15 @@ public class WebUserPrivilege implements Serializable {
     @Override
     public String toString() {
         return "lk.gov.health.data.WebUserPrivilege[ id=" + id + " ]";
+    }
+
+    public boolean isSelected() {
+        selected = !retired;
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        retired = !selected;
+        this.selected = selected;
     }
 }

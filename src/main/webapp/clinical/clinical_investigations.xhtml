@@ -15,17 +15,17 @@
                 <p:growl />
 
                 <p:panel header="Manage Investigation" >
-                    <h:panelGrid id ="gpVeda" columns="2" styleClass="alignTop" >
+                    <h:panelGrid  id ="gpVeda" columns="2" styleClass="alignTop" >
 
-                        <h:panelGrid id="gpSelect" columns="1"  >
+                        <h:panelGrid class="m-1" id="gpSelect" columns="1"  >
                             <p:panel header="Search Investigation" >
                                 <h:panelGrid id="gpSelectText" >
 
-                                    <p:inputText autocomplete="off" id="txtSearch" value="#{investigationController.selectText}" >
+                                    <p:inputText class="m-1" autocomplete="off" id="txtSearch" value="#{investigationController.selectText}" >
                                         <f:ajax execute="txtSearch" render="lstSelect" event="keyup" />
                                     </p:inputText>
 
-                                    <p:selectOneListbox converter="ixcon"   id="lstSelect"   value="#{investigationController.current}" style="min-width: 223px; height: 300px;" >
+                                    <p:selectOneListbox class="m-1" converter="ixcon"   id="lstSelect"   value="#{investigationController.current}" style="min-width: 223px; height: 300px;" >
                                         <f:selectItems  value="#{investigationController.selectedItems}" var="myItem" itemValue="#{myItem}" itemLabel="#{myItem.name}" ></f:selectItems>
                                         <p:ajax event="change"   update="gpDetail" process="lstSelect" >
                                         </p:ajax>
@@ -34,11 +34,11 @@
 
                                 </h:panelGrid>
                                 <h:panelGrid id="gpSelectButtons" columns="3"  >
-                                    <p:commandButton id="btnAdd" ajax="false" value="Add" action="#{investigationController.prepareAdd()}" styleClass="buttons"  onclick="onSubmitButton();">
+                                    <p:commandButton class="m-1" id="btnAdd" ajax="false" value="Add" action="#{investigationController.prepareAdd()}" onclick="onSubmitButton();">
                                         <f:ajax render="btnAdd  btnDelete btnSave   lstSelect gpDetail " execute="" >
                                         </f:ajax>
                                     </p:commandButton>
-                                    <p:commandButton id="btnDelete" ajax="false" onclick="if (!confirm('Are you sure you want to delete this record?'))
+                                    <p:commandButton class="m-1" id="btnDelete" ajax="false" onclick="if (!confirm('Are you sure you want to delete this record?'))
                                                 return false;" action="#{investigationController.delete()}"  value="Delete"  >
                                     </p:commandButton>
 
@@ -47,28 +47,28 @@
                             </p:panel>
                         </h:panelGrid  >
 
-                        <p:panel header="Edit Details">
+                        <p:panel class="m-1" header="Edit Details">
                             <f:facet name="header" >
                                 <h:outputLabel value="Edit Details" ></h:outputLabel>
                                 <p:commandButton style="float:right;" id="btnSave" value="Save"  action="#{investigationController.saveSelected()}" styleClass="buttons" 
-                                               ajax="false"  onclick="onSubmitButton();" >
+                                                 ajax="false"  onclick="onSubmitButton();" >
                                 </p:commandButton>
                             </f:facet>
                             <h:panelGrid id="gpDetail" columns="1">
                                 <h:panelGrid id="gpDetailText" columns="2">
                                     <h:outputText id="lblName" value="Name" ></h:outputText>
-                                    <h:inputText autocomplete="off" id="txtName" value="#{investigationController.current.name}" required="true" ></h:inputText>
+                                    <p:inputText class=" m-1" autocomplete="off" id="txtName" value="#{investigationController.current.name}" required="true" ></p:inputText>
                                     <h:outputText id="lblAddress" value="Printing Name" ></h:outputText>
-                                    <h:inputText autocomplete="off" id="txtAddress"  class="pdInputText" value="#{investigationController.current.printName}"  ></h:inputText>
+                                    <h:inputText class=" m-1" autocomplete="off" id="txtAddress"  class="pdInputText" value="#{investigationController.current.printName}"  ></h:inputText>
                                     <h:outputText id="lblFullName" value="Full Name" ></h:outputText>
-                                    <h:inputText autocomplete="off" id="txtFullName"  class="pdInputText" value="#{investigationController.current.fullName}"  ></h:inputText>
+                                    <h:inputText class=" m-1" autocomplete="off" id="txtFullName"  class="pdInputText" value="#{investigationController.current.fullName}"  ></h:inputText>
                                     <p:outputLabel value="Item Code"/>
                                     <p:inputText autocomplete="off" value="#{investigationController.current.code}"/>
                                 </h:panelGrid>
                             </h:panelGrid>
                         </p:panel>
                     </h:panelGrid>
-                    <p:commandButton ajax="false" value="Set Symantic Type for All" action="#{investigationController.makeSymanticTypeForAllIx}"  onclick="onSubmitButton();"></p:commandButton>
+                    <p:commandButton class="m-1" ajax="false" value="Set Symantic Type for All" action="#{investigationController.makeSymanticTypeForAllIx}"  onclick="onSubmitButton();"></p:commandButton>
                 </p:panel>
             </h:form>
 

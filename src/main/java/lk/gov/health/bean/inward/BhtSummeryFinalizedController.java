@@ -8,7 +8,6 @@ package lk.gov.health.bean.inward;
 import lk.gov.health.bean.common.BillBeanController;
 import lk.gov.health.bean.common.CommonController;
 import lk.gov.health.bean.common.SessionController;
-import lk.gov.health.bean.pharmacy.BhtIssueReturnController;
 import lk.gov.health.data.BillType;
 import lk.gov.health.data.FeeType;
 import lk.gov.health.data.PaymentMethod;
@@ -76,7 +75,7 @@ public class BhtSummeryFinalizedController implements Serializable {
     List<BillItem> billItemsInward;
     List<bhtWithVat> bhtWithVats;
 
-    public BhtSummeryFinalizedController(BillFacade billfacade, BillFeeFacade billFeeFacade, PatientEncounter patientEncounter, List<PatientRoom> patientRooms, List<PatientItem> patientItems, List<BillItem> billItems, List<BillFee> billFees, List<BillItem> pharmacyItems, List<BillItem> storeItems, List<BillFee> proBillFee, List<BillFee> assistBillFee, List<Bill> outSideBills, List<Bill> paymentBills, List<Bill> paidbyPatientBillList, List<BillItem> creditPayment, List<BillItem> billItemsInward, Date fromDate, Date toDate, CommonFunctions commonFunctions, AdmissionType admissionType, InwardChargeType inwardChargeType, Bill bill, InwardBeanController inwardBean, InwardReportControllerBht inwardReportControllerBht, CommonController commonController, double billItemGross, double billItemMargin, double billItemDiscount, double billItemNetValue, double billItemGrossPharmacy, double billItemMarginPharmacy, double billItemDiscountPharmacy, double billFeeGross, double billFeeMargin, double billFeeDiscount, double billFeeNetValue, double paidbyPatientTotalValue, double creditCompanyPaymentTotal, PatientRoomFacade patientRoomFacade, double totalGross, double totalDiscount, double totalNet, double totalVat, double totalMed, PatientEncounterFacade patientEncounterFacade, List<BillFee> fillteredFees, List<BillItem> filterItems, BillItemFacade billItemFacade, SpecialityFacade specialityFacade, StaffFacade staffFacade, BillBeanController billBeanController, ItemFeeFacade itemFeeFacade, BhtIssueReturnController bhtIssueReturnController, SessionController sessionController, PatientItemFacade patientItemFacade) {
+    public BhtSummeryFinalizedController(BillFacade billfacade, BillFeeFacade billFeeFacade, PatientEncounter patientEncounter, List<PatientRoom> patientRooms, List<PatientItem> patientItems, List<BillItem> billItems, List<BillFee> billFees, List<BillItem> pharmacyItems, List<BillItem> storeItems, List<BillFee> proBillFee, List<BillFee> assistBillFee, List<Bill> outSideBills, List<Bill> paymentBills, List<Bill> paidbyPatientBillList, List<BillItem> creditPayment, List<BillItem> billItemsInward, Date fromDate, Date toDate, CommonFunctions commonFunctions, AdmissionType admissionType, InwardChargeType inwardChargeType, Bill bill, InwardBeanController inwardBean, InwardReportControllerBht inwardReportControllerBht, CommonController commonController, double billItemGross, double billItemMargin, double billItemDiscount, double billItemNetValue, double billItemGrossPharmacy, double billItemMarginPharmacy, double billItemDiscountPharmacy, double billFeeGross, double billFeeMargin, double billFeeDiscount, double billFeeNetValue, double paidbyPatientTotalValue, double creditCompanyPaymentTotal, PatientRoomFacade patientRoomFacade, double totalGross, double totalDiscount, double totalNet, double totalVat, double totalMed, PatientEncounterFacade patientEncounterFacade, List<BillFee> fillteredFees, List<BillItem> filterItems, BillItemFacade billItemFacade, SpecialityFacade specialityFacade, StaffFacade staffFacade, BillBeanController billBeanController, ItemFeeFacade itemFeeFacade, Object bhtIssueReturnController, SessionController sessionController, PatientItemFacade patientItemFacade) {
         this.billfacade = billfacade;
         this.billFeeFacade = billFeeFacade;
         this.patientEncounter = patientEncounter;
@@ -129,7 +128,6 @@ public class BhtSummeryFinalizedController implements Serializable {
         this.staffFacade = staffFacade;
         this.billBeanController = billBeanController;
         this.itemFeeFacade = itemFeeFacade;
-        this.bhtIssueReturnController = bhtIssueReturnController;
         this.sessionController = sessionController;
         this.patientItemFacade = patientItemFacade;
     }
@@ -1040,8 +1038,8 @@ public class BhtSummeryFinalizedController implements Serializable {
 //
 //        }
     }
-    @Inject
-    BhtIssueReturnController bhtIssueReturnController;
+
+    
     @Inject
     SessionController sessionController;
     @EJB
@@ -1325,13 +1323,6 @@ public class BhtSummeryFinalizedController implements Serializable {
         this.itemFeeFacade = itemFeeFacade;
     }
 
-    public BhtIssueReturnController getBhtIssueReturnController() {
-        return bhtIssueReturnController;
-    }
-
-    public void setBhtIssueReturnController(BhtIssueReturnController bhtIssueReturnController) {
-        this.bhtIssueReturnController = bhtIssueReturnController;
-    }
 
     public SessionController getSessionController() {
         return sessionController;

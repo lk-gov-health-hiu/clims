@@ -5,7 +5,6 @@
  */
 package lk.gov.health.bean.common;
 
-import lk.gov.health.bean.collectingCentre.CollectingCentreBillController;
 import lk.gov.health.bean.inward.InwardBeanController;
 import lk.gov.health.data.BillType;
 import lk.gov.health.data.FeeType;
@@ -122,8 +121,6 @@ public class BillBeanController implements Serializable {
     AllowedPaymentMethodFacade allowedPaymentMethodFacade;
     @Inject
     DepartmentController departmentController;
-    @Inject
-    CollectingCentreBillController collectingCentreBillController;
 
     public boolean checkAllowedPaymentMethod(PaymentScheme paymentScheme, PaymentMethod paymentMethod) {
         String sql = "Select s From AllowedPaymentMethod s"
@@ -1781,7 +1778,7 @@ public class BillBeanController implements Serializable {
         return getBillFeeFacade().findAggregates(sql, temMap, TemporalType.TIMESTAMP);
 
     }
-    
+
     public List<Object[]> fetchBilledDepartmentItem(Date fromDate, Date toDate, Department department, BillType bt, boolean toDep) {
         String sql;
         Map temMap = new HashMap();
@@ -3346,21 +3343,15 @@ public class BillBeanController implements Serializable {
                     f.setBillItem(billItem);
                     f.setCreatedAt(new Date());
                     if (pi.getDepartment() != null) {
-                        if (i.getFeeType() == FeeType.CollectingCentre && collectingCentreBillController.getCollectingCentre() != null) {
-                            f.setDepartment(departmentController.getDefaultDepatrment(collectingCentreBillController.getCollectingCentre()));
-                        } else {
-                            f.setDepartment(pi.getDepartment());
-                        }
+
+                        f.setDepartment(pi.getDepartment());
 
                     } else {
                         // f.setDepartment(billItem.getBill().getDepartment());
                     }
                     if (pi.getInstitution() != null) {
-                        if (i.getFeeType() == FeeType.CollectingCentre && collectingCentreBillController.getCollectingCentre() != null) {
-                            f.setInstitution(collectingCentreBillController.getCollectingCentre());
-                        } else {
-                            f.setInstitution(pi.getInstitution());
-                        }
+
+                        f.setInstitution(pi.getInstitution());
 
                     } else {
                         // f.setInstitution(billItem.getBill().getDepartment().getInstitution());
@@ -3374,7 +3365,7 @@ public class BillBeanController implements Serializable {
                     f.setStaff(i.getStaff());
 
                     if (f.getBillItem().getItem().isVatable()) {
-                        if (!(f.getFee().getFeeType() == FeeType.CollectingCentre && collectingCentreBillController.getCollectingCentre() != null)) {
+                        if (!(f.getFee().getFeeType() == FeeType.CollectingCentre)) {
                             f.setFeeVat(f.getFeeValue() * f.getBillItem().getItem().getVatPercentage() / 100);
                         }
                     }
@@ -3398,20 +3389,14 @@ public class BillBeanController implements Serializable {
                 f.setBillItem(billItem);
                 f.setCreatedAt(new Date());
                 if (billItem.getItem().getDepartment() != null) {
-                    if (i.getFeeType() == FeeType.CollectingCentre && collectingCentreBillController.getCollectingCentre() != null) {
-                        f.setDepartment(departmentController.getDefaultDepatrment(collectingCentreBillController.getCollectingCentre()));
-                    } else {
-                        f.setDepartment(billItem.getItem().getDepartment());
-                    }
+
+                    f.setDepartment(billItem.getItem().getDepartment());
+
                 } else {
                     //  f.setDepartment(billItem.getBill().getDepartment());
                 }
                 if (billItem.getItem().getInstitution() != null) {
-                    if (i.getFeeType() == FeeType.CollectingCentre && collectingCentreBillController.getCollectingCentre() != null) {
-                        f.setInstitution(collectingCentreBillController.getCollectingCentre());
-                    } else {
-                        f.setInstitution(billItem.getItem().getInstitution());
-                    }
+                    f.setInstitution(billItem.getItem().getInstitution());
                 } else {
                     //   f.setInstitution(billItem.getBill().getDepartment().getInstitution());
                 }
@@ -3423,7 +3408,7 @@ public class BillBeanController implements Serializable {
                 f.setSpeciality(i.getSpeciality());
 
                 if (f.getBillItem().getItem().isVatable()) {
-                    if (!(f.getFee().getFeeType() == FeeType.CollectingCentre && collectingCentreBillController.getCollectingCentre() != null)) {
+                    if (!(f.getFee().getFeeType() == FeeType.CollectingCentre )) {
                         f.setFeeVat(f.getFeeValue() * f.getBillItem().getItem().getVatPercentage() / 100);
                     }
                 }

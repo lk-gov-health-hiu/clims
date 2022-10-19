@@ -31,9 +31,9 @@
                                     </p:selectOneListbox>
                                 </h:panelGrid>
                                 <h:panelGrid id="gpSelectButtons" columns="3"  >
-                                    <p:commandButton id="btnAdd" value="Add" action="#{procedureController.prepareAdd()}" styleClass="buttons" update="btnAdd  btnDelete btnSave   lstSelect gpDetail detailFocus" onclick="onSubmitButton();" >
+                                    <p:commandButton class="m-1" id="btnAdd" value="Add" action="#{procedureController.prepareAdd()}"  update="btnAdd  btnDelete btnSave   lstSelect gpDetail detailFocus" onclick="onSubmitButton();" >
                                     </p:commandButton>
-                                    <p:commandButton id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
+                                    <p:commandButton class="m-1" id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
                                                 return false;" action="#{procedureController.delete()}"  value="Delete"  >
                                     </p:commandButton>
                                 </h:panelGrid>
@@ -43,20 +43,20 @@
                         <p:panel>
                             <h:panelGrid id="gpDetail" columns="1">
                                 <h:panelGrid id="gpDetailText" columns="2">
-                                    <h:outputText id="lblName" value="Name" ></h:outputText>
-                                    <p:inputText autocomplete="off" id="txtName" value="#{procedureController.current.name}"  />
-                                    <h:outputText id="lblCode" value="Code" ></h:outputText>
-                                    <p:inputText autocomplete="off" id="txtCode" value="#{procedureController.current.code}"  />
-                                    <h:outputText id="lblDes" value="Description" ></h:outputText>
-                                    <p:inputTextarea id="txtDes" value="#{procedureController.current.descreption}"  />
-                                    <h:outputText value="Institution" ></h:outputText>
-                                    <p:selectOneMenu id="cmbIns" value="#{departmentController.institution}" >
-                                        <f:selectItem itemLabel="Please select a Institution"/>
-                                        <f:selectItems value="#{institutionController.companies}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat}" />
+                                    <h:outputText class="m-1"  id="lblName" value="Name" ></h:outputText>
+                                    <p:inputText class="m-1"  autocomplete="off" id="txtName" value="#{procedureController.current.name}"  />
+                                    <h:outputText class="m-1"  id="lblCode" value="Code" ></h:outputText>
+                                    <p:inputText class="m-1"  autocomplete="off" id="txtCode" value="#{procedureController.current.code}"  />
+                                    <h:outputText class="m-1"  id="lblDes" value="Description" ></h:outputText>
+                                    <p:inputTextarea class="m-1"  id="txtDes" value="#{procedureController.current.descreption}"  />
+                                    <h:outputText class="m-1"  value="Institution" ></h:outputText>
+                                    <p:selectOneMenu class="m-1"  id="cmbIns" value="#{departmentController.institution}" >
+                                        <f:selectItem class="m-1"  itemLabel="Please select a Institution"/>
+                                        <f:selectItems class="m-1"  value="#{institutionController.companies}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat}" />
                                         <f:ajax execute="cmbIns" render="cmbDep" event="change"/>                                        
                                     </p:selectOneMenu>
-                                    <h:outputText value="Department" ></h:outputText>
-                                    <p:selectOneMenu id="cmbDep" value="#{procedureController.current.department}" >
+                                    <h:outputText class="m-1"  value="Department" ></h:outputText>
+                                    <p:selectOneMenu class="m-1"  id="cmbDep" value="#{procedureController.current.department}" >
                                         <f:selectItem itemLabel="Please select a Department"/>
                                         <f:selectItems value="#{departmentController.institutionDepatrments}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat}" />
                                     </p:selectOneMenu>
@@ -70,7 +70,7 @@
                                     </h:outputText>
                                 </h:panelGrid>
                                 <h:panelGrid id="gpDetailButtons" columns="2">
-                                    <p:commandButton id="btnSave" value="Save" action="#{procedureController.saveSelected()}" styleClass="buttons"  update="btnAdd  btnDelete btnSave   lstSelect gpDetail selectFocus"  process="gpDetail" onclick="onSubmitButton();" >
+                                    <p:commandButton class="m-1"  id="btnSave" value="Save" action="#{procedureController.saveSelected()}" styleClass="buttons"  update="btnAdd  btnDelete btnSave   lstSelect gpDetail selectFocus"  process="gpDetail" onclick="onSubmitButton();" >
                                     </p:commandButton>
                                 </h:panelGrid>
                             </h:panelGrid>

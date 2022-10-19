@@ -10,20 +10,25 @@
         <ui:composition template="/resources/template/template.xhtml">
 
             <ui:define name="content">
+
+                <div class="card-header font-weight-bolder bg-primary text-white" >
+                    Clinical - Administration
+                </div> 
+
                 <h:form>
-                    <p:panel header="Clinicals - Administration" >
-                        <h:panelGrid columns="1">
-                            <p:commandButton styleClass="linkButton" ajax="false" value="Vocabularies" action="/clinical/clinical_vocabulary" onclick="onSubmitButton();" ></p:commandButton>
-                            <p:commandButton styleClass="linkButton" ajax="false" value="Symptoms" action="/clinical/clinical_symptoms" onclick="onSubmitButton();" ></p:commandButton>
-                            <p:commandButton styleClass="linkButton" ajax="false" value="Signs" action="/clinical/clinical_signs" onclick="onSubmitButton();" ></p:commandButton>
-                            <p:commandButton styleClass="linkButton" ajax="false" value="Diagnosis" action="/clinical/clinical_diagnosis" onclick="onSubmitButton();" ></p:commandButton>
-                            <p:commandButton styleClass="linkButton" ajax="false" value="Investigations" action="/clinical/clinical_investigations" onclick="onSubmitButton();" ></p:commandButton>
-                            <p:commandButton styleClass="linkButton" ajax="false" value="Procedures" action="/clinical/clinical_procedures" onclick="onSubmitButton();" ></p:commandButton>
-                            <p:commandButton styleClass="linkButton" ajax="false" value="Plan of actions" action="/clinical/clinical_plans" onclick="onSubmitButton();" ></p:commandButton>
-                            <p:commandButton styleClass="linkButton" ajax="false" value="Treatements" action="/clinical/clinical_treatment" onclick="onSubmitButton();" ></p:commandButton>
+                    <p:panel >
+                        <p:panelGrid columns="1">
+                            <h:commandButton styleClass="linkButton" class="form form-control btn btn-primary" value="Vocabularies" action="/clinical/clinical_vocabulary" onclick="onSubmitButton();" ></h:commandButton>
+                            <h:commandButton styleClass="linkButton" class="form form-control btn btn-primary" value="Symptoms" action="/clinical/clinical_symptoms" onclick="onSubmitButton();" ></h:commandButton>
+                            <h:commandButton styleClass="linkButton" class="form form-control btn btn-primary" value="Signs" action="/clinical/clinical_signs" onclick="onSubmitButton();" ></h:commandButton>
+                            <h:commandButton styleClass="linkButton" class="form form-control btn btn-primary" value="Diagnosis" action="/clinical/clinical_diagnosis" onclick="onSubmitButton();" ></h:commandButton>
+                            <h:commandButton styleClass="linkButton" class="form form-control btn btn-primary" value="Investigations" action="/clinical/clinical_investigations" onclick="onSubmitButton();" ></h:commandButton>
+                            <h:commandButton styleClass="linkButton" class="form form-control btn btn-primary" value="Procedures" action="/clinical/clinical_procedures" onclick="onSubmitButton();" ></h:commandButton>
+                            <h:commandButton styleClass="linkButton" class="form form-control btn btn-primary" value="Plan of actions" action="/clinical/clinical_plans" onclick="onSubmitButton();" ></h:commandButton>
+                            <h:commandButton styleClass="linkButton" class="form form-control btn btn-primary" value="Treatements" action="/clinical/clinical_treatment" onclick="onSubmitButton();" ></h:commandButton>
 
 
-                        </h:panelGrid>
+                        </p:panelGrid>
                     </p:panel>
                 </h:form>
             </ui:define>

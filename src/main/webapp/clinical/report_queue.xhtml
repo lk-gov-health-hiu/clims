@@ -11,21 +11,27 @@
         <ui:composition template="/resources/template/template.xhtml">
 
             <ui:define name="content">
+                
+                 <div class="card-header font-weight-bolder bg-primary text-white" >
+                        Queue
+                    </div> 
 
                 <p:panel >
 
 
-                    <p:panel  id="panelQueue" header="Queue" >
+                    <p:panel >
                         <h:form>
                             <h:panelGrid columns="3" >
                                 <h:outputLabel value="Date" id="calSessionDate" ></h:outputLabel>
                                 <p:calendar value="#{practiceBookingController.sessionDate}" pattern="dd MMMM yyyy" >
                                 </p:calendar>
                                 <h:outputLabel value="" ></h:outputLabel>
-                                <p:commandButton   value="Process" ajax="false" style="float: right;" 
+                                <h:commandButton   value="Process" 
+                                                   class="form form-control btn btn-primary"
+                                                   style="float: right;" 
                                                   action="#{practiceBookingController.listPatientEncounters()}" 
                                                    onclick="onSubmitButton();" >                        
-                                </p:commandButton>
+                                </h:commandButton>
                             </h:panelGrid>
                         </h:form>
 

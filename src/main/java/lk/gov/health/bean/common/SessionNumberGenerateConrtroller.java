@@ -1,10 +1,11 @@
 package lk.gov.health.bean.common;
 
-import lk.gov.health.bean.channel.SheduleController;
+
 import lk.gov.health.entity.SessionNumberGenerator;
 import lk.gov.health.entity.Speciality;
 import lk.gov.health.facade.SessionNumberGeneratorFacade;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +29,7 @@ public class SessionNumberGenerateConrtroller implements Serializable {
 
     @Inject
     SessionController sessionController;
-    @Inject
-    SheduleController sheduleController;
+
     @EJB
     SessionNumberGeneratorFacade sessionNumberGeneratorFacade;
 
@@ -61,18 +61,9 @@ public class SessionNumberGenerateConrtroller implements Serializable {
 
     public List<SessionNumberGenerator> completeSessionNumberGenerator(String qry) {
 
-        String sql;
-        Map m=new HashMap();
-        sql = " SELECT sg FROM SessionNumberGenerator sg WHERE sg.retired=false"
-                + " and upper(sg.name) like '%" + qry.toUpperCase() + "%' "
-                + " and sg.speciality=:sp"
-                + " and sg.staff=:s "
-                + " order by sg.name";
-        
-        m.put("sp", sheduleController.getSpeciality());
-        m.put("s", sheduleController.getCurrentStaff());
+    
 
-        SessionNumberGeneratorlst = sessionNumberGeneratorFacade.findBySQL(sql,m);
+        SessionNumberGeneratorlst = new ArrayList<>();
 
         return SessionNumberGeneratorlst;
     }

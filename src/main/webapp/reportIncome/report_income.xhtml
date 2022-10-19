@@ -18,33 +18,29 @@
                          <p:tabView orientation="left" > 
                         
                                <p:tab title="1) With Credit" >
-                                <h:panelGrid columns="1" >  
-                                    
-                      
-                                        <p:commandButton styleClass="linkButton" ajax="false" value="By Institution" action="report_income_with_credit_by_institution"/>
-                                        <p:commandButton styleClass="linkButton" ajax="false" value="By Department (Reported)" action="report_income_with_credit_by_department"/>                                
-                                        <p:commandButton styleClass="linkButton" ajax="false" value="By Department (Billed)" action="report_income_with_credit_by_department_billed"/>                                
-                                        <p:commandButton styleClass="linkButton" ajax="false" value="By Department (Billed)(Bill Item)" action="report_income_with_credit_by_department_billed_bill_item"/>                                
-                                        <p:commandButton styleClass="linkButton" ajax="false" value="By Institution Bill Count" action="report_income_with_credit_by_institution_for_build_bills"/>                                
-                                    </h:panelGrid>
+                                <p:panelGrid columns="1" >  
+                                        <h:commandButton styleClass="linkButton" class="form form-control btn btn-outline-primary" value="By Institution" action="report_income_with_credit_by_institution"/>
+                                        <h:commandButton styleClass="linkButton" class="form form-control btn btn-outline-primary" value="By Department (Reported)" action="report_income_with_credit_by_department"/>                                
+                                        <h:commandButton styleClass="linkButton" class="form form-control btn btn-outline-primary" value="By Department (Billed)" action="report_income_with_credit_by_department_billed"/>                                
+                                        <h:commandButton styleClass="linkButton" class="form form-control btn btn-outline-primary" value="By Department (Billed)(Bill Item)" action="report_income_with_credit_by_department_billed_bill_item"/>                                
+                                        <h:commandButton styleClass="linkButton" class="form form-control btn btn-outline-primary" value="By Institution Bill Count" action="report_income_with_credit_by_institution_for_build_bills"/>                                
+                                    </p:panelGrid>
                                   </p:tab>
                          
                               <p:tab title="2) Without Credit" >
-                                <h:panelGrid columns="1" >  
-                         
-                              
-                                        <p:commandButton styleClass="linkButton" ajax="false" value="By Institution" action="report_income_without_credit_by_institution"/>
-                                        <p:commandButton styleClass="linkButton" ajax="false" value="By Department" action="report_income_without_credit_by_department"/>                                
-                             </h:panelGrid>
+                                <p:panelGrid columns="1" >  
+                                        <h:commandButton styleClass="linkButton" class="form form-control btn btn-outline-primary" value="By Institution" action="report_income_without_credit_by_institution"/>
+                                        <h:commandButton styleClass="linkButton" class="form form-control btn btn-outline-primary" value="By Department" action="report_income_without_credit_by_department"/>                                
+                             </p:panelGrid>
                                   </p:tab>
                              
                              
                                   <p:tab title="3) Doctor Payments" >
-                                <h:panelGrid columns="1" > 
+                                <p:panelGrid columns="1" > 
                            
-                                        <p:commandButton styleClass="linkButton" ajax="false" value="Doctor Payment Due Report Opd" action="/reportIncome/opd_professional_payment_due"/>
-                                        <p:commandButton styleClass="linkButton" ajax="false" value="By Department" action="report_income_without_credit_by_department"/>                                
-                                </h:panelGrid>
+                                        <h:commandButton styleClass="linkButton" class="form form-control btn btn-outline-primary" value="Doctor Payment Due Report Opd" action="/reportIncome/opd_professional_payment_due"/>
+                                        <h:commandButton styleClass="linkButton" class="form form-control btn btn-outline-primary" value="By Department" action="report_income_without_credit_by_department"/>                                
+                                </p:panelGrid>
                                   </p:tab>    
                                 
                          </p:tabView>

@@ -10,6 +10,11 @@
 
         <ui:define name="content">
 
+            <div class="card-header font-weight-bolder bg-primary text-white" >
+                Sample
+            </div>
+
+
             <h:panelGroup rendered="#{!webUserController.hasPrivilege('LabSampleCollecting')}" >
                 You are NOT authorized
             </h:panelGroup>
@@ -17,7 +22,7 @@
             <h:panelGroup rendered="#{webUserController.hasPrivilege('LabSampleCollecting')}" >
                 <h:form  >
                     <p:growl />
-                    <p:panel header="Sample" >
+                    <p:panel >
                         <p:panelGrid columns="1" styleClass="alignTop" >
                             <p:panelGrid columns="2" >
                                 <p:panelGrid columns="2">
@@ -31,14 +36,16 @@
                                     </p:calendar>
                                 </p:panelGrid>
                                 <p:panelGrid columns="1">
-                                    <p:commandButton id="btnRefresh" ajax="false" 
+                                    <h:commandButton id="btnRefresh" 
+                                                     class="form form-control btn btn-primary"
                                                      actionListener="#{patientInvestigationController.prepareToSample()}" 
                                                      value="List Samples to Collect" onclick="onSubmitButton();"  >
-                                    </p:commandButton>
-                                    <p:commandButton id="btnCollected" ajax="false" 
+                                    </h:commandButton>
+                                    <h:commandButton id="btnCollected" 
+                                                     class='form form-control btn btn-primary'
                                                      actionListener="#{patientInvestigationController.prepareSampled()}" 
                                                      value="List Collected Samples" onclick="onSubmitButton();"  >
-                                    </p:commandButton>
+                                    </h:commandButton>
                                 </p:panelGrid>
                             </p:panelGrid>
                             <h:panelGroup >
@@ -47,7 +54,7 @@
                                     value="#{patientInvestigationController.lstToSamle}" 
                                     var="smpIx" 
                                     rowKey="#{smpIx.id}"
-                                    
+
                                     rows="10"
                                     paginator="true" paginatorPosition="both"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -100,17 +107,17 @@
 
                                     </p:column>
                                     <p:column headerText="Actions">
-                                            <p:commandButton  disabled="#{smpIx.collected or smpIx.billItem.bill.cancelled eq true or smpIx.billItem.transRefund eq true}"   
-                                                              id="btnSample" value="Collect" action="#{patientInvestigationController.markAsSampled()}" 
-                                                              process="chkSampledOutside calSampledDate btnSample" update="@all"
-                                                              >
-                                                <f:setPropertyActionListener value="#{smpIx}" target="#{patientInvestigationController.current}"></f:setPropertyActionListener>
-                                            </p:commandButton>
-                                            <p:commandButton  disabled="#{!smpIx.collected or smpIx.billItem.transRefund}"   id="btnSampleRevert" value="Revert" 
-                                                              action="#{patientInvestigationController.revertMarkedSample()}" 
-                                                              process="chkSampledOutside calSampledDate btnSampleRevert" update="@all">
-                                                <f:setPropertyActionListener value="#{smpIx}" target="#{patientInvestigationController.current}"></f:setPropertyActionListener>
-                                            </p:commandButton>
+                                        <p:commandButton  disabled="#{smpIx.collected or smpIx.billItem.bill.cancelled eq true or smpIx.billItem.transRefund eq true}"   
+                                                          id="btnSample" value="Collect" action="#{patientInvestigationController.markAsSampled()}" 
+                                                          process="chkSampledOutside calSampledDate btnSample" update="@all"
+                                                          >
+                                            <f:setPropertyActionListener value="#{smpIx}" target="#{patientInvestigationController.current}"></f:setPropertyActionListener>
+                                        </p:commandButton>
+                                        <p:commandButton  disabled="#{!smpIx.collected or smpIx.billItem.transRefund}"   id="btnSampleRevert" value="Revert" 
+                                                          action="#{patientInvestigationController.revertMarkedSample()}" 
+                                                          process="chkSampledOutside calSampledDate btnSampleRevert" update="@all">
+                                            <f:setPropertyActionListener value="#{smpIx}" target="#{patientInvestigationController.current}"></f:setPropertyActionListener>
+                                        </p:commandButton>
                                     </p:column>
                                 </p:dataTable>
 

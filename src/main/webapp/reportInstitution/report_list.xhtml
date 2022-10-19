@@ -11,27 +11,54 @@
         <ui:composition template="/resources/template/template.xhtml">
 
             <ui:define name="content">
+                
+                <div class="card-header font-weight-bolder bg-primary text-white" >
+                    Lists
+                </div> 
+
 
                 <h:form>
-                    <p:panel header="Lists">
+                    <p:panel>
 
                         <h:panelGrid columns="2" styleClass="alignTop">
                             <p:accordionPanel>
                                 <p:tab title="OPD Reports">
                                     <h:panelGrid columns="1" >
-                                        <p:commandButton ajax="false" value="Bill List" action="report_list_opd_bills" 
-                                                         styleClass="linkButton"></p:commandButton>
-                                        <p:commandButton ajax="false" value="Cancelled Bill List" action="#" styleClass="linkButton"></p:commandButton>
-                                        <p:commandButton ajax="false" value="Returned Bill List" action="#" styleClass="linkButton"></p:commandButton>
+                                        <h:commandButton class="form form-control btn btn-primary m-1"                                              
+                                                         value="Bill List" 
+                                                         action="report_list_opd_bills" >
+                                                                                                           
+                                        </h:commandButton>
+                                        <h:commandButton class="form form-control btn btn-primary m-1"
+                                                         value="Cancelled Bill List" 
+                                                         action="#" >                                  
+                                        </h:commandButton>
+                                        <h:commandButton class="form form-control btn btn-primary m-1"
+                                                         value="Returned Bill List"
+                                                         action="#">        
+                                        </h:commandButton>
 
                                     </h:panelGrid>
                                 </p:tab>
                                 <p:tab title="Lab Reports">
                                     <h:panelGrid columns="1" >
-                                        <p:commandButton ajax="false" value="Bill List" action="#"  styleClass="linkButton"></p:commandButton>
-                                        <p:commandButton ajax="false" value="Test List" action="report_list_lab_tests"  styleClass="linkButton"></p:commandButton>
-                                        <p:commandButton ajax="false" value="Referral Bill List" action="#"  styleClass="linkButton"></p:commandButton>
-                                        <p:commandButton ajax="false" value="Referral Test List" action="#"  styleClass="linkButton"></p:commandButton>
+                                        <h:commandButton class="form form-control btn btn-primary m-1"
+                                                         value="Bill List"
+                                                         action="#">                   
+                                        </h:commandButton>
+                                        <h:commandButton class="form form-control btn btn-primary m-1" value="Test List" action="report_list_lab_tests">
+                                            
+                                        </h:commandButton>
+                                        <h:commandButton class="form form-control btn btn-primary m-1" 
+                                                         value="Referral Bill List"
+                                                         action="#">
+                                            
+                                        </h:commandButton>
+                                        <h:commandButton class="form form-control btn btn-primary m-1" 
+                                                         value="Referral Test List"
+                                                         action="#">
+                                            
+                                        </h:commandButton>
                                     </h:panelGrid>
                                 </p:tab>
                             </p:accordionPanel>
