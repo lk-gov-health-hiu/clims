@@ -74,7 +74,7 @@
 
                                     <p:commandButton styleClass="nonPrintBlock"  id="btnAutherize"
                                                      disabled ="#{!(webUserController.hasPrivilege('LabAutherizing') eq true and patientReportController.currentPatientReport.approved eq true)}"   
-                                                     value="Autherize"
+                                                     value="Authorize"
                                                      action="#{patientReportController.autherizePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
 
