@@ -770,7 +770,7 @@ public class WebUserController implements Serializable {
             return "";
         }
 
-        return "/admin_staff_signature";
+        return "/admin_user_signature";
     }
 
     public String toManageDepartments() {
