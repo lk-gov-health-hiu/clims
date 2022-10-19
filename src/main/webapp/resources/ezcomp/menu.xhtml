@@ -14,7 +14,7 @@
     <cc:implementation>
         
         <p:menubar styleClass="nonPrintBlock bottomBorderOnly ui-widget-header"  >
-            <p:menuitem   ajax="false" value="Home" icon="pi pi-bookmark" styleClass="rounded-button ui-button-primary" action="/index" ></p:menuitem>
+            <p:menuitem   ajax="false" value="Home" icon="pi pi-home" styleClass="rounded-button ui-button-primary" action="/index" ></p:menuitem>
             <p:submenu styleClass="rightBordrOnly" label="Order" rendered="#{webUserController.hasPrivilege('Opd')}">
                 <p:menuitem ajax="false" 
                             action="#{billController.toNewOpdOrder()}"  
@@ -30,7 +30,7 @@
                 <p:menuitem ajax="false" action="/reportCashier/report_cashier" value="Order Summeries" ></p:menuitem>
             </p:submenu>
 
-            <p:submenu styleClass="rightBordrOnly" label="Registration"  rendered="#{webUserController.hasPrivilege('MemberShip')}">
+            <p:submenu styleClass="rightBordrOnly" icon="pi pi-user-plus" label="Registration"  rendered="#{webUserController.hasPrivilege('MemberShip')}">
                 <p:menuitem ajax="false" action="/patient_registration.xhtml" value="Patients Registration" actionListener="#{membershipSchemeController.fillItems()}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/patient_registration" value="Patient Registration" rendered="false" />
                 <p:menuitem ajax="false" action="/clinical/clinical_patient_for_receptionist" value="Patients"/>
@@ -42,7 +42,7 @@
                 <p:menuitem ajax="false" action="/clinical/clinical_administration" value="Administration"/>
             </p:submenu>
 
-            <p:submenu styleClass="rightBordrOnly" label="Membership"  rendered="#{webUserController.hasPrivilege('MemberShip')}">
+            <p:submenu styleClass="rightBordrOnly" icon='pi pi-user' label="Membership"  rendered="#{webUserController.hasPrivilege('MemberShip')}">
                 <p:menuitem ajax="false" action="#{patientController.toAddAFamily()}" value="Add Family" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/membership/search_family" value="Search Family" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/membership/reports" value="Family Membership Reports" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
@@ -118,7 +118,7 @@
                 <p:menuitem  ajax="false"  action="/user_preferances" value="Change Preferances"  ></p:menuitem>
             </p:submenu>
 
-            <p:submenu styleClass="rightBordrOnly" label="Admin"  rendered="#{webUserController.hasPrivilege('Admin')}">
+            <p:submenu styleClass="rightBordrOnly" label="Admin" icon="pi pi-user-edit"  rendered="#{webUserController.hasPrivilege('Admin')}">
                 <p:menuitem ajax="false" action="/lab/administration" value="Lab Administration" rendered="#{webUserController.hasPrivilege('LabAdiministrator')}"  ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/admin_manage_users" value="Manage Users" rendered="#{webUserController.hasPrivilege('AdminManagingUsers')}" ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/admin_mange_institutions_index" value="Manage Institutions" rendered="#{webUserController.hasPrivilege('AdminInstitutions')}" ></p:menuitem>
@@ -134,12 +134,12 @@
 
 
             <f:facet name="options">
-                <p:commandButton id="btnLogout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" value="Log out" ajax="false"  action="#{sessionController.logout}" />
+                <p:commandButton id="btnLogout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" value="#{sessionController.loggedUser.webUserPerson.name}" ajax="false"  action="#{sessionController.logout}" />
                 <p:tooltip for="btnLogout" value="df"  >
                     <h:panelGrid columns="3" >
                         <h:outputText value="Institution" ></h:outputText>
                         <p:spacer width="10" height="1" ></p:spacer>
-                        <h:outputText value="#{sessionController.loggedUser.institution.name}" ></h:outputText>
+                        <h:outputText value="#{sessionController.loggedUser.institution.name} (Log Out)" ></h:outputText>
                         <h:outputText value="Department" ></h:outputText>
                         <p:spacer width="10" height="1" ></p:spacer>
                         <h:outputText value="#{sessionController.loggedUser.department.name} " ></h:outputText>

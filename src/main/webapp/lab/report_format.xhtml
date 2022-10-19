@@ -26,18 +26,18 @@
 
                                     <h:panelGrid columns="2" >
 
-                                        <p:selectOneMenu  id="mnuCat" value="#{commonReportItemController.category}"  style="width: 300px!important;">
+                                        <p:selectOneMenu class='m-1 w-50'  id="mnuCat" value="#{commonReportItemController.category}"  style="width: 300px!important;">
                                             <f:selectItem itemLabel="Select" ></f:selectItem>
                                             <f:selectItems  value="#{reportFormatController.items}" var="myItem" itemValue="#{myItem}" itemLabel="#{myItem.name}" ></f:selectItems>
                                         </p:selectOneMenu>
                                         
-                                        <h:commandButton value="Display Report" action="#{commonReportItemController.displayReport}" >
-                                        </h:commandButton>
+                                        <p:commandButton class='m-1' ajax='false'  value="Display Report" action="#{commonReportItemController.displayReport}" >
+                                        </p:commandButton>
 
                                     </h:panelGrid>
 
                                     <h:panelGroup id="gpReport" >
-                                        <p:panel header="Actions" >
+                                        <p:panel class='m-1' header="Actions" >
                                             <p:panelGrid columns="4" >
                                                 <p:commandButton ajax="false" value="Add New Label" action="#{commonReportItemController.addNewLabel()}"/>
                                                 <p:commandButton ajax="false"  value="Add New Value" action="#{commonReportItemController.addNewValue()}"/>
@@ -46,12 +46,12 @@
                                             </p:panelGrid>
                                         </p:panel>
 
-                                        <p:panel header="Report Items List" id="pIx">
+                                        <p:panel class='m-1' header="Report Items List" id="pIx">
                                             <p:panelGrid columns="3" >
-                                                <h:selectOneListbox size="1"  id="dtbItem" value="#{commonReportItemController.current}" style="width: 270px;" >
+                                                <p:selectOneListbox size="2"  id="dtbItem" value="#{commonReportItemController.current}" style="width: 270px;" >
                                                     <f:selectItems value="#{commonReportItemController.items}" var="ii" itemLabel="#{ii.name}" itemValue="#{ii}" />
                                                     <f:ajax event="change" execute="dtbItem" render=":#{p:resolveFirstComponentWithId('pDetails',view).clientId} :#{p:resolveFirstComponentWithId('pPreview',view).clientId}"/>
-                                                </h:selectOneListbox>
+                                                </p:selectOneListbox>
                                                 <p:commandButton ajax="false" action="#{commonReportItemController.duplicateItem()}" value="Duplicate"/>
                                                 <p:commandButton ajax="false" action="#{commonReportItemController.removeItem()}" value="Remove"/>
 
@@ -59,10 +59,10 @@
 
                                         </p:panel>
 
-                                        <p:panel  id="pDetails" >
+                                        <p:panel class="m-1"  id="pDetails" >
                                             <f:facet name="header" >
                                                 Item Details
-                                                <p:commandButton id="btnSave" value="Save" action="#{commonReportItemController.saveSelected()}" update="pPreview pDetails dtbItem">
+                                                <p:commandButton class='m-1' id="btnSave" value="Save" action="#{commonReportItemController.saveSelected()}" update="pPreview pDetails dtbItem">
                                                 </p:commandButton>
 
                                             </f:facet>
@@ -70,22 +70,22 @@
                                             <p:panel  id="pNameDetails" >
 
                                                 <h:panelGrid  columns="2">
-                                                    <h:outputText value="Name"   />
-                                                    <p:inputText style="min-width: 400px!important;" autocomplete="off" id="lblIiName" value="#{commonReportItemController.current.name}" >
+                                                    <h:outputText class='m-1' value="Name"   />
+                                                    <p:inputText class='m-1' style="min-width: 400px!important;" autocomplete="off" id="lblIiName" value="#{commonReportItemController.current.name}" >
                                                         <f:ajax event="keyup" execute="lblIiName" render=":#{p:resolveFirstComponentWithId('pPreview',view).clientId}"/>
                                                     </p:inputText>
 
-                                                    <h:outputText value="Content"/>
-                                                    <h:selectOneListbox id="cmbReportItemType" value="#{commonReportItemController.current.reportItemType}" size="1" >
+                                                    <h:outputText class='m-1' value="Content"/>
+                                                    <p:selectOneListbox class='m-1' id="cmbReportItemType" value="#{commonReportItemController.current.reportItemType}" size="1" >
                                                         <f:selectItem itemLabel="No Content"/>
                                                         <f:selectItems value="#{enumController.reportItemTypes}" var="rit" itemLabel="#{rit.label}" itemValue="#{rit}" ></f:selectItems>
-                                                    </h:selectOneListbox>
+                                                    </p:selectOneListbox>
 
 
                                                 </h:panelGrid>
                                                 <h:panelGrid columns="5" >
-                                                    <h:outputText value="Type"/>
-                                                    <p:selectOneMenu id="cmbItemType" value="#{commonReportItemController.current.ixItemType}" >
+                                                    <h:outputText class='m-1' value="Type"/>
+                                                    <p:selectOneMenu class='m-1' id="cmbItemType" value="#{commonReportItemController.current.ixItemType}" >
                                                         <f:selectItem itemLabel="Label" itemValue="Label"/>
                                                         <f:selectItem itemLabel="Value" itemValue="Value"/>
                                                         <f:selectItem itemLabel="CSS" itemValue="Css"/>
@@ -95,50 +95,50 @@
                                                         <f:selectItem itemLabel="Vertical Barcode" itemValue="BarcodeVertical"/>
                                                     </p:selectOneMenu>
                                                     <div style="min-width: 20px;"></div>
-                                                    <h:outputText value="Value Type"/>
-                                                    <p:selectOneMenu id="cmbValueType" value="#{commonReportItemController.current.ixItemValueType}"  >
+                                                    <h:outputText class='m-1' value="Value Type"/>
+                                                    <p:selectOneMenu class='m-1' id="cmbValueType" value="#{commonReportItemController.current.ixItemValueType}"  >
                                                         <f:selectItems value="#{enumController.investigationItemValueTypes}" ></f:selectItems>
                                                     </p:selectOneMenu>
                                                 </h:panelGrid>
                                                 <h:panelGrid columns="2" >
-                                                    <p:outputLabel value="Contents" ></p:outputLabel>
-                                                    <p:inputTextarea value="#{commonReportItemController.current.description}" style="min-width: 400px!important;"></p:inputTextarea>
+                                                    <p:outputLabel class='m-1' value="Contents" ></p:outputLabel>
+                                                    <p:inputTextarea class='m-1' value="#{commonReportItemController.current.description}" style="min-width: 400px!important;"></p:inputTextarea>
 
                                                 </h:panelGrid>
 
 
                                             </p:panel>
 
-                                            <p:panel header="Positioning" >
+                                            <p:panel class='m-1' header="Positioning" >
                                                 <h:panelGrid  columns="11">
-                                                    <h:outputText value="Left" />
-                                                    <p:inputText style="width: 80px;"  autocomplete="off" id="txtLeft" value="#{commonReportItemController.current.riLeft}"/>
-                                                    <div style="min-width: 20px;"></div>
-                                                    <h:outputText value="Top"/>
-                                                    <p:inputText  style="width: 80px;"  autocomplete="off" id="txtTop" value="#{commonReportItemController.current.riTop}"/>
-                                                    <div style="min-width: 20px;"></div>
-                                                    <h:outputText value="Width"/>
-                                                    <p:inputText  style="width: 80px;"  autocomplete="off" id="txtWidth" value="#{commonReportItemController.current.riWidth}" />
-                                                    <div style="min-width: 20px;"></div>
-                                                    <h:outputText value="Height"/>
-                                                    <p:inputText  style="width: 80px;"  autocomplete="off" id="txtHeight" value="#{commonReportItemController.current.riHeight}"/>
+                                                    <h:outputText class='m-1' value="Left" />
+                                                    <p:inputText class='m-1' style="width: 80px;"  autocomplete="off" id="txtLeft" value="#{commonReportItemController.current.riLeft}"/>
+                                                    <div class='m-1' style="min-width: 20px;"></div>
+                                                    <h:outputText class='m-1' value="Top"/>
+                                                    <p:inputText  class='m-1' style="width: 80px;"  autocomplete="off" id="txtTop" value="#{commonReportItemController.current.riTop}"/>
+                                                    <div class='m-1' style="min-width: 20px;"></div>
+                                                    <h:outputText class='m-1' value="Width"/>
+                                                    <p:inputText class='m-1' style="width: 80px;"  autocomplete="off" id="txtWidth" value="#{commonReportItemController.current.riWidth}" />
+                                                    <div class='m-1' style="min-width: 20px;"></div>
+                                                    <h:outputText class='m-1' value="Height"/>
+                                                    <p:inputText class='m-1' style="width: 80px;"  autocomplete="off" id="txtHeight" value="#{commonReportItemController.current.riHeight}"/>
 
                                                 </h:panelGrid>
                                                 <h:panelGrid columns="5" >
-                                                    <h:outputText value="Height PX" />
-                                                    <p:inputText style="width: 50px;"  autocomplete="off" id="txtHtPx" 
+                                                    <h:outputText class='m-1' value="Height PX" />
+                                                    <p:inputText class='m-1' style="width: 50px;"  autocomplete="off" id="txtHtPx" 
                                                                  value="#{commonReportItemController.current.htPix}"/>
-                                                    <div style="min-width: 20px;"></div>
-                                                    <h:outputText value="Width Px"/>
-                                                    <p:inputText  style="width: 50px;"  autocomplete="off" id="txtWtPx" 
+                                                    <div class='m-1' style="min-width: 20px;"></div>
+                                                    <h:outputText class='m-1' value="Width Px"/>
+                                                    <p:inputText class='m-1'  style="width: 50px;"  autocomplete="off" id="txtWtPx" 
                                                                   value="#{commonReportItemController.current.wtPix}"/>
-                                                    <div style="min-width: 20px;"></div>
+                                                    <div class='m-1' style="min-width: 20px;"></div>
 
                                                 </h:panelGrid>
                                                 <h:panelGrid columns="5" >
 
-                                                    <h:outputText value="Text-Align"/>
-                                                    <p:selectOneMenu  id="cmbTxtAlign" value="#{commonReportItemController.current.cssTextAlign}"  >
+                                                    <h:outputText class='m-1' value="Text-Align"/>
+                                                    <p:selectOneMenu  class='m-1' id="cmbTxtAlign" value="#{commonReportItemController.current.cssTextAlign}"  >
                                                         <f:selectItem itemLabel="Left" itemValue="Left"/>
                                                         <f:selectItem itemLabel="Right" itemValue="Right"/>
                                                         <f:selectItem itemLabel="Center" itemValue="Center"/>
@@ -146,36 +146,36 @@
                                                         <f:selectItem itemLabel="Inherit" itemValue="Inherit"/>
                                                     </p:selectOneMenu>
 
-                                                    <h:outputText value="Vertical-Align" style="vertical-align: "/>
-                                                    <p:selectOneMenu  id="cmbTxtVerticalAlign" value="#{commonReportItemController.current.cssVerticalAlign}"  >
+                                                    <h:outputText class='m-1' value="Vertical-Align" style="vertical-align: "/>
+                                                    <p:selectOneMenu  class='m-1' id="cmbTxtVerticalAlign" value="#{commonReportItemController.current.cssVerticalAlign}"  >
                                                         <f:selectItems value="#{enumController.cssVerticalAlign}" ></f:selectItems>
                                                     </p:selectOneMenu>
                                                 </h:panelGrid>
                                             </p:panel>
 
 
-                                            <p:panel header="Font" >
+                                            <p:panel class='m-1' header="Font" >
                                                 <h:panelGrid  columns="5">
 
-                                                    <h:outputText value="Font Family"/>
-                                                    <p:inputText autocomplete="off" id="txtFontFamily" value="#{commonReportItemController.current.cssFontFamily}"/>
+                                                    <h:outputText class='m-1' value="Font Family"/>
+                                                    <p:inputText class='m-1' autocomplete="off" id="txtFontFamily" value="#{commonReportItemController.current.cssFontFamily}"/>
                                                     <div style="min-width: 20px;"></div>
 
-                                                    <h:outputText value="Font Size"/>
-                                                    <p:inputText style="width: 50px;" autocomplete="off" id="txtFontSize" value="#{commonReportItemController.current.riFontSize}"/>
+                                                    <h:outputText class='m-1' value="Font Size"/>
+                                                    <p:inputText class='m-1' style="width: 50px;" autocomplete="off" id="txtFontSize" value="#{commonReportItemController.current.riFontSize}"/>
 
                                                 </h:panelGrid>
-                                                <h:panelGrid  columns="5">
-                                                    <h:outputText value="Font Style"/>
-                                                    <p:selectOneMenu  id="cmbPos" value="#{commonReportItemController.current.cssFontStyle}" >
+                                                <h:panelGrid class='m-1' columns="5">
+                                                    <h:outputText class='m-1' value="Font Style"/>
+                                                    <p:selectOneMenu  class='m-1' id="cmbPos" value="#{commonReportItemController.current.cssFontStyle}" >
                                                         <f:selectItem itemLabel="Normal" itemValue="Normal"/>
                                                         <f:selectItem itemLabel="Italic" itemValue="Italic"/>
                                                         <f:selectItem itemLabel="Oblique" itemValue="Oblique"/>  
                                                     </p:selectOneMenu>
                                                     <div style="min-width: 20px;"></div>
 
-                                                    <h:outputText value="Font Weight"/>
-                                                    <p:selectOneMenu id="txtFontWeight" value="#{commonReportItemController.current.cssFontWeight}">
+                                                    <h:outputText class='m-1' value="Font Weight"/>
+                                                    <p:selectOneMenu class='m-1' id="txtFontWeight" value="#{commonReportItemController.current.cssFontWeight}">
                                                         <f:selectItem itemValue="normal" itemLabel="Normal" ></f:selectItem>
                                                         <f:selectItem itemValue="bold"  itemLabel="bold" ></f:selectItem>
                                                         <f:selectItem itemValue="bolder"  itemLabel="bolder" ></f:selectItem>
