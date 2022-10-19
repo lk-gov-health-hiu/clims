@@ -116,9 +116,6 @@ public class WebUserController implements Serializable {
     private List<WebUser> webUsers;
     List<WebUser> itemsToRemove;
 
-    Staff staff;
-    boolean createOnlyUser = false;
-    boolean createOnlyUserForExsistingUser = false;
     private String newPassword;
     private String newPasswordConfirm;
 
@@ -143,15 +140,6 @@ public class WebUserController implements Serializable {
     public void updateWebUser(WebUser webUser) {
         personFacade.edit(webUser.getWebUserPerson());
         staffFacade.edit(webUser.getStaff());
-    }
-
-    public void createWebUserDrawers() {
-        String sql = "select c from WebUser c "
-                + " where c.retired=false "
-                + " c.drawer is not null "
-                + " order by c.drawer.name,c.webUserPerson.name";
-
-        webUsers = getFacade().findBySQL(sql);
     }
 
     public List<Department> getInstitutionDepatrments() {
@@ -368,9 +356,6 @@ public class WebUserController implements Serializable {
         getCurrent().setWebUserPerson(p);
         setSpeciality(null);
         currentPrivilegeses = null;
-        createOnlyUser = false;
-        createOnlyUserForExsistingUser = false;
-        staff = null;
         department = null;
         institution = null;
         return "/admin_add_new_user";
@@ -406,16 +391,8 @@ public class WebUserController implements Serializable {
     }
 
     public String saveNewUser() {
-        // We Deal with a new Web ser only here
-        //
-
         if (current == null) {
             UtilityController.addErrorMessage("Nothing to save");
-            return "";
-        }
-
-        if (createOnlyUserForExsistingUser && getStaff() == null) {
-            UtilityController.addErrorMessage("Select Staff");
             return "";
         }
 
@@ -428,69 +405,27 @@ public class WebUserController implements Serializable {
         getCurrent().setActivatedAt(new Date());
         getCurrent().setActivator(getSessionController().getLoggedUser());
 
-        //////System.out.println("Start");
         //Save Person
         getCurrent().getWebUserPerson().setCreatedAt(new Date());
         getCurrent().getWebUserPerson().setCreater(getSessionController().getLoggedUser());
         getPersonFacade().create(getCurrent().getWebUserPerson());
-        //////System.out.println("Person Saved");
 
-        if (createOnlyUserForExsistingUser) {
-            getCurrent().getWebUserPerson().setName(getStaff().getPerson().getName());
-            getCurrent().getWebUserPerson().setAddress(getStaff().getPerson().getAddress());
-            getCurrent().getWebUserPerson().setMobile(getStaff().getPerson().getMobile());
-            getPersonFacade().edit(getCurrent().getWebUserPerson());
-            getCurrent().setCode(getStaff().getCode());
-            getCurrent().setStaff(getStaff());
-            if (getStaff().getWorkingDepartment() != null) {
-                getCurrent().setInstitution(getStaff().getWorkingDepartment().getInstitution());
-                getCurrent().setDepartment(getStaff().getWorkingDepartment());
-            }
+        getCurrent().getWebUserPerson().setName(getStaff().getPerson().getName());
+        getCurrent().getWebUserPerson().setAddress(getStaff().getPerson().getAddress());
+        getCurrent().getWebUserPerson().setMobile(getStaff().getPerson().getMobile());
+        getPersonFacade().edit(getCurrent().getWebUserPerson());
+        getCurrent().setCode(getStaff().getCode());
+        getCurrent().setStaff(getStaff());
 
-        } else {
-            getCurrent().setInstitution(getInstitution());
-            getCurrent().setDepartment(getDepartment());
-            if (!createOnlyUser) {
-                Staff staff = new Staff();
-                //Save Staff
-                staff.setPerson(getCurrent().getWebUserPerson());
-                staff.setCreatedAt(Calendar.getInstance().getTime());
-                staff.setDepartment(department);
-                staff.setWorkingDepartment(department);
-                staff.setInstitution(institution);
-                staff.setSpeciality(speciality);
-                staff.setCode(getCurrent().getCode());
-                getStaffFacade().create(staff);
-                getCurrent().setStaff(staff);
-            }
-        }
+        getCurrent().setInstitution(sessionController.getInstitution());
+        getCurrent().setDepartment(sessionController.getDepartment());
 
-        //Save Web User
         getCurrent().setCreatedAt(new Date());
         getCurrent().setCreater(sessionController.loggedUser);
         getCurrent().setName((getCurrent().getName()));
         getCurrent().setWebUserPassword(getSecurityController().hash(getCurrent().getWebUserPassword()));
         getFacade().create(getCurrent());
-        //////System.out.println("Web User Saved");
-        //SetPrivilage
-//        for (Privileges p : currentPrivilegeses) {
-//            WebUserPrivilege pv = new WebUserPrivilege();
-//            pv.setWebUser(current);
-//            pv.setPrivilege(p);
-//            pv.setCreatedAt(new Date());
-//            pv.setCreater(getSessionController().getLoggedUser());
-//            getWebUserPrevilageFacade().create(pv);
-//
-//        }
-
-        if (createOnlyUser) {
-            UtilityController.addSuccessMessage("Add New User Only");
-        } else if (createOnlyUserForExsistingUser) {
-            UtilityController.addSuccessMessage("Add New User To Exsisting Staff");
-        } else {
-            UtilityController.addSuccessMessage("Add New User & Staff");
-        }
-
+        UtilityController.addSuccessMessage("Add New User Only");
         recreateModel();
         toAddNewUser();
         selectText = "";
@@ -639,13 +574,6 @@ public class WebUserController implements Serializable {
         this.personFacade = personFacade;
     }
 
-//    public List<Privileges> getCurrentPrivilegeses() {
-//        return currentPrivilegeses;
-//    }
-//
-//    public void setCurrentPrivilegeses(List<Privileges> currentPrivilegeses) {
-//        this.currentPrivilegeses = currentPrivilegeses;
-//    }
     public WebUserPrivilegeFacade getWebUserPrevilageFacade() {
         return webUserPrevilageFacade;
     }
@@ -678,30 +606,6 @@ public class WebUserController implements Serializable {
         this.itemsToRemove = itemsToRemove;
     }
 
-    public boolean isCreateOnlyUser() {
-        return createOnlyUser;
-    }
-
-    public void setCreateOnlyUser(boolean createOnlyUser) {
-        this.createOnlyUser = createOnlyUser;
-    }
-
-    public boolean isCreateOnlyUserForExsistingUser() {
-        return createOnlyUserForExsistingUser;
-    }
-
-    public void setCreateOnlyUserForExsistingUser(boolean createOnlyUserForExsistingUser) {
-        this.createOnlyUserForExsistingUser = createOnlyUserForExsistingUser;
-    }
-
-    public Staff getStaff() {
-        return staff;
-    }
-
-    public void setStaff(Staff staff) {
-        this.staff = staff;
-    }
-
     public WebUser getSelected() {
         return selected;
     }
@@ -718,12 +622,12 @@ public class WebUserController implements Serializable {
         current = selected;
         return "/admin_user";
     }
-    
-    public String toManageUsers(){
+
+    public String toManageUsers() {
         return "/admin_view_user";
     }
-    
-    public String toManageUserSignature(){
+
+    public String toManageUserSignature() {
         return "/admin_user_signature";
     }
 
