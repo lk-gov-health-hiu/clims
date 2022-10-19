@@ -156,22 +156,6 @@ public class UserPrivilageController implements Serializable {
         this.current = current;
     }
 
-    public void delete() {
-        if (current != null) {
-            current.setRetired(true);
-            current.setRetiredAt(new Date());
-            current.setRetirer(getSessionController().getLoggedUser());
-            getFacade().edit(current);
-            UtilityController.addSuccessMessage("Deleted Successfully");
-        } else {
-            UtilityController.addSuccessMessage("Nothing to Delete");
-        }
-        recreateModel();
-        createSelectedPrivilegesForUser();
-        current = null;
-        getCurrent();
-    }
-
     private WebUserPrivilegeFacade getFacade() {
         return ejbFacade;
     }
@@ -205,7 +189,6 @@ public class UserPrivilageController implements Serializable {
 
     public void setCurrentWebUser(WebUser currentWebUser) {
         this.currentWebUser = currentWebUser;
-        createSelectedPrivilegesForUser();
     }
 
     public List<Privileges> getPrivilegeList() {
@@ -220,8 +203,6 @@ public class UserPrivilageController implements Serializable {
     public List<WebUserPrivilege> getSelectedItems() {
         return selectedItems;
     }
-
-    
 
     public List<Privileges> getAllPrivileges() {
         if (allPrivileges == null) {

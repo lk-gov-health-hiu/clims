@@ -24,6 +24,9 @@
                                 </p:commandButton>
                                 <p:commandButton ajax="false" value="Back" action="#{webUserController.backToViewUsers()}" >
                                 </p:commandButton>
+                                <p:commandButton ajax="false" value="Refresh" 
+                                                 action="#" >
+                                </p:commandButton>
                             </f:facet>
                             <h:panelGrid  columns="2" >                          
                                 <p:autoComplete id="user" converter="webUs" forceSelection="true"  completeMethod="#{webUserController.completeUser}" var="us" 
@@ -37,33 +40,31 @@
                                 <p:dataTable value="#{userPrivilageController.allPrivileges}"
                                              var="p" rowKey="#{p}"
                                              selection="#{userPrivilageController.selectedPrivileges}"
-
                                              rows="10"
                                              paginator="true" paginatorPosition="both"
                                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                                              rowsPerPageTemplate="5,10,{ShowAll|'All'}"
-
                                              >
                                     <p:column headerText="Select" selectionMode="multiple" >
                                     </p:column>
-                                    <p:column headerText="Select" sortBy="#{p}" filterBy="#{p.label}" filterMatchMode="contains">
-                                        <p:outputLabel value="#{p.label}" ></p:outputLabel>
+                                    <p:column headerText="Select" sortBy="#{p}" filterBy="#{p}" filterMatchMode="contains">
+                                        <p:outputLabel value="#{p}" ></p:outputLabel>
                                     </p:column>
-
                                 </p:dataTable>
-
-                                <p:tree value="#{userPrivilageController.root}" var="node"  
-                                        selectionMode="checkbox"
-                                        selection="#{userPrivilageController.selectedNodes}"
-                                        >  
-                                    <p:treeNode>  
-                                        <h:outputText value="#{node}" />  
-                                    </p:treeNode>  
-                                </p:tree>  
-
-
                             </p:panel>
+                            <p:dataTable value="#{userPrivilageController.selectedPrivileges}"
+                                             var="p" rowKey="#{p}"
+                                             rows="10"
+                                             paginator="true" paginatorPosition="both"
+                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                             rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                                             >
+                                    <p:column headerText="Select" sortBy="#{p}" filterBy="#{p}" filterMatchMode="contains">
+                                        <p:outputLabel value="#{p}" ></p:outputLabel>
+                                    </p:column>
+                                </p:dataTable>
                         </p:panel>
                     </p:panelGrid>
                 </h:form>
