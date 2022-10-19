@@ -484,10 +484,15 @@ public class UserPrivilageController implements Serializable {
             UtilityController.addErrorMessage("Please select a user");
             return "";
         }
-        retireAllPrivilege();
+        System.out.println("selectedNodes = " + selectedNodes);
+        retirePrivilege();
         for (TreeNode o : selectedNodes) {
             PrivilageNode pn1 = (PrivilageNode) o;
-            updateSinglePrivilege(pn1.getP(), true);
+            if(pn1.getP()!=null){
+                System.out.println("pn1.getP() = " + pn1.getP());
+                updateSinglePrivilege(pn1.getP(), true);
+            }
+            
         }
 
 //        createRootForUser();
@@ -495,9 +500,9 @@ public class UserPrivilageController implements Serializable {
     }
 
     public void updateSinglePrivilege(Privileges p, boolean selected) {
-        System.out.println("updateSinglePrivilege");
-        System.out.println("p = " + p);
-        System.out.println("selected = " + selected);
+//        System.out.println("updateSinglePrivilege");
+//        System.out.println("p = " + p);
+//        System.out.println("selected = " + selected);
         if (p == null) {
             System.out.println("p = " + p);
             return;
@@ -527,7 +532,7 @@ public class UserPrivilageController implements Serializable {
         System.out.println("wup.isRetired() = " + wup.isRetired());
     }
 
-    public void retireAllPrivilege() {
+    public void retirePrivilege() {
         if (getCurrentWebUser() == null) {
             return;
         }
@@ -539,8 +544,18 @@ public class UserPrivilageController implements Serializable {
                 + " where i.webUser=:wu ";
         wups = getEjbFacade().findBySQL(sql, m);
         for (WebUserPrivilege wup : wups) {
-            wup.setRetired(true);
-            getFacade().edit(wup);
+            boolean selected = false;
+            for (TreeNode n : selectedNodes) {
+                PrivilageNode pn = (PrivilageNode) n;
+                Privileges p = pn.getP();
+                if (p != null && wup.getPrivilege() != null && p.equals(wup.getPrivilege())) {
+                    selected = true;
+                }
+            }
+            if (!selected) {
+                wup.setRetired(true);
+                getFacade().edit(wup);
+            }
         }
     }
 
@@ -609,10 +624,10 @@ public class UserPrivilageController implements Serializable {
     }
 
     public void createRootForUser() {
-        System.out.println("createRootForUser" );
+        System.out.println("createRootForUser");
         root = createTreeNode();
         if (getCurrentWebUser() == null) {
-            return ;
+            return;
         }
 
         String sql = "SELECT i "
@@ -626,27 +641,27 @@ public class UserPrivilageController implements Serializable {
         if (items == null) {
             return;
         }
-  
+
         for (WebUserPrivilege wup : items) {
             System.out.println("wup.isRetired() = " + wup.isRetired());
             for (Object o : root.getChildren()) {
                 PrivilageNode n = (PrivilageNode) o;
                 System.out.println("n.getP() = " + n.getP());
-                if (n.getP()!=null && wup.getPrivilege().equals(n.getP())) {
+                if (n.getP() != null && wup.getPrivilege().equals(n.getP())) {
                     n.setSelected(true);
                     System.out.println("n.isSelected() = " + n.isSelected());
                 }
                 for (Object o1 : n.getChildren()) {
                     PrivilageNode n1 = (PrivilageNode) o1;
                     System.out.println("n1.getP() = " + n1.getP());
-                    if (n1.getP()!=null && wup.getPrivilege().equals(n1.getP())) {
+                    if (n1.getP() != null && wup.getPrivilege().equals(n1.getP())) {
                         n1.setSelected(true);
                         System.out.println("n1.isSelected() = " + n1.isSelected());
                     }
                     for (Object o2 : n1.getChildren()) {
                         PrivilageNode n2 = (PrivilageNode) o2;
                         System.out.println("n2.getP() = " + n2.getP());
-                        if (n2.getP()!=null && wup.getPrivilege().equals(n2.getP())) {
+                        if (n2.getP() != null && wup.getPrivilege().equals(n2.getP())) {
                             n2.setSelected(true);
                             System.out.println("n2.isSelected() = " + n2.isSelected());
                         }
