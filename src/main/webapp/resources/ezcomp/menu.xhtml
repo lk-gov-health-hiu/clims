@@ -21,7 +21,7 @@
                             value="New Order" 
                             rendered="#{webUserController.hasPrivilege('OpdBilling')}" >
                 </p:menuitem>
-                <p:menuitem ajax="false" action="/opd_search_bill_own" actionListener="#{searchController.makeListNull}"  value="Search Orders" rendered="#{webUserController.hasPrivilege('OpdBillSearch')}" ></p:menuitem>
+                <p:menuitem ajax="false"  icon="pi pi-bookmark" action="/opd_search_bill_own" actionListener="#{searchController.makeListNull}"  value="Search Orders" rendered="#{webUserController.hasPrivilege('OpdBillSearch')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/opd_search_billitem_own" value="Search Order Items" actionListener="#{searchController.makeListNull}" rendered="#{webUserController.hasPrivilege('OpdBillItemSearch')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/lab/print_requested_results" 
                             value="Print Ordered Reports" 
