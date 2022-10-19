@@ -732,7 +732,6 @@ public class WebUserController implements Serializable {
             return "";
         }
         getUserPrivilageController().setCurrentWebUser(selected);
-        getUserPrivilageController().createRootForUser();
         return "/admin_user_privilages";
     }
 
