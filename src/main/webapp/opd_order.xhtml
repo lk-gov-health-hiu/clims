@@ -43,11 +43,10 @@
                                     <div class="row" >
                                         <div class="col-md-6" >
                                             <div class="form" >
-                                                <p:outputLabel id="lblTab" value="#{billController.patientTabId}" ></p:outputLabel>
-                                                <p:accordionPanel id="tvPt" activeIndex="#{billController.patientSearchTab}"
+                                                <p:tabView id="tvPt" activeIndex="#{billController.patientSearchTab}"
                                                            class="w-100 m-0 p-2" >
                                                     <p:ajax event="tabChange"    
-                                                            listener="#{billController.onTabChange}" update="lblTab"/>
+                                                            listener="#{billController.onTabChange}"/>
                                                     <p:tab id="tabNewPt1" title="New Patient"   >
                                                         <div class="row">
                                                             <div class="col-3">
@@ -198,7 +197,7 @@
                                                         </h:panelGroup>
 
                                                     </p:tab>
-                                                </p:accordionPanel>
+                                                </p:tabView>
                                             </div>
                                         </div>
                                         <div class="col-md-6" >
