@@ -68,8 +68,8 @@
                                                      action="#{patientReportController.calculate}" onclick="onSubmitButton();"   >
                                     </p:commandButton>
 
-                                    <p:commandButton styleClass="nonPrintBlock"  id="btnApprove"  disabled ="#{!(webUserController.hasPrivilege('LabApproving') eq true and patientReportController.currentPatientReport.dataEntered eq true)}"   
-                                                     value="Approve" action="#{patientReportController.approvePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
+                                    <p:commandButton styleClass="nonPrintBlock"  id="btnApprove"  disabled ="#{webUserController.hasPrivilege('LabApproving') ne true}"   
+                                                     value="Approve*" action="#{patientReportController.approvePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
 
                                     <p:commandButton styleClass="nonPrintBlock"  id="btnAutherize"
@@ -356,7 +356,29 @@
                                         </p:panel>
 
                                     </p:panel>
+                                    <p:panel header="User Details" >
+                                        <p:panelGrid columns="2" >
+                                            <h:outputText value="Data Entered by" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.dataEntryUser.webUserPerson.nameWithTitle}" ></h:outputText>
+                                            <h:outputText value="Data Entered At" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.dataEntryAt}" >
+                                                <f:convertDateTime pattern="dd MMMM yyyy hh:mm a" ></f:convertDateTime>
+                                            </h:outputText>
+                                            <h:outputText value="Approved by" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.approveUser.webUserPerson.nameWithTitle}" ></h:outputText>
+                                            <h:outputText value="Approved At" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.approveAt}" >
+                                                <f:convertDateTime pattern="dd MMMM yyyy hh:mm a" ></f:convertDateTime>
+                                            </h:outputText>
+                                            <h:outputText value="Autherized by" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.autherizedUser.webUserPerson.nameWithTitle}" ></h:outputText>
+                                            <h:outputText value="Autherized At" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.autherizedAt}" >
+                                                <f:convertDateTime pattern="dd MMMM yyyy hh:mm a" ></f:convertDateTime>
+                                            </h:outputText>
 
+                                        </p:panelGrid>
+                                    </p:panel>
                                 </h:panelGrid>
                             </p:panel>
                         </h:panelGroup>
@@ -394,7 +416,6 @@
                                             <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'InvestigationName' and  myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.investigation.name}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
                                             <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'Speciman' and  myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.investigation.sample.name}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
                                             <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'SampledTime' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.sampledAt}" style="color: #{myCli.cssColor}" escape="false" >
-
                                                 <f:convertDateTime pattern="hh mm ss a"/>
                                             </h:outputText>
                                             <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'CollectingCenter' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.collectingCentre}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
@@ -418,16 +439,16 @@
                                             <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ReferringDoctor' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.referredBy.person.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
                                             <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ReferringInstitution' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.referredByInstitution.name}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
 
-                                            <p:graphicImage rendered="#{myCli.reportItemType eq 'DataEntrySignature' and myCli.retired eq false and patientReportController.currentPatientReport.dataEntryUser ne null }"    value="#{staffImageController.signatureById}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
+                                            <p:graphicImage rendered="#{myCli.reportItemType eq 'DataEntrySignature' and myCli.retired eq false and patientReportController.currentPatientReport.dataEntryUser ne null }"    value="#{streamedContentController.signatureByUserId}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
                                                 <f:param name="id" value="#{patientReportController.currentPatientReport.dataEntryUser.id}" />
                                             </p:graphicImage>
-                                            
-                                             <p:graphicImage rendered="#{myCli.reportItemType eq 'ApprovedSignature' and myCli.retired eq false and patientReportController.currentPatientReport.approveUser ne null }"    value="#{staffImageController.signatureById}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
+
+                                            <p:graphicImage rendered="#{myCli.reportItemType eq 'ApprovedSignature' and myCli.retired eq false and patientReportController.currentPatientReport.approveUser ne null }"    value="#{streamedContentController.signatureByUserId}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
                                                 <f:param name="id" value="#{patientReportController.currentPatientReport.approveUser.id}" />
                                             </p:graphicImage>
-                                            
-                                             <p:graphicImage rendered="#{myCli.reportItemType eq 'AutherizedSignature' and myCli.retired eq false and patientReportController.currentPatientReport.autherizedUser ne null }"    value="#{staffImageController.signatureById}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
-                                                 <f:param name="id" value="#{patientReportController.currentPatientReport.autherizedUser.id}" />
+
+                                            <p:graphicImage rendered="#{myCli.reportItemType eq 'AutherizedSignature' and myCli.retired eq false and patientReportController.currentPatientReport.autherizedUser ne null }"    value="#{streamedContentController.signatureByUserId}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
+                                                <f:param name="id" value="#{patientReportController.currentPatientReport.autherizedUser.id}" />
                                             </p:graphicImage>
 
                                         </div>
