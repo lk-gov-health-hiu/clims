@@ -32,15 +32,7 @@
                                 <p:outputLabel value="User Name:" for="name" />
                                 <p:outputLabel id="name" value="#{webUserController.current.name}" />
 
-                                <p:outputLabel value="Staff:" for="staff" />
-                                <p:autoComplete  forceSelection="true" id="staff"
-                                                 value="#{webUserController.current.staff}" 
-                                                 completeMethod="#{staffController.completeStaff}" 
-                                                 var="mys" 
-                                                 itemLabel="#{mys.person.nameWithTitle}" 
-                                                 itemValue="#{mys}"
-                                                 converter="stfcon">
-                                </p:autoComplete>
+                               
 
                                 <p:outputLabel value="Institution:" for="institution" />
                                 <p:autoComplete forceSelection="true" value="#{webUserController.current.institution}"
