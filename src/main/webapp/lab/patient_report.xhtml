@@ -10,17 +10,16 @@
 
 
 
-    <head>
+    <h:head>
 
-    </head>
+    </h:head>
 
-    <body>
+    <h:body>
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <h:outputStylesheet library="css" name="lab.css" ></h:outputStylesheet>
                 <div class="nonPrintBlock">
                     <h:form id="form">
-
                         <h:panelGroup rendered="#{webUserController.hasPrivilege('LabAutherizing') eq true or webUserController.hasPrivilege('LabDataentry') eq true or webUserController.hasPrivilege('LabPrinting') eq true   }" styleClass="nonPrintBlock">
                             <p:growl id="messages" showDetail="true"/> 
                             <p:panel  >
@@ -57,7 +56,7 @@
                                     <p:outputLabel value="Report Format" ></p:outputLabel>
                                     <p:selectOneMenu  id="mnuCat" value="#{patientReportController.currentPatientReport.reportFormat}"  style="width: 300px!important;">
                                         <f:selectItems  value="#{reportFormatController.items}" var="myItem" itemValue="#{myItem}" itemLabel="#{myItem.name}" ></f:selectItems>
-                                        <f:ajax event="change" execute="mnuCat" render=":#{p:resolveFirstComponentWithId('divPrint',view).clientId}" />
+                                        <f:ajax event="change" execute="mnuCat" render=":#{p:resolveFirstComponentWithId('divPrintReport',view).clientId}" />
                                     </p:selectOneMenu>
                                 </h:panelGrid>
                                 <h:panelGrid columns="9" >
@@ -65,14 +64,14 @@
                                                      value="Save" 
                                                      action="#{patientReportController.savePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
-                                    <p:commandButton ajax="false" process="tblVals" update=":#{p:resolveFirstComponentWithId('tblCals',view).clientId} :#{p:resolveFirstComponentWithId('tblFlags',view).clientId} :#{p:resolveFirstComponentWithId('divPrint',view).clientId}"  styleClass="nonPrintBlock"  value="Calculate" 
+                                    <p:commandButton ajax="false" process="tblVals" update=":#{p:resolveFirstComponentWithId('tblCals',view).clientId} :#{p:resolveFirstComponentWithId('tblFlags',view).clientId} :#{p:resolveFirstComponentWithId('divPrintReport',view).clientId}"  styleClass="nonPrintBlock"  value="Calculate" 
                                                      action="#{patientReportController.calculate}" onclick="onSubmitButton();"   >
                                     </p:commandButton>
 
                                     <p:commandButton styleClass="nonPrintBlock"  id="btnApprove"  disabled ="#{!(webUserController.hasPrivilege('LabApproving') eq true and patientReportController.currentPatientReport.dataEntered eq true)}"   
                                                      value="Approve" action="#{patientReportController.approvePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
-                                    
+
                                     <p:commandButton styleClass="nonPrintBlock"  id="btnAutherize"
                                                      disabled ="#{!(webUserController.hasPrivilege('LabAutherizing') eq true and patientReportController.currentPatientReport.approved eq true)}"   
                                                      value="Autherize"
@@ -82,7 +81,7 @@
                                     <p:commandButton styleClass="nonPrintBlock" rendered="true"  id="btnCancel"  disabled ="#{!(webUserController.hasPrivilege('LabDataentry') eq true and patientReportController.currentPatientReport.approved eq true)}"   value="Sent SMS" 
                                                      action="#{patientReportController.sendSmsForPatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
-                                    
+
                                     <p:commandButton styleClass="nonPrintBlock"  id="btnSendSms"  
                                                      disabled ="#{!(webUserController.hasPrivilege('LabDeAutherizing') eq true and patientReportController.currentPatientReport.approved eq true)}"   value="Cancel Approval" 
                                                      action="#{patientReportController.reverseApprovalOfPatientReport()}" ajax="false" onclick="onSubmitButton();"  >
@@ -231,7 +230,7 @@
                                     </p:panel>
                                     <p:panel header="Microbiology"    rendered="#{patientReportController.currentPatientReport.transInvestigation.reportType eq 'Microbiology'}" >
                                         <f:view contentType="text/html">
-                                           
+
                                             <table >
                                                 <ui:repeat id="tblMicVals" 
                                                            value="#{patientReportController.currentPatientReport.patientReportItemValues }"  
@@ -351,7 +350,7 @@
                                                 <h1>E</h1>
                                             </h:panelGroup>
                                             <p:textEditor rendered="#{patientReportController.currentPatientReport.templateItem ne null}" 
-                                                      value="#{patientReportController.currentPatientReport.templateItem.lobValue}" widgetVar="editor" height="650" >
+                                                          value="#{patientReportController.currentPatientReport.templateItem.lobValue}" widgetVar="editor" height="650" >
 
                                             </p:textEditor>
                                         </p:panel>
@@ -359,25 +358,13 @@
                                     </p:panel>
 
                                 </h:panelGrid>
-
-
                             </p:panel>
-
-
-
                         </h:panelGroup>
-
-
-
                     </h:form>
-
-
-
                 </div>
 
                 <div >
                     <h:form >
-
                         <div class="nonPrintBlock" >
                             <h:panelGroup rendered="false" >
                                 <p:commandButton  styleClass="nonPrintBlock"  ajax="false" value="Print" onclick="window.print();" actionListener="#{patientReportController.printPatientReport()}" 
@@ -388,7 +375,7 @@
                             <h:panelGrid columns="3" >
                                 <p:commandButton value="Print" ajax="false" actionListener="#{patientReportController.printPatientReport()}"
                                                  rendered="#{patientReportController.currentPatientReport.approved or userPreferenceController.userPreference.canPrintWithoutPermission }" >
-                                    <p:printer target="divPrint" ></p:printer>
+                                    <p:printer target="divPrintReport" ></p:printer>
                                 </p:commandButton>
 
 
@@ -400,8 +387,7 @@
 
 
 
-                        <h:panelGroup  id="divPrint" >
-
+                        <p:panel  id="divPrintReport"  >
                             <h:panelGroup rendered="#{patientReportController.currentPatientReport.item.reportType ne 'Microbiology'}"  >
                                 <div id="divReport"  class="labReport" >
                                     <ez:common_report commonReportFormat="#{patientReportController.currentPatientReport.reportFormat}"
@@ -514,11 +500,7 @@
                                     </div>
                                 </div>
                             </h:panelGroup>
-
-                        </h:panelGroup>
-
-
-
+                        </p:panel>
 
                     </h:form>
                 </div>
@@ -588,5 +570,5 @@
 
         </ui:composition>
 
-    </body>
+    </h:body>
 </html>
