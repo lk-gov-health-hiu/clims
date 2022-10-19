@@ -15,22 +15,27 @@
                     <p:panel id="panelReport" >
                         <f:facet name ="header" >
                             <h:outputLabel styleClass="noPrintButton"  value="Logins Report" />
-                            <p:calendar styleClass="noPrintButton" value="#{loginController.fromDate}" pattern="dd MMMM yyyy hh:mm:ss a" >
+                            <p:calendar class="m-1" value="#{loginController.fromDate}" pattern="dd MMMM yyyy hh:mm:ss a" >
                             </p:calendar>
-                            <p:calendar styleClass="noPrintButton" value="#{loginController.toDate}" pattern="dd MMMM yyyy hh:mm:ss a" >
+                            <p:calendar class="m-1" styleClass="noPrintButton" value="#{loginController.toDate}" pattern="dd MMMM yyyy hh:mm:ss a" >
                             </p:calendar>
 
                             <p:commandButton id="btnRefresh" actionListener="#{loginController.fillLogins()}"
                                              styleClass="noPrintButton" value="Process"
                                              ajax="false" 
+                                             class="m-1"
                                              onclick="onSubmitButton();">                               
                             </p:commandButton>
                             <p:defaultCommand target="btnRefresh"/>
-                            
-                            <p:commandButton styleClass="noPrintButton" value="Print" ajax="false" >
+
+                            <p:commandButton styleClass="noPrintButton" 
+                                             value="Print" 
+                                             ajax="false" 
+                                             class="m-1">
+
                                 <p:printer target="panelReport" />
                             </p:commandButton>
-                            
+
                         </f:facet>
 
 

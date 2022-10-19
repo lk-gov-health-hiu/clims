@@ -4,9 +4,9 @@
  */
 package lk.gov.health.bean.common;
 
-import lk.gov.health.bean.collectingCentre.CollectingCentreBillController;
+
 import lk.gov.health.bean.lab.PatientInvestigationController;
-import lk.gov.health.bean.pharmacy.PharmacyPreSettleController;
+
 import lk.gov.health.data.BillClassType;
 import lk.gov.health.data.BillNumberSuffix;
 import lk.gov.health.data.BillSummery;
@@ -31,7 +31,7 @@ import lk.gov.health.entity.BillItem;
 import lk.gov.health.entity.CancelledBill;
 import lk.gov.health.entity.Department;
 import lk.gov.health.entity.Institution;
-import lk.gov.health.entity.LazyBill;
+
 import lk.gov.health.entity.Payment;
 import lk.gov.health.entity.RefundBill;
 import lk.gov.health.entity.WebUser;
@@ -119,16 +119,14 @@ public class BillSearch implements Serializable {
     /**
      * Controllers
      */
-    @Inject
-    private CollectingCentreBillController collectingCentreBillController;
+
     @Inject
     private SessionController sessionController;
     @Inject
     private CommonController commonController;
     @Inject
     private WebUserController webUserController;
-    @Inject
-    private PharmacyPreSettleController pharmacyPreSettleController;
+
     @Inject
     private OpdPreSettleController opdPreSettleController;
     @Inject
@@ -789,7 +787,7 @@ public class BillSearch implements Serializable {
         List<Bill> lst = getBillFacade().findBySQL(sql, temMap, TemporalType.TIMESTAMP);
         //System.err.println("SIZE : " + lst.size());
 
-        lazyBills = new LazyBill(lst);
+
     }
 
     public void createDealorPaymentTable() {
@@ -946,7 +944,7 @@ public class BillSearch implements Serializable {
                     }
                 }
 
-                collectingCentreBillController.updateBallance(getBill().getInstitution(), Math.abs(feeTotalExceptCcfs), HistoryType.CollectingCentreBilling, getBill().getRefundedBill(), getBill().getReferralNumber());
+                
             }
 
             if (getBill().getPaymentMethod() == PaymentMethod.Credit) {
@@ -1473,7 +1471,7 @@ public class BillSearch implements Serializable {
                         }
                     }
 
-                    collectingCentreBillController.updateBallance(getBill().getInstitution(), Math.abs(feeTotalExceptCcfs), HistoryType.CollectingCentreBilling, getBill().getCancelledBill(), getBill().getReferralNumber());
+                    
                 }
 
                 if (getBill().getPaymentMethod() == PaymentMethod.Credit) {
@@ -2355,13 +2353,7 @@ public class BillSearch implements Serializable {
         this.filteredBill = filteredBill;
     }
 
-    public PharmacyPreSettleController getPharmacyPreSettleController() {
-        return pharmacyPreSettleController;
-    }
-
-    public void setPharmacyPreSettleController(PharmacyPreSettleController pharmacyPreSettleController) {
-        this.pharmacyPreSettleController = pharmacyPreSettleController;
-    }
+  
 
     public LazyDataModel<Bill> getLazyBills() {
         return lazyBills;

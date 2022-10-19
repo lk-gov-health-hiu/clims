@@ -24,9 +24,9 @@
 
 
                                 <h:panelGrid columns="3" style="text-align: left;" >
-                                    <p:commandButton id="btnCreateUser" value="Save New User" action="#{webUserController.saveNewUser()}" ajax="false" >
-                                    </p:commandButton>
-                                    <p:commandButton  value="Back to Manage User" action="#{webUserController.backToAdminManageUsers()}" ajax="false" immediate="true" ></p:commandButton>
+                                    <h:commandButton id="btnCreateUser" value="Save New User" action="#{webUserController.saveNewUser()}" class="form form-control btn btn-primary">
+                                    </h:commandButton>
+                                    <h:commandButton  value="Back to Manage User" action="#{webUserController.backToAdminManageUsers()}" class="form form-control btn btn-primary m-2" immediate="true" ></h:commandButton>
                                     <p:defaultCommand  target="btnCreateUser"/>
                                 </h:panelGrid>
 
@@ -90,16 +90,10 @@
 
                                             <h:outputLabel value="Code" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></h:outputLabel>
                                             <p:inputText autocomplete="off" value="#{webUserController.current.code}" maxlength="10" rendered="#{!webUserController.createOnlyUserForExsistingUser}" ></p:inputText>
-
-
                                         </h:panelGrid>
                                     </p:tab>
 
                                 </p:tabView>
-
-
-
-
                             </p:panel>
 
                         </h:panelGrid>

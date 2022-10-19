@@ -36,7 +36,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(lk.gov.health.ws.channel.Api.class);
         resources.add(lk.gov.health.ws.common.ApiMembership.class);
         resources.add(lk.gov.health.ws.inward.ApiInward.class);
         resources.add(lk.gov.health.ws.lims.Lims.class);

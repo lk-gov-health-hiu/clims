@@ -56,7 +56,7 @@
                                     </h:panelGrid>
                                     <h:panelGrid id="gpSelectButtons" columns="3"  >
 
-                                        <p:commandButton ajax="false" id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
+                                        <p:commandButton class="m-1" ajax="false" id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
                                                     return false;" action="#{institutionController.delete()}"  value="Delete"  >
                                         </p:commandButton>
 
@@ -80,13 +80,15 @@
                                             <h:panelGrid id="gpDetailText" columns="2">
 
 
-                                                <h:outputText id="lblName" value="Name"  ></h:outputText>
-                                                <p:inputText autocomplete="off" id="txtName" 
+                                                <h:outputText  id="lblName" value="Name"  ></h:outputText>
+                                                <p:inputText autocomplete="off" id="txtName"
+                                                             class="m-1"
                                                              styleClass="longText"
                                                              value="#{institutionController.current.name}"  ></p:inputText>
 
-                                                <h:outputText id="lblChqPrnName" value="Printi Name" ></h:outputText>
-                                                <p:inputText autocomplete="off" id="txtChqPrnName" 
+                                                <h:outputText  id="lblChqPrnName" value="Printi Name" ></h:outputText>
+                                                <p:inputText autocomplete="off" id="txtChqPrnName"
+                                                             class="m-1"
                                                              styleClass="longText"
                                                              value="#{institutionController.current.chequePrintingName}"  ></p:inputText>
 
@@ -130,13 +132,13 @@
                                                 <p:inputTextarea id="txtAdress" value="#{institutionController.current.address}" styleClass="longText" ></p:inputTextarea>
 
                                                 <h:outputText id="lblWeb" value="Web" ></h:outputText>
-                                                <p:inputText autocomplete="off" id="txtWeb" value="#{institutionController.current.web}"  ></p:inputText>
+                                                <p:inputText class="m-1" autocomplete="off" id="txtWeb" value="#{institutionController.current.web}"  ></p:inputText>
 
-                                                <h:outputText id="lblBank" value="Bank" ></h:outputText>
+                                                <h:outputText id="lblBank" value="Bank" class="m-1" ></h:outputText>
                                                 <au:completeBank_Branch value="#{institutionController.current.bankBranch}" />
 
                                                 <h:outputText id="lblAcc" value="Account No" ></h:outputText>
-                                                <p:inputText autocomplete="off" id="txtAcc" value="#{institutionController.current.accountNo}"  ></p:inputText>
+                                                <p:inputText class="m-1" autocomplete="off" id="txtAcc" value="#{institutionController.current.accountNo}"  ></p:inputText>
 
                                             </h:panelGrid>
                                         </p:tab>

@@ -10,12 +10,21 @@
         <ui:composition template="/resources/template/template.xhtml">
 
             <ui:define name="content">
+
+                <div class="card-header font-weight-bolder bg-primary text-white" >
+                    Clinicals Favourites
+                </div> 
+
                 <h:form>
-                    <p:panel header="Clinicals Favourites" >
+                    <p:panel >
                         <h:panelGrid columns="1">
-                            <p:commandButton styleClass="linkButton" ajax="false" 
-                                             value="Medicines" action="/clinical/clinical_favourite_item" onclick="onSubmitButton();" ></p:commandButton>
-                            
+                            <h:commandButton styleClass="linkButton"
+                                             class="form form-control btn btn-primary" 
+                                             value="Medicines" 
+                                             action="/clinical/clinical_favourite_item" 
+                                             onclick="onSubmitButton();" >
+                        </h:commandButton>
+
 
                         </h:panelGrid>
                     </p:panel>

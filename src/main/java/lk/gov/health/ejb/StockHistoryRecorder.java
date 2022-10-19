@@ -66,8 +66,7 @@ public class StockHistoryRecorder {
     ItemFeeFacade itemFeeFacade;
     @EJB
     ServiceSessionFacade serviceSessionFacade;
-    @EJB
-    ChannelBean channelBean;
+
     @EJB
     StaffFacade staffFacade;
     @EJB

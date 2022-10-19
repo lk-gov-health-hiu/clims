@@ -31,9 +31,9 @@
                                     </p:selectOneListbox>
                                 </h:panelGrid>
                                 <h:panelGrid id="gpSelectButtons" columns="3"  >
-                                    <p:commandButton id="btnAdd" value="Add"  update="gpDetail lstSelect detailFocus" action="#{diagnosisController.prepareAdd()}" styleClass="buttons"  onclick="onSubmitButton();">
+                                    <p:commandButton id="btnAdd" value="Add"  update="gpDetail lstSelect detailFocus" action="#{diagnosisController.prepareAdd()}" class="m-1"  onclick="onSubmitButton();">
                                     </p:commandButton>
-                                    <p:commandButton id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
+                                    <p:commandButton class="m-1" id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
                                                 return false;" action="#{diagnosisController.delete()}"  value="Delete"  >
                                     </p:commandButton>
                                 </h:panelGrid>
@@ -44,11 +44,11 @@
                             <h:panelGrid id="gpDetail" columns="1">
                                 <h:panelGrid id="gpDetailText" columns="2">
                                     <h:outputText id="lblName" value="Name" ></h:outputText>
-                                    <p:inputText autocomplete="off" id="txtName" value="#{diagnosisController.current.name}"  ></p:inputText>
+                                    <p:inputText class="m-1" autocomplete="off" id="txtName" value="#{diagnosisController.current.name}"  ></p:inputText>
                                     <h:outputText id="lblCode" value="Code" ></h:outputText>
-                                    <p:inputText autocomplete="off" id="txtCode" value="#{diagnosisController.current.code}"  ></p:inputText>                                    
+                                    <p:inputText class="m-1" autocomplete="off" id="txtCode" value="#{diagnosisController.current.code}"  ></p:inputText>                                    
                                     <h:outputText id="lblDes" value="Description" ></h:outputText>
-                                    <p:inputTextarea id="txtDes" value="#{diagnosisController.current.descreption}"  ></p:inputTextarea>
+                                    <p:inputTextarea class="m-1" id="txtDes" value="#{diagnosisController.current.descreption}"  ></p:inputTextarea>
                                 </h:panelGrid>
                                 <h:panelGrid id="gpDetailButtons" columns="2">
                                     <p:commandButton id="btnSave" value="Save" process="gpDetail" update="lstSelect selectFocus" action="#{diagnosisController.saveSelected()}" styleClass="buttons" onclick="onSubmitButton();">

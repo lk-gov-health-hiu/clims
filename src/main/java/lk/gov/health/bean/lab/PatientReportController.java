@@ -7,7 +7,6 @@ import lk.gov.health.bean.common.SecurityController;
 import lk.gov.health.bean.common.SessionController;
 import lk.gov.health.bean.common.TransferController;
 import lk.gov.health.bean.common.UtilityController;
-import lk.gov.health.bean.hr.StaffController;
 import lk.gov.health.data.BooleanMessage;
 import lk.gov.health.data.CalculationType;
 import lk.gov.health.data.InvestigationItemType;
@@ -136,8 +135,6 @@ public class PatientReportController implements Serializable {
     private PatientReportBean prBean;
     @Inject
     SessionController sessionController;
-    @Inject
-    StaffController staffController;
     @Inject
     TransferController transferController;
     @Inject
@@ -640,11 +637,6 @@ public class PatientReportController implements Serializable {
             getCommonReportItemController().setCategory(currentReportInvestigation.getReportFormat());
         }
         currentPatientReport = r;
-        if (currentPatientReport != null && currentPatientReport.getApproveUser() != null) {
-            getStaffController().setCurrent(currentPatientReport.getApproveUser().getStaff());
-        } else {
-            getStaffController().setCurrent(null);
-        }
         return "/lab/patient_report";
     }
 
@@ -656,14 +648,6 @@ public class PatientReportController implements Serializable {
         patientReportItemValues = getPirivFacade().findBySQL(sql, m);
         // getPirivFacade
         return patientReportItemValues;
-    }
-
-    public StaffController getStaffController() {
-        return staffController;
-    }
-
-    public void setStaffController(StaffController staffController) {
-        this.staffController = staffController;
     }
 
     private double findPtReportItemVal(InvestigationItem ii) {
@@ -1336,7 +1320,6 @@ public class PatientReportController implements Serializable {
         currentPatientReport.setApproveInstitution(getSessionController().getLoggedUser().getInstitution());
         currentPatientReport.setApproveUser(getSessionController().getLoggedUser());
         getFacade().edit(currentPatientReport);
-        getStaffController().setCurrent(getSessionController().getLoggedUser().getStaff());
         getTransferController().setStaff(getSessionController().getLoggedUser().getStaff());
         UtilityController.addSuccessMessage("Approved");
         commonController.printReportDetails(null, null, startTime, "Lab Report Aprove.");
@@ -1367,7 +1350,6 @@ public class PatientReportController implements Serializable {
         currentPatientReport.setAutherizedInstitution(getSessionController().getLoggedUser().getInstitution());
         currentPatientReport.setAutherizedUser(getSessionController().getLoggedUser());
         getFacade().edit(currentPatientReport);
-        getStaffController().setCurrent(getSessionController().getLoggedUser().getStaff());
         getTransferController().setStaff(getSessionController().getLoggedUser().getStaff());
 
         UserPreference pf;
@@ -1515,7 +1497,6 @@ public class PatientReportController implements Serializable {
         currentPatientReport.setCancellInstitution(getSessionController().getLoggedUser().getInstitution());
         currentPatientReport.setCancelledUser(getSessionController().getLoggedUser());
         getFacade().edit(currentPatientReport);
-        getStaffController().setCurrent(getSessionController().getLoggedUser().getStaff());
         getTransferController().setStaff(getSessionController().getLoggedUser().getStaff());
         UtilityController.addSuccessMessage("Approval Reversed");
 

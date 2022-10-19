@@ -13,26 +13,29 @@
                     <p:panel header="Search Requests" >
                         <f:facet name="header">
                             <h:panelGrid columns="1" >
-                                <h:panelGrid columns="2" >
+                                <h:panelGrid columns="1" >
 
-                                    <h:outputLabel value="From Date"/>
-                                    <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
+                                    <h:outputLabel class="m-1" value="From Date"/>
+                                    <p:calendar class="m-1" styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
                                     </p:calendar>
-                                    <h:outputLabel value="To Date"/>
-                                    <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
+                                    <h:outputLabel class="m-1" value="To Date"/>
+                                    <p:calendar styleClass="dateTimePicker" class="m-1" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
                                     </p:calendar>
-                                    <p:commandButton id="btnSearch2" ajax="false" value="Search" 
-                                                     action="#{searchController.createPatientInvestigationsTableAll()}" onclick="onSubmitButton();" />
+                                    <h:commandButton id="btnSearch2" 
+                                                     class="form form-control btn btn-primary m-1" 
+                                                     value="Search" 
+                                                     action="#{searchController.createPatientInvestigationsTableAll()}"
+                                                     onclick="onSubmitButton();" />
                                 </h:panelGrid>
                                 <h:panelGrid columns="4" >
                                     <h:outputLabel value="Request No"/>
                                     <h:outputLabel value="Patient Name"/>
                                     <h:outputLabel value="Patient Phone"/>                               
                                     <h:outputLabel value="Investigation Name"/>
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
-                                    <p:inputText autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
-                                    <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
-                                    <p:inputText autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>
+                                    <p:inputText autocomplete="off" class="m-1"  value="#{searchController.searchKeyword.billNo}" />
+                                    <p:inputText autocomplete="off" class="m-1" value="#{searchController.searchKeyword.patientName}" />
+                                    <p:inputText autocomplete="off" class="m-1"  value="#{searchController.searchKeyword.patientPhone}" />
+                                    <p:inputText autocomplete="off" class="m-1" value="#{searchController.searchKeyword.itemName}"/>
                                 </h:panelGrid>
                             </h:panelGrid>
                         </f:facet>
@@ -150,11 +153,11 @@
                                 </h:outputLabel>
 
                             </p:column>
-                            
-                             <p:column headerText="Referred Institution"  styleClass="alignTop">
-                                 <h:outputLabel value="#{pi.billItem.bill.referredByInstitution.name}" >
+
+                            <p:column headerText="Referred Institution"  styleClass="alignTop">
+                                <h:outputLabel value="#{pi.billItem.bill.referredByInstitution.name}" >
                                 </h:outputLabel>
-                                 <h:outputLabel value="#{pi.billItem.bill.institution.name}" >
+                                <h:outputLabel value="#{pi.billItem.bill.institution.name}" >
                                 </h:outputLabel>
                             </p:column>
 
@@ -162,7 +165,7 @@
                                 <h:outputLabel value="#{pi.billItem.bill.toDepartment.name}" >
                                 </h:outputLabel>
                             </p:column>
-                            
+
                             <p:column headerText="Sample Received Date"  styleClass="alignTop">
                                 <h:outputLabel value="#{pi.sampledAt}" >
                                     <f:convertDateTime pattern="dd MMM yyyy hh:mm a" ></f:convertDateTime>
@@ -179,7 +182,8 @@
                                         <f:setPropertyActionListener value="#{pi}" target="#{patientInvestigationController.current}"></f:setPropertyActionListener>
                                         <p:graphicImage library="image" styleClass="standedicon" name="bleed.png" ></p:graphicImage>
                                     </p:commandLink>
-                                    <p:commandLink process="btnReceive" update="tblBills"  disabled="#{!pi.received ne true and !webUserController.hasPrivilege('LabSampleReceiving')}"   id="btnReceive"  action="#{patientInvestigationController.markAsReceived()}" >
+                                    <p:commandLink process="btnReceive" update="tblBills"  
+                                                   disabled="#{pi.received ne true and !webUserController.hasPrivilege('LabSampleReceiving')}"   id="btnReceive"  action="#{patientInvestigationController.markAsReceived()}" >
                                         <f:setPropertyActionListener value="#{pi}" target="#{patientInvestigationController.current}"></f:setPropertyActionListener>
                                         <p:graphicImage library="image" styleClass="standedicon" name="receive.jpeg" ></p:graphicImage>
                                     </p:commandLink>
@@ -252,9 +256,9 @@
                             </p:column>
 
                             <p:column headerText="Data-Entered Reports"  styleClass="alignTop noBorderGrid" >
-                                
-                                
-                                
+
+
+
                                 <p:dataTable value="#{patientReportController.patientReports(pi)}" var="dpr" emptyMessage="" 
                                              rowStyleClass="#{dpr.retired eq true ? 'noDisplayRow':''}" 
                                              styleClass="noBorderGrid summeryBorder noBorder" >

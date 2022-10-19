@@ -13,21 +13,26 @@
 
             <ui:define name="content">
 
+                <div class="card-header font-weight-bolder bg-primary text-white" >
+                    Manage Favourite Medicines
+                </div> 
+
                 <h:form >
                     <p:panel  >
                         <f:facet name="header" >
                             <h:outputText value="Manage Favourite Medicines" >
                             </h:outputText>
 
-                            <p:commandButton ajax="false" 
+                            <h:commandButton class=" btn btn-primary" 
                                              value="Back"
                                              action="/clinical/clinical_administration"
-                                             style="float: right;"></p:commandButton>
+                                             style="float: right;">
+                            </h:commandButton>
 
                         </f:facet>
 
                         <h:panelGrid columns="2" >
-                            <p:outputLabel value="Select Medicine" ></p:outputLabel>
+                            <h:outputLabel value="Select Medicine" ></h:outputLabel>
 
                             <p:autoComplete id="acItem" 
                                             value="#{favouriteController.item}" 
@@ -40,10 +45,11 @@
                             </p:autoComplete>
                             <p:watermark for="acItem" value="Select Medicine"/>
 
-                            <p:commandButton value="Add New"
+                            <h:commandButton value="Add New"
+                                             class="form form-control btn btn-primary m-1"
                                              onclick="PF('dlg2').show();"
                                              action="#{favouriteController.prepareAddingFavouriteItem()}" >
-                            </p:commandButton>
+                            </h:commandButton>
                             <p:dialog header="Add Favourite Medicine" widgetVar="dlg2" modal="true" height="100">
                                 <h:panelGrid columns="2" >
 

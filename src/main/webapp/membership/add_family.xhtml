@@ -16,17 +16,25 @@
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
 
+                <div class="card-header font-weight-bolder bg-primary text-white" >
+                    Add Family
+                </div>
+
                 <h:panelGroup >
                     <h:form  >
                         <p:growl />
-                        <p:panel header="Add Family" >
+                        <p:panel >
                             <p:panelGrid columns="2" >
-                                <p:commandButton value="Save Family" action="#{patientController.saveFamily()}" ></p:commandButton>
-                                <p:commandButton value="Save &amp; Clear for a new Family" action="#{patientController.saveAndClearForNewFamily() }" ></p:commandButton>
+                                <h:commandButton value="Save Family"
+                                                 class="form form-control btn btn-primary"
+                                                 action="#{patientController.saveFamily()}" >
+                                </h:commandButton>
+                                <h:commandButton value="Save &amp; Clear for a new Family" class="form form-control btn btn-primary" action="#{patientController.saveAndClearForNewFamily() }" ></h:commandButton>
                             </p:panelGrid>
 
                             <p:panelGrid columns="2" styleClass="alignTop" >
                                 <p:panel header="Family Membership" >
+
                                     <p:panelGrid columns="2">
                                         <p:outputLabel value="Membership Card No:" for="membershipCardNo" />
                                         <p:inputText
@@ -48,7 +56,7 @@
                                 <p:panel header="Add Family Members" >
                                     <p:panelGrid columns="2">
 
-                                        <h:outputLabel value="Search by Name/Code/Phone/NIC/PHN" />
+                                        <h:outputLabel class="form form-control" value="Search by Name/Code/Phone/NIC/PHN" />
                                         <p:autoComplete widgetVar="aPt" id="acPt" forceSelection="true" 
                                                         value="#{patientController.current}" minQueryLength="4"
                                                         completeMethod="#{patientController.completePatientByNameOrCode}" 
@@ -92,15 +100,17 @@
 
 
                                         <p:spacer></p:spacer>
-                                        <p:commandButton ajax="false" value="Add as a Family Member"
-                                                         action="#{patientController.addNewMemberToFamily()}">
-                                        </p:commandButton>
+                                        <h:commandButton  value="Add as a Family Member"
+                                                          class="form form-control btn btn-primary m-1"
+                                                          action="#{patientController.addNewMemberToFamily()}">
+                                        </h:commandButton>
 
                                         <p:spacer></p:spacer>
-                                        <p:commandButton ajax="false" value="To add a new Family Member" 
+                                        <h:commandButton class="form form-control btn btn-primary m-1"
+                                                         value="To add a new Family Member" 
                                                          action="#{patientController.toNewPatient()}" >
 
-                                        </p:commandButton>
+                                        </h:commandButton>
 
                                     </p:panelGrid>
 

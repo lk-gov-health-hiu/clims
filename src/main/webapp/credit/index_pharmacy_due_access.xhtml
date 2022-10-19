@@ -17,11 +17,11 @@
                         <p:tabView orientation="left" > 
 
                             <p:tab title=" Dues" >
-                                <h:panelGrid columns="1" >  
+                                <p:panelGrid columns="1" >  
 
-                                    <p:commandButton action="/credit/credit_company_pharmacy_due" actionListener="#{creditCompanyDueController.makeNull()}" value="Due" ajax="false" styleClass="linkButton" onclick="onSubmitButton();"  />
-                                    <p:commandButton  action="/credit/credit_company_pharmacy_due_age" actionListener="#{creditCompanyDueController.makeNull()}" value="Due Age" ajax="false" styleClass="linkButton" onclick="onSubmitButton();"/>                            
-                                </h:panelGrid>
+                                    <h:commandButton action="/credit/credit_company_pharmacy_due" actionListener="#{creditCompanyDueController.makeNull()}" value="Due" class="form form-control btn btn-outline-primary p-1"  onclick="onSubmitButton();"  />
+                                    <h:commandButton  action="/credit/credit_company_pharmacy_due_age" actionListener="#{creditCompanyDueController.makeNull()}" value="Due Age" class="form form-control btn btn-outline-primary p-1" onclick="onSubmitButton();"/>                            
+                                </p:panelGrid>
                             </p:tab>
 
                             <p:tab title=" Excess" >

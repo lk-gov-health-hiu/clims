@@ -19,15 +19,16 @@
                     <p:outputLabel value="Collecting Centre Collection Detail Report" styleClass="noPrintButton"/>
                 </f:facet>
                 <h:panelGrid columns="2" styleClass="noPrintButton">
-                    <h:outputLabel value="From"/>
-                    <p:calendar id="frmDate" value="#{commonReport.fromDate}" styleClass="dateTimePicker" navigator="true"  pattern="dd MMMM yyyy hh:mm:ss a" >
+                    <h:outputLabel class="m-1" value="From"/>
+                    <p:calendar class="m-1" id="frmDate" value="#{commonReport.fromDate}" navigator="true"  pattern="dd MMMM yyyy hh:mm:ss a" >
                     </p:calendar>
 
-                    <h:outputLabel value="To"/>
-                    <p:calendar id="toDate" value="#{commonReport.toDate}" styleClass="dateTimePicker" navigator="true" pattern="dd MMMM yyyy hh:mm:ss a" >
+                    <h:outputLabel class="m-1" value="To"/>
+                    <p:calendar class="m-1" id="toDate" value="#{commonReport.toDate}" navigator="true" pattern="dd MMMM yyyy hh:mm:ss a" >
                     </p:calendar>
-                    <h:outputLabel value="Collecting Center"/>
+                    <h:outputLabel class="m-1" value="Collecting Center"/>
                     <p:autoComplete forceSelection="true" 
+                                    class="m-1"
                                     value="#{commonReport.collectingIns}" 
                                     completeMethod="#{institutionController.completeCollectingCenter}" var="ix" itemLabel="#{ix.name}" itemValue="#{ix}" size="30"  style="width: 400px;">
                         <p:column>
@@ -37,17 +38,17 @@
                             #{ix.institutionCode}
                         </p:column>
                     </p:autoComplete>
-                    <h:outputLabel value="Invoice No"/>
-                    <p:inputText value="#{commonReport.invoceNo}" autocomplete="off" />
+                    <h:outputLabel class="m-1" value="Invoice No"/>
+                    <p:inputText class="m-1" value="#{commonReport.invoceNo}" autocomplete="off" />
                 </h:panelGrid> 
                 <h:panelGrid columns="4" styleClass="noPrintButton">
                     <p:spacer width="40"/>
-                    <p:commandButton value="Process" ajax="false"  styleClass="noPrintButton " style="float: right;" action="#{commonReport.createCollectingCenterBillTable}" />
+                    <p:commandButton class="m-1" value="Process" ajax="false" style="float: right;" action="#{commonReport.createCollectingCenterBillTable}" />
 
-                    <p:commandButton ajax="false" value="Print"  styleClass="noPrintButton" style="float: right;" >
+                    <p:commandButton class="m-1" ajax="false" value="Print" style="float: right;" >
                         <p:printer target="panelPrint" />
                     </p:commandButton>
-                    <p:commandButton ajax="false" value="Excel" action="#" actionListener="#{commonReport.createCollectingCenterBillTable}" >
+                    <p:commandButton class="m-1" ajax="false" value="Excel" action="#" actionListener="#{commonReport.createCollectingCenterBillTable}" >
                         <pe:exporter type="xlsx" target="tbl" fileName="Collecting_Centre_Collection_Detail_Report"   />
                     </p:commandButton> 
                 </h:panelGrid>

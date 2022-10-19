@@ -9,8 +9,7 @@
         function handleLoginRequest(xhr, status, args) {
             if (args.validationFailed || !args.loggedIn) {
                 PF('dlg1').jq.effect("shake", {times: 5}, 100);
-            }
-            else {
+            } else {
                 PF('dlg1').hide();
                 $('#loginLink').fadeOut();
             }
@@ -24,11 +23,14 @@
 
             <ui:define name="content">
 
+                <div class="card-header font-weight-bolder bg-white text-black" >
+                    Search Patients
+                </div> 
                 <h:outputStylesheet library="css" name="printing.css" ></h:outputStylesheet>
 
                 <h:form>
 
-                    <p:panel header="Manage Patients" styleClass="alignTop verticalAndHorizontalCenteringLarge"
+                    <p:panel header="Manage Patients"  styleClass="alignTop verticalAndHorizontalCenteringLarge"
                              style="height: 600px;">
                         <h:panelGrid columns="2" >
 
@@ -38,13 +40,16 @@
                                     <f:facet name="header" >
                                         <h:outputLabel value="Search Patients" />
 
-                                        <p:commandButton id="btnDeletePt" 
+                                        <h:commandButton id="btnDeletePt" 
                                                          style="float: right;" 
-                                                         value="Delete" process="btnDeletePt" 
+                                                         class="btn btn-primary"
+                                                         value="Delete" 
+                                                         process="btnDeletePt" 
                                                          update="acPt :#{p:component('panelDetails')} :#{p:component('patientDetail')} " 
-                                                         action="#{patientController.delete()}" onclick="onSubmitButton();" 
+                                                         action="#{patientController.delete()}"
+                                                         onclick="onSubmitButton();" 
                                                          rendered="#{webUserController.hasPrivilege('ClinicalPatientDelete')}">
-                                        </p:commandButton>
+                                        </h:commandButton>
 
                                         <!--                                        <p:commandButton id="btnPrintCard" action="/clinical/clinical_print_barcode" style="float: right;" value="Print Card" ajax="false" onclick="onSubmitButton();">
                                                                                  </p:commandButton>-->
@@ -100,15 +105,20 @@
                                 <f:facet name="header" >
                                     <!--                                    <h:outputLabel value="Details of Selected Patient" />-->
                                     <h:outputLabel value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
-                                    <p:commandButton  process="panelDetails" update="acPt" value="Save" 
-                                                      action="#{patientController.saveSelected()}"></p:commandButton>
-                                    <p:commandButton id="btnAddPt" 
+                                    <h:commandButton  process="panelDetails" 
+                                                      class="btn btn-primary"
+                                                      update="acPt"
+                                                      value="Save" 
+                                                      action="#{patientController.saveSelected()}"></h:commandButton>
+                                    <h:commandButton id="btnAddPt" 
                                                      style="float: right;" 
-                                                     value="Add New Patient" process="btnAddPt" 
-                                                     update="acPt :#{p:component('panelDetails')} :#{p:component('patientDetail') } :#{p:component('pan1') } " 
+                                                     class="btn btn-primary"
+                                                     value="Add New Patient"
+                                                     process="btnAddPt" 
+                                                     update="acPt :#{p:resolveFirstComponentWithId('panelDetails',view).clientId} :#{p:resolveFirstComponentWithId('patientDetail',view).clientId} :#{p:resolveFirstComponentWithId('pan1',view).clientId} } " 
                                                      action="#{patientController.prepareAddReg()}" onclick="onSubmitButton();" 
                                                      >
-                                    </p:commandButton>
+                                    </h:commandButton>
                                 </f:facet>
 
 
@@ -196,7 +206,7 @@
                                                     <p:column headerText="DOB">
                                                         <h:outputLabel value="#{fm.dob}">
                                                             <f:convertDateTime pattern="yyyy-MM-dd"/>
-                                                    </h:outputLabel>
+                                                        </h:outputLabel>
                                                     </p:column>
                                                     <p:column headerText="NIC">
                                                         <h:outputLabel value="#{fm.nic}"></h:outputLabel>
@@ -250,7 +260,9 @@
                                                 </p:graphicImage>
                                                 <h:panelGroup >
                                                     <p:photoCam widgetVar="pc" listener="#{photoCamBean.oncapturePatientPhoto}" update="photos"/>  
-                                                    <p:commandButton type="button" value="Capture" 
+                                                    <h:commandButton type="button"
+                                                                     value="Capture" 
+                                                                     class="btn btn-primary"
                                                                      onclick="PF('pc').capture()" />  
                                                 </h:panelGroup>
 
@@ -312,8 +324,7 @@
                     function handleLoginRequest(xhr, status, args) {
                         if (!args.loggedIn) {
                             PF('dlg').jq.effect("shake", {times: 5}, 100);
-                        }
-                        else {
+                        } else {
                             PF('dlg').hide();
 
                         }

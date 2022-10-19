@@ -17,37 +17,37 @@
                         <h:panelGrid columns="1" >
                             <h:panelGrid columns="7" >
 
-                                <h:outputLabel value="From Date"/>
-                                <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
+                                <h:outputLabel class="m-1" value="From Date"/>
+                                <p:calendar class="m-1" styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
                                 </p:calendar>
-                                <h:outputLabel value="To Date"/>
-                                <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
+                                <h:outputLabel class="m-1" value="To Date"/>
+                                <p:calendar class="m-1" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
                                 </p:calendar>
-                                <p:commandButton id="btnSearch2" ajax="false" value="Search" action="#{searchController.createPatientInvestigationsTableAll()}" onclick="onSubmitButton();" />
-                                <p:commandButton ajax="false" value="Download as Excel" >
+                                <p:commandButton class="m-1" id="btnSearch2" ajax="false" value="Search" action="#{searchController.createPatientInvestigationsTableAll()}" onclick="onSubmitButton();" />
+                                <p:commandButton class="m-1" ajax="false" value="Download as Excel" >
                                     <p:dataExporter target="tblBills" type="xls" fileName="test_list" ></p:dataExporter>
                                 </p:commandButton>
                             </h:panelGrid>
                             <h:panelGrid columns="4" >
-                                <h:outputLabel value="Bill No"/>
-                                <h:outputLabel value="Patient Name"/>
-                                <h:outputLabel value="Patient Phone"/>                               
-                                <h:outputLabel value="Investigation Name"/>
-                                <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
-                                <p:inputText autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
-                                <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
-                                <p:inputText autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>
-                                <h:outputLabel value="Report Department"/>
-                                <h:outputLabel value="Bill Department"/>
-                                <h:outputLabel value="BHT"/>
+                                <h:outputLabel class="m-1" value="Bill No"/>
+                                <h:outputLabel class="m-1" value="Patient Name"/>
+                                <h:outputLabel class="m-1" value="Patient Phone"/>                               
+                                <h:outputLabel class="m-1" value="Investigation Name"/>
+                                <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
+                                <p:inputText class="m-1" autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
+                                <p:inputText class="m-1" autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
+                                <p:inputText class="m-1" autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>
+                                <h:outputLabel class="m-1" value="Report Department"/>
+                                <h:outputLabel class="m-1" value="Bill Department"/>
+                                <h:outputLabel class="m-1" value="BHT"/>
                                 <h:outputLabel/>
-                                <p:autoComplete completeMethod="#{departmentController.completeDept}" styleClass="shortinput2"
+                                <p:autoComplete class="m-1" completeMethod="#{departmentController.completeDept}" styleClass="shortinput2"
                                                 var="dept" itemLabel="#{dept.name}" itemValue="#{dept}" forceSelection="true" 
                                                 value="#{searchController.reportKeyWord.department}" converter="departmentConverter"/>
-                                <p:autoComplete completeMethod="#{departmentController.completeDept}" styleClass="shortinput2"
+                                <p:autoComplete class="m-1" completeMethod="#{departmentController.completeDept}" styleClass="shortinput2"
                                                 var="dept" itemLabel="#{dept.name}" itemValue="#{dept}" forceSelection="true" 
                                                 value="#{searchController.reportKeyWord.departmentFrom}" converter="departmentConverter"/>
-                                <p:autoComplete converter="admis" widgetVar="aPt" id="acPt" forceSelection="true" styleClass="shortinput2"
+                                <p:autoComplete class="m-1" converter="admis" widgetVar="aPt" id="acPt" forceSelection="true" styleClass="shortinput2"
                                                 value="#{searchController.patientEncounter}"
                                                 completeMethod="#{admissionController.completePatientAll}" 
                                                 var="myItem" itemValue="#{myItem}" 

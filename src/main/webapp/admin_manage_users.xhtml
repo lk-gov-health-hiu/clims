@@ -12,9 +12,9 @@
                     <h:panelGrid columns="3" columnClasses="grid1 grid1">
                         <p:panel header="Manage Users"  rendered="#{webUserController.hasPrivilege('AdminManagingUsers') or sessionController.firstLogin }" >
                             <h:panelGrid columns="1" >
-                                <p:commandButton styleClass="linkButton" ajax="false" value="Add New User" action="admin_add_new_user" actionListener="#{webUserController.prepairAddNewUser}" onclick="onSubmitButton();"/>
-                                <p:commandButton  styleClass="linkButton" ajax="false" value="View Users" action="admin_view_user" onclick="onSubmitButton();"/>
-                                <p:commandButton  styleClass="linkButton" ajax="false" value="View User Login Details" action="admin_logins_all" onclick="onSubmitButton();"/>
+                                <h:commandButton class="form form-control btn btn-primary m-1" value="Add New User" action="admin_add_new_user" actionListener="#{webUserController.prepairAddNewUser}" onclick="onSubmitButton();"/>
+                                <h:commandButton class="form form-control btn btn-primary m-1" value="View Users" action="admin_view_user" onclick="onSubmitButton();"/>
+                                <h:commandButton  class="form form-control btn btn-primary m-1" value="View User Login Details" action="admin_logins_all" onclick="onSubmitButton();"/>
 
                             </h:panelGrid>
                         </p:panel>
@@ -22,10 +22,10 @@
 
 
                     <h:panelGroup rendered="false" >
-                        <p:commandButton  styleClass="linkButton" ajax="false" value="Change Passwords" action="admin_change_password" onclick="onSubmitButton();"/>
-                        <p:commandButton  styleClass="linkButton" ajax="false" value="Manage Privileges" action="admin_user_privilages" onclick="onSubmitButton();"/>                                
-                        <p:commandButton  styleClass="linkButton" ajax="false" value="Add PaymentScheme to User" action="admin_user_paymentScheme" onclick="onSubmitButton();"/>
-                        <p:commandButton  styleClass="linkButton" ajax="false" value="Add Department to User" action="admin_user_department" onclick="onSubmitButton();"/>
+                        <h:commandButton class="form form-control btn btn-primary m-1" styleClass="linkButton"  value="Change Passwords" action="admin_change_password" onclick="onSubmitButton();"/>
+                        <h:commandButton  class="form form-control btn btn-primary m-1" styleClass="linkButton"  value="Manage Privileges" action="admin_user_privilages" onclick="onSubmitButton();"/>                                
+                        <h:commandButton  class="form form-control btn btn-primary m-1" styleClass="linkButton" value="Add PaymentScheme to User" action="admin_user_paymentScheme" onclick="onSubmitButton();"/>
+                        <h:commandButton  class="form form-control btn btn-primary m-1" styleClass="linkButton" value="Add Department to User" action="admin_user_department" onclick="onSubmitButton();"/>
 
                     </h:panelGroup>
 

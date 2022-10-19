@@ -19,11 +19,14 @@
                                         <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
                                         </p:calendar>
                                         <h:outputLabel value="To"/>
-                                        <p:calendar id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
+                                        <p:calendar styleClass="dateTimePicker" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
                                         </p:calendar>
                                     </p:panelGrid>
-                                    <p:commandButton id="btnSearch2" ajax="false" value="Search" 
-                                                     action="#{searchController.listPatientInvestigationsForMyInstitution}" onclick="onSubmitButton();" />
+                                    <h:commandButton id="btnSearch2" 
+                                                     class='form form-control btn btn-primary' 
+                                                     value="Search" 
+                                                     action="#{searchController.listPatientInvestigationsForMyInstitution}"
+                                                     onclick="onSubmitButton();" />
 
 
                                 </p:panelGrid>
@@ -94,7 +97,7 @@
                                 </p:tooltip>
                             </p:column>
 
-                            
+
 
 
                             <p:column  headerText="Patient" styleClass="alignTop" 
@@ -135,14 +138,14 @@
 
                             <p:column headerText="Investigation"  styleClass="alignTop" 
                                       sortBy="#{pi.billItem.bill.patient.person.nameWithTitle}" 
-                                       filterBy="#{pi.billItem.bill.patient.person.nameWithTitle}" 
-                                       filterMatchMode="contains">
+                                      filterBy="#{pi.billItem.bill.patient.person.nameWithTitle}" 
+                                      filterMatchMode="contains">
                                 <h:outputLabel value="#{pi.billItem.item.name}" >
                                 </h:outputLabel>
 
                             </p:column>
 
-                            
+
 
                             <p:column headerText="Requested for"  styleClass="alignTop">
                                 <h:outputLabel value="#{pi.billItem.bill.toDepartment.name}" >
