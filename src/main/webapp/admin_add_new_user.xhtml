@@ -68,31 +68,6 @@
                                             <p:password id="pw2" required="true" maxlength="15" value="#{webUserController.current.webUserPassword}" />
                                         </h:panelGrid>
                                     </p:tab>
-                                    <p:tab title="Advance" >
-                                        <h:panelGrid id="pg1" columns="2" style="text-align: left;" >
-                                            <h:outputText value="Add Only User" ></h:outputText>
-                                            <p:selectBooleanCheckbox value="#{webUserController.createOnlyUser}" >
-                                                <p:ajax process="@this" update="pg1" listener="#{webUserController.onlyAddStaffListner()}" />
-                                            </p:selectBooleanCheckbox>
-                                            <h:outputText value="Add User To Exsisting Staff" ></h:outputText>
-                                            <p:selectBooleanCheckbox value="#{webUserController.createOnlyUserForExsistingUser}" >
-                                                <p:ajax process="@this" update="pg1" listener="#{webUserController.onlyAddStaffForExsistingUserListner()}" />
-                                            </p:selectBooleanCheckbox>
-                                            <h:outputText value="Staff" rendered="#{webUserController.createOnlyUserForExsistingUser}" ></h:outputText>
-                                            <autocomplete:completeStaff value="#{webUserController.staff}" rendered="#{webUserController.createOnlyUserForExsistingUser}" />
-
-
-                                            <h:outputText value="Institution" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></h:outputText>
-                                            <autocomplete:institution value="#{webUserController.institution}" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></autocomplete:institution>
-
-                                            <h:outputText value="Department" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></h:outputText>
-                                            <autocomplete:department value="#{webUserController.department}" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></autocomplete:department>
-
-                                            <h:outputLabel value="Code" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></h:outputLabel>
-                                            <p:inputText autocomplete="off" value="#{webUserController.current.code}" maxlength="10" rendered="#{!webUserController.createOnlyUserForExsistingUser}" ></p:inputText>
-                                        </h:panelGrid>
-                                    </p:tab>
-
                                 </p:tabView>
                             </p:panel>
 
