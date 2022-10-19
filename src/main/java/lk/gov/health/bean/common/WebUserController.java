@@ -8,7 +8,8 @@
  */
 package lk.gov.health.bean.common;
 
-
+import java.io.IOException;
+import java.io.InputStream;
 import lk.gov.health.data.Dashboard;
 import lk.gov.health.data.Privileges;
 import lk.gov.health.entity.Department;
@@ -35,6 +36,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -43,7 +46,12 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 import javax.inject.Named;
+import lk.gov.health.data.UploadType;
+import lk.gov.health.entity.Upload;
+import lk.gov.health.facade.UploadFacade;
+import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FlowEvent;
+import org.primefaces.model.file.UploadedFile;
 
 /**
  *
@@ -69,6 +77,8 @@ public class WebUserController implements Serializable {
     private StaffFacade staffFacade;
     @EJB
     private WebUserDashboardFacade webUserDashboardFacade;
+    @EJB
+    private UploadFacade uploadFacade;
     /**
      * Controllers
      */
@@ -86,6 +96,7 @@ public class WebUserController implements Serializable {
     /**
      * Class Variables
      */
+    private UploadedFile file;
     List<WebUser> items;
     List<WebUser> searchItems;
     private WebUser current;
@@ -223,10 +234,10 @@ public class WebUserController implements Serializable {
 
         for (WebUserPrivilege w : getSessionController().getUserPrivileges()) {
             Privileges p = null;
-            try{
-                p=Privileges.valueOf(privilege);
-            }catch(Exception e){
-                hasPri=false;
+            try {
+                p = Privileges.valueOf(privilege);
+            } catch (Exception e) {
+                hasPri = false;
                 return hasPri;
             }
             if (w.getPrivilege() != null && w.getPrivilege().equals(p)) {
@@ -707,6 +718,14 @@ public class WebUserController implements Serializable {
         current = selected;
         return "/admin_user";
     }
+    
+    public String toManageUsers(){
+        return "/admin_view_user";
+    }
+    
+    public String toManageUserSignature(){
+        return "/admin_user_signature";
+    }
 
     public String toManageStaff() {
         if (selected == null) {
@@ -772,8 +791,8 @@ public class WebUserController implements Serializable {
         listWebUserDashboards();
         return "/admin_manage_dashboards";
     }
-    
-    public String backToAdminManageUsers(){
+
+    public String backToAdminManageUsers() {
         return "/admin_manage_users";
     }
 
@@ -795,7 +814,7 @@ public class WebUserController implements Serializable {
         JsfUtil.addSuccessMessage("Added");
         listWebUserDashboards();
     }
-    
+
     public void removeWebUserDashboard() {
         if (webUserDashboard == null) {
             JsfUtil.addErrorMessage("Dashboard ?");
@@ -809,7 +828,7 @@ public class WebUserController implements Serializable {
         JsfUtil.addSuccessMessage("Removed");
         listWebUserDashboards();
     }
-    
+
     public List<WebUserDashboard> listWebUserDashboards(WebUser wu) {
         List<WebUserDashboard> wuds = new ArrayList<>();
         if (wu == null) {
@@ -824,7 +843,7 @@ public class WebUserController implements Serializable {
         wuds = getWebUserDashboardFacade().findBySQL(j, m);
         return wuds;
     }
-    
+
     public void listWebUserDashboards() {
         webUserDashboards = listWebUserDashboards(current);
     }
@@ -857,7 +876,65 @@ public class WebUserController implements Serializable {
         return userDepartmentController;
     }
 
+    public Upload findUserSignature(WebUser u) {
+        String j = "select u "
+                + " from Upload u "
+                + " where u.retired=:ret "
+                + " and u.webUser=:wu "
+                + " and u.uploadType=:ut "
+                + " order by u.id desc";
+        Map m = new HashMap();
+        m.put("wu", u);
+        m.put("ret", false);
+        m.put("ut", UploadType.User_Signature);
+        return uploadFacade.findFirstBySQL(j, m);
+    }
 
+    private void saveUpload(Upload up) {
+        if (up == null) {
+            return;
+        }
+        if (up.getId() == null) {
+            up.setCreatedAt(new Date());
+            up.setCreater(sessionController.getLoggedUser());
+            uploadFacade.create(up);
+        } else {
+            uploadFacade.edit(up);
+        }
+    }
+
+    public String uploadUserSignature() {
+        if (selected == null) {
+            JsfUtil.addErrorMessage("No User");
+            return "";
+        }
+        if (file == null) {
+            JsfUtil.addErrorMessage("No file");
+            return "";
+        }
+        Upload u = findUserSignature(selected);
+
+        try {
+            InputStream input = file.getInputStream();
+            byte[] bytes = IOUtils.toByteArray(input);
+            if (u == null) {
+                u = new Upload();
+                u.setWebUser(selected);
+                u.setUploadType(UploadType.User_Signature);
+                u.setInstitution(sessionController.getInstitution());
+            }
+            u.setBaImage(bytes);
+            u.setFileName(file.getFileName());
+            u.setFileType(file.getContentType());
+            saveUpload(u);
+            JsfUtil.addSuccessMessage("Signature Saved");
+        } catch (IOException ex) {
+            System.out.println("ex = " + ex);
+            JsfUtil.addSuccessMessage("Error. " + ex);
+            return "";
+        }
+        return toManageUsers();
+    }
 
     public String getNewPassword() {
         return newPassword;
@@ -907,9 +984,14 @@ public class WebUserController implements Serializable {
         return webUserDashboardFacade;
     }
 
-    
-    
-    
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+
     @FacesConverter("webUs")
     public static class WebUserControllerConverter implements Converter {
 

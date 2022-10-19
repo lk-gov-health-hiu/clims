@@ -27,14 +27,14 @@
                             <p:commandButton ajax="false" value="Remove Selected" 
                                              action="#{webUserController.removeSelectedItems()}"
                                              onclick="if (!confirm('Are you sure you want to delete this record?'))
-                                                     return false;"
+                                                         return false;"
                                              />
                         </p:panelGrid>
 
                         <h:panelGrid columns="2" styleClass="alignTop" >
                             <h:panelGrid id="actions" columns="1"  >
                                 <p:commandButton styleClass="linkButton m-1"  ajax="false" value="Remove" onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
-                                        return false;" action="#{webUserController.removeUser}">
+                                            return false;" action="#{webUserController.removeUser}">
                                 </p:commandButton>
                                 <p:commandButton  disabled="#{webUserController.selected == null}" class="btn btn-primary w-100 m-1" value="Manage User" action="#{webUserController.toManageUser()}" ajax="false" />
                                 <p:commandButton  disabled="#{webUserController.selected == null}" class="btn btn-primary w-100 m-1" value="Manage Password" action="#{webUserController.toManagePassword()}" ajax="false" />
@@ -44,7 +44,7 @@
                                 <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1" value="Manage Payment Schemes" action="#{webUserController.toManagePaymentSchemes()}" ajax="false" />
                                 <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Signature" action="#{webUserController.toManageSignature()}" ajax="false" />
                                 <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Dashboards" action="#{webUserController.toManageDashboards()}" ajax="false" />
-
+                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Add Signature for staff" action="#{webUserController.toManageSignature()}"  ajax="false" />
                             </h:panelGrid>
 
                             <p:dataTable id="lstSelect" value="#{webUserController.selectedItems}" var="u"
