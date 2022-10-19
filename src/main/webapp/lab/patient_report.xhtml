@@ -69,10 +69,10 @@
                                                      action="#{patientReportController.calculate}" onclick="onSubmitButton();"   >
                                     </p:commandButton>
 
-                                    <p:commandButton styleClass="nonPrintBlock"  id="btnApprove"  disabled ="#{!(webUserController.hasPrivilege('LabApproving') eq true and patientReportController.currentPatientReport.dataEntered eq true)}"   
+                                    <p:commandButton styleClass="nonPrintBlock"  id="btnApprove"  disabled ="#{webUserController.hasPrivilege('LabApproving') eq true}"   
                                                      value="Approve" action="#{patientReportController.approvePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
-                                    
+
                                     <p:commandButton styleClass="nonPrintBlock"  id="btnAutherize"
                                                      disabled ="#{!(webUserController.hasPrivilege('LabAutherizing') eq true and patientReportController.currentPatientReport.approved eq true)}"   
                                                      value="Autherize"
@@ -82,7 +82,7 @@
                                     <p:commandButton styleClass="nonPrintBlock" rendered="true"  id="btnCancel"  disabled ="#{!(webUserController.hasPrivilege('LabDataentry') eq true and patientReportController.currentPatientReport.approved eq true)}"   value="Sent SMS" 
                                                      action="#{patientReportController.sendSmsForPatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
-                                    
+
                                     <p:commandButton styleClass="nonPrintBlock"  id="btnSendSms"  
                                                      disabled ="#{!(webUserController.hasPrivilege('LabDeAutherizing') eq true and patientReportController.currentPatientReport.approved eq true)}"   value="Cancel Approval" 
                                                      action="#{patientReportController.reverseApprovalOfPatientReport()}" ajax="false" onclick="onSubmitButton();"  >
@@ -231,7 +231,7 @@
                                     </p:panel>
                                     <p:panel header="Microbiology"    rendered="#{patientReportController.currentPatientReport.transInvestigation.reportType eq 'Microbiology'}" >
                                         <f:view contentType="text/html">
-                                           
+
                                             <table >
                                                 <ui:repeat id="tblMicVals" 
                                                            value="#{patientReportController.currentPatientReport.patientReportItemValues }"  
@@ -357,7 +357,29 @@
                                         </p:panel>
 
                                     </p:panel>
+                                    <p:panel header="User Details" >
+                                        <p:panelGrid columns="2" >
+                                            <h:outputText value="Data Entered by" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.dataEntryUser.webUserPerson.nameWithTitle}" ></h:outputText>
+                                            <h:outputText value="Data Entered At" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.dataEntryAt}" >
+                                                <f:convertDateTime pattern="dd MMMM yyyy hh:mm a" ></f:convertDateTime>
+                                            </h:outputText>
+                                            <h:outputText value="Approved by" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.approveUser.webUserPerson.nameWithTitle}" ></h:outputText>
+                                            <h:outputText value="Approved At" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.approveAt}" >
+                                                <f:convertDateTime pattern="dd MMMM yyyy hh:mm a" ></f:convertDateTime>
+                                            </h:outputText>
+                                            <h:outputText value="Autherized by" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.autherizedUser.webUserPerson.nameWithTitle}" ></h:outputText>
+                                            <h:outputText value="Autherized At" ></h:outputText>
+                                            <h:outputText value="#{patientReportController.currentPatientReport.autherizedAt}" >
+                                                <f:convertDateTime pattern="dd MMMM yyyy hh:mm a" ></f:convertDateTime>
+                                            </h:outputText>
 
+                                        </p:panelGrid>
+                                    </p:panel>
                                 </h:panelGrid>
 
 

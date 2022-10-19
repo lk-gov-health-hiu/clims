@@ -126,7 +126,7 @@ public class StaffImageController implements Serializable {
     }
 
     public StreamedContent getSignatureById() {
-        //System.err.println("Get Sigature By Id");
+        System.err.println("Get Sigature By Id");
         FacesContext context = FacesContext.getCurrentInstance();
         if (context.getRenderResponse()) {
             //System.err.println("Contex Response");
@@ -135,7 +135,7 @@ public class StaffImageController implements Serializable {
         } else {
             // So, browser is requesting the image. Get ID value from actual request param.
             String id = context.getExternalContext().getRequestParameterMap().get("id");
-            //System.err.println("Staff Id " + id);
+            System.err.println("Staff Id " + id);
             Long l;
             try {
                 l = Long.valueOf(id);
@@ -143,13 +143,14 @@ public class StaffImageController implements Serializable {
                 l = 0l;
             }
             Staff temImg = getStaffFacade().find(l);
+            System.out.println("temImg = " + temImg);
             if (temImg != null) {
-                //System.err.println("Img 1 " + temImg);
+                System.err.println("Img 1 " + temImg);
                 byte[] imgArr = null;
                 try {
                     imgArr = temImg.getBaImage();
                 } catch (Exception e) {
-                    //System.err.println("Try  " + e.getMessage());
+                    System.err.println("Try  " + e.getMessage());
                     return new DefaultStreamedContent();
                 }
 
