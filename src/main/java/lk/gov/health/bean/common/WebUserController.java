@@ -769,7 +769,6 @@ public class WebUserController implements Serializable {
             JsfUtil.addErrorMessage("Please select a user");
             return "";
         }
-
         return "/admin_user_signature";
     }
 

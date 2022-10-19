@@ -38,13 +38,12 @@
                                 </p:commandButton>
                                 <p:commandButton  disabled="#{webUserController.selected == null}" class="btn btn-primary w-100 m-1" value="Manage User" action="#{webUserController.toManageUser()}" ajax="false" />
                                 <p:commandButton  disabled="#{webUserController.selected == null}" class="btn btn-primary w-100 m-1" value="Manage Password" action="#{webUserController.toManagePassword()}" ajax="false" />
-                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Staff" action="#{webUserController.toManageStaff()}" ajax="false" />
+                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1" rendered="false"  value="Manage Staff" action="#{webUserController.toManageStaff()}" ajax="false" />
                                 <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Privileges" action="#{webUserController.toManagePrivileges()}" ajax="false" />
                                 <p:commandButton  disabled="#{webUserController.selected == null}" class="btn btn-primary w-100 m-1"  value="Manage Loggable Departments" action="#{webUserController.toManageDepartments()}" ajax="false" />
-                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1" value="Manage Payment Schemes" action="#{webUserController.toManagePaymentSchemes()}" ajax="false" />
-                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Signature" action="#{webUserController.toManageSignature()}" ajax="false" />
-                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Manage Dashboards" action="#{webUserController.toManageDashboards()}" ajax="false" />
-                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Add Signature for staff" action="#{webUserController.toManageSignature()}"  ajax="false" />
+                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1" rendered="false"  value="Manage Signature" action="#{webUserController.toManageSignature()}" ajax="false" />
+                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  rendered="false" value="Manage Dashboards" action="#{webUserController.toManageDashboards()}" ajax="false" />
+                                <p:commandButton  disabled="#{webUserController.selected == null}"  class="btn btn-primary w-100 m-1"  value="Add Signature for staff" action="#{webUserController.toManageUserSignature()}"  ajax="false" />
                             </h:panelGrid>
 
                             <p:dataTable id="lstSelect" value="#{webUserController.selectedItems}" var="u"
