@@ -13,30 +13,30 @@
         <h:panelGroup id="gpBillPreview" >
             <h:form  >
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="Select Membership Scheme"/>
-                    <p:autoComplete  completeMethod="#{membershipSchemeController.completeMembershipScheme}"
+                    <h:outputLabel class="m-1" value="Select Membership Scheme"/>
+                    <p:autoComplete class="m-1" completeMethod="#{membershipSchemeController.completeMembershipScheme}"
                                      var="pta" itemLabel="#{pta.name}" itemValue="#{pta}" 
                                      forceSelection="true" 
                                      value="#{inwardMemberShipDiscount.currentMembershipScheme}" ></p:autoComplete>
-                    <h:outputLabel value="Select Instiution"/>
-                    <p:autoComplete  completeMethod="#{institutionController.completeCreditCompany}"
+                    <h:outputLabel class="m-1" value="Select Instiution"/>
+                    <p:autoComplete class="m-1"  completeMethod="#{institutionController.completeCreditCompany}"
                                      var="pta" itemLabel="#{pta.name}" itemValue="#{pta}" 
                                      forceSelection="true" 
                                      value="#{inwardMemberShipDiscount.institution}" ></p:autoComplete>
-                    <h:outputLabel value="Admission Type"/>
-                    <p:selectOneMenu    value="#{inwardMemberShipDiscount.admissionType}">        
+                    <h:outputLabel class="m-1" value="Admission Type"/>
+                    <p:selectOneMenu  class="m-1"  value="#{inwardMemberShipDiscount.admissionType}">        
                         <f:selectItem itemLabel="Select Admission Type"/>
                         <f:selectItems value="#{admissionTypeController.items}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>  
                         <f:ajax execute="@this" event="change" />
                     </p:selectOneMenu>
-                    <h:outputLabel value="Select Paymentmethod"/>
-                    <p:selectOneMenu    value="#{inwardMemberShipDiscount.currentPaymentMethod}">        
+                    <h:outputLabel class="m-1" value="Select Paymentmethod"/>
+                    <p:selectOneMenu class="m-1"   value="#{inwardMemberShipDiscount.currentPaymentMethod}">        
                         <f:selectItem itemLabel="Select Payment method"/>
                         <f:selectItems value="#{enumController.paymentMethodForAdmission}"/>  
                         <f:ajax execute="@this" event="change" />
                     </p:selectOneMenu>
-                    <p:commandButton ajax="false" value="Process" action="#{inwardMemberShipDiscount.createItems()}"/>
-                    <p:commandButton ajax="false" value="Clear" action="#{inwardMemberShipDiscount.makeNull()}"/>
+                    <p:commandButton ajax="false" class="m-1" value="Process" action="#{inwardMemberShipDiscount.createItems()}"/>
+                    <p:commandButton ajax="false" class="m-1" value="Clear" action="#{inwardMemberShipDiscount.makeNull()}"/>
                     
                 </h:panelGrid>
 

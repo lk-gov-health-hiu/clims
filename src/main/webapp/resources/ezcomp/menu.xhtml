@@ -12,8 +12,9 @@
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
+        
         <p:menubar styleClass="nonPrintBlock bottomBorderOnly ui-widget-header"  >
-            <p:menuitem   ajax="false" value="Home" icon="ui-icon-home" action="/index" ></p:menuitem>
+            <p:menuitem   ajax="false" value="Home" icon="pi pi-bookmark" styleClass="rounded-button ui-button-primary" action="/index" ></p:menuitem>
             <p:submenu styleClass="rightBordrOnly" label="Order" rendered="#{webUserController.hasPrivilege('Opd')}">
                 <p:menuitem ajax="false" 
                             action="#{billController.toNewOpdOrder()}"  
@@ -112,7 +113,7 @@
 
             </p:submenu>
 
-            <p:submenu styleClass="rightBordrOnly" label="User"  >
+            <p:submenu styleClass="rightBordrOnly" label="User"  icon="pi pi-fw pi-user" >
                 <p:menuitem  ajax="false"  action="/user_change_password" value="Change Password"   ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/user_preferances" value="Change Preferances"  ></p:menuitem>
             </p:submenu>
@@ -133,7 +134,7 @@
 
 
             <f:facet name="options">
-                <p:commandButton id="btnLogout" ajax="false" icon="ui-icon-extlink" action="#{sessionController.logout}" />
+                <p:commandButton id="btnLogout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" value="Log out" ajax="false"  action="#{sessionController.logout}" />
                 <p:tooltip for="btnLogout" value="df"  >
                     <h:panelGrid columns="3" >
                         <h:outputText value="Institution" ></h:outputText>
