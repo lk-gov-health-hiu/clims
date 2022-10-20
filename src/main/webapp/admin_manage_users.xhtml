@@ -10,11 +10,14 @@
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <h:form>
+                   
                     <p:panelGrid columns="2" 
-                                 layout="grid" 
+                                 layout="grid"
+                                 styleClass="alignTop w-100 align-top"
+                                 columnClasses="col-3, col-8"
                                  rendered="#{webUserController.hasPrivilege('AdminManagingUsers') or sessionController.firstLogin }">
 
-                        <p:panelGrid columns="1" id="actions"  >
+                        <p:panelGrid columns="1" id="actions" styleClass="alignTop w-100" >
                             <p:commandButton value="Add New User" 
                                              icon="pi pi-user-plus" 
                                              styleClass="ui-button-info w-100" 
@@ -22,36 +25,23 @@
                                              ajax="false"/>
                             <p:commandButton 
                                 class="w-100" 
-                                value="View Users" 
+                                value="List Users" 
                                 action="admin_view_user" 
                                 ajax="false"
                                 icon="pi pi-users" 
                                 styleClass="ui-button-info w-100" 
                                 />
-                            <p:commandButton icon="pi pi-user-plus" 
-                                             styleClass="ui-button-info w-100"  
-                                             value="View User Login Details" 
-                                             action="admin_logins_all" 
-                                             onclick="onSubmitButton();"/>
 
-                            <p:commandButton  icon="pi pi-user-plus" 
-                                              styleClass="ui-button-info w-100"  
-                                              ajax="false" 
-                                              value="Remove" 
-                                              onclick="if (!confirm('Are you sure you want to Cancel This Bill ?'))
-                                                          return false;" 
-                                              action="#{webUserController.removeUser}">
-                            </p:commandButton>
-                            <p:commandButton  icon="pi pi-user-plus" 
+                            <p:commandButton  icon="pi pi-user-edit" 
                                               styleClass="ui-button-info w-100"   
                                               disabled="#{webUserController.selected == null}" 
-                                              value="Manage User" 
+                                              value="Edit User" 
                                               action="#{webUserController.toManageUser()}" 
                                               ajax="false" />
-                            <p:commandButton  icon="pi pi-user-plus" 
+                            <p:commandButton  icon="pi pi-key" 
                                               styleClass="ui-button-info w-100"   
                                               disabled="#{webUserController.selected == null}" 
-                                              value="Manage Password" 
+                                              value="Change Password" 
                                               action="#{webUserController.toManagePassword()}" 
                                               ajax="false" />
                             <p:commandButton icon="pi pi-user-plus" 
@@ -61,7 +51,7 @@
                                              ajax="false" />
                             <p:commandButton icon="pi pi-user-plus" 
                                              styleClass="ui-button-info w-100"    
-                                             value="Manage Loggable Departments" 
+                                             value="Manage User Departments" 
                                              action="#{webUserController.toManageDepartments()}" 
                                              ajax="false" />
                             <p:commandButton icon="pi pi-user-plus" 
@@ -72,14 +62,19 @@
                                              ajax="false" />
                             <p:commandButton ajax="false" 
                                              value="Remove Selected" 
-                                             icon="pi pi-user-plus" 
-                                             styleClass="ui-button-info w-100" 
+                                             icon="pi pi-user-minus" 
+                                             styleClass="ui-button-danger w-100" 
                                              disabled="#{webUserController.selected == null}" 
                                              action="#{webUserController.removeSelectedItems()}"
                                              onclick="if (!confirm('Are you sure you want to delete this record?'))
                                                          return false;"
-                                             />
-
+                                             >
+                            </p:commandButton>
+                            <p:commandButton icon="pi pi-bars" 
+                                             styleClass="ui-button-info w-100"  
+                                             value="View User Login Details" 
+                                             action="admin_logins_all" 
+                                             onclick="onSubmitButton();"/>
 
                         </p:panelGrid>
 
