@@ -7,8 +7,8 @@
       xmlns:p="http://primefaces.org/ui"
       >
     <h:body>
-        <ui:composition template="/resources/template/template.xhtml">
-            <ui:define name="content">
+         <ui:composition template="/admin_manage_users.xhtml">
+            <ui:define name="user">
                 <h:form  >
                     <h:panelGroup  rendered="#{!webUserController.hasPrivilege('AdminManagingUsers')}"  >
                         <p:outputLabel value="YOU ARE NOT AUTHERIZED." ></p:outputLabel>
