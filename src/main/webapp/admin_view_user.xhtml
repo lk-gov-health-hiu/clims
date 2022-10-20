@@ -11,10 +11,10 @@
 
         <ui:composition template="/admin_manage_users.xhtml">
             <ui:define name="user">
-                <h:panelGroup rendered="#{!webUserController.hasPrivilege('AdminManagingUsers') and !sessionController.firstLogin }" >
-                    <h:outputLabel value="You are NOT authorized"/>
+                <h:panelGroup rendered="#{!webUserController.hasPrivilege('AdminManagingUsers')}" >
+                    You are NOT authorized
                 </h:panelGroup>
-                <h:panelGroup rendered="#{webUserController.hasPrivilege('AdminManagingUsers') or sessionController.firstLogin }" >
+                <h:panelGroup rendered="#{webUserController.hasPrivilege('AdminManagingUsers')}" >
                     <p:dataTable id="lstSelect" value="#{webUserController.selectedItems}" var="u"
                                  rowKey="#{u.id}"
                                  selection="#{webUserController.selected}" 
@@ -29,21 +29,21 @@
                         <p:ajax event="rowSelect" process="@this" update=":#{p:resolveFirstComponentWithId('actions',view).clientId}" ></p:ajax>
                         <p:ajax event="rowUnselect" process="@this" update=":#{p:resolveFirstComponentWithId('actions',view).clientId}" ></p:ajax>
                         <p:column headerText="Institution">
-                            <h:outputLabel value="#{u.institution.name}"/>
+                            <p:outputLabel value="#{u.institution.name}"/>
                         </p:column>
 
                         <p:column headerText="Department">
-                            <h:outputLabel value="#{u.department.name}"/>
+                            <p:outputLabel value="#{u.department.name}"/>
                         </p:column>
 
                         <p:column headerText="Name">
-                            <h:outputLabel value="#{u.webUserPerson.name}"/>
+                            <p:outputLabel value="#{u.webUserPerson.name}"/>
                         </p:column>
 
                         <p:column headerText="Username">
-                            <h:outputLabel value="#{u.name}"/>
+                            <p:outputLabel value="#{u.name}"/>
                         </p:column>
-                       
+
                     </p:dataTable>
 
 

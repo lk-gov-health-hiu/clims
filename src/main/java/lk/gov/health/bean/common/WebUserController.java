@@ -418,8 +418,9 @@ public class WebUserController implements Serializable {
         getCurrent().setName((getCurrent().getName()));
         getCurrent().setWebUserPassword(getSecurityController().hash(getCurrent().getWebUserPassword()));
         getFacade().create(getCurrent());
-        UtilityController.addSuccessMessage("Add New User");
+        UtilityController.addSuccessMessage("A New User Added");
         recreateModel();
+        
         return toAdminManageUsers();
     }
 
