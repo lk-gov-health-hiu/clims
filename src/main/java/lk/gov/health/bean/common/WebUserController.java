@@ -123,18 +123,25 @@ public class WebUserController implements Serializable {
     private WebUserDashboard webUserDashboard;
     private List<WebUserDashboard> webUserDashboards;
 
-    public void removeSelectedItems() {
-        for (WebUser s : itemsToRemove) {
-            s.setRetired(true);
-            s.setRetireComments("Bulk Remove");
-            s.setRetirer(getSessionController().getLoggedUser());
-            try {
-                getFacade().edit(s);
-            } catch (Exception e) {
-            }
+    public String removeSelectedUser() {
+        if (selected == null) {
+            JsfUtil.addErrorMessage("Nothing Selected");
+            return "";
         }
-        itemsToRemove = null;
+        if(selected.getId()==null){
+            JsfUtil.addErrorMessage("User not save yet.");
+            return "";
+        }
+        selected.setRetired(true);
+        selected.setRetirer(getSessionController().getLoggedUser());
+        try {
+            getFacade().edit(selected);
+        } catch (Exception e) {
+        }
+        JsfUtil.addSuccessMessage("User Deleted");
+        selected = null;
         items = null;
+        return toListUsers();
     }
 
     public void updateWebUser(WebUser webUser) {
@@ -420,7 +427,7 @@ public class WebUserController implements Serializable {
         getFacade().create(getCurrent());
         UtilityController.addSuccessMessage("A New User Added");
         recreateModel();
-        
+
         return toAdminManageUsers();
     }
 
