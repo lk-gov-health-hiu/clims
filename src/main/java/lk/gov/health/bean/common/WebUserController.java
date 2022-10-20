@@ -410,12 +410,7 @@ public class WebUserController implements Serializable {
         getCurrent().getWebUserPerson().setCreater(getSessionController().getLoggedUser());
         getPersonFacade().create(getCurrent().getWebUserPerson());
 
-        getCurrent().getWebUserPerson().setName(getStaff().getPerson().getName());
-        getCurrent().getWebUserPerson().setAddress(getStaff().getPerson().getAddress());
-        getCurrent().getWebUserPerson().setMobile(getStaff().getPerson().getMobile());
-        getPersonFacade().edit(getCurrent().getWebUserPerson());
-        getCurrent().setCode(getStaff().getCode());
-        getCurrent().setStaff(getStaff());
+        
 
         getCurrent().setInstitution(sessionController.getInstitution());
         getCurrent().setDepartment(sessionController.getDepartment());
@@ -425,20 +420,12 @@ public class WebUserController implements Serializable {
         getCurrent().setName((getCurrent().getName()));
         getCurrent().setWebUserPassword(getSecurityController().hash(getCurrent().getWebUserPassword()));
         getFacade().create(getCurrent());
-        UtilityController.addSuccessMessage("Add New User Only");
+        UtilityController.addSuccessMessage("Add New User");
         recreateModel();
-        toAddNewUser();
-        selectText = "";
-        return backToAdminManageUsers();
+        return toAdminManageUsers();
     }
 
-    public void onlyAddStaffListner() {
-        createOnlyUserForExsistingUser = false;
-    }
-
-    public void onlyAddStaffForExsistingUserListner() {
-        createOnlyUser = false;
-    }
+   
 
     public List<WebUser> getToApproveUsers() {
         String temSQL;
@@ -623,21 +610,12 @@ public class WebUserController implements Serializable {
         return "/admin_user";
     }
 
-    public String toManageUsers() {
+    public String toListUsers() {
         return "/admin_view_user";
     }
 
     public String toManageUserSignature() {
         return "/admin_user_signature";
-    }
-
-    public String toManageStaff() {
-        if (selected == null) {
-            JsfUtil.addErrorMessage("Please select a user");
-            return "";
-        }
-
-        return "/hr/hr_staff_admin";
     }
 
     public String toManagePassword() {
@@ -695,7 +673,7 @@ public class WebUserController implements Serializable {
         return "/admin_manage_dashboards";
     }
 
-    public String backToAdminManageUsers() {
+    public String toAdminManageUsers() {
         return "/admin_manage_users";
     }
 
@@ -836,7 +814,7 @@ public class WebUserController implements Serializable {
             JsfUtil.addSuccessMessage("Error. " + ex);
             return "";
         }
-        return toManageUsers();
+        return toListUsers();
     }
 
     public String getNewPassword() {
