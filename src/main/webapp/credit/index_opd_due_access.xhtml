@@ -18,9 +18,9 @@
 
                             <p:tab title=" OPD Credit Due" >
                                 <h:panelGrid columns="1" >  
-                                    <p:commandButton action="/credit/credit_company_opd_due" actionListener="#{creditCompanyDueController.makeNull()}" value="Due Search" ajax="false" styleClass="linkButton" onclick="onSubmitButton();"  />
-                                    <p:commandButton action="/credit/credit_company_opd_due_by_bill_item" actionListener="#{creditCompanyDueController.makeNull()}" value="Due Search (Bill Item)" ajax="false" styleClass="linkButton" onclick="onSubmitButton();"  />
-                                    <p:commandButton  action="/credit/credit_company_opd_due_age" actionListener="#{creditCompanyDueController.makeNull()}" value="Due Age" ajax="false" styleClass="linkButton" onclick="onSubmitButton();"/>
+                                    <p:commandButton class='m-1 w-75' action="/credit/credit_company_opd_due" actionListener="#{creditCompanyDueController.makeNull()}" value="Due Search" ajax="false"  onclick="onSubmitButton();"  />
+                                    <p:commandButton class='m-1 w-75' action="/credit/credit_company_opd_due_by_bill_item" actionListener="#{creditCompanyDueController.makeNull()}" value="Due Search (Bill Item)" ajax="false"  onclick="onSubmitButton();"  />
+                                    <p:commandButton class='m-1 w-75' action="/credit/credit_company_opd_due_age" actionListener="#{creditCompanyDueController.makeNull()}" value="Due Age" ajax="false" onclick="onSubmitButton();"/>
                                 </h:panelGrid>
                             </p:tab>
 
@@ -28,8 +28,8 @@
                             <p:tab title=" OPD Credit Excess" >
                                 <h:panelGrid columns="1" > 
 
-                                    <p:commandButton action="/credit/credit_company_opd_access" actionListener="#{creditCompanyDueController.makeNull()}" value="Excess Search" ajax="false"  styleClass="linkButton" onclick="onSubmitButton();"/>
-                                    <p:commandButton   action="/credit/credit_company_opd_access_age" actionListener="#{creditCompanyDueController.makeNull()}" value="Excess Age" ajax="false" styleClass="linkButton" onclick="onSubmitButton();" />
+                                    <p:commandButton class='m-1 w-75' action="/credit/credit_company_opd_access" actionListener="#{creditCompanyDueController.makeNull()}" value="Excess Search" ajax="false"  onclick="onSubmitButton();"/>
+                                    <p:commandButton  class='m-1 w-75' action="/credit/credit_company_opd_access_age" actionListener="#{creditCompanyDueController.makeNull()}" value="Excess Age" ajax="false" onclick="onSubmitButton();" />
                                 </h:panelGrid>
                             </p:tab>
                         </p:tabView>

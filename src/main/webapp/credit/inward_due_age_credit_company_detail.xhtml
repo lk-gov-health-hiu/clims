@@ -11,8 +11,8 @@
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <h:form>            
-                    <p:commandButton id="btnSearch" ajax="false" value="Process Due Age" action="#{creditCompanyDueController.createInwardAgeTable()}" onclick="onSubmitButton();" />
-                    <p:commandButton id="btnProcess" ajax="false" 
+                    <p:commandButton id="btnSearch" ajax="false" class='m-1' value="Process Due Age" action="#{creditCompanyDueController.createInwardAgeTable()}" onclick="onSubmitButton();" />
+                    <p:commandButton id="btnProcess" ajax="false" class='m-1' 
                                      value="Process Due Age(Excel)" 
                                      action="#{creditCompanyDueController.createInwardAgeDetailAnalysis}" onclick="onSubmitButton();" />
                     <p:commandButton value="Excel" ajax="false" actionListener="#{creditCompanyDueController.createInwardAgeDetailAnalysis}" >
