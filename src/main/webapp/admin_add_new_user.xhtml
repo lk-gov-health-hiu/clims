@@ -51,6 +51,9 @@
                             value="#{webUserController.current.webUserPerson.address}"
                             requiredMessage="Please enter an address.">
                         </p:inputTextarea>
+                        
+                        <p:outputLabel value="Email:" for="email" />
+                            <p:inputText id="email" value="#{webUserController.current.email}" title="Email" />
 
                         <p:outputLabel value="Mobile" ></p:outputLabel>
                         <p:inputText 
@@ -59,7 +62,7 @@
                             requiredMessage="Plase enter a phone number"></p:inputText>
 
                         <p:outputLabel value="Speciality"  ></p:outputLabel>                                            
-                        <autocomplete:completeSpeciality value="#{webUserController.speciality}"  />
+                        <autocomplete:completeSpeciality value="#{webUserController.speciality}"/>
 
                         <p:outputLabel value="User Name"   ></p:outputLabel>
                         <p:inputText autocomplete="off" 
