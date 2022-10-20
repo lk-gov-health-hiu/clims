@@ -19,8 +19,7 @@
 
                         <f:facet name="header" >
                             <h:outputLabel value="Manage User"/>
-                            <p:commandButton class='m-1' ajax="false" value="Save" action="#{webUserController.saveUser()}" >
-                            </p:commandButton>
+                            
 
                             
                         </f:facet>
@@ -75,6 +74,9 @@
                             <p:inputText id="telNo" value="#{webUserController.current.telNo}" title="TelNo" />
                             <p:outputLabel value="Code:" for="code" />
                             <p:inputText id="code" value="#{webUserController.current.code}" title="Code" />
+                            
+                            <p:commandButton class='m-1 w-100' style="margin-right:80px;" ajax="false" value="Save" action="#{webUserController.saveUser()}" >
+                            </p:commandButton>
                             
                           
                         </p:panelGrid>
