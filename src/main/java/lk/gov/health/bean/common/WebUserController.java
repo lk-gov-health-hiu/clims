@@ -128,14 +128,17 @@ public class WebUserController implements Serializable {
             JsfUtil.addErrorMessage("Nothing Selected");
             return "";
         }
-        if(sele)
+        if(selected.getId()==null){
+            JsfUtil.addErrorMessage("User not save yet.");
+            return "";
+        }
         selected.setRetired(true);
-        selected.setRetireComments("Bulk Remove");
         selected.setRetirer(getSessionController().getLoggedUser());
         try {
             getFacade().edit(selected);
         } catch (Exception e) {
         }
+        JsfUtil.addSuccessMessage("User Deleted");
         selected = null;
         items = null;
         return toListUsers();
