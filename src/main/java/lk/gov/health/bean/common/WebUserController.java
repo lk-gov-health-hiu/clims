@@ -410,8 +410,6 @@ public class WebUserController implements Serializable {
         getCurrent().getWebUserPerson().setCreater(getSessionController().getLoggedUser());
         getPersonFacade().create(getCurrent().getWebUserPerson());
 
-        
-
         getCurrent().setInstitution(sessionController.getInstitution());
         getCurrent().setDepartment(sessionController.getDepartment());
 
@@ -424,8 +422,6 @@ public class WebUserController implements Serializable {
         recreateModel();
         return toAdminManageUsers();
     }
-
-   
 
     public List<WebUser> getToApproveUsers() {
         String temSQL;
@@ -501,6 +497,16 @@ public class WebUserController implements Serializable {
             items = getFacade().findBySQL("select c from WebUser c where c.retired=false and upper(c.webUserPerson.name) like '%" + getSelectText().toUpperCase() + "%' order by c.webUserPerson.name");
         }
         dycryptName();
+    }
+
+    private void listAllUsers() {
+        String j = "select c from WebUser c where c.retired=:ret order by c.webUserPerson.name";
+        Map m = new HashMap();
+        m.put("ret", false);
+        items = getFacade().findBySQL(j, m);
+        if (items == null) {
+            items = new ArrayList<>();
+        }
     }
 
     public List<WebUser> getSelectedItems() {
@@ -611,6 +617,7 @@ public class WebUserController implements Serializable {
     }
 
     public String toListUsers() {
+        listAllUsers();
         return "/admin_view_user";
     }
 
