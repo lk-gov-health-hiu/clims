@@ -8,59 +8,53 @@
 
     <h:body>
 
-        <ui:composition template="/resources/template/template.xhtml">
+        <ui:composition template="/admin_manage_users.xhtml">
+            <ui:define name="user">
+                <h:panelGroup rendered="#{!webUserController.hasPrivilege('AdminManagingUsers')}" >
+                    You are NOT authorized
+                </h:panelGroup>
+                <h:panelGroup rendered="#{webUserController.hasPrivilege('AdminManagingUsers')}" >
+                    <p:panel >
 
-            <ui:define name="content">
+                        <f:facet name="header" >
+                            <h:outputLabel value="Manage User"/>
+                            <p:commandButton ajax="false" value="Save" action="#{webUserController.saveUser()}" >
+                            </p:commandButton>
 
-                <f:view>
+                            <p:commandButton ajax="false" value="Back" action="#{webUserController.backToViewUsers()}" >
+                            </p:commandButton>
 
+                        </f:facet>
 
-                    <h:form>
-                        <p:panel >
-
-                            <f:facet name="header" >
-                                <h:outputLabel value="Manage User"/>
-                                <p:commandButton ajax="false" value="Save" action="#{webUserController.saveUser()}" >
-                                </p:commandButton>
-
-                                <p:commandButton ajax="false" value="Back" action="#{webUserController.backToViewUsers()}" >
-                                </p:commandButton>
-
-                            </f:facet>
-
-                            <p:panelGrid columns="2">
-                                <p:outputLabel value="User Name:" for="name" />
-                                <p:outputLabel id="name" value="#{webUserController.current.name}" />
-
-                               
-
-                                <p:outputLabel value="Institution:" for="institution" />
-                                <p:autoComplete forceSelection="true" value="#{webUserController.current.institution}"
-                                                completeMethod="#{institutionController.completeIns}" id="institution"
-                                                var="ix" itemLabel="#{ix.name}" itemValue="#{ix}" size="30"  >
-                                    <f:ajax event="itemSelect" execute="@this" render="department" ></f:ajax>
-                                </p:autoComplete>
-
-
-                                <p:outputLabel value="Department:" for="department" />
-                                <p:selectOneMenu id="department" value="#{webUserController.current.department}" >
-                                    <f:selectItems value="#{departmentController.items}"/>
-                                </p:selectOneMenu>
-
-                                <p:outputLabel value="Email:" for="email" />
-                                <p:inputText id="email" value="#{webUserController.current.email}" title="Email" />
-                                <p:outputLabel value="TelNo:" for="telNo" />
-                                <p:inputText id="telNo" value="#{webUserController.current.telNo}" title="TelNo" />
-                                <p:outputLabel value="Code:" for="code" />
-                                <p:inputText id="code" value="#{webUserController.current.code}" title="Code" />
-                            </p:panelGrid>
-                        </p:panel>
-
-                    </h:form>
-                </f:view>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="User Name:" for="name" />
+                            <p:outputLabel id="name" value="#{webUserController.current.name}" />
 
 
 
+                            <p:outputLabel value="Institution:" for="institution" />
+                            <p:autoComplete forceSelection="true" value="#{webUserController.current.institution}"
+                                            completeMethod="#{institutionController.completeIns}" id="institution"
+                                            var="ix" itemLabel="#{ix.name}" itemValue="#{ix}" size="30"  >
+                                <f:ajax event="itemSelect" execute="@this" render="department" ></f:ajax>
+                            </p:autoComplete>
+
+
+                            <p:outputLabel value="Department:" for="department" />
+                            <p:selectOneMenu id="department" value="#{webUserController.current.department}" >
+                                <f:selectItems value="#{departmentController.items}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Email:" for="email" />
+                            <p:inputText id="email" value="#{webUserController.current.email}" title="Email" />
+                            <p:outputLabel value="TelNo:" for="telNo" />
+                            <p:inputText id="telNo" value="#{webUserController.current.telNo}" title="TelNo" />
+                            <p:outputLabel value="Code:" for="code" />
+                            <p:inputText id="code" value="#{webUserController.current.code}" title="Code" />
+                        </p:panelGrid>
+                    </p:panel>
+
+                </h:panelGroup>
             </ui:define>
 
         </ui:composition>

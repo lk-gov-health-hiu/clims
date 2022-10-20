@@ -3,33 +3,100 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:body>
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <h:panelGrid columns="3" columnClasses="grid1 grid1">
-                        <p:panel header="Manage Users"  rendered="#{webUserController.hasPrivilege('AdminManagingUsers') or sessionController.firstLogin }" >
-                            <h:panelGrid columns="1" >
-                                <h:commandButton class="form form-control btn btn-primary m-1" value="Add New User" action="admin_add_new_user" actionListener="#{webUserController.prepairAddNewUser}" onclick="onSubmitButton();"/>
-                                <h:commandButton class="form form-control btn btn-primary m-1" value="View Users" action="admin_view_user" onclick="onSubmitButton();"/>
-                                <h:commandButton  class="form form-control btn btn-primary m-1" value="View User Login Details" action="admin_logins_all" onclick="onSubmitButton();"/>
 
-                            </h:panelGrid>
+                    <p:panelGrid columns="2" 
+                                 layout="grid"
+                                 rendered="#{webUserController.hasPrivilege('AdminManagingUsers') or sessionController.firstLogin }">
+
+                        <p:panelGrid columns="1" id="actions" styleClass="alignTop"  >
+                            <p:commandButton value="Add New User" 
+                                             immediate="true"
+                                             icon="pi pi-user-plus" 
+                                             styleClass="ui-button-info w-100" 
+                                             action="#{webUserController.toAddNewUser}" 
+                                             ajax="false"/>
+                            <p:commandButton 
+                                class="w-100" 
+                                value="List Users" 
+                                action="#{webUserController.toListUsers()}" 
+                                ajax="false"
+                                icon="pi pi-users" 
+                                immediate="true"
+                                styleClass="ui-button-info w-100" 
+                                />
+
+                            <p:commandButton  icon="pi pi-user-edit" 
+                                              styleClass="ui-button-info w-100"   
+                                              disabled="#{webUserController.selected == null}" 
+                                              value="Edit User" 
+                                              immediate="true"
+                                              action="#{webUserController.toManageUser()}" 
+                                              ajax="false" />
+                            <p:commandButton  icon="pi pi-key" 
+                                              immediate="true"
+                                              styleClass="ui-button-info w-100"   
+                                              disabled="#{webUserController.selected == null}" 
+                                              value="Change Password" 
+                                              action="#{webUserController.toManagePassword()}" 
+                                              ajax="false" />
+                            <p:commandButton icon="pi pi-user-plus" 
+                                             styleClass="ui-button-info w-100"    
+                                             value="Manage Privileges" 
+                                             immediate="true"
+                                             action="#{webUserController.toManagePrivileges()}" 
+                                             ajax="false" />
+                            <p:commandButton icon="pi pi-user-plus" 
+                                             styleClass="ui-button-info w-100"    
+                                             value="Manage User Departments" 
+                                             immediate="true"
+                                             action="#{webUserController.toManageDepartments()}" 
+                                             ajax="false" />
+                            <p:commandButton icon="pi pi-user-plus" 
+                                             styleClass="ui-button-info w-100"    
+                                             rendered="false"  
+                                             immediate="true"
+                                             value="Manage Signature" 
+                                             action="#{webUserController.toManageSignature()}" 
+                                             ajax="false" />
+                            <p:commandButton ajax="false" 
+                                             value="Remove Selected" 
+                                             immediate="true"
+                                             icon="pi pi-user-minus" 
+                                             styleClass="ui-button-danger w-100" 
+                                             disabled="#{webUserController.selected == null}" 
+                                             action="#{webUserController.removeSelectedItems()}"
+                                             onclick="if (!confirm('Are you sure you want to delete this record?'))
+                                                         return false;"
+                                             >
+                            </p:commandButton>
+                            <p:commandButton icon="pi pi-bars" 
+                                             immediate="true"
+                                             styleClass="ui-button-info w-100"  
+                                             value="View User Login Details" 
+                                             action="admin_logins_all" 
+                                             onclick="onSubmitButton();"/>
+
+                        </p:panelGrid>
+
+                        <p:panel  >
+                            <ui:insert name="user" >
+
+                            </ui:insert>
                         </p:panel>
-                    </h:panelGrid>
 
-
-                    <h:panelGroup rendered="false" >
-                        <h:commandButton class="form form-control btn btn-primary m-1" styleClass="linkButton"  value="Change Passwords" action="admin_change_password" onclick="onSubmitButton();"/>
-                        <h:commandButton  class="form form-control btn btn-primary m-1" styleClass="linkButton"  value="Manage Privileges" action="admin_user_privilages" onclick="onSubmitButton();"/>                                
-                        <h:commandButton  class="form form-control btn btn-primary m-1" styleClass="linkButton" value="Add PaymentScheme to User" action="admin_user_paymentScheme" onclick="onSubmitButton();"/>
-                        <h:commandButton  class="form form-control btn btn-primary m-1" styleClass="linkButton" value="Add Department to User" action="admin_user_department" onclick="onSubmitButton();"/>
-
-                    </h:panelGroup>
-
+                    </p:panelGrid>
                 </h:form>
+
+
+
+
             </ui:define>
         </ui:composition>
     </h:body>
