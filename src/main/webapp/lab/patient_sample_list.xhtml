@@ -14,17 +14,17 @@
                 <h:form >
                     <p:panel header="Sample List" >
                         <h:panelGrid columns="2" >
-                            <p:outputLabel value="From" ></p:outputLabel>
-                            <p:calendar value="#{patientInvestigationController.fromDate}" pattern="dd MMMM yyyy hh:mm:ss a" ></p:calendar>
-                            <p:outputLabel value="To" ></p:outputLabel>
-                            <p:calendar value="#{patientInvestigationController.toDate}" pattern="dd MMMM yyyy hh:mm:ss a" ></p:calendar>
+                            <p:outputLabel class="m-1" value="From" ></p:outputLabel>
+                            <p:calendar class="m-1" value="#{patientInvestigationController.fromDate}" pattern="dd MMMM yyyy hh:mm:ss a" ></p:calendar>
+                            <p:outputLabel class="m-1" value="To" ></p:outputLabel>
+                            <p:calendar class="m-1" value="#{patientInvestigationController.toDate}" pattern="dd MMMM yyyy hh:mm:ss a" ></p:calendar>
                         </h:panelGrid>
                         <h:panelGrid columns="3" >
-                            <p:commandButton value="Process" action="#{patientInvestigationController.listPatientSamples()}" ajax="false" ></p:commandButton>
-                            <p:commandButton ajax="false" value="Excel" >
+                            <p:commandButton class="m-1" value="Process" action="#{patientInvestigationController.listPatientSamples()}" ajax="false" ></p:commandButton>
+                            <p:commandButton class="m-1" ajax="false" value="Excel" >
                                 <p:dataExporter target="tbl" fileName="patient_samples" type="xls" ></p:dataExporter>
                             </p:commandButton>
-                            <p:commandButton ajax="false" action="/reportsLab/lab/summeries_index" value="Back" ></p:commandButton>
+                            <p:commandButton class="m-1" ajax="false" action="/reportsLab/lab/summeries_index" value="Back" ></p:commandButton>
                         </h:panelGrid>
                         <p:dataTable id="tbl" value="#{patientInvestigationController.patientSamples}" var="ps" rowKey="#{ps.id}" rowIndexVar="n" >
                             <p:column headerText="No." width="20">
