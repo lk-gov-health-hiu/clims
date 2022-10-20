@@ -9,12 +9,15 @@
     <h:body>
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
+                <div class="card-header font-weight-bolder bg-white text-black" >
+                    Search Request
+                </div> 
                 <h:form>
-                    <p:panel header="Search Requests" >
-                        <f:facet name="header">
-                            <h:panelGrid columns="1" >
-                                <h:panelGrid columns="7" >
-
+                    <div class="card-header">
+                        <div cla='row'>
+                            <div class='col-md-2'>
+                                 <h:panelGrid columns="1" >
+                                <h:panelGrid columns="1">
                                     <h:outputLabel class="m-1" value="From Date"/>
                                     <p:calendar class="m-1 w-50" styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
                                     </p:calendar>
@@ -71,6 +74,12 @@
 
                                 </h:panelGrid>
                             </h:panelGrid>
+                            </div>
+                        </div>
+                    </div>
+                    <p:panel>
+                        <f:facet name="header">
+                           
                         </f:facet>
 
 

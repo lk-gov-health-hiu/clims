@@ -13,68 +13,92 @@
                 <h:panelGroup rendered="#{!webUserController.hasPrivilege('AdminManagingUsers')}" >
                     You are NOT authorized
                 </h:panelGroup>
-
                 <h:panelGroup rendered="#{webUserController.hasPrivilege('AdminManagingUsers')}" >
 
-                    <h:form>
 
-                        <h:panelGrid columns="1" style="top: 0px; bottom: 0px; width: 100%; height: 100%; margin: 0 auto; border: 1px solid red; text-align: center;" >
+                    <p:panelGrid columns="2" styleClass="w-100"  >
+                        <f:facet name="header" >
+                            <p:outputLabel value="Add New User" ></p:outputLabel>
+                        </f:facet>
 
-                            <p:panel header="Add New User" style="left:0px; right: 0px; top: 0px; bottom: 0px; margin: auto; display: inline-block;" >
+                        <p:outputLabel value="Name" for="txtName" ></p:outputLabel>
+                        <p:inputText autocomplete="off"
+                                     id="txtName"
+                                     required="true" 
+                                     styleClass="w-100"
+                                     value="#{webUserController.current.webUserPerson.name}"
+                                     requiredMessage="Please enter a Name"></p:inputText>
 
 
-                                <h:panelGrid columns="3" style="text-align: left;" >
-                                    <h:commandButton id="btnCreateUser" value="Save New User" action="#{webUserController.saveNewUser()}" class="form form-control btn btn-primary">
-                                    </h:commandButton>
-                                    <h:commandButton  value="Back to Manage User" action="#{webUserController.backToAdminManageUsers()}" class="form form-control btn btn-primary m-2" immediate="true" ></h:commandButton>
-                                    <p:defaultCommand  target="btnCreateUser"/>
-                                </h:panelGrid>
+                        <p:outputLabel value="Title" ></p:outputLabel>
+                        <p:selectOneMenu required="false" 
+                                         value="#{webUserController.current.webUserPerson.title}"
+                                         >
+                            <f:selectItem itemLabel="Select Title" ></f:selectItem>
+                            <f:selectItems value="#{enumController.titleDoctor}" ></f:selectItems>
+                        </p:selectOneMenu>
 
-                                <h:panelGrid id="pg0" columns="2" style="text-align: left;" >
-                                    <h:outputText value="Name" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></h:outputText>
-                                    <p:inputText autocomplete="off"
-                                                 required="true" rendered="#{!webUserController.createOnlyUserForExsistingUser}"
-                                                 value="#{webUserController.current.webUserPerson.name}"
-                                                 requiredMessage="Please enter a Name"></p:inputText>
-                                    <h:outputText value="Title" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></h:outputText>
-                                    <p:selectOneMenu required="false" rendered="#{!webUserController.createOnlyUserForExsistingUser}"
-                                                     value="#{webUserController.current.webUserPerson.title}"
-                                                     requiredMessage="Please enter a Title">
-                                        <f:selectItem itemLabel="Select Title" ></f:selectItem>
-                                        <f:selectItems value="#{enumController.titleDoctor}" ></f:selectItems>
-                                    </p:selectOneMenu>
-                                    <h:outputText value="Address" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></h:outputText>
-                                    <p:inputText autocomplete="off" 
-                                                 required="true" rendered="#{!webUserController.createOnlyUserForExsistingUser}"
-                                                 value="#{webUserController.current.webUserPerson.address}"
-                                                 requiredMessage="Please enter an address."></p:inputText>
-                                    <h:outputText value="Mobile" rendered="#{!webUserController.createOnlyUserForExsistingUser}"></h:outputText>
-                                    <p:inputMask mask="999-9999999" required="true" rendered="#{!webUserController.createOnlyUserForExsistingUser}"
-                                                 value="#{webUserController.current.webUserPerson.mobile}"
-                                                 requiredMessage="Plase enter a phone number"></p:inputMask>
-                                    <h:outputText value="Speciality" rendered="#{!webUserController.createOnlyUserForExsistingUser}" ></h:outputText>                                            
-                                    <autocomplete:completeSpeciality value="#{webUserController.speciality}" disable="#{webUserController.createOnlyUser}" rendered="#{!webUserController.createOnlyUserForExsistingUser}"/>
+                        <p:outputLabel value="Description" ></p:outputLabel>
+                        <p:inputTextarea 
+                            styleClass="w-100"
+                            value="#{webUserController.current.webUserPerson.description}"
+                            >
+                        </p:inputTextarea>
 
-                                    <h:outputText value="User Name"   ></h:outputText>
-                                    <p:inputText autocomplete="off" required="true" maxlength="50" value="#{webUserController.current.name }" ></p:inputText>
+                        <p:outputLabel value="Address" ></p:outputLabel>
+                        <p:inputTextarea 
+                            styleClass="w-100"
+                            value="#{webUserController.current.webUserPerson.address}"
+                            requiredMessage="Please enter an address.">
+                        </p:inputTextarea>
 
-                                    <h:outputText value="Password" ></h:outputText>
-                                    <p:password id="pw1" validatorMessage="Passwords are NOT matching." match="pw2" feedback="true" required="true" maxlength="15" value="#{webUserController.current.webUserPassword}" />
+                        <p:outputLabel value="Mobile" ></p:outputLabel>
+                        <p:inputText 
+                            required="true" 
+                            value="#{webUserController.current.webUserPerson.mobile}"
+                            requiredMessage="Plase enter a phone number"></p:inputText>
 
-                                    <h:outputText value="Re-enter password" ></h:outputText>
-                                    <p:password id="pw2" required="true" maxlength="15" value="#{webUserController.current.webUserPassword}" />
-                                </h:panelGrid>
+                        <p:outputLabel value="Speciality"  ></p:outputLabel>                                            
+                        <autocomplete:completeSpeciality value="#{webUserController.speciality}"  />
 
-                            </p:panel>
+                        <p:outputLabel value="User Name"   ></p:outputLabel>
+                        <p:inputText autocomplete="off" 
+                                     required="true"
+                                     maxlength="50" 
+                                     styleClass="w-100"
+                                     value="#{webUserController.current.name}" ></p:inputText>
 
-                        </h:panelGrid>
+                        <p:outputLabel value="Password" ></p:outputLabel>
+                        <p:password id="pw1" 
+                                    validatorMessage="Passwords are NOT matching." 
+                                    match="pw2" 
+                                    styleClass="w-100"
+                                    autocomplete="false"
+                                    feedback="true" 
+                                    required="true" 
+                                    maxlength="50" 
+                                    toggleMask="true"
+                                    class="w-100"
+                                    value="#{webUserController.current.webUserPassword}" />
 
-                    </h:form>
+                        <p:outputLabel value="Re-enter password" ></p:outputLabel>
+                        <p:password id="pw2" 
+                                    styleClass="w-100"
+                                    maxlength="15" 
+                                    toggleMask="true"
+                                    value="#{webUserController.current.webUserPassword}"
+                                    required="true"
+
+                                    />
+
+                        <p:spacer ></p:spacer>
+                        <h:commandButton id="btnCreateUser" value="Save New User" action="#{webUserController.saveNewUser()}" class="form form-control btn btn-primary">
+                        </h:commandButton>
+                    </p:panelGrid>
+
+
                 </h:panelGroup>
             </ui:define>
-
-
         </ui:composition>
-
     </h:body>
 </html>
