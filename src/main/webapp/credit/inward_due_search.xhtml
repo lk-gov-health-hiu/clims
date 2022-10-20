@@ -17,27 +17,27 @@
 
                             <h:panelGrid columns="2" >
 
-                                <h:outputLabel value="From" ></h:outputLabel>
-                                <p:calendar value="#{creditCompanyDueController.fromDate}" pattern="dd/MMM/yyyy - hh:mm:ss a" ></p:calendar>
-                                <h:outputLabel value="To" ></h:outputLabel>
-                                <p:calendar value="#{creditCompanyDueController.toDate}" pattern="dd/MMM/yyyy - hh:mm:ss a" ></p:calendar>
+                                <h:outputLabel class='m-1' value="From" ></h:outputLabel>
+                                <p:calendar class='m-1' value="#{creditCompanyDueController.fromDate}" pattern="dd/MMM/yyyy - hh:mm:ss a" ></p:calendar>
+                                <h:outputLabel class='m-1' value="To" ></h:outputLabel>
+                                <p:calendar class='m-1' value="#{creditCompanyDueController.toDate}" pattern="dd/MMM/yyyy - hh:mm:ss a" ></p:calendar>
 
-                                <p:outputLabel value="Admission Type"/>
-                                <p:selectOneMenu value="#{creditCompanyDueController.admissionType}">
+                                <p:outputLabel class='m-1' value="Admission Type"/>
+                                <p:selectOneMenu class='m-1' value="#{creditCompanyDueController.admissionType}">
                                     <f:selectItem itemLabel="All Admission Type"/>
                                     <f:selectItems  value="#{admissionTypeController.items}" var="myItem" 
                                                     itemValue="#{myItem}" itemLabel="#{myItem.name}"></f:selectItems>
                                 </p:selectOneMenu>
 
-                                <h:outputLabel value="BHT Type : " ></h:outputLabel>
-                                <p:selectOneMenu   id="cmbBhtType" value="#{creditCompanyDueController.paymentMethod}"  >
+                                <h:outputLabel class='m-1' value="BHT Type : " ></h:outputLabel>
+                                <p:selectOneMenu  class='m-1'  id="cmbBhtType" value="#{creditCompanyDueController.paymentMethod}"  >
                                     <f:selectItem itemLabel="All BHT Types" />                           
                                     <f:selectItems value="#{enumController.paymentMethodForAdmission}" />
                                 </p:selectOneMenu>
 
 
-                                <h:outputLabel value="Company Name : " style="min-width: 100px;"  />  
-                                <p:autoComplete id="acCreditCompany" forceSelection="true" style="text-align: right;"
+                                <h:outputLabel class='m-1' value="Company Name : " style="min-width: 100px;"  />  
+                                <p:autoComplete class='m-1' id="acCreditCompany" forceSelection="true" style="text-align: right;"
                                                 value="#{creditCompanyDueController.institution}"  
                                                 completeMethod="#{creditCompanyController.completeCredit}" 
                                                 var="ix" itemLabel="#{ix.name}" 
@@ -48,8 +48,8 @@
 
                             </h:panelGrid>
                             <p:spacer width="120" height="1"/>
-                            <p:commandButton ajax="false" value="Process" action="#{creditCompanyDueController.createInwardCashDue()}"/>
-                            <p:commandButton value="Excel" ajax="false" actionListener="#{creditCompanyDueController.createInwardAgeDetailAnalysis}" >
+                            <p:commandButton ajax="false" value="Process" class='m-1' action="#{creditCompanyDueController.createInwardCashDue()}"/>
+                            <p:commandButton value="Excel" ajax="false" class='m-1' actionListener="#{creditCompanyDueController.createInwardAgeDetailAnalysis}" >
                                 <pe:exporter target="lstDue" fileName="inward_due_age_credit_company_detail" type="xlsx" />
                             </p:commandButton>
                         </f:facet>
