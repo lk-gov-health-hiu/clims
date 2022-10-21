@@ -4,18 +4,24 @@
  */
 package lk.gov.health.bean.common;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import org.json.JSONObject;
 
 /**
  *
@@ -27,16 +33,84 @@ public class ApiRequestController implements Serializable {
 
     private String uri;
     private String out;
+
     /**
      * Creates a new instance of ApiRequestController
      */
     public ApiRequestController() {
     }
 
-    public void execureUri(){
+    public void execureUri() {
         out = executePost(uri, null);
     }
-    
+
+    public String biaQurantineData(String uri) {
+        URL apiUrl;
+       
+
+        try {
+            // Creates a new url object with the ApirPort api URL
+            apiUrl = new URL(uri);
+            try {
+                // Create a new HTTP connection
+                HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
+                // Set the request method to POST
+                connection.setRequestMethod("POST");
+                // Set content type to application/json
+                connection.setRequestProperty("content-type", "application/json");
+                // set connection to return output
+                connection.setDoOutput(true);
+                // create a json string for request body
+                //TODO: Replace the arrival date with the fromDate formatted to below format
+                String jsonString = new JSONObject()
+                        .put("username", "health2")
+                        .put("password", "healthuser2")
+                        .put("arrivalDate", "2021-11-24")
+                        .toString();
+                // set request body
+                try (OutputStream os = connection.getOutputStream()) {
+                    byte[] input = jsonString.getBytes("utf-8");
+                    os.write(input, 0, input.length);
+                }
+
+                //reading the response
+                String res;
+                BufferedInputStream bis = new BufferedInputStream(connection.getInputStream());
+                ByteArrayOutputStream buf = new ByteArrayOutputStream();
+                int resultLines = bis.read();
+                while (resultLines != -1) {
+                    buf.write((byte) resultLines);
+                    resultLines = bis.read();
+                }
+                res = buf.toString();
+                System.out.println(res);
+                return res;
+                // try(BufferedReader br = new BufferedReader(
+                //   new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                //     StringBuilder response = new StringBuilder();
+                //     String responseLine = null;
+                //     while ((responseLine = br.readLine()) != null) {
+                //         System.out.println(responseLine);
+                //         response.append(responseLine.trim());
+                //     }
+                //     // System.out.println(response.toString());
+
+                //     this.biaData = response.toString();
+                //     return "/national/bia";
+                // }
+            } catch (IOException e) {
+                // TODO: Auto-generated catch block
+                e.printStackTrace();
+                return e.getMessage();
+            }
+        } catch (MalformedURLException e) {
+            // TODO: Auto-generated catch block
+            e.printStackTrace();
+            return e.getMessage();
+        }
+
+    }
+
     public String executePost(String targetURL, Map<String, Object> parameters) {
         HttpURLConnection connection = null;
         if (parameters != null && !parameters.isEmpty()) {
@@ -103,6 +177,5 @@ public class ApiRequestController implements Serializable {
     public void setOut(String out) {
         this.out = out;
     }
-    
-    
+
 }
