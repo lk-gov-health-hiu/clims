@@ -41,7 +41,7 @@ public class ApiRequestController implements Serializable {
     }
 
     public void execureUri() {
-        out = executePost(uri, null);
+        out = biaQurantineData(uri);
     }
 
     public String biaQurantineData(String uri) {
