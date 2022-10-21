@@ -10,9 +10,9 @@
 
         <h:form >
             <p:panelGrid columns="1" >
-                <p:inputTextarea value="#{restClientController.url}" ></p:inputTextarea>
-                <p:commandButton value="RUN" ajax="false" action="#{restClientController.sendRestRequest()}" ></p:commandButton>
-                <p:inputTextarea value="#{restClientController.output}" ></p:inputTextarea>
+                <p:inputTextarea value="#{apiRequestController.uri}" ></p:inputTextarea>
+                <p:commandButton value="RUN" ajax="false" action="#{apiRequestController.execureUri()}" ></p:commandButton>
+                <p:inputTextarea value="#{apiRequestController.out}" ></p:inputTextarea>
                 
             </p:panelGrid>
         </h:form>

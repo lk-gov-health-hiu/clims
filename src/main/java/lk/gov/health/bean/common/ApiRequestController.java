@@ -13,6 +13,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -34,7 +35,9 @@ public class ApiRequestController implements Serializable {
     }
 
     public void execureUri(){
-        out = executePost(uri, null);
+        Map m = new HashMap();
+        m.put("name", "get_district_list");
+        out = executePost(uri, m);
     }
     
     public String executePost(String targetURL, Map<String, Object> parameters) {
@@ -80,7 +83,8 @@ public class ApiRequestController implements Serializable {
             rd.close();
             return response.toString();
         } catch (Exception e) {
-            return null;
+            System.out.println("e = " + e);
+            return e.getMessage();
         } finally {
             if (connection != null) {
                 connection.disconnect();
