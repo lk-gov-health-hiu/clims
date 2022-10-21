@@ -182,8 +182,10 @@
                                         <f:setPropertyActionListener value="#{pi}" target="#{patientInvestigationController.current}"></f:setPropertyActionListener>
                                         <p:graphicImage library="image" styleClass="standedicon" name="bleed.png" ></p:graphicImage>
                                     </p:commandLink>
-                                    <p:commandLink process="btnReceive" update="tblBills"  
-                                                   disabled="#{pi.received ne true and !webUserController.hasPrivilege('LabSampleReceiving')}"   id="btnReceive"  action="#{patientInvestigationController.markAsReceived()}" >
+                                    <h1>#{webUserController.hasPrivilege('LabSampleReceiving')}</h1>
+                                    <p:commandLink process="btnReceive" update="tblBills" 
+                                                   rendered="#{webUserController.hasPrivilege('LabSampleReceiving')}"
+                                                   disabled="#{pi.sampledAt ne null and !webUserController.hasPrivilege('LabSampleReceiving')}"   id="btnReceive"  action="#{patientInvestigationController.markAsReceived()}" >
                                         <f:setPropertyActionListener value="#{pi}" target="#{patientInvestigationController.current}"></f:setPropertyActionListener>
                                         <p:graphicImage library="image" styleClass="standedicon" name="receive.jpeg" ></p:graphicImage>
                                     </p:commandLink>
