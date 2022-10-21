@@ -12,8 +12,9 @@
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
+        
         <p:menubar styleClass="nonPrintBlock bottomBorderOnly ui-widget-header"  >
-            <p:menuitem   ajax="false" value="Home" icon="ui-icon-home" action="/index" ></p:menuitem>
+            <p:menuitem   ajax="false" value="Home" icon="pi pi-home" styleClass="rounded-button ui-button-primary" action="/index" ></p:menuitem>
             <p:submenu styleClass="rightBordrOnly" label="Order" rendered="#{webUserController.hasPrivilege('Opd')}">
                 <p:menuitem ajax="false" 
                             action="#{billController.toNewOpdOrder()}"  
@@ -29,50 +30,6 @@
                 <p:menuitem ajax="false" action="/reportCashier/report_cashier" value="Order Summeries" ></p:menuitem>
             </p:submenu>
 
-            <p:submenu styleClass="rightBordrOnly" label="Registration"  rendered="#{webUserController.hasPrivilege('MemberShip')}">
-                <p:menuitem ajax="false" action="/patient_registration.xhtml" value="Patients Registration" actionListener="#{membershipSchemeController.fillItems()}" ></p:menuitem>
-                <p:menuitem ajax="false" action="/patient_registration" value="Patient Registration" rendered="false" />
-                <p:menuitem ajax="false" action="/clinical/clinical_patient_for_receptionist" value="Patients"/>
-                <p:menuitem ajax="false" action="/patient_registration" value="Patient Registration"/>
-                <p:menuitem ajax="false" action="/clinical/membership_registration" value="Membership"/>
-                <p:menuitem ajax="false" action="/clinical/clinical_queue" value="Queue"/>
-                <p:menuitem ajax="false" action="/clinical/clinical_reports_index" value="Reports"/>
-                <p:menuitem ajax="false" action="/clinical/favourite_index" value="Favourites"/>
-                <p:menuitem ajax="false" action="/clinical/clinical_administration" value="Administration"/>
-            </p:submenu>
-
-            <p:submenu styleClass="rightBordrOnly" label="Membership"  rendered="#{webUserController.hasPrivilege('MemberShip')}">
-                <p:menuitem ajax="false" action="#{patientController.toAddAFamily()}" value="Add Family" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
-                <p:menuitem ajax="false" action="/membership/search_family" value="Search Family" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
-                <p:menuitem ajax="false" action="/membership/reports" value="Family Membership Reports" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
-                <p:menuitem ajax="false" action="/membership/administration" value="Administration" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
-            </p:submenu>
-
-            <p:submenu styleClass="rightBordrOnly" label="EHR"  rendered="#{webUserController.hasPrivilege('Clinical')}">
-                <p:menuitem ajax="false" action="/clinical/clinical_patient_for_receptionist" value="Patients"/>
-                <p:menuitem ajax="false" action="/clinical/test_results" value="Test Results"/>
-                <p:menuitem ajax="false" action="/patient_registration" value="Patient Registration"/>
-                <p:menuitem ajax="false" action="/clinical/membership_registration" value="Membership"/>
-                <p:menuitem ajax="false" action="/clinical/clinical_queue" value="Queue"/>
-                <p:menuitem ajax="false" action="/clinical/clinical_reports_index" value="Reports"/>
-                <p:menuitem ajax="false" action="/clinical/favourite_index" value="Favourites"/>
-                <p:menuitem ajax="false" action="/clinical/clinical_administration" value="Administration"/>
-            </p:submenu>
-
-            <p:submenu label="Order for Other Institutions" 
-                       rendered="#{webUserController.hasPrivilege('LabCollectingCentreBilling') and false}">
-                <p:menuitem ajax="false" action="/collecting_centre/bill"  
-                            actionListener="#{billController.prepareNewBill}" 
-                            value="New Order" 
-                            rendered="#{webUserController.hasPrivilege('LabCCBilling')}" >
-                </p:menuitem>
-                <p:menuitem ajax="false" action="/collecting_centre/collecting_centre_search_bill_own"
-                            actionListener="#{searchController.makeListNull}"
-                            value="Search Orders" 
-                            rendered="#{webUserController.hasPrivilege('LabCCBillingSearch')}" >
-                </p:menuitem>
-            </p:submenu>
-
             <p:submenu label="Order for Other Institutions" 
                        rendered="#{webUserController.hasPrivilege('LabCollectingCentreBilling') and false}">
                 <p:menuitem ajax="false" action="/lab/report_for_opd_print" value="Lab Report print" rendered="true" />
@@ -85,60 +42,44 @@
 
             <p:submenu styleClass="rightBordrOnly" label="Reporting"  
                        rendered="#{webUserController.hasPrivilege('Lab')}">
-
-
                 <p:menuitem ajax="false" action="/lab/search_for_reporting_ondemand" value="Reports Search" rendered="#{webUserController.hasPrivilege('LabReportSearch')}" actionListener="#{searchController.listnerReportSearch}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/lab/search_for_reporting_ondemand_institution" value="Reports/Search By Logged Institution" rendered="#{false and webUserController.hasPrivilege('LabReportSearchByLoggedInstitution')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/lab/search_for_reporting_ondemand_department" value="Reports/Search By Logged Department" rendered="#{webUserController.hasPrivilege('LabReportSearchByLoggedInstitution')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/lab/search_reports" value="Reporting" rendered="#{webUserController.hasPrivilege('LabReporting')}" ></p:menuitem>
-
             </p:submenu>
-
 
             <p:submenu styleClass="rightBordrOnly" label="Analytics"  rendered="#{webUserController.hasPrivilege('Reports')}">
                 <p:menuitem ajax="false" action="/reportLab/lab_summeries_index" value="Summeries"  rendered="#{webUserController.hasPrivilege('LabSummeries')}" ></p:menuitem>
-
                 <p:menuitem  ajax="false"  action="/reportInstitution/report_list" value="Lists" rendered="#{webUserController.hasPrivilege('ReportsSearchCashCardOwn')}" ></p:menuitem>                               
                 <p:menuitem  ajax="false"  action="/reportInstitution/report_own" value="Institution Report" rendered="#{webUserController.hasPrivilege('ReportsSearchCashCardOwn')}" ></p:menuitem>                               
                 <p:menuitem  ajax="false"  action="/reportIncome/report_income" value="Income Report"  ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/revenue_reports/index" value="Revenue Reports"  ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/reportInstitution/report_referrals_index" value="Referral Reports"  ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/reportLab/report_lab" value="Lab Report"  ></p:menuitem>
-                <p:menuitem  ajax="false"  action="/credit/index_inward_due_access" value="Inward Dues and Access"  ></p:menuitem>
-                <p:menuitem  ajax="false"  action="/credit/index_opd_due_access" value="Opd Dues and Access"  ></p:menuitem>
-                <p:menuitem  ajax="false"  action="/credit/index_pharmacy_due_access" value="Pharmacy Dues and Access"  ></p:menuitem>
-                <p:menuitem  ajax="false"  action="/dataAdmin/report_entered_data" value="Check Entered Data"  ></p:menuitem>
-                <p:menuitem  ajax="false"  action="/dataAdmin/update_entered_data" value="Update Entered Data"  ></p:menuitem>
-
             </p:submenu>
 
-            <p:submenu styleClass="rightBordrOnly" label="User"  >
+            <p:submenu styleClass="rightBordrOnly" label="User"  icon="pi pi-fw pi-user" >
                 <p:menuitem  ajax="false"  action="/user_change_password" value="Change Password"   ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/user_preferances" value="Change Preferances"  ></p:menuitem>
             </p:submenu>
 
-            <p:submenu styleClass="rightBordrOnly" label="Admin"  rendered="#{webUserController.hasPrivilege('Admin')}">
+            <p:submenu styleClass="rightBordrOnly" label="Admin" icon="pi pi-user-edit"  rendered="#{webUserController.hasPrivilege('Admin')}">
                 <p:menuitem ajax="false" action="/lab/administration" value="Lab Administration" rendered="#{webUserController.hasPrivilege('LabAdiministrator')}"  ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/admin_manage_users" value="Manage Users" rendered="#{webUserController.hasPrivilege('AdminManagingUsers')}" ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/admin_mange_institutions_index" value="Manage Institutions" rendered="#{webUserController.hasPrivilege('AdminInstitutions')}" ></p:menuitem>
-                <p:menuitem  ajax="false"  action="/admin_manage_staff_index" value="Manage Staff" rendered="#{webUserController.hasPrivilege('AdminStaff')}" ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/admin_items" value="Manage Items &amp; Services" rendered="#{webUserController.hasPrivilege('AdminItems')}" ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/admin_fees" value="Manage Prices/Charges/Packages" rendered="#{webUserController.hasPrivilege('AdminPrices')}" ></p:menuitem>
-                <p:menuitem ajax="false" action="/admin_discounts" value="Discount" rendered="#{webUserController.hasPrivilege('MemberShip')}" ></p:menuitem>
                 <p:menuitem ajax="false" action="/dataAdmin/admin_data_administration" value="Data Administration" rendered="#{webUserController.hasPrivilege('AdminItems')}" ></p:menuitem>
-                <p:menuitem ajax="false" action="/admin/bill_contact_numbers.xhtml" value="Send Bulk SMS" rendered="#{webUserController.hasPrivilege('SendBulkSMS')}" ></p:menuitem>
-
+                <p:menuitem ajax="false" action="/admin/bill_contact_numbers.xhtml" value="Manage SMS" rendered="#{webUserController.hasPrivilege('SendBulkSMS')}" ></p:menuitem>
             </p:submenu>
 
-
-
             <f:facet name="options">
-                <p:commandButton id="btnLogout" ajax="false" icon="ui-icon-extlink" action="#{sessionController.logout}" />
+                <p:commandButton id="btnLogout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" value="#{sessionController.loggedUser.webUserPerson.name}" ajax="false"  action="#{sessionController.logout}" />
                 <p:tooltip for="btnLogout" value="df"  >
                     <h:panelGrid columns="3" >
                         <h:outputText value="Institution" ></h:outputText>
                         <p:spacer width="10" height="1" ></p:spacer>
-                        <h:outputText value="#{sessionController.loggedUser.institution.name}" ></h:outputText>
+                        <h:outputText value="#{sessionController.loggedUser.institution.name} (Log Out)" ></h:outputText>
                         <h:outputText value="Department" ></h:outputText>
                         <p:spacer width="10" height="1" ></p:spacer>
                         <h:outputText value="#{sessionController.loggedUser.department.name} " ></h:outputText>

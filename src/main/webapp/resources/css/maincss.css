@@ -81,6 +81,18 @@ body {
     border-bottom-right-radius: 0px !important;
 }
 
+.twentyRem{
+    width: 20rem;
+    border: 1px solid red;
+    background-color: #D7D0C0;
+}
+
+.fiftyRemMin{
+    min-width: 40rem;
+    border: 1px solid green;
+    background-color: yellow;
+}
+
 @media screen{
     .myDivToPrint{
         min-width:800px;

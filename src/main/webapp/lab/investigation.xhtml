@@ -34,10 +34,10 @@
                                     <h:panelGrid id="gpSelect" columns="1"  >
                                         <p:panel>
                                             <f:facet name="header" >
-                                                <h:outputText value="Search" ></h:outputText>
+                                                <h:outputText class="m-1" value="Search" ></h:outputText>
                                                 <p:commandButton id="btnAdd" class="m-1"  value="Add New" 
                                                                  action="#{investigationController.prepareAdd()}" 
-                                                                 styleClass="buttons" onclick="onSubmitButton();" style="float: right;"
+                                                                 onclick="onSubmitButton();" style="float: right;"
                                                                  process="@this" update="gpDetail">
                                                 </p:commandButton>
                                             </f:facet>

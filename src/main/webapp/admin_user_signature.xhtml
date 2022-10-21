@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:autocomplete="http://java.sun.com/jsf/composite/autocomplete">
+
+    <h:body>
+        <ui:composition template="/resources/template/template.xhtml">
+            <ui:define name="content">
+                <p:panel  >
+                    <f:facet name="header" >
+                        <h:form >
+                            <p:outputLabel value="Add Staff Signature" ></p:outputLabel>
+                            <p:commandButton ajax="false" value="Back" action="#{webUserController.toListUsers()}" >
+                            </p:commandButton>
+                        </h:form>
+                    </f:facet>
+
+
+                    <h:form enctype="multipart/form-data">
+                        <h:panelGrid columns="2" class="w-100 border border-light">
+                            <f:facet name="header" >
+                                File Upload (Images)
+                            </f:facet>
+                            <p:fileUpload value="#{webUserController.file}" mode="simple" skinSimple="true"
+                                          class="btn btn-success fw-bold m-2 "/>
+                            <p:commandButton value="Submit" ajax="false" 
+                                             action="#{webUserController.uploadUserSignature()}" class="btn btn-warning"/>
+                        </h:panelGrid>
+
+                    </h:form>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

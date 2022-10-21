@@ -38,14 +38,12 @@
         <p:growl id="publicGrowl"    />
 
         <h:panelGroup rendered ="#{!sessionController.logged and !sessionController.firstLogin}"  >
-            <ui:insert name="login"   >
+            <ui:insert name="login">
                 <ez:login/>
             </ui:insert>
         </h:panelGroup>
 
         <h:panelGroup rendered="true" >
-            <div id="panelFullSpread" class="fullSpread ui-widget-content"  >
-
                 <h:panelGroup >
                     <h:form>
                         <h:panelGroup >
@@ -153,11 +151,6 @@
                 </div>
 
                 <ez:footer/>
-
-            </div>
         </h:panelGroup>
-
-
-
     </h:body>
 </html>

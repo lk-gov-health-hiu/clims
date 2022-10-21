@@ -51,9 +51,9 @@
                             <p:commandButton ajax="false" value="Excel" styleClass="noPrintButton" style="float: right;" >
                                 <pe:exporter type="xlsx" target="inwd" fileName="Price_metrix_investigation"  />
                             </p:commandButton>
-                            <p:commandButton ajax="false" value="Fill" 
+                            <p:commandButton class="m-1" ajax="false" value="Fill" 
                                             action="#{opdMemberShipDiscountController.createItemsDepartments}" />
-                            <p:commandButton ajax="false" value="Print" styleClass="noPrintButton" >                                         
+                            <p:commandButton class="m-1" ajax="false" value="Print" styleClass="noPrintButton" >                                         
                                 <p:printer target="reportPrint"/>
                             </p:commandButton>
 

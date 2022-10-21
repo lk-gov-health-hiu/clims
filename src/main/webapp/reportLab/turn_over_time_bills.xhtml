@@ -20,17 +20,18 @@
                          header="Turn Around Time">
 
                     <h:panelGrid columns="2" style="min-width: 50%;" styleClass="noPrintButton">
-                        <h:outputLabel value="From"/>
-                        <p:calendar id="frmDate" styleClass="dateTimePicker" navigator="true" value="#{investigationMonthSummeryOwnControllerSession.fromDate}" pattern="dd MMMM yyyy HH:mm:ss" >
+                        <h:outputLabel class='m-1' value="From"/>
+                        <p:calendar id="frmDate" class='m-1' styleClass="dateTimePicker" navigator="true" value="#{investigationMonthSummeryOwnControllerSession.fromDate}" pattern="dd MMMM yyyy HH:mm:ss" >
                         </p:calendar>
 
-                        <h:outputLabel value="To"/>
-                        <p:calendar id="toDate" styleClass="dateTimePicker"  navigator="true" value="#{investigationMonthSummeryOwnControllerSession.toDate}" pattern="dd MMMM yyyy HH:mm:ss" >
+                        <h:outputLabel class="m-1" value="To"/>
+                        <p:calendar id="toDate" class="m-1" styleClass="dateTimePicker"  navigator="true" value="#{investigationMonthSummeryOwnControllerSession.toDate}" pattern="dd MMMM yyyy HH:mm:ss" >
                         </p:calendar>
-                        <h:outputLabel value="Department"/>
+                        <h:outputLabel class="m-1" value="Department"/>
                         <autocomplete:department value="#{investigationMonthSummeryOwnControllerSession.department}" ></autocomplete:department>
-                        <h:outputLabel value="Item"/>
-                        <p:autoComplete widgetVar="aPt" id="acPt" forceSelection="true" converter="ixcon"
+                        <h:outputLabel class="m-1" value="Item"/>
+                        <p:autoComplete widgetVar="aPt" id="acPt" forceSelection="true"
+                                        converter="ixcon" class="m-1"
                                         value="#{investigationMonthSummeryOwnControllerSession.item}" 
                                         completeMethod="#{investigationController.completeInvest}" 
                                         var="apt" itemLabel="#{apt.name}" 
@@ -48,16 +49,16 @@
                         </p:autoComplete>
                         <p:watermark for="acPt" value="Item"/>
                         <h:panelGroup >
-                            <p:commandButton ajax="false"  value="Process"  
+                            <p:commandButton ajax="false"  value="Process" class='m-1'
                                              action="#{investigationMonthSummeryOwnControllerSession.createInvestigationTurnoverTimeByBills}"
                                              styleClass="noPrintButton" />
-                            <p:commandButton value="Excel" ajax="false" styleClass="noPrintButton" >
+                            <p:commandButton value="Excel" ajax="false" styleClass="noPrintButton" class="m-1" >
                                 <pe:exporter type="xlsx" target="tbl" fileName="turn over time"/>
                             </p:commandButton>
-                            <p:commandButton value="Print" ajax="false" styleClass="noPrintButton" >
+                            <p:commandButton class="m-1" value="Print" ajax="false" styleClass="noPrintButton" >
                                 <p:printer target="tbl" ></p:printer>
                             </p:commandButton>
-                            <p:commandButton value="Back" ajax="false" styleClass="noPrintButton" action="/reportLab/lab_summeries_index" >
+                            <p:commandButton class="m-1" value="Back" ajax="false" action="/reportLab/lab_summeries_index" >
                             </p:commandButton> 
                         </h:panelGroup>
                     </h:panelGrid>
