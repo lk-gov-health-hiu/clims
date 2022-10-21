@@ -18,6 +18,7 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -40,13 +41,20 @@ public class ApiRequestController implements Serializable {
     public ApiRequestController() {
     }
 
-    public void execureUri() {
+    public void execureUri1() {
+        Map m = new HashMap();
+        m.put("un", "username");
+        out = executePost(uri, m);
+    }
+
+    public void execureUri2() {
+        Map m = new HashMap();
+        m.put("un", "username");
         out = biaQurantineData(uri);
     }
 
     public String biaQurantineData(String uri) {
         URL apiUrl;
-       
 
         try {
             // Creates a new url object with the ApirPort api URL
@@ -112,19 +120,20 @@ public class ApiRequestController implements Serializable {
     }
 
     public String executePost(String targetURL, Map<String, Object> parameters) {
+        if (targetURL == null || targetURL.trim().equals("")) {
+            return "No URI";
+        }
         HttpURLConnection connection = null;
         if (parameters != null && !parameters.isEmpty()) {
             targetURL += "?";
-        }
-        Set s = parameters.entrySet();
-        Iterator it = s.iterator();
-        while (it.hasNext()) {
-            Map.Entry m = (Map.Entry) it.next();
-            Object pVal = m.getValue();
-            String pPara = (String) m.getKey();
-            targetURL += pPara + "=" + pVal.toString() + "&";
-        }
-        if (parameters != null && !parameters.isEmpty()) {
+            Set s = parameters.entrySet();
+            Iterator it = s.iterator();
+            while (it.hasNext()) {
+                Map.Entry m = (Map.Entry) it.next();
+                Object pVal = m.getValue();
+                String pPara = (String) m.getKey();
+                targetURL += pPara + "=" + pVal.toString() + "&";
+            }
             targetURL += "last=true";
         }
         try {
@@ -154,7 +163,7 @@ public class ApiRequestController implements Serializable {
             rd.close();
             return response.toString();
         } catch (Exception e) {
-            return null;
+            return "Exception > " +  e.getMessage();
         } finally {
             if (connection != null) {
                 connection.disconnect();

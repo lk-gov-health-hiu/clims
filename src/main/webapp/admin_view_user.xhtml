@@ -28,19 +28,23 @@
                         </f:facet>
                         <p:ajax event="rowSelect" process="@this" update=":#{p:resolveFirstComponentWithId('actions',view).clientId}" ></p:ajax>
                         <p:ajax event="rowUnselect" process="@this" update=":#{p:resolveFirstComponentWithId('actions',view).clientId}" ></p:ajax>
-                        <p:column headerText="Institution">
+                        <p:column headerText="Institution"
+                                  sortBy="#{u.institution.name}" filterBy="#{u.institution.name}" filterMatchMode="contains">
                             <p:outputLabel value="#{u.institution.name}"/>
                         </p:column>
 
-                        <p:column headerText="Department">
+                        <p:column headerText="Department"
+                                  sortBy="#{u.department.name}" filterBy="#{u.department.name}" filterMatchMode="contains">
                             <p:outputLabel value="#{u.department.name}"/>
                         </p:column>
 
-                        <p:column headerText="Name">
+                        <p:column headerText="Name"
+                                  sortBy="#{u.webUserPerson.name}" filterBy="#{u.webUserPerson.name}" filterMatchMode="contains">
                             <p:outputLabel value="#{u.webUserPerson.name}"/>
                         </p:column>
 
-                        <p:column headerText="Username">
+                        <p:column headerText="Username"
+                                  sortBy="#{u.name}" filterBy="#{u.name}" filterMatchMode="contains">
                             <p:outputLabel value="#{u.name}"/>
                         </p:column>
 
