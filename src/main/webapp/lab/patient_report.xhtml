@@ -53,36 +53,36 @@
                                 </p:tooltip>
 
                                 <h:panelGrid columns="2" >
-                                    <p:outputLabel value="Report Format" ></p:outputLabel>
+                                    <p:outputLabel class="m-1" value="Report Format" ></p:outputLabel>
                                     <p:selectOneMenu  id="mnuCat" value="#{patientReportController.currentPatientReport.reportFormat}"  style="width: 300px!important;">
                                         <f:selectItems  value="#{reportFormatController.items}" var="myItem" itemValue="#{myItem}" itemLabel="#{myItem.name}" ></f:selectItems>
                                         <f:ajax event="change" execute="mnuCat" render=":#{p:resolveFirstComponentWithId('divPrintReport',view).clientId}" />
                                     </p:selectOneMenu>
                                 </h:panelGrid>
                                 <h:panelGrid columns="9" >
-                                    <p:commandButton rendered="#{webUserController.hasPrivilege('LabDataentry') eq true and patientReportController.currentPatientReport.approved ne true}"  
+                                    <p:commandButton class="m-1" rendered="#{webUserController.hasPrivilege('LabDataentry') eq true and patientReportController.currentPatientReport.approved ne true}"  
                                                      value="Save" 
                                                      action="#{patientReportController.savePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
-                                    <p:commandButton ajax="false" process="tblVals" update=":#{p:resolveFirstComponentWithId('tblCals',view).clientId} :#{p:resolveFirstComponentWithId('tblFlags',view).clientId} :#{p:resolveFirstComponentWithId('divPrintReport',view).clientId}"  styleClass="nonPrintBlock"  value="Calculate" 
+                                    <p:commandButton class="m-1" ajax="false" process="tblVals" update=":#{p:resolveFirstComponentWithId('tblCals',view).clientId} :#{p:resolveFirstComponentWithId('tblFlags',view).clientId} :#{p:resolveFirstComponentWithId('divPrintReport',view).clientId}"  styleClass="nonPrintBlock"  value="Calculate" 
                                                      action="#{patientReportController.calculate}" onclick="onSubmitButton();"   >
                                     </p:commandButton>
 
-                                    <p:commandButton styleClass="nonPrintBlock"  id="btnApprove"  disabled ="#{webUserController.hasPrivilege('LabApproving') ne true}"   
+                                    <p:commandButton class="m-1"  id="btnApprove"  disabled ="#{webUserController.hasPrivilege('LabApproving') ne true}"   
                                                      value="Approve*" action="#{patientReportController.approvePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
 
-                                    <p:commandButton styleClass="nonPrintBlock"  id="btnAutherize"
+                                    <p:commandButton class="m-1" styleClass="nonPrintBlock"  id="btnAutherize"
                                                      disabled ="#{!(webUserController.hasPrivilege('LabAutherizing') eq true and patientReportController.currentPatientReport.approved eq true)}"   
                                                      value="Authorize"
                                                      action="#{patientReportController.autherizePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
 
-                                    <p:commandButton styleClass="nonPrintBlock" rendered="true"  id="btnCancel"  disabled ="#{!(webUserController.hasPrivilege('LabDataentry') eq true and patientReportController.currentPatientReport.approved eq true)}"   value="Sent SMS" 
+                                    <p:commandButton class="m-1" rendered="true"  id="btnCancel"  disabled ="#{!(webUserController.hasPrivilege('LabDataentry') eq true and patientReportController.currentPatientReport.approved eq true)}"   value="Sent SMS" 
                                                      action="#{patientReportController.sendSmsForPatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
 
-                                    <p:commandButton styleClass="nonPrintBlock"  id="btnSendSms"  
+                                    <p:commandButton class="m-1" id="btnSendSms"  
                                                      disabled ="#{!(webUserController.hasPrivilege('LabDeAutherizing') eq true and patientReportController.currentPatientReport.approved eq true)}"   value="Cancel Approval" 
                                                      action="#{patientReportController.reverseApprovalOfPatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
@@ -95,20 +95,20 @@
                                                                                          actionListener="#{patientReportController.printPatientReport()}"/>-->
 
                                     <p:spacer width="30" ></p:spacer>
-                                    <p:commandButton  styleClass="nonPrintBlock"  value="Patient Report Search" action="#{patientReportController.patientReportSearch}" ajax="false" >
+                                    <p:commandButton  class="m-1"  value="Patient Report Search" action="#{patientReportController.patientReportSearch}" ajax="false" >
                                     </p:commandButton>
-                                    <p:commandButton  styleClass="nonPrintBlock"  value="Report Search" action="/lab/search_for_reporting_ondemand" ajax="false" onclick="onSubmitButton();"  >
+                                    <p:commandButton  class="m-1" value="Report Search" action="/lab/search_for_reporting_ondemand" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
-                                    <p:commandButton  styleClass="nonPrintBlock"  value="To Approve List" action="#{searchController.listReportsAwaitingApproval()}" ajax="false" onclick="onSubmitButton();"  >
+                                    <p:commandButton  class="m-1"  value="To Approve List" action="#{searchController.listReportsAwaitingApproval()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
 
-                                    <p:commandButton styleClass="nonPrintBlock" ajax="false" value="Back to Visit" action="/clinical/clinical_new_opd_visit.xhtml" style="float: right;" onclick="onSubmitButton();" ></p:commandButton>
+                                    <p:commandButton class="m-1" ajax="false" value="Back to Visit" action="/clinical/clinical_new_opd_visit.xhtml" style="float: right;" onclick="onSubmitButton();" ></p:commandButton>
 
                                 </h:panelGrid>
 
 
                                 <h:panelGrid columns="3" styleClass="alignTop" >
-                                    <p:panel header="Enter Values"  
+                                    <p:panel class="m-1" header="Enter Values"  
                                              rendered="#{patientReportController.currentPatientReport.transInvestigation.reportType ne 'Microbiology' and patientReportController.currentPatientReport.containValues eq true}" >
                                         <table >
                                             <ui:repeat id="tblVals" value="#{patientReportController.currentPatientReport.patientReportItemValues}"  
@@ -356,7 +356,7 @@
                                         </p:panel>
 
                                     </p:panel>
-                                    <p:panel header="User Details" >
+                                    <p:panel class="m-1" header="User Details" >
                                         <p:panelGrid columns="2" >
                                             <h:outputText value="Data Entered by" ></h:outputText>
                                             <h:outputText value="#{patientReportController.currentPatientReport.dataEntryUser.webUserPerson.nameWithTitle}" ></h:outputText>
