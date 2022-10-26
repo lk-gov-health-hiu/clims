@@ -9,11 +9,13 @@
     <h:body>
 
         <h:form >
-            <p:panelGrid columns="1" >
-                <p:inputTextarea value="#{restClientController.url}" ></p:inputTextarea>
-                <p:commandButton value="RUN" ajax="false" action="#{restClientController.sendRestRequest()}" ></p:commandButton>
-                <p:inputTextarea value="#{restClientController.output}" ></p:inputTextarea>
-                
+            <p:panelGrid columns="1" class="w-100" >
+                <p:inputTextarea  class="w-100" value="#{apiRequestController.uri}" ></p:inputTextarea>
+                <p:commandButton value="RUN 1" ajax="false" action="#{apiRequestController.execureUri1()}" ></p:commandButton>
+                <p:commandButton value="RUN 2" ajax="false" action="#{apiRequestController.execureUri2()}" ></p:commandButton>
+
+                <p:inputTextarea  class="w-100" value="#{apiRequestController.out}" ></p:inputTextarea>
+
             </p:panelGrid>
         </h:form>
 
