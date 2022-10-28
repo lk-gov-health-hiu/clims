@@ -98,10 +98,16 @@
                                     </p:selectOneMenu>
                                 </h:panelGrid>
                                 <p:commandButton value="Create New Items for Selected Master Items"
-                                                 action="#{itemController.createNewItemsFromMasterItems}" ajax="false" ></p:commandButton>
+                                                 action="#{itemController.createNewItemsFromMasterItems}" 
+                                                 ajax="false"
+                                                 class="m-1">
+                                </p:commandButton>
 
                                 <p:commandButton value="Update Items"
-                                                 action="#{itemController.updateItemsFromMasterItems}" ajax="false" ></p:commandButton>
+                                                  class="m-1"
+                                                 action="#{itemController.updateItemsFromMasterItems}" 
+                                                 ajax="false" >
+                                </p:commandButton>
                             </p:panel>
 
                         </h:panelGrid>
