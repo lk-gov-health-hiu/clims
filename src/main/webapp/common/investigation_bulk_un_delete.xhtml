@@ -17,8 +17,8 @@
 
                 <p:panel header="Undelete Services" >
 
-                    <p:commandButton value="List Deleted Services" action="#{investigationController.listDeletedIxs}" ajax="false" ></p:commandButton>
-                    <p:commandButton value="Undelete Selected" action="#{investigationController.undeleteSelectedIxs() }" ajax="false" ></p:commandButton>
+                    <p:commandButton class="m-1" value="List Deleted Services" action="#{investigationController.listDeletedIxs}" ajax="false" ></p:commandButton>
+                    <p:commandButton class="m-1"  value="Undelete Selected" action="#{investigationController.undeleteSelectedIxs() }" ajax="false" ></p:commandButton>
 
                     <p:dataTable value="#{investigationController.deletedIxs}" var="item" rowKey="#{item.id}"
                                  paginator="true" paginatorAlwaysVisible="true"

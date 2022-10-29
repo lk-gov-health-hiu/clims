@@ -17,10 +17,10 @@
 
                     <f:facet name="header" >
                         <h:outputLabel value="List of Investigations to Delete"></h:outputLabel>
-                        <p:commandButton ajax="false" value="Print" styleClass="noPrintButton" >
+                        <p:commandButton ajax="false" class="m-1" value="Print" >
                             <p:printer target="panIx" />
                         </p:commandButton>
-                        <p:commandButton ajax="false" value="Excel" styleClass="noPrintButton" >
+                        <p:commandButton ajax="false" value="Excel" class="m-1"  >
                             <p:dataExporter target="panIx" type="xls" fileName="All Items" />
                         </p:commandButton>
                     </f:facet>
@@ -30,10 +30,10 @@
                     <p:panel >
                         <f:facet name="header" >
                             <h:outputLabel value="List of Investigations to Delete"></h:outputLabel>
-                            <p:commandButton ajax="false" value="Liats All Ix" styleClass="noPrintButton" 
+                            <p:commandButton ajax="false" value="Liats All Ix" class="m-1" 
                                              action="#{investigationController.listAllIxs()}">
                             </p:commandButton>
-                            <p:commandButton ajax="false" value="Remove Ix" styleClass="noPrintButton" 
+                            <p:commandButton ajax="false" value="Remove Ix" class="m-1" 
                                              action="#{investigationController.removeSelectedItems()}">
                             </p:commandButton>
                         </f:facet>
