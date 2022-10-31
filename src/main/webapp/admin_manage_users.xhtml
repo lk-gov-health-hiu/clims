@@ -60,11 +60,12 @@
                                              ajax="false" />
                             <p:commandButton icon="pi pi-user-plus" 
                                              styleClass="ui-button-info w-100"    
-                                             rendered="false"  
+                                             rendered="true"  
                                              immediate="true"
                                              value="Manage Signature" 
                                              action="#{webUserController.toManageSignature()}" 
                                              ajax="false" />
+                            
                             <p:commandButton ajax="false" 
                                              value="Remove Selected" 
                                              immediate="true"
@@ -77,6 +78,7 @@
                                              >
                             </p:commandButton>
                             <p:commandButton icon="pi pi-bars" 
+                                             ajax="false"
                                              immediate="true"
                                              styleClass="ui-button-info w-100"  
                                              value="View User Login Details" 
