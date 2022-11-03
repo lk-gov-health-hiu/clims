@@ -80,23 +80,56 @@
                                 height="#{myCli.htPix}" width="#{myCli.wtPix}">
                     <f:param name="id" value="#{cc.attrs.patientReport.autherizedUser.id}" />
                 </p:graphicImage>
-                
+
                 <p:graphicImage rendered="#{myCli.reportItemType eq 'ApprovedSignature' and myCli.retired eq false and cc.attrs.patientReport.approveUser.staff.id ne null }"    
                                 value="#{streamedContentController.signatureByUserId}"
                                 style="width: #{myCli.wtPix};overflow: visible; display: block;" 
                                 height="#{myCli.htPix}" width="#{myCli.wtPix}">
                     <f:param name="id" value="#{cc.attrs.patientReport.approveUser.staff.id}" />
                 </p:graphicImage>
-                
-                
+
+
                 <p:graphicImage rendered="#{myCli.reportItemType eq 'DataEntrySignature' and myCli.retired eq false and cc.attrs.patientReport.approveUser.staff.id ne null }"    
                                 value="#{streamedContentController.signatureByUserId}"
                                 style="width: #{myCli.wtPix};overflow: visible; display: block;" 
                                 height="#{myCli.htPix}" width="#{myCli.wtPix}">
                     <f:param name="id" value="#{cc.attrs.patientReport.dataEntryUser.id}" />
                 </p:graphicImage>
-                
-                
+
+
+
+
+                <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ReferringInstitution' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.referredByInstitution.name}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+
+
+
+                <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'AutherizedUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.autherizedUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'DataEntryUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.dataEntryUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ApprovedUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.approvedUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+
+                <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'AutherizedName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.autherizedUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'DataEntryUserName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.dataEntryUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ApprovedUserName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.approvedUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+
+                <h:panelGroup rendered="false">
+                    <p:graphicImage rendered="#{myCli.reportItemType eq 'DataEntrySignature' and myCli.retired eq false and patientReportController.currentPatientReport.dataEntryUser ne null }"    value="#{streamedContentController.signatureByUserId}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
+                        <f:param name="id" value="#{patientReportController.currentPatientReport.dataEntryUser.id}" />
+                    </p:graphicImage>
+
+                    <p:graphicImage rendered="#{myCli.reportItemType eq 'ApprovedSignature' and myCli.retired eq false and patientReportController.currentPatientReport.approveUser ne null }"    value="#{streamedContentController.signatureByUserId}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
+                        <f:param name="id" value="#{patientReportController.currentPatientReport.approveUser.id}" />
+                    </p:graphicImage>
+
+                    <p:graphicImage rendered="#{myCli.reportItemType eq 'AutherizedSignature' and myCli.retired eq false and patientReportController.currentPatientReport.autherizedUser ne null }"    value="#{streamedContentController.signatureByUserId}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
+                        <f:param name="id" value="#{patientReportController.currentPatientReport.autherizedUser.id}" />
+                    </p:graphicImage>
+
+                </h:panelGroup>
+
+
+
+
+
 
                 <h:panelGroup rendered="#{myCli.ixItemType eq 'Barcode' and myCli.retired ne true }"  
                               >
