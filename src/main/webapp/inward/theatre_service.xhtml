@@ -21,11 +21,11 @@
                             <p:panel header="Search Service" >
                                 <h:panelGrid id="gpSelectText" >
 
-                                    <h:inputText autocomplete="off" id="txtSearch" value="#{theatreServiceController.selectText}" >
+                                    <p:inputText class="m-1" autocomplete="off" id="txtSearch" value="#{theatreServiceController.selectText}" >
                                         <f:ajax execute="txtSearch" render="lstSelect" event="keyup" />
-                                    </h:inputText>
+                                    </p:inputText>
 
-                                    <p:selectOneListbox converter="serv"   id="lstSelect"   value="#{theatreServiceController.current}" style="min-width: 223px; height: 300px;">
+                                    <p:selectOneListbox converter="serv" class="m-1"  id="lstSelect"   value="#{theatreServiceController.current}" style="min-width: 223px; height: 300px;">
                                         <f:selectItems  value="#{theatreServiceController.selectedItems}" var="myItem" itemValue="#{myItem}" itemLabel="#{myItem.name}" >
                                         </f:selectItems>
                                         <p:ajax event="change"   update="gpDetail" process="lstSelect" >
@@ -35,13 +35,13 @@
 
                                 </h:panelGrid>
                                 <h:panelGrid id="gpSelectButtons" columns="3"  >
-                                    <h:commandButton id="btnAdd" value="Add" action="#{theatreServiceController.prepareAdd()}" styleClass="buttons" >
+                                    <p:commandButton id="btnAdd" value="Add" class="m-1" action="#{theatreServiceController.prepareAdd()}">
                                         <f:ajax render="btnAdd  btnDelete btnSave   lstSelect gpDetail " execute="" >
                                         </f:ajax>
-                                    </h:commandButton>
-                                    <h:commandButton id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
+                                    </p:commandButton>
+                                    <p:commandButton id="btnDelete" class="m-1" onclick="if (!confirm('Are you sure you want to delete this record?'))
                                                 return false;" action="#{theatreServiceController.delete()}"  value="Delete"  >
-                                    </h:commandButton>
+                                    </p:commandButton>
 
 
                                 </h:panelGrid>
@@ -53,7 +53,7 @@
 
                                 <h:outputLabel value="Edit Details" ></h:outputLabel>
                                 <p:commandButton style="float:right;" id="btnSave" value="Save"  action="#{theatreServiceController.saveSelected()}" styleClass="buttons"
-                                               ajax="false" onclick="onSubmitButton();"  >
+                                                 ajax="false" onclick="onSubmitButton();"  >
                                 </p:commandButton>
                                 <p:defaultCommand target="btnSave"/>
 
@@ -64,17 +64,18 @@
                                     <p:calendar   value="#{theatreServiceController.current.createdAt}" pattern="dd MMMM yyyy " />
 
 
-                                    <h:outputText id="lblName" value="Name" ></h:outputText>
-                                    <h:inputText autocomplete="off" id="txtName" value="#{theatreServiceController.current.name}" required="true" ></h:inputText>
-                                    <h:outputText id="lblAddress" value="Printing Name" ></h:outputText>
-                                    <h:inputText autocomplete="off" id="txtAddress"   value="#{theatreServiceController.current.printName}"  ></h:inputText>
-                                    <h:outputText id="lblFullName" value="Full Name" ></h:outputText>
-                                    <h:inputText autocomplete="off" id="txtFullName"   value="#{theatreServiceController.current.fullName}"  ></h:inputText>
-                                    <p:outputLabel value="Item Code"/>
-                                    <p:inputText autocomplete="off" value="#{theatreServiceController.current.code}"/>
+                                    <h:outputText class="m-1" id="lblName" value="Name" ></h:outputText>
+                                    <p:inputText autocomplete="off" class="m-1" id="txtName" value="#{theatreServiceController.current.name}" required="true" ></p:inputText>
+                                    <h:outputText class="m-1" id="lblAddress" value="Printing Name" ></h:outputText>
+                                    <p:inputText class="m-1" autocomplete="off" id="txtAddress"   value="#{theatreServiceController.current.printName}"  ></p:inputText>
+                                    <h:outputText class="m-1" id="lblFullName" value="Full Name" ></h:outputText>
+                                    <p:inputText class="m-1" autocomplete="off" id="txtFullName"   value="#{theatreServiceController.current.fullName}"  ></p:inputText>
+                                    <p:outputLabel class="m-1" value="Item Code"/>
+                                    <p:inputText class="m-1" autocomplete="off" value="#{theatreServiceController.current.code}"/>
 
-                                    <h:outputText value="Service Category/Sub Category" ></h:outputText>
+                                    <h:outputText class="m-1" value="Service Category/Sub Category" ></h:outputText>
                                     <p:autoComplete converter="categoryConverter" 
+                                                    class="m-1"
                                                     completeMethod="#{categoryController.completeServiceCategory}" 
                                                     var="pta" itemLabel="#{pta.name} #{pta.parentCategory}" itemValue="#{pta}" 
                                                     forceSelection="true" value="#{theatreServiceController.current.category}" >                                    
@@ -82,58 +83,60 @@
                                         <p:column>#{pta.parentCategory}</p:column>                                        
                                     </p:autoComplete>
 
-                                    <p:selectBooleanCheckbox   id="chkBilledAs" value="#{theatreServiceController.billedAs}" itemLabel="Billed as a seperate investigation"  >
+                                    <p:selectBooleanCheckbox  class="m-1" id="chkBilledAs" value="#{theatreServiceController.billedAs}" itemLabel="Billed as a seperate investigation"  >
                                         <p:ajax event="change" process="@this" update="billedAsIx" />
                                     </p:selectBooleanCheckbox>
-                                    <p:autoComplete converter="serv"  disabled="#{!theatreServiceController.billedAs}" 
+                                    <p:autoComplete converter="serv" 
+                                                    class="m-1"
+                                                    disabled="#{!theatreServiceController.billedAs}" 
                                                     widgetVar="aIx1" id="billedAsIx" forceSelection="true" 
                                                     value="#{theatreServiceController.current.billedAs}" completeMethod="#{theatreServiceController.completeItem}" var="ix1" itemLabel="#{ix1.name}" itemValue="#{ix1}" size="30"  style="width: 400px;">
                                     </p:autoComplete>
 
-                                    <p:selectBooleanCheckbox  id="chkReportedAs" value="#{theatreServiceController.reportedAs}" itemLabel="Reported as a seperate investigation" >
+                                    <p:selectBooleanCheckbox class="m-1" id="chkReportedAs" value="#{theatreServiceController.reportedAs}" itemLabel="Reported as a seperate investigation" >
                                         <p:ajax event="change" process="@this" update="reportedAsIx" />
                                     </p:selectBooleanCheckbox>
-                                    <p:autoComplete converter="serv" disabled="#{!theatreServiceController.reportedAs}" widgetVar="aIx2" id="reportedAsIx" forceSelection="true" value="#{theatreServiceController.current.reportedAs}" completeMethod="#{theatreServiceController.completeItem}" var="ix2" itemLabel="#{ix2.name}" itemValue="#{ix2}" size="30"  style="width: 400px;">
+                                    <p:autoComplete converter="serv" class="m-1" disabled="#{!theatreServiceController.reportedAs}" widgetVar="aIx2" id="reportedAsIx" forceSelection="true" value="#{theatreServiceController.current.reportedAs}" completeMethod="#{theatreServiceController.completeItem}" var="ix2" itemLabel="#{ix2.name}" itemValue="#{ix2}" size="30"  style="width: 400px;">
                                     </p:autoComplete>
 
-                                    <h:outputText value="Institution" ></h:outputText>
-                                    <p:selectOneMenu id="cmbIns" value="#{theatreServiceController.current.institution}" >
+                                    <h:outputText class="m-1" value="Institution" ></h:outputText>
+                                    <p:selectOneMenu class="m-1" id="cmbIns" value="#{theatreServiceController.current.institution}" >
                                         <f:selectItem itemLabel="Please select a Institution"/>
                                         <f:selectItems value="#{institutionController.companies}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat}" />
                                         <f:ajax execute="cmbIns" render="cmbDep" event="change"/>                                        
                                     </p:selectOneMenu>
-                                    <h:outputText value="Department" ></h:outputText>
-                                    <p:selectOneMenu id="cmbDep" value="#{theatreServiceController.current.department}" >
+                                    <h:outputText class="m-1" value="Department" ></h:outputText>
+                                    <p:selectOneMenu class="m-1" id="cmbDep" value="#{theatreServiceController.current.department}" >
                                         <f:selectItem itemLabel="Please select a Department"/>
                                         <f:selectItems value="#{theatreServiceController.institutionDepatrments}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat}" />
                                     </p:selectOneMenu>
-                                    <h:outputText value="Inward Charge Category" ></h:outputText>
-                                    <p:selectOneMenu id="cmbInward" value="#{theatreServiceController.current.inwardChargeType}" >
+                                    <h:outputText class="m-1" value="Inward Charge Category" ></h:outputText>
+                                    <p:selectOneMenu class="m-1" id="cmbInward" value="#{theatreServiceController.current.inwardChargeType}" >
                                         <f:selectItem itemLabel="Please select Charge"/>
                                         <f:selectItems value="#{enumController.inwardChargeTypesForSetting}" var="i" itemLabel="#{i.label}" itemValue="#{i}"/>
                                     </p:selectOneMenu>
-                                    <h:outputText value="Session Numbering" ></h:outputText>
-                                    <p:selectOneMenu  value="#{theatreServiceController.current.sessionNumberType}" >
+                                    <h:outputText class="m-1" value="Session Numbering" ></h:outputText>
+                                    <p:selectOneMenu class="m-1" value="#{theatreServiceController.current.sessionNumberType}" >
                                         <f:selectItem itemLabel="Please select Session Numbering"/>
                                         <f:selectItems value="#{theatreServiceController.sessionNumberType}"/>
                                     </p:selectOneMenu>
-                                    <h:outputText value="" ></h:outputText>
-                                    <p:selectBooleanCheckbox value="#{theatreServiceController.current.userChangable}" itemLabel="Can change Rate"/>
+                                    <h:outputText class="m-1" value="" ></h:outputText>
+                                    <p:selectBooleanCheckbox class="m-1" value="#{theatreServiceController.current.userChangable}" itemLabel="Can change Rate"/>
 
-                                    <h:outputText value="" ></h:outputText>
-                                    <p:selectBooleanCheckbox value="#{theatreServiceController.current.chargesVisibleForInward}" itemLabel="Charges Visible for inward billing"/>
+                                    <h:outputText class="m-1" value="" ></h:outputText>
+                                    <p:selectBooleanCheckbox class="m-1" value="#{theatreServiceController.current.chargesVisibleForInward}" itemLabel="Charges Visible for inward billing"/>
 
-                                    <h:outputText value="" ></h:outputText>
-                                    <p:selectBooleanCheckbox value="#{theatreServiceController.current.marginNotAllowed}" itemLabel="Margin Not Allowed"/>
-                                    
-                                    <h:outputText value="" ></h:outputText>
-                                    <p:selectBooleanCheckbox value="#{theatreServiceController.current.requestForQuentity}" itemLabel="Request for Quentity"/>
+                                    <h:outputText class="m-1" value="" ></h:outputText>
+                                    <p:selectBooleanCheckbox class="m-1" value="#{theatreServiceController.current.marginNotAllowed}" itemLabel="Margin Not Allowed"/>
+
+                                    <h:outputText class="m-1" value="" ></h:outputText>
+                                    <p:selectBooleanCheckbox class="m-1" value="#{theatreServiceController.current.requestForQuentity}" itemLabel="Request for Quentity"/>
 
 
-                                    <h:outputText value="" ></h:outputText>
-                                    <p:selectBooleanCheckbox value="#{theatreServiceController.current.discountAllowed}" itemLabel="Discount Allowed"/>
-                                    <h:outputText value="" ></h:outputText>
-                                    <p:selectBooleanCheckbox value="#{theatreServiceController.current.patientNotRequired}" itemLabel="Patient Not Required"/>
+                                    <h:outputText class="m-1" value="" ></h:outputText>
+                                    <p:selectBooleanCheckbox class="m-1" value="#{theatreServiceController.current.discountAllowed}" itemLabel="Discount Allowed"/>
+                                    <h:outputText class="m-1" value="" ></h:outputText>
+                                    <p:selectBooleanCheckbox class="m-1" value="#{theatreServiceController.current.patientNotRequired}" itemLabel="Patient Not Required"/>
                                 </h:panelGrid>
                             </h:panelGrid>
                         </p:panel>

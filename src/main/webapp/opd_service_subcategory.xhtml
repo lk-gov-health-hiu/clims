@@ -24,11 +24,11 @@
                         <h:panelGrid id="gpSelect" columns="1"  >
                             <p:panel header="Parent Category" >
                                 <h:panelGrid id="gpSelectText" >
-                                    <h:selectOneListbox  id="lstSelect"   size="5" value="#{serviceSubCategoryController.parentCategory}" style="min-width: 223px" >
+                                    <p:selectOneListbox  id="lstSelect"   size="5" value="#{serviceSubCategoryController.parentCategory}" style="min-width: 223px" >
                                         <f:selectItems  value="#{serviceCategoryController.items}"  var="myItem" itemValue="#{myItem}" itemLabel="#{myItem.name}" ></f:selectItems>
                                         <f:ajax render="gpSelectText1 gpDetail" execute="lstSelect"  >
                                         </f:ajax>
-                                    </h:selectOneListbox>
+                                    </p:selectOneListbox>
                                 </h:panelGrid>
 
                             </p:panel>
@@ -36,11 +36,11 @@
 
                         <p:panel header="Sub Category">
                             <h:panelGrid id="gpSelectText1" >
-                                <h:selectOneListbox  id="lstSelect1"   size="5" value="#{serviceSubCategoryController.current}" style="min-width: 223px">
+                                <p:selectOneListbox  id="lstSelect1"   size="5" value="#{serviceSubCategoryController.current}" style="min-width: 223px">
                                     <f:selectItems  value="#{serviceSubCategoryController.items}" var="myItem" itemValue="#{myItem1}" itemLabel="#{myItem1.name}" ></f:selectItems>
                                     <f:ajax render="gpDetail" execute="lstSelect1" >
                                     </f:ajax>
-                                </h:selectOneListbox>
+                                </p:selectOneListbox>
 
                             </h:panelGrid>
                         </p:panel>
@@ -48,25 +48,25 @@
                         <p:panel>
                             <h:panelGrid id="gpDetail" columns="1">
                                 <h:panelGrid id="gpDetailText" columns="2">
-                                    <h:outputText id="lblName" value="Name" ></h:outputText>
-                                    <h:inputText autocomplete="off" id="txtName" value="#{serviceSubCategoryController.current.name}"  ></h:inputText>
-                                    <h:outputText id="lblNameIn" value="Income Name" ></h:outputText>
-                                    <h:inputText autocomplete="off" id="txtNameIn" value="#{serviceSubCategoryController.current.description}"  ></h:inputText>
+                                    <h:outputText class="m-1" id="lblName" value="Name" ></h:outputText>
+                                    <p:inputText class="m-1" autocomplete="off" id="txtName" value="#{serviceSubCategoryController.current.name}"  ></p:inputText>
+                                    <h:outputText class="m-1" id="lblNameIn" value="Income Name" ></h:outputText>
+                                    <p:inputText class="m-1" autocomplete="off" id="txtNameIn" value="#{serviceSubCategoryController.current.description}"  ></p:inputText>
 
                                 </h:panelGrid>
-                                <h:panelGrid id="gpDetailButtons" columns="2">
+                                <p:panelGrid id="gpDetailButtons" columns="2">
                                     
-                                    <h:commandButton id="btnSave" value="Add Sub Category" action="#{serviceSubCategoryController.saveSelected()}" styleClass="buttons">
+                                    <p:commandButton id="btnSave" class="m-1" ajax="false" value="Add Sub Category" action="#{serviceSubCategoryController.saveSelected()}">
                                         <f:ajax render="btnDelete btnSave   lstSelect lstSelect1 gpDetail selectFocus"  execute="gpDetail" >
                                         </f:ajax>
-                                    </h:commandButton>
+                                    </p:commandButton>
                                     <p:defaultCommand target="btnSave"/>
                                     
-                                    <h:commandButton id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
+                                    <p:commandButton class="m-1" ajax="false" id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
                                                 return false;" action="#{serviceSubCategoryController.delete()}"  value="Delete"  >
-                                    </h:commandButton>
+                                    </p:commandButton>
                                     
-                                </h:panelGrid>
+                                </p:panelGrid>
                             </h:panelGrid>
                         </p:panel>
 

@@ -24,21 +24,21 @@
                         <h:panelGrid id="gpSelect" columns="1" styleClass="alignTop"  >
                             <p:panel >
                                 <h:panelGrid id="gpSelectText" >
-                                    <h:selectOneListbox  id="lstSelect"   size="10" value="#{metadataSuperCategoryController.current}" style="min-width: 223px">
+                                    <p:selectOneListbox  id="lstSelect"   size="10" value="#{metadataSuperCategoryController.current}" style="min-width: 223px">
                                         <f:selectItems  value="#{metadataSuperCategoryController.items}" var="myItem" itemValue="#{myItem}" itemLabel="#{myItem.name}" ></f:selectItems>
                                         <f:ajax render="gpDetail" execute="lstSelect" >
                                         </f:ajax>
-                                    </h:selectOneListbox>
+                                    </p:selectOneListbox>
                                 </h:panelGrid>
                                 <h:panelGrid id="gpSelectButtons" columns="3"  >
                                     <p:defaultCommand target="btnAdd" ></p:defaultCommand>
-                                    <h:commandButton id="btnAdd" value="Add" action="#{metadataSuperCategoryController.prepareAdd()}" styleClass="buttons" >
+                                    <p:commandButton id="btnAdd" class="m-1" value="Add" action="#{metadataSuperCategoryController.prepareAdd()}">
                                         <f:ajax render="btnAdd  btnDelete btnSave   lstSelect gpDetail detailFocus" execute="" >
                                         </f:ajax>
-                                    </h:commandButton>
-                                    <h:commandButton id="btnDelete" onclick="if (!confirm('Are you sure you want to delete this record?'))
+                                    </p:commandButton>
+                                    <p:commandButton id="btnDelete" class="m-1" onclick="if (!confirm('Are you sure you want to delete this record?'))
                                                 return false;" action="#{metadataSuperCategoryController.delete()}"  value="Delete"  >
-                                    </h:commandButton>
+                                    </p:commandButton>
                                 </h:panelGrid>
                             </p:panel>
                         </h:panelGrid  >
@@ -48,7 +48,7 @@
                                 <h:panelGrid columns="1">
                                     <h:panelGrid id="gpDetailText" columns="2">
                                         <h:outputText id="lblName" value="Name" ></h:outputText>
-                                        <h:inputText autocomplete="off" id="txtName" value="#{metadataSuperCategoryController.current.name}"  ></h:inputText>
+                                        <p:inputText autocomplete="off" id="txtName" class="m-1" value="#{metadataSuperCategoryController.current.name}"  ></p:inputText>
 
 
 
@@ -58,18 +58,20 @@
                                         <table >
                                             <tr>
                                                 <td>
-                                                    <h:inputText id="txtNewMetaCatName" value="#{metadataSuperCategoryController.catName}" ></h:inputText>
+                                                    <p:inputText id="txtNewMetaCatName" value="#{metadataSuperCategoryController.catName}" ></p:inputText>
                                                     <p:watermark for="txtNewMetaCatName" value="Enter the new value here" ></p:watermark>
                                                 </td>
                                                 <td>
 
                                                     <p:commandButton id="btnAddNewCat"
                                                                    ajax="false"
+                                                                   class="m-1"
                                                                      process="btnAddNewCat txtNewMetaCatName" 
                                                                      value="Add New Value"
                                                                      update="repeatSubCats txtNewMetaCatName"
                                                                     action="#{metadataSuperCategoryController.addCatName()}" 
-                                                                     ></p:commandButton>
+                                                                     >
+                                                    </p:commandButton>
 
                                                 </td>
                                             </tr>
@@ -106,10 +108,10 @@
 
 
                                     <h:panelGrid id="gpDetailButtons" columns="2">
-                                        <h:commandButton id="btnSave" value="Save" action="#{metadataSuperCategoryController.saveSelected()}" styleClass="buttons">
+                                        <p:commandButton id="btnSave" value="Save" class="m-1" action="#{metadataSuperCategoryController.saveSelected()}" styleClass="buttons">
                                             <f:ajax render="btnAdd  btnDelete btnSave   lstSelect gpDetail selectFocus"  execute="gpDetail" >
                                             </f:ajax>
-                                        </h:commandButton>
+                                        </p:commandButton>
 
                                     </h:panelGrid>
                                 </h:panelGrid>

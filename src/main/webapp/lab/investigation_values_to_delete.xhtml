@@ -21,12 +21,17 @@
                                     <p:commandButton value="Previous" id="btnPre"
                                                      action="#{investigationItemController.previousInvestigation()}"
                                                      process="@this" ajax="false"
-                                                     update="acPt tbl filters"  disabled="#{investigationItemController.currentInvestigation eq null}"
-                                                     ></p:commandButton>
+                                                     update="acPt tbl filters" 
+                                                     class="m-1"
+                                                     disabled="#{investigationItemController.currentInvestigation eq null}"
+                                                     >
+                                    </p:commandButton>
                                     <p:commandButton value="Next" disabled="#{investigationItemController.currentInvestigation eq null}"
                                                      action="#{investigationItemController.nextInvestigation()}"
                                                      process="@this" ajax="false"
-                                                     update="acPt tbl filters" id="btnNext"
+                                                     update="acPt tbl filters"
+                                                     class="m-1"
+                                                     id="btnNext"
                                                      ></p:commandButton>
 
                                 </h:panelGrid>

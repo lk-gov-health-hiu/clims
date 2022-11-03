@@ -18,19 +18,19 @@
                             <f:ajax render=":#{p:resolveFirstComponentWithId('gpDetail',view).clientId}" execute="lstSelect" >
                             </f:ajax>
                         </p:selectOneListbox>
-                        <p:commandButton id="btnAdd" ajax="false" value="Add" action="#{formFormatController.prepareAdd()}" styleClass="buttons" onclick="onSubmitButton();"  >
+                        <p:commandButton id="btnAdd" ajax="false" class="m-1" value="Add" action="#{formFormatController.prepareAdd()}" onclick="onSubmitButton();"  >
                         </p:commandButton>
-                        <p:commandButton id="btnDelete" ajax="false" onclick="if (!confirm('Are you sure you want to delete this record?'))
+                        <p:commandButton id="btnDelete" class="m-1" ajax="false" onclick="if (!confirm('Are you sure you want to delete this record?'))
                                     return false;" action="#{formFormatController.delete()}"  value="Delete"  >
                         </p:commandButton>
                     </p:panel>
                     <p:panel  style="float: right;display: block;">
                         <h:panelGrid id="gpDetail" columns="2" >
-                            <h:outputText id="lblName" value="Name" ></h:outputText>
-                            <p:inputText autocomplete="off" id="txtName" value="#{formFormatController.current.name}"  ></p:inputText>
-                            <h:outputText id="lblCode" value="Descreption" >                                        
+                            <h:outputText class="m-1" id="lblName" value="Name" ></h:outputText>
+                            <p:inputText autocomplete="off" id="txtName" class="m-1" value="#{formFormatController.current.name}"  ></p:inputText>
+                            <h:outputText class="m-1" id="lblCode" value="Descreption" >                                        
                             </h:outputText>
-                            <p:inputTextarea id="txtCode"  value="#{formFormatController.current.description}"  >
+                            <p:inputTextarea id="txtCode" class="m-1" value="#{formFormatController.current.description}"  >
                             </p:inputTextarea>
                             <p:commandButton ajax="false" id="btnSave" value="Save" action="#{formFormatController.saveSelected()}" styleClass="buttons" onclick="onSubmitButton();" >
                             </p:commandButton>

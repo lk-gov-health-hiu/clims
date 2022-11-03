@@ -17,10 +17,10 @@
 
                     <f:facet name="header" >
                         <h:outputLabel value="List of Service to Delete"></h:outputLabel>
-                        <p:commandButton ajax="false" value="Print" styleClass="noPrintButton" >
+                        <p:commandButton class="m-1" ajax="false" value="Print">
                             <p:printer target="panIx" />
                         </p:commandButton>
-                        <p:commandButton ajax="false" value="Export Excel" styleClass="noPrintButton" >
+                        <p:commandButton class="m-1" ajax="false" value="Export Excel" >
                             <p:dataExporter target="dtF" type="xls" fileName="All Services" />
                         </p:commandButton>
                     </f:facet>
@@ -30,7 +30,7 @@
                     <p:panel >
                         <f:facet name="header" >
                             <h:outputLabel value="List of Service to Delete"></h:outputLabel>
-                            <p:commandButton ajax="false" value="Remove" styleClass="noPrintButton" action="#{serviceController.removeSelectedItems()}">
+                            <p:commandButton ajax="false" class="m-1" value="Remove" styleClass="noPrintButton" action="#{serviceController.removeSelectedItems()}">
                             </p:commandButton>
                         </f:facet>
 
