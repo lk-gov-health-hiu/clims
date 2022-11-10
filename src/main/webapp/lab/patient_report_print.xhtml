@@ -71,6 +71,17 @@
                                         <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ReferringDoctor' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.referredBy.person.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
                                         <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ReferringInstitution' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.referredByInstitution.name}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
 
+
+                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'AutherizedUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.autherizedUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'DataEntryUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.dataEntryUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ApprovedUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.approvedUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+
+                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'AutherizedName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.autherizedUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'DataEntryUserName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.dataEntryUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ApprovedUserName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.approvedUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+
+
+
                                         <p:graphicImage rendered="#{myCli.reportItemType eq 'DataEntrySignature' and myCli.retired eq false and patientReportController.currentPatientReport.dataEntryUser ne null }"    value="#{staffImageController.signatureById}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
                                             <f:param name="id" value="#{patientReportController.currentPatientReport.dataEntryUser.id}" />
                                         </p:graphicImage>
