@@ -28,7 +28,8 @@
                                                  action="#{webUserController.uploadUserSignature()}" class="btn btn-warning"/>
                             </h:panelGrid>
                         </h:form>
-                        <p:panel header="Current Signature" rendered="#{webUserController.selected}" >
+                        <p:panel header="Current Signature"  >
+                            <p:outputLabel value="Username : #{webUserController.selected.name}" ></p:outputLabel>
                             <p:outputLabel value="Username : #{webUserController.selected.name}" ></p:outputLabel>
                             <p:graphicImage    
                                 value="#{streamedContentController.signatureByUserId}" >
