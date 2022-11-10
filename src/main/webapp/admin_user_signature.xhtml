@@ -11,28 +11,34 @@
         <ui:composition template="/resources/template/template.xhtml">
             <ui:define name="content">
                 <p:panel  >
-                    <f:facet name="header" >
+                    <p:panelGrid columns="1" >
                         <h:form >
                             <p:outputLabel value="Add Staff Signature" ></p:outputLabel>
                             <p:commandButton ajax="false" value="Back" action="#{webUserController.toListUsers()}" >
                             </p:commandButton>
                         </h:form>
-                    </f:facet>
+                        <h:form enctype="multipart/form-data">
+                            <h:panelGrid columns="2" class="w-100 border border-light">
+                                <f:facet name="header" >
+                                    File Upload (Images)
+                                </f:facet>
+                                <p:fileUpload value="#{webUserController.file}" mode="simple" skinSimple="true"
+                                              class="btn btn-success fw-bold m-2 "/>
+                                <p:commandButton value="Submit" ajax="false" 
+                                                 action="#{webUserController.uploadUserSignature()}" class="btn btn-warning"/>
+                            </h:panelGrid>
+                        </h:form>
+                        <p:panel header="Current Signature" rendered="#{webUserController.selected}" >
+                            <p:outputLabel value="Username : #{webUserController.selected.name}" ></p:outputLabel>
+                            <p:graphicImage    
+                                value="#{streamedContentController.signatureByUserId}" >
+                                <f:param name="id" value="#{webUserController.selected.id}" />
+                            </p:graphicImage>
+                        </p:panel>
+                    </p:panelGrid>
 
-
-                    <h:form enctype="multipart/form-data">
-                        <h:panelGrid columns="2" class="w-100 border border-light">
-                            <f:facet name="header" >
-                                File Upload (Images)
-                            </f:facet>
-                            <p:fileUpload value="#{webUserController.file}" mode="simple" skinSimple="true"
-                                          class="btn btn-success fw-bold m-2 "/>
-                            <p:commandButton value="Submit" ajax="false" 
-                                             action="#{webUserController.uploadUserSignature()}" class="btn btn-warning"/>
-                        </h:panelGrid>
-
-                    </h:form>
                 </p:panel>
+
             </ui:define>
         </ui:composition>
     </h:body>
