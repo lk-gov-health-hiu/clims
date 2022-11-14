@@ -137,16 +137,24 @@
                                                 <h:outputLabel value="#{pi.billItem.bill.toDepartment.name}" >
                                                 </h:outputLabel>
                                             </p:column>
+                                            <p:column headerText="receavied"  styleClass="alignTop">
+                                                <h:outputLabel value="#{pi.receivedAt}" rendered="#{pi.received}" >
+                                                    <f:convertDateTime pattern="dd MMM yyyy hh:mm a" ></f:convertDateTime>
+                                                </h:outputLabel>
+                                            </p:column>
                                             <p:column headerText="Approved Reports"  styleClass="alignTop noBorderGrid" >
                                                 <p:dataTable value="#{patientReportController.patientReports(pi)}" var="dpr" emptyMessage="No Approved Reports Yet" 
                                                              rowStyleClass="#{dpr.retired eq true ? 'noDisplayRow':''}" 
                                                              styleClass="noBorderGrid summeryBorder noBorder" >
                                                     <p:column >
                                                         <p:commandLink id="cmdOldReport" style="text-decoration:underline;" 
+                                                                       disabled="#{not dpr.autherized}"
                                                                        value="#{dpr.item.name}" 
                                                                        ajax="false" action="/lab/patient_report_print">
                                                             <f:setPropertyActionListener value="#{dpr}" target="#{patientReportController.currentPatientReport}"></f:setPropertyActionListener>
                                                         </p:commandLink>
+                                                        <p:graphicImage id="imgApproved" library="image" name="approved_icon.png" 
+                                                                        style="height: 30px; width: 30px; #{dpr.autherized ? '':'opacity: 0.1;'}" ></p:graphicImage>
                                                     </p:column>
                                                 </p:dataTable>
                                             </p:column>
