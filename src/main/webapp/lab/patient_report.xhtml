@@ -63,7 +63,7 @@
                                     </p:commandButton>
 
                                     <p:commandButton class="m-1"  id="btnApprove"  disabled ="#{webUserController.hasPrivilege('LabApproving') ne true}"   
-                                                     value="Approve*" action="#{patientReportController.approvePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
+                                                     value="Approve" action="#{patientReportController.approvePatientReport()}" ajax="false" onclick="onSubmitButton();"  >
                                     </p:commandButton>
 
                                     <p:commandButton class="m-1" styleClass="nonPrintBlock"  id="btnAutherize"
