@@ -28,7 +28,7 @@
                                     <p:commandButton ajax="false" id="btnSearch" class="btn btn-primary m-1 w-75 " value="Search" action="#{searchController.createBillItemTableByKeyword()}"/>
                                     <p:commandButton ajax="false" id="btnSearchAll" class="btn btn-primary m-1 w-75 " value="Search All" action="#{searchController.createBillItemTableByKeywordAll()}" rendered="#{webUserController.hasPrivilege('SearchAll')}"/>
                                     <p:commandButton ajax="false" value="Excel" class="btn btn-primary m-1 w-75"  style="float: left;">
-                                        <p:exporter type="xlsx" target="tblBills" fileName="Bill Item Report" />
+                                        <p:dataExporter type="xlsx" target="tblBills" fileName="Bill Item Report" />
                                     </p:commandButton>
                                     <p:spacer height="30"/><h:outputLabel/><h:outputLabel/><h:outputLabel/><h:outputLabel/>
                                     <div class="col-md-1">
