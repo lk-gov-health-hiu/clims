@@ -128,7 +128,7 @@ public class WebUserController implements Serializable {
             JsfUtil.addErrorMessage("Nothing Selected");
             return "";
         }
-        if(selected.getId()==null){
+        if (selected.getId() == null) {
             JsfUtil.addErrorMessage("User not save yet.");
             return "";
         }
@@ -171,6 +171,13 @@ public class WebUserController implements Serializable {
         } else {
             getFacade().edit(current);
             UtilityController.addSuccessMessage("Updated");
+        }
+        if (current.getWebUserPerson() != null) {
+            if (current.getWebUserPerson().getId() == null) {
+                personFacade.create(current.getWebUserPerson());
+            } else {
+                personFacade.edit(current.getWebUserPerson());
+            }
         }
     }
 

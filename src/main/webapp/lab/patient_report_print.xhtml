@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ez="http://java.sun.com/jsf/composite/ezcomp">
 
 
 
@@ -22,9 +23,7 @@
 
 
                     <p:commandButton styleClass="nonPrintBlock" ajax="false" value="Print" onclick="window.print();" actionListener="#{patientReportController.printPatientReport()}" />
-                    <!--                    <p:commandButton styleClass="nonPrintBlock" ajax="false" value="PDF" 
-                                                         action="#{patientReportController.createPDF()}" onclick="this.form.target = '_blank'" />-->
-                    <!--<p:commandButton styleClass="nonPrintBlock" ajax="false" value="Back" action="/lab/search_for_reporting_ondemand"/>-->
+
 
 
 
@@ -36,7 +35,8 @@
                         <h:panelGroup rendered="#{patientReportController.currentPatientReport.item.reportType ne 'Microbiology'}"  >
                             <div id="divReport"  style="min-width:800px;min-height: 1100px; position: relative; font-size: 120%;">
 
-
+                                <ez:common_report commonReportFormat="#{patientReportController.currentPatientReport.reportFormat}"
+                                                  patientReport="#{patientReportController.currentPatientReport}"/>
 
                                 <ui:repeat value="#{commonReportItemController.items}" var="myCli" >
                                     <div style="#{myCli.cssStyle}; position:absolute;">
@@ -74,11 +74,11 @@
 
                                         <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'AutherizedUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.autherizedUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
                                         <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'DataEntryUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.dataEntryUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ApprovedUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.approvedUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ApprovedUserDetails' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.approveUser.description}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
 
                                         <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'AutherizedName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.autherizedUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
                                         <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'DataEntryUserName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.dataEntryUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ApprovedUserName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.approvedUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
+                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ApprovedUserName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.approveUser.webUserPerson.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
 
 
 
@@ -151,47 +151,8 @@
 
                         <h:panelGroup rendered="#{patientReportController.currentPatientReport.item.reportType eq 'Microbiology'}"  >
                             <div id="divReportM"  style="min-width:800px;min-height: 1100px; position: relative; font-size: 150%;">
-                                <ui:repeat value="#{commonReportItemController.items}" var="myCli" >
-                                    <div style="#{myCli.cssStyle}; position:absolute;">
-                                        <h:outputText rendered="#{myCli.ixItemType eq 'Label' and myCli.retired ne true }"  value="#{myCli.name}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'PatientName' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.patient.person.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'PatientAge' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.patient.age}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'PatientSex' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.patient.person.sex}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'InvestigationName' and  myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.investigation.name}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'Speciman' and  myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.investigation.sample.name}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'SampledTime' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.sampledAt}" style="color: #{myCli.cssColor}" escape="false" >
-                                            <f:convertDateTime pattern="hh mm ss a"/>
-                                        </h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'BilledDate' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.createdAt}" style="color: #{myCli.cssColor}" escape="false" >
-                                            <f:convertDateTime  timeZone="Asia/Colombo" pattern="dd MM yyyy" ></f:convertDateTime>
-                                        </h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'BilledTime' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.createdAt}" style="color: #{myCli.cssColor}" escape="false" >
-                                            <f:convertDateTime pattern="hh mm ss a"/>
-                                        </h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'SampledDate' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.sampledAt}" style="color: #{myCli.cssColor}" escape="false" >
-                                            <f:convertDateTime  timeZone="Asia/Colombo" pattern="dd MM yyyy" ></f:convertDateTime>
-                                        </h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'BillNo' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.insId}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ReportedDate' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.dataEntryAt}" style="color: #{myCli.cssColor}" escape="false" >
-                                            <f:convertDateTime  timeZone="Asia/Colombo" pattern="dd MM yyyy" ></f:convertDateTime>
-                                        </h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ReportedTime' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.dataEntryAt}" style="color: #{myCli.cssColor}" escape="false" >
-                                            <f:convertDateTime pattern="hh mm ss a"/>
-                                        </h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ReferringDoctor' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.referredBy.person.nameWithTitle}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-                                        <h:outputText rendered="#{myCli.ixItemType ne 'Label' and myCli.reportItemType eq 'ReferringInstitution' and myCli.retired eq false }"  value="#{patientReportController.currentPatientReport.patientInvestigation.billItem.bill.referredByInstitution.name}" style="color: #{myCli.cssColor}" escape="false" ></h:outputText>
-
-                                        <h:panelGroup rendered="#{patientReportController.currentPatientReport.approveUser.staff.baImage ne null}">
-                                            <p:graphicImage rendered="#{myCli.reportItemType eq 'AutherizedSignature' and myCli.retired eq false }"    value="#{staffImageController.signatureById}" style="width: #{myCli.cssWidth}; max-height: 50px!important;"  >
-                                                <f:param name="id" value="#{patientReportController.currentPatientReport.approveUser.staff.id}" />
-                                            </p:graphicImage>
-
-
-                                        </h:panelGroup>
-
-                                    </div>
-                                </ui:repeat>
+                               <ez:common_report commonReportFormat="#{patientReportController.currentPatientReport.reportFormat}"
+                                                      patientReport="#{patientReportController.currentPatientReport}"/>
 
 
 
