@@ -17,22 +17,20 @@
                                     <!--<p:panelGrid columns="1" >-->
                                     <h:form>
                                         <div class="ui-fluid">
-                                            <p:panelGrid columns="2" >
-                                                <h:outputLabel value="From"/>
+                                            <!--<p:panelGrid columns="2" >-->
+                                                <div align="middle"><h:outputLabel value="From"/></div>
                                                 <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
                                                 </p:calendar>
-                                                <h:outputLabel value="To"/>
+                                                <div align="middle"><h:outputLabel value="To"/></div>
                                                 <p:calendar styleClass="dateTimePicker" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
                                                 </p:calendar>
-                                            </p:panelGrid>
-                                            <!--<div class="col-md-2">-->
+                                            <!--</p:panelGrid>-->              
                                             <h:commandButton style="margin-bottom: 10px; margin-top:10px"                                                       
                                                              id="btnSearch2" 
                                                              class='form form-control btn btn-primary' 
                                                              value="Search" 
                                                              action="#{searchController.listPatientInvestigationsForMyInstitution}"
-                                                             onclick="onSubmitButton();" />
-                                            <!--</div>-->
+                                                             onclick="onSubmitButton();" />                                            
                                         </div>
                                     </h:form>
                                     <!--</p:panelGrid>-->
@@ -40,18 +38,18 @@
 
                                     <h:form>
                                         <div class="ui-fluid">
-                                            <p:panelGrid columns="2" >
-                                                <h:outputLabel value="Request No"/>
+                                            <!--<p:panelGrid columns="2" >-->
+                                                <div align="middle"><h:outputLabel value="Request No"/></div>
                                                 <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
-                                                <h:outputLabel value="Patient Name"/>
+                                                <div align="middle"><h:outputLabel value="Patient Name"/></div>
                                                 <p:inputText autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
-                                                <h:outputLabel value="Patient Phone"/>  
+                                                <div align="middle"><h:outputLabel value="Patient Phone"/></div>  
                                                 <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
-                                                <h:outputLabel value="Investigation Name"/>
+                                                <div align="middle"><h:outputLabel value="Investigation Name"/></div>
                                                 <p:inputText autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>
-                                                <h:outputLabel value="Patient BHT number"/>
+                                                <div align="middle"><h:outputLabel value="Patient BHT number"/></div>
                                                 <p:inputText autocomplete="off" value="#{searchController.searchKeyword.bhtNo}"/>    
-                                            </p:panelGrid>
+                                            <!--</p:panelGrid>-->
                                         </div>
                                     </h:form>
 
