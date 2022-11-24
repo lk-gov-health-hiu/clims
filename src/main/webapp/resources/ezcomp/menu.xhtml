@@ -60,7 +60,7 @@
 
             <p:submenu styleClass="rightBordrOnly" label="User"  icon="pi pi-fw pi-user" >
                 <p:menuitem  ajax="false"  action="/user_change_password" value="Change Password"   ></p:menuitem>
-                <p:menuitem  ajax="false"  action="/user_preferances" value="Change Preferances"  ></p:menuitem>
+                
             </p:submenu>
 
             <p:submenu styleClass="rightBordrOnly" label="Admin" icon="pi pi-user-edit"  rendered="#{webUserController.hasPrivilege('Admin')}">
