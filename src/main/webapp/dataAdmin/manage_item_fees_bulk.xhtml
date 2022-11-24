@@ -20,18 +20,29 @@
                     <h:panelGrid columns="1" styleClass="alignTop" >
                         <h:panelGrid columns="4" >
                             <p:commandButton ajax="false" 
-                                             value="Add Fees For Selected Items" action="#{itemController.createItemFessForItemsWithoutFee}" >
+                                             class="m-1"
+                                             value="Add Fees For Selected Items"
+                                             action="#{itemController.createItemFessForItemsWithoutFee}" >
                             </p:commandButton>
 
                             <p:commandButton 
-                                ajax="false" value="Fix Items Totals" action="#{itemController.updateSelectedItemFees}" >
+                                ajax="false"
+                                value="Fix Items Totals" 
+                                class="m-1"
+                                action="#{itemController.updateSelectedItemFees}" >
                             </p:commandButton>
                             <p:commandButton 
-                                ajax="false" value="Fix Discount Allowed Property" action="#{itemController.updateSelectedFeesForDiscountAllow}" >
+                                ajax="false"
+                                value="Fix Discount Allowed Property" 
+                                 class="m-1"
+                                action="#{itemController.updateSelectedFeesForDiscountAllow}" >
                             </p:commandButton>
 
                             <p:commandButton 
-                                ajax="false" value="Refresh Items" action="#{itemController.refreshInvestigationsAndServices}" >
+                                ajax="false"
+                                 class="m-1"
+                                value="Refresh Items"
+                                action="#{itemController.refreshInvestigationsAndServices}" >
                             </p:commandButton>
 
                         </h:panelGrid>
