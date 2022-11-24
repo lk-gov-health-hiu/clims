@@ -376,11 +376,11 @@
                         <h:panelGroup rendered="#{billController.printPreview}" styleClass="alignTop" >
                             <h:panelGroup >
                                 <div class="nonPrintBlock">
-                                    <p:commandButton value="Print" ajax="false" action="#"  >
+                                    <p:commandButton value="Print" class="m-1" ajax="false" action="#"  >
                                         <p:printer target="fiveFivePaperWithHeadings" ></p:printer>
                                     </p:commandButton>
 
-                                    <p:commandButton value="New Order" ajax="false" action="#{billController.prepareNewBill()}" >
+                                    <p:commandButton value="New Order" class="m-1" ajax="false" action="#{billController.prepareNewBill()}" >
                                     </p:commandButton>
 
                                     <p:commandButton ajax="false" value="Batch Cancel" action="#{billController.cancellAll}" style="float: right;"
