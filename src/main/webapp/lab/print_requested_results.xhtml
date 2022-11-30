@@ -14,36 +14,46 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <p:panelGrid columns="1" >
-                                        <p:panelGrid columns="2" >
-                                            <h:outputLabel value="From"/>
-                                            <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
-                                            </p:calendar>
-                                            <h:outputLabel value="To"/>
-                                            <p:calendar styleClass="dateTimePicker" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
-                                            </p:calendar>
-                                        </p:panelGrid>
-                                        <h:commandButton id="btnSearch2" 
-                                                         class='form form-control btn btn-primary' 
-                                                         value="Search" 
-                                                         action="#{searchController.listPatientInvestigationsForMyInstitution}"
-                                                         onclick="onSubmitButton();" />
-                                    </p:panelGrid>
-                                    <p:panelGrid columns="3" >
+                                    <!--<p:panelGrid columns="1" >-->
+                                    <h:form>
+                                        <div class="ui-fluid">
+                                            <!--<p:panelGrid columns="2" >-->
+                                                <div align="middle"><h:outputLabel value="From"/></div>
+                                                <p:calendar styleClass="dateTimePicker" id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
+                                                </p:calendar>
+                                                <div align="middle"><h:outputLabel value="To"/></div>
+                                                <p:calendar styleClass="dateTimePicker" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
+                                                </p:calendar>
+                                            <!--</p:panelGrid>-->              
+                                            <h:commandButton style="margin-bottom: 10px; margin-top:10px"                                                       
+                                                             id="btnSearch2" 
+                                                             class='form form-control btn btn-primary' 
+                                                             value="Search" 
+                                                             action="#{searchController.listPatientInvestigationsForMyInstitution}"
+                                                             onclick="onSubmitButton();" />                                            
+                                        </div>
+                                    </h:form>
+                                    <!--</p:panelGrid>-->
+                                    <!--<p:panelGrid columns="3" >-->
 
+                                    <h:form>
+                                        <div class="ui-fluid">
+                                            <!--<p:panelGrid columns="2" >-->
+                                                <div align="middle"><h:outputLabel value="Request No"/></div>
+                                                <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
+                                                <div align="middle"><h:outputLabel value="Patient Name"/></div>
+                                                <p:inputText autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
+                                                <div align="middle"><h:outputLabel value="Patient Phone"/></div>  
+                                                <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
+                                                <div align="middle"><h:outputLabel value="Investigation Name"/></div>
+                                                <p:inputText autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>
+                                                <div align="middle"><h:outputLabel value="Patient BHT number"/></div>
+                                                <p:inputText autocomplete="off" value="#{searchController.searchKeyword.bhtNo}"/>    
+                                            <!--</p:panelGrid>-->
+                                        </div>
+                                    </h:form>
 
-                                        <p:panelGrid columns="1" >
-                                            <h:outputLabel value="Request No"/>
-                                            <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.billNo}" />
-                                            <h:outputLabel value="Patient Name"/>
-                                            <p:inputText autocomplete="off" value="#{searchController.searchKeyword.patientName}" />
-                                            <h:outputLabel value="Patient Phone"/>  
-                                            <p:inputText autocomplete="off"  value="#{searchController.searchKeyword.patientPhone}" />
-                                            <h:outputLabel value="Investigation Name"/>
-                                            <p:inputText autocomplete="off" value="#{searchController.searchKeyword.itemName}"/>      
-                                        </p:panelGrid>
-
-                                    </p:panelGrid>
+                                    <!--</p:panelGrid>-->
                                 </div>
                                 <div class="col-md-10">
                                     <p:panel header="Search Requests" rendered="true" >
@@ -55,11 +65,14 @@
                                                       paginator="true" paginatorPosition="both"
                                                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                       currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                                                      rowsPerPageTemplate="5,10,100">      
-                                            <p:column  headerText="Order ID" styleClass="alignTop" >
+                                                      rowsPerPageTemplate="5,10,100"> 
+
+                                            <p:column  headerText="Order ID" styleClass="alignTop">
+
                                                 <h:outputLabel id="lblBillNo" 
                                                                value="#{pi.billItem.bill.insId}" 
                                                                styleClass="#{pi.billItem.bill.cancelled or pi.billItem.transRefund ? 'redtext':''}"></h:outputLabel>
+
                                                 <p:tooltip for="lblBillNo"  >
                                                     <h:outputLabel value="Order No : #{pi.billItem.bill.insId}" ></h:outputLabel>
                                                     <br/>
@@ -88,6 +101,12 @@
                                                         </h:outputLabel>
                                                     </h:panelGroup>
                                                 </p:tooltip>
+                                            </p:column>
+                                            <p:column headerText="BHT" styleClass="alignTop" 
+                                                      filterBy="#{pi.billItem.bill.bht}" 
+                                                      filterMatchMode="contains">
+                                                <h:outputLabel id="BHTnumber" 
+                                                               value="#{pi.billItem.bill.bht}"></h:outputLabel>
                                             </p:column>
                                             <p:column  headerText="Patient" styleClass="alignTop" 
                                                        sortBy="#{pi.billItem.bill.patient.person.nameWithTitle}" 
@@ -126,8 +145,8 @@
                                             </p:column>
 
                                             <p:column headerText="Investigation"  styleClass="alignTop" 
-                                                      sortBy="#{pi.billItem.bill.patient.person.nameWithTitle}" 
-                                                      filterBy="#{pi.billItem.bill.patient.person.nameWithTitle}" 
+                                                      sortBy="#{pi.billItem.item.name}" 
+                                                      filterBy="#{pi.billItem.item.name}" 
                                                       filterMatchMode="contains">
                                                 <h:outputLabel value="#{pi.billItem.item.name}" >
                                                 </h:outputLabel>
