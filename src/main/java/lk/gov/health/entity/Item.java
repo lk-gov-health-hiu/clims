@@ -185,7 +185,7 @@ public class Item implements Serializable, Comparable<Item> {
     private ItemType itemType;
     @Enumerated(EnumType.STRING)
     private Priority priority;
-
+    private boolean available;
     private boolean hasMoreThanOneComponant;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -206,6 +206,14 @@ public class Item implements Serializable, Comparable<Item> {
     
        @Transient
     private String transCodeFromName;
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
     
       
        

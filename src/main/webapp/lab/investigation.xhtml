@@ -157,10 +157,16 @@
                                                         <f:selectItems value="#{machineController.items}" var="m" itemLabel="#{m.name}" itemValue="#{m}" />
                                                     </p:selectOneMenu>
                                                     <h:outputText value="Priority" ></h:outputText>
+                                                    
                                                     <p:selectOneMenu value="#{investigationController.current.priority}"    >
                                                         <f:selectItem itemLabel="Not Set" ></f:selectItem>
                                                         <f:selectItems value="#{enumController.priorities}" ></f:selectItems>
                                                     </p:selectOneMenu>
+                                                    
+                                                    <h:outputText value="Test Availablity" ></h:outputText>
+                                                    <p:selectBooleanButton onLabel="Available" offLabel="Not available" value="#{investigationController.current.available}"></p:selectBooleanButton>
+                                                    
+                                                    
                                                     <p:outputLabel value="Report Category"/>
                                                     <p:selectOneMenu value="#{investigationController.current.reportType}" >                               
                                                         <f:selectItem itemLabel="General" itemValue="General"/>
@@ -233,10 +239,6 @@
                                                         <f:selectItem itemLabel="Please select a Department"/>
                                                         <f:selectItems value="#{investigationController.institutionDepatrments}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat}" />
                                                     </p:selectOneMenu>
-
-
-
-
                                                 </p:panelGrid>
                                             </p:tab>
                                             <p:tab title="Pricing Details">

@@ -57,7 +57,10 @@
                 <p:menuitem  ajax="false"  action="/reportInstitution/report_referrals_index" value="Referral Reports"  ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/reportLab/report_lab" value="Lab Report"  ></p:menuitem>
             </p:submenu>
-
+                <p:submenu styleClass="rightBordrOnly" label="Availability"  rendered="#{webUserController.hasPrivilege('Reports')}">
+                    <p:menuitem ajax="false" action="#{investigationController.toAvailabilityList()}" value="Edit"  rendered="#{webUserController.hasPrivilege('Reports')}" ></p:menuitem>
+              
+            </p:submenu>
             <p:submenu styleClass="rightBordrOnly" label="User"  icon="pi pi-fw pi-user" >
                 <p:menuitem  ajax="false"  action="/user_change_password" value="Change Password"   ></p:menuitem>
                 <p:menuitem  ajax="false"  action="/user_preferances" value="Change Preferances"  ></p:menuitem>

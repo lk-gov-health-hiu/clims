@@ -266,7 +266,7 @@
                                                     <p:focus  context="acIx"/>
                                                     <div class="form-group row" >
                                                         <div class="col col-md-10" >
-                                                            <p:autoComplete widgetVar="aIx" id="acIx" forceSelection="true"
+                                                            <p:autoComplete widgetVar="acIx" id="acIx" forceSelection="true"
                                                                             value="#{billController.currentBillItem.item}"
                                                                             completeMethod="#{itemController.completeOpdItems}"
                                                                             var="ix" itemLabel="#{ix.name}" itemValue="#{ix}"
@@ -281,20 +281,24 @@
                                                                         <p:outputLabel value=" (#{ix.fullName})" ></p:outputLabel>
                                                                     </h:panelGroup>
                                                                 </p:column>
+                                                                <p:column  headerText="Available">
+                                                                    <p:outputLabel value="#{ix.available?'Yes':'No'}" ></p:outputLabel>
+
+                                                                </p:column>
                                                                 <p:column  headerText="Institution">
                                                                     <h:outputLabel value="#{ix.institution.name}"></h:outputLabel>
                                                                 </p:column>
                                                                 <p:column headerText="Department">
                                                                     <h:outputLabel value="#{ix.department.name}"></h:outputLabel>
                                                                 </p:column>
-                                                                <p:ajax event="itemSelect"  process="acIx" ></p:ajax>
-                                                                <f:ajax event="itemSelect"  execute="@this" render="txtQty" />
+                                                                <p:ajax event="itemSelect"  process="acIx" update="txtQty btnAddIx"></p:ajax>
                                                             </p:autoComplete>
                                                         </div>
                                                         <div class="col col-md-2" >
                                                             <h:commandButton id="btnAddIx" value="Add"
-                                                                             class="btn btn-primary"
-                                                                             action="#{billController.addToBill()}"   >
+                                                                             class="btn #{billController.currentBillItem.item.available? 'btn-primary':'btn-warning'}"
+                                                                             disabled="#{not billController.currentBillItem.item.available}"
+                                                                             action="#{billController.addToBill()}">                                                                             
                                                                 <f:ajax execute="txtQty acIx btnAddIx panelBillItems" render="focusIx panelBillItems pIxAdd" />
                                                             </h:commandButton>
                                                         </div>

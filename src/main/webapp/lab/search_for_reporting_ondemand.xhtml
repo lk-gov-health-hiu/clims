@@ -16,14 +16,13 @@
                     <div>
                         <div class='card-header'>
                             <div class='row'> 
-                                <div class='col-md-2'>
-                                    <h:panelGrid columns="1" >
-                                        <h:panelGrid columns="1" >
-
-                                            <h:outputLabel class="m-1" value="From Date"/>
+                                <div class="col-md-2">
+                                    <div class="ui-fluid">
+                                        <h:form>
+                                            <div align="middle"><h:outputLabel class="m-1" value="From Date"/></div>
                                             <p:calendar class="m-1"  id="fromDate" value="#{searchController.fromDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >      
                                             </p:calendar>
-                                            <h:outputLabel class="m-1" value="To Date"/>
+                                            <div align="middle"><h:outputLabel class="m-1" value="To Date"/></div>
                                             <p:calendar class="m-1" id="toDate" value="#{searchController.toDate}" navigator="false" pattern="dd MMMM yyyy hh mm a" >                                                                              
                                             </p:calendar>
                                             <p:commandButton id="btnSearch2" 
@@ -32,18 +31,16 @@
                                                              value="Search" 
                                                              action="#{searchController.createPatientInvestigationsTableAll()}"
                                                              onclick="onSubmitButton();" />
-                                        </h:panelGrid>
-                                        <h:panelGrid columns="1" >
-                                            <h:outputLabel class='m-1' value="Request No"/>
+                                            <div align="middle"><h:outputLabel class='m-1' value="Request No"/></div>
                                             <p:inputText autocomplete="off" class="m-1"  value="#{searchController.searchKeyword.billNo}" />
-                                            <h:outputLabel class='m-1' value="Patient Name"/>
+                                            <div align="middle"><h:outputLabel class='m-1' value="Patient Name"/></div>
                                             <p:inputText autocomplete="off" class="m-1" value="#{searchController.searchKeyword.patientName}" />
-                                            <h:outputLabel class='m-1' value="Patient Phone"/>
+                                            <div align="middle"><h:outputLabel class='m-1' value="Patient Phone"/></div>
                                             <p:inputText autocomplete="off" class="m-1"  value="#{searchController.searchKeyword.patientPhone}" />
-                                            <h:outputLabel class='m-1' value="Investigation Name"/> 
+                                            <div align="middle"><h:outputLabel class='m-1' value="Investigation Name"/></div> 
                                             <p:inputText autocomplete="off" class="m-1" value="#{searchController.searchKeyword.itemName}"/>
-                                        </h:panelGrid>
-                                    </h:panelGrid>
+                                        </h:form>
+                                    </div>                                
                                 </div>
                                 <div class='col-md-10'>
                                     <p:dataTable  id="tblBills" value="#{searchController.patientInvestigations}" var="pi" rowIndexVar="i" >

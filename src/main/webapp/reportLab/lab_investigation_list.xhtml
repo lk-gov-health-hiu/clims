@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="/resources/template/template.xhtml">
+            <ui:define name="content"> 
+                <div class="row"> 
+                    <div class="ui-fluid col-md-4">
+                        <h:form id="form">
+                            <p:growl/>                               
+                            <h:panelGrid id="gpSelectText" >
+                                <div style="margin-bottom: 20px; margin-top:20px; font-weight: bold" ><h:outputText styleClass="p-md-5 m-1" value="Search Investigation" ></h:outputText></div>
+                                <p:autoComplete id="acIx" value="#{investigationController.current}" 
+                                                completeMethod="#{investigationController.completeInvest}"
+                                                var="ix" itemLabel="#{ix.name}" itemValue="#{ix}" 
+                                                placeholder="Search here ..." 
+                                                class="m-1"
+                                                size="50" maxResults="10"
+                                                >
+                                    <f:ajax event="itemSelect" execute="@this" render="detailPan" ></f:ajax>
+                                    <p:column headerText="Name" >
+                                        <h:outputLabel value="#{ix.name}" ></h:outputLabel>
+                                    </p:column>
+                                    <p:column  headerText="Available">
+                                        <p:outputLabel value="#{ix.available?'Yes':'No'}" ></p:outputLabel>
+                                    </p:column>
+                                    <p:column headerText="Printing Name" >
+                                        <h:outputLabel value="#{ix.printName}" ></h:outputLabel>
+                                    </p:column>
+                                    <p:column headerText="Fill Name" >
+                                        <h:outputLabel value="#{ix.fullName}" ></h:outputLabel>
+                                    </p:column>
+                                    <p:column headerText="Department" >
+                                        <h:outputLabel value="#{ix.department.name}" ></h:outputLabel>
+                                    </p:column>
+                                </p:autoComplete>
+                            </h:panelGrid>
+                            <h:panelGrid  title="Test Details">
+                                <p:panelGrid id="gpDetailText" columns="2" style="white-space: nowrap;">
+                                    <h:outputText value="Test Availablity" ></h:outputText>
+                                    <p:selectBooleanButton onLabel="Available" offLabel="Not available" value="#{investigationController.current.available}"></p:selectBooleanButton>
+                                    <h:outputText value="Institution" ></h:outputText>
+                                    <p:outputLabel value="#{investigationController.current.institution.name}" ></p:outputLabel>
+                                    <h:outputText value="Department" ></h:outputText>
+                                    <p:outputLabel value="#{investigationController.current.department.name}" ></p:outputLabel>
+                                </p:panelGrid>
+                            </h:panelGrid>
+                            <p:commandButton style="float:left;" id="btnSave" value="Save" 
+                                                  action="#{investigationController.saveSelected()}" styleClass="buttons" 
+                                                  ajax="false">
+                                </p:commandButton>
+                                <p:defaultCommand target="btnSave"/>
+                        </h:form>
+                    </div>
+                    <div class="col-md-6">
+                        <p:dataTable class="tab" value="#{investigationController.items}" var="ix" rows="5"
+                                     paginator="true" paginatorPosition="both" rowKey="#{ix.id}"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+                            <p:column headerText="Name" sortBy="#{ix.name}" filterBy="#{ix.name}" filterMatchMode="contains">
+                                #{ix.name}
+                            </p:column>
+                            <p:column headerText="Department">
+                                #{ix.department.name}
+                            </p:column>
+                            <p:column headerText="Availability">
+                                #{ix.available}
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

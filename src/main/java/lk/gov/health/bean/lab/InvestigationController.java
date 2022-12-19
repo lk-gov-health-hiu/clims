@@ -124,8 +124,6 @@ public class InvestigationController implements Serializable {
     List<ItemWithFee> itemWithFees;
     private List<Investigation> investigationWithSelectedFormat;
     private Category categoryForFormat;
-    
-    
 
     public String toAddManyIx() {
         current = new Investigation();
@@ -245,7 +243,7 @@ public class InvestigationController implements Serializable {
 
         return "/lab/investigation_values";
     }
-    
+
     public String toLoadParentInvestigation() {
         if (current == null) {
             JsfUtil.addErrorMessage("Please select investigation");
@@ -256,7 +254,7 @@ public class InvestigationController implements Serializable {
             return "";
         }
         if (current.getReportedAs() != null) {
-            current=(Investigation) current.getReportedAs();
+            current = (Investigation) current.getReportedAs();
         }
         return "";
     }
@@ -277,7 +275,16 @@ public class InvestigationController implements Serializable {
 
         return "/lab/investigation_format_move_all";
     }
+public String toAvailabilityList(){
+    String jpql = "select i from Investigation i "
+            + "where i.retired=:ret and i.department=:dep order by i.name";
+    Map m=new HashMap();
+    m.put("ret", false);
+    m.put("dep", sessionController.getDepartment());
+    items= getFacade().findBySQL(jpql ,m);
+    return "/reportLab/lab_investigation_list";
 
+}
     public String toEditReportCalculations() {
         if (current == null) {
             JsfUtil.addErrorMessage("Please select investigation");
@@ -293,8 +300,7 @@ public class InvestigationController implements Serializable {
         ixCalController.setIx((Investigation) current.getReportedAs());
         return "/lab/calculation";
     }
-    
-    
+
     public String toReplaceableIxs() {
         if (current == null) {
             JsfUtil.addErrorMessage("Please select investigation");
@@ -1187,7 +1193,7 @@ public class InvestigationController implements Serializable {
     }
 
     public List<Investigation> getInvestigationWithSelectedFormat() {
-        if(investigationWithSelectedFormat==null){
+        if (investigationWithSelectedFormat == null) {
             String j = "select i from Investigation i where i.reportFormat=:rf order by i.name";
             Map m = new HashMap();
             m.put("rf", categoryForFormat);
@@ -1289,7 +1295,15 @@ public class InvestigationController implements Serializable {
         }
         return current;
     }
+    public void toggleAvailability() {
+        if (current == null) {
+            JsfUtil.addErrorMessage("select one");
+            return;
+        }
+        current.setAvailable(!current.isAvailable());
+        getFacade().edit(current);
 
+    }
     public void setCurrent(Investigation current) {
         this.current = current;
         if (current != null) {
@@ -1552,6 +1566,4 @@ public class InvestigationController implements Serializable {
         return itemForItemController;
     }
 
-    
-    
 }
